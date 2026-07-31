@@ -1,6 +1,6 @@
-# Iris Rebuild Plan
+# Artemis Rebuild Plan
 
-**Positioning:** Iris — The AI Operating System for High-Performance Sales Teams  
+**Positioning:** Artemis — The AI Operating System for High-Performance Sales Teams  
 **Value prop:** Every sales conversation makes your entire team smarter.
 
 ---
@@ -15,7 +15,7 @@
 | Landing | Single-page `/` with `#` anchors; marketing copy leads with call scoring | **Replace** public site structure & copy |
 | App (`/app`) | Rep workspace: dashboard, calls, coach, performance, goals, leaderboard, settings | **Retain** for now; rebuild in next phase |
 | Exec (`/ceo`) | Executive dashboards, employees, alerts, insights | **Retain** for now; rebuild in next phase |
-| Data | `src/lib/iris-data.ts` demo fixtures (no DB/auth) | **Retain**; expand coherently in product phase |
+| Data | `src/lib/artemis-data.ts` demo fixtures (no DB/auth) | **Retain**; expand coherently in product phase |
 | Auth | None — `/app` and `/ceo` are open demo shells | **Preserve**; `/login` is UI entry → demo workspaces |
 | Deploy | Lovable + Nitro/Cloudflare via `@lovable.dev/vite-tanstack-config` | **Retain** |
 | SEO | Basic root + homepage meta; `robots.txt` allow-all | **Add** per-route meta, OG, sitemap |
@@ -50,12 +50,12 @@ Existing `/app` and `/ceo` remain reachable and functional.
 ### Retain
 - TanStack file routing, `__root.tsx` shell, QueryClient  
 - `src/components/ui/*`, `cn()`, Lucide  
-- `AppShell`, dashboard routes, `iris-data.ts`  
+- `AppShell`, dashboard routes, `artemis-data.ts`  
 - Motion + Recharts for previews/charts  
 
 ### Refactor
 - Colour tokens, radius, shadows, glass utilities  
-- `IrisMark` brand mark  
+- `ArtemisMark` brand mark  
 - Meta title/description defaults  
 
 ### Replace (public only)
@@ -132,7 +132,7 @@ Secondary: Explore platform → `/product` or `#platform` / demo preview.
 
 ## 8. Success criteria for this phase
 
-- [x] Iris reads as a sales OS within 5 seconds on `/`
+- [x] Artemis reads as a sales OS within 5 seconds on `/`
 - [x] All public nav/footer links resolve
 - [x] Book demo + login flows work (UI + validation)
 - [x] No unsupported security/customer claims

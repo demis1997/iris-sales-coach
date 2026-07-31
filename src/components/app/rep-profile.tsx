@@ -23,8 +23,8 @@ import {
 } from "@/lib/demo/operations";
 import type { SkillName } from "@/lib/demo/types";
 import { can } from "@/lib/demo/rbac";
-import { Chip, Meter, ScoreRing } from "@/components/iris/primitives";
-import { chartTooltip } from "@/components/iris/chart-bits";
+import { Chip, Meter, ScoreRing } from "@/components/artemis/primitives";
+import { chartTooltip } from "@/components/artemis/chart-bits";
 import { Button } from "@/components/ui/button";
 
 export function RepProfilePage({ userId }: { userId: string }) {
@@ -216,7 +216,7 @@ export function RepProfilePage({ userId }: { userId: string }) {
                 <div key={c.id}>
                   <div className="flex justify-between text-sm">
                     <span className="font-medium">{c.skill}</span>
-                    <Chip tone="iris">{c.status}</Chip>
+                    <Chip tone="artemis">{c.status}</Chip>
                   </div>
                   <p className="mt-1 text-xs text-muted-foreground">{c.evidence}</p>
                   <Meter value={c.progress} />

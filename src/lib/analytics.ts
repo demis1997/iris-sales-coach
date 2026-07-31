@@ -32,5 +32,5 @@ export function track(event: AnalyticsEvent, props?: Props) {
     console.debug("[analytics]", payload);
   }
 
-  window.dispatchEvent(new CustomEvent("iris:analytics", { detail: payload }));
+  window.dispatchEvent(new CustomEvent("artemis:analytics", { detail: payload }));
 }

@@ -45,7 +45,7 @@ export function MarketingPage({
       <Section align="center">
         <Reveal className="mx-auto max-w-xl text-center">
           <h2 className="text-2xl font-semibold tracking-tight">
-            Ready to see Iris on your conversations?
+            Ready to see Artemis on your conversations?
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
             Book a personalised demo with your team structure, call volume, and CRM in mind.

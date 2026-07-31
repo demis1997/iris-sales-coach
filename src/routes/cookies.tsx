@@ -5,8 +5,8 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/cookies")({
   head: () =>
     pageHead({
-      title: "Cookie Policy — Iris",
-      description: "Iris cookie policy placeholder describing how cookies may be used on this site.",
+      title: "Cookie Policy — Artemis",
+      description: "Artemis cookie policy placeholder describing how cookies may be used on this site.",
       path: "/cookies",
     }),
   component: () => (

@@ -5,7 +5,7 @@ import { ContentCard, PageHero, Section } from "@/components/marketing/ui";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { IrisMark } from "@/components/iris/app-shell";
+import { ArtemisMark } from "@/components/artemis/app-shell";
 import { pageHead } from "@/lib/seo";
 import { track } from "@/lib/analytics";
 import { loginWithEmail, requestPasswordReset } from "@/lib/auth/demo-auth";
@@ -14,9 +14,9 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/login")({
   head: () =>
     pageHead({
-      title: "Log in — Iris",
+      title: "Log in — Artemis",
       description:
-        "Sign in to Iris. Demo workspaces are available while production authentication ships.",
+        "Sign in to Artemis. Demo workspaces are available while production authentication ships.",
       path: "/login",
     }),
   component: LoginPage,
@@ -31,12 +31,12 @@ function LoginPage() {
     <MarketingLayout>
       <PageHero
         eyebrow="Log in"
-        title="Sign in to Iris"
+        title="Sign in to Artemis"
         lede="Production authentication (SSO, MFA, invitations) is part of the enterprise roadmap. Demo login maps work emails to Apex Markets seed users and persists the session in this browser."
       />
       <Section>
         <ContentCard className="mx-auto max-w-md">
-          <IrisMark />
+          <ArtemisMark />
           <form
             className="mt-6 space-y-4"
             onSubmit={(e) => {

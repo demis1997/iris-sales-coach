@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { IrisMark } from "@/components/iris/app-shell";
+import { ArtemisMark } from "@/components/artemis/app-shell";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { track } from "@/lib/analytics";
@@ -27,8 +27,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container-page flex h-14 items-center justify-between gap-4">
-        <Link to="/" className="shrink-0" aria-label="Iris home">
-          <IrisMark />
+        <Link to="/" className="shrink-0" aria-label="Artemis home">
+          <ArtemisMark />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">

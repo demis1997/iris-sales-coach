@@ -6,7 +6,7 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/industries/call-centres")({
   head: () =>
     pageHead({
-      title: "Iris for Call Centres",
+      title: "Artemis for Call Centres",
       description:
         "Quality at scale for call centres—coaching queues, consistent handling, and visibility across shifts without reviewing every recording manually.",
       path: "/industries/call-centres",
@@ -19,7 +19,7 @@ function Page() {
     <MarketingPage
       eyebrow="Call centres"
       title="Quality and coaching that keep up with volume."
-      lede="When hundreds of conversations happen every hour, random QA samples are not enough. Iris analyses every conversation and prioritises coaching where it moves outcomes."
+      lede="When hundreds of conversations happen every hour, random QA samples are not enough. Artemis analyses every conversation and prioritises coaching where it moves outcomes."
     >
       <Section title="Built for centre operations">
         <FeatureList

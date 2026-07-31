@@ -39,7 +39,7 @@ import {
   getVisibleCoaching,
   teamById,
 } from "@/lib/demo/queries";
-import { chartTooltip } from "@/components/iris/chart-bits";
+import { chartTooltip } from "@/components/artemis/chart-bits";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip as UiTooltip,
@@ -332,7 +332,7 @@ export function OverviewDashboard() {
           )}
         </ListCard>
 
-        <ListCard title="Recent Iris insights">
+        <ListCard title="Recent Artemis insights">
           <ul className="space-y-3">
             {insights.map((i) => (
               <li key={i.id} className="text-sm">

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iris.sales/sitemap.xml
+Sitemap: https://artemis.sales/sitemap.xml

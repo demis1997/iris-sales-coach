@@ -17,8 +17,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Chip, Meter } from "@/components/iris/primitives";
-import { chartTooltip } from "@/components/iris/chart-bits";
+import { Chip, Meter } from "@/components/artemis/primitives";
+import { chartTooltip } from "@/components/artemis/chart-bits";
 import { toast } from "sonner";
 
 const STATUS_LABEL: Record<CoachingItemStatus, string> = {
@@ -127,7 +127,7 @@ export function CoachingPage() {
               <div key={planId} className="rounded-xl border border-border bg-card p-4">
                 <div className="flex items-center justify-between gap-2">
                   <h3 className="font-medium">{owner?.name ?? planId}</h3>
-                  <Chip tone="iris">{planItems.length} items</Chip>
+                  <Chip tone="artemis">{planItems.length} items</Chip>
                 </div>
                 <p className="mt-2 text-xs text-muted-foreground">Plan progress</p>
                 <Meter value={avgProgress} />
@@ -158,7 +158,7 @@ export function CoachingPage() {
             </ul>
           )}
         </Section>
-        <Section title="Suggested" lede="Iris recommendations awaiting assignment.">
+        <Section title="Suggested" lede="Artemis recommendations awaiting assignment.">
           {suggested.length === 0 ? (
             <Empty text="No suggestions pending." />
           ) : (
@@ -292,7 +292,7 @@ function CoachingCard({
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Chip tone={item.impactEstimate === "High" ? "warn" : "iris"}>
+          <Chip tone={item.impactEstimate === "High" ? "warn" : "artemis"}>
             {item.impactEstimate} impact
           </Chip>
           <Chip tone="neutral">{STATUS_LABEL[item.status]}</Chip>

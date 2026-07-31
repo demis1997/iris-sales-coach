@@ -6,7 +6,7 @@ export function AnnouncementBar() {
     <div className="border-b border-border bg-secondary/40">
       <div className="container-page flex flex-wrap items-center justify-center gap-x-3 gap-y-1 py-2 text-center text-xs text-muted-foreground sm:text-[13px]">
         <span>
-          Introducing Iris Intelligence — turn every sales conversation into coaching, forecasting,
+          Introducing Artemis Intelligence — turn every sales conversation into coaching, forecasting,
           and revenue insight.
         </span>
         <Link

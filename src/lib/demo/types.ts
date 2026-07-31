@@ -1,4 +1,4 @@
-/** Iris domain types for the authenticated product / demo seed. */
+/** Artemis domain types for the authenticated product / demo seed. */
 
 export type Role = "representative" | "manager" | "director" | "executive" | "admin";
 
@@ -82,7 +82,7 @@ export type Deal = {
   riskReasons: RiskReason[];
   stakeholders: string[];
   crmSyncStatus: "Synced" | "Pending" | "Needs mapping";
-  irisRecommendation: string;
+  artemisRecommendation: string;
 };
 
 export type Call = {

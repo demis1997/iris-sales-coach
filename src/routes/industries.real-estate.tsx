@@ -6,7 +6,7 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/industries/real-estate")({
   head: () =>
     pageHead({
-      title: "Iris for Real Estate Sales Teams",
+      title: "Artemis for Real Estate Sales Teams",
       description:
         "Help real-estate teams improve objection handling, urgency, and next-step discipline across agent conversations.",
       path: "/industries/real-estate",
@@ -19,7 +19,7 @@ function Page() {
     <MarketingPage
       eyebrow="Real estate"
       title="Turn every buyer and seller conversation into team learning."
-      lede="Iris coaches agents on discovery, objection handling, and closing discipline—and gives managers visibility into which behaviours actually move listings and offers."
+      lede="Artemis coaches agents on discovery, objection handling, and closing discipline—and gives managers visibility into which behaviours actually move listings and offers."
     >
       <Section>
         <FeatureList

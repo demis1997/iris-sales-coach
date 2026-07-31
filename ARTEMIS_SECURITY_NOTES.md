@@ -1,4 +1,4 @@
-# Iris security notes
+# Artemis security notes
 
 ## Honest posture
 
@@ -8,7 +8,7 @@ This build is a **product demo**. It does not claim SOC 2, ISO 27001, GDPR certi
 
 - Session organisation id is derived from the authenticated/demo user (`ORG_ID` for Apex Markets).
 - `assertSameOrganisation` / `assertOrg` throw on mismatch.
-- Cross-tenant access is covered in `src/lib/demo/iris.quality.test.ts`.
+- Cross-tenant access is covered in `src/lib/demo/artemis.quality.test.ts`.
 - Do **not** accept organisation id from query strings or request bodies as authoritative.
 
 ## Authentication (current)
@@ -26,7 +26,7 @@ RBAC in `rbac.ts` / `permissions.ts`. Query helpers enforce permissions for call
 ## Secrets
 
 - No hardcoded API keys in the repo
-- AI keys: `IRIS_AI_API_KEY` server-side only — never `VITE_`
+- AI keys: `ARTEMIS_AI_API_KEY` server-side only — never `VITE_`
 - `redactForLogs` strips emails/tokens from audit metadata
 
 ## Audit logging
@@ -46,4 +46,4 @@ Statuses must remain truthful. Only Available connectors can be marked Connected
 
 ## Incident contact
 
-Responsible disclosure: security@iris.sales (as published on `/security`).
+Responsible disclosure: security@artemis.sales (as published on `/security`).

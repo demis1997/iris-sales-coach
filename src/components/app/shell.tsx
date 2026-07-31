@@ -22,7 +22,7 @@ import {
   X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { IrisMark } from "@/components/iris/app-shell";
+import { ArtemisMark } from "@/components/artemis/app-shell";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -32,7 +32,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useSession } from "@/components/app/session";
-import { AskIrisPanel } from "@/components/app/ask-iris";
+import { AskArtemisPanel } from "@/components/app/ask-artemis";
 import { roleLabel, can } from "@/lib/demo/rbac";
 import type { Permission } from "@/lib/demo/permissions";
 import type { Role } from "@/lib/demo/types";
@@ -124,8 +124,8 @@ export function ProductShell() {
         {/* Desktop sidebar */}
         <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-border bg-sidebar lg:flex">
           <div className="flex items-center gap-2 px-4 py-4">
-            <Link to="/" aria-label="Iris marketing site">
-              <IrisMark />
+            <Link to="/" aria-label="Artemis marketing site">
+              <ArtemisMark />
             </Link>
           </div>
           <p className="px-4 text-[11px] font-medium tracking-wider text-muted-foreground uppercase">
@@ -194,7 +194,7 @@ export function ProductShell() {
             />
             <div className="absolute inset-y-0 left-0 flex w-72 flex-col bg-sidebar p-3 shadow-xl">
               <div className="mb-3 flex items-center justify-between px-1">
-                <IrisMark />
+                <ArtemisMark />
                 <button type="button" onClick={() => setMobileOpen(false)} aria-label="Close">
                   <X className="size-4" />
                 </button>
@@ -294,10 +294,10 @@ export function ProductShell() {
                   <span className="absolute top-1.5 right-1.5 size-1.5 rounded-full bg-primary" />
                 </button>
 
-                {can(role, "ask_iris") ? (
+                {can(role, "ask_artemis") ? (
                   <Button size="sm" onClick={() => setAskOpen(true)}>
                     <MessageSquareText className="size-3.5" />
-                    Ask Iris
+                    Ask Artemis
                   </Button>
                 ) : null}
               </div>
@@ -327,7 +327,7 @@ export function ProductShell() {
         </div>
       </div>
 
-      <AskIrisPanel open={askOpen} onOpenChange={setAskOpen} />
+      <AskArtemisPanel open={askOpen} onOpenChange={setAskOpen} />
     </div>
   );
 }

@@ -18,8 +18,8 @@ import { formatEur, getVisibleCalls, getVisibleUsers, teamById } from "@/lib/dem
 import { analysisByCallId } from "@/lib/demo/seed";
 import { getSkillProfile, getTeamSkillHeatmap, listCoaching, SKILLS } from "@/lib/demo/operations";
 import { can } from "@/lib/demo/rbac";
-import { Chip } from "@/components/iris/primitives";
-import { chartTooltip } from "@/components/iris/chart-bits";
+import { Chip } from "@/components/artemis/primitives";
+import { chartTooltip } from "@/components/artemis/chart-bits";
 import { cn } from "@/lib/utils";
 
 export function TeamPage() {

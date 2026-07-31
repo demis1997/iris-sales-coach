@@ -39,7 +39,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { chartTooltip } from "@/components/iris/chart-bits";
+import { chartTooltip } from "@/components/artemis/chart-bits";
 import { toast } from "sonner";
 
 type ReportId =
@@ -223,7 +223,7 @@ export function ReportsPage() {
 
   function exportCsv() {
     const rows = buildExportRows(reportId, data);
-    downloadCsv(`iris-${reportId}-${dateRange}.csv`, rows);
+    downloadCsv(`artemis-${reportId}-${dateRange}.csv`, rows);
     track("report_exported", { reportId, format: "csv" });
     toast.success("CSV downloaded (illustrative demo data)");
   }

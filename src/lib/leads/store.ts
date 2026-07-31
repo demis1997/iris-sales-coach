@@ -19,8 +19,8 @@ export type DemoLead = {
   source: "book-demo";
 };
 
-const LEAD_INDEX_KEY = "iris-leads-index";
-const leadKey = (email: string) => `iris-demo:${email.toLowerCase()}`;
+const LEAD_INDEX_KEY = "artemis-leads-index";
+const leadKey = (email: string) => `artemis-demo:${email.toLowerCase()}`;
 
 export type SaveLeadResult =
   { ok: true; duplicate: boolean; lead: DemoLead } | { ok: false; error: string };

@@ -11,7 +11,7 @@ import {
 import { userById } from "@/lib/demo/queries";
 import type { Playbook, PlaybookStatus } from "@/lib/demo/types";
 import { Button } from "@/components/ui/button";
-import { Chip } from "@/components/iris/primitives";
+import { Chip } from "@/components/artemis/primitives";
 import { toast } from "sonner";
 
 export function PlaybooksPage() {
@@ -175,7 +175,7 @@ function PlaybookDetail({
           <h2 className="text-lg font-semibold">{playbook.name}</h2>
           <p className="mt-1 text-sm text-muted-foreground">{playbook.purpose}</p>
         </div>
-        <Chip tone="iris">{playbook.scope}</Chip>
+        <Chip tone="artemis">{playbook.scope}</Chip>
       </div>
 
       <dl className="mt-4 grid gap-2 text-sm sm:grid-cols-2">

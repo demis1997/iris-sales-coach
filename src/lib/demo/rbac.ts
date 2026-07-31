@@ -12,7 +12,7 @@ const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "training:own",
     "playbooks:read",
     "knowledge:read",
-    "ask_iris",
+    "ask_artemis",
   ],
   manager: [
     "overview:team",
@@ -26,7 +26,7 @@ const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "playbooks:write",
     "knowledge:read",
     "reports:team",
-    "ask_iris",
+    "ask_artemis",
   ],
   director: [
     "overview:org",
@@ -40,7 +40,7 @@ const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "playbooks:write",
     "knowledge:read",
     "reports:org",
-    "ask_iris",
+    "ask_artemis",
   ],
   executive: [
     "overview:org",
@@ -53,7 +53,7 @@ const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "playbooks:read",
     "knowledge:read",
     "reports:org",
-    "ask_iris",
+    "ask_artemis",
   ],
   admin: [
     "overview:org",
@@ -72,7 +72,7 @@ const ROLE_PERMISSIONS: Record<Role, Permission[]> = {
     "settings:security",
     "settings:billing",
     "users:manage",
-    "ask_iris",
+    "ask_artemis",
   ],
 };
 

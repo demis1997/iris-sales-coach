@@ -6,7 +6,7 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/industries/forex")({
   head: () =>
     pageHead({
-      title: "Iris for Forex & Brokerages",
+      title: "Artemis for Forex & Brokerages",
       description:
         "Coach high-volume forex desks, improve first-deposit conversion, monitor script adherence, and compare desks—without claiming guaranteed compliance.",
       path: "/industries/forex",
@@ -19,9 +19,9 @@ function Page() {
     <MarketingPage
       eyebrow="Forex & brokerages"
       title="High-volume desks need coaching and visibility at scale."
-      lede="Iris helps forex and brokerage teams analyse multilingual conversations, reinforce playbooks, and surface conversion risk across desks—while leaving regulatory judgement to your compliance function."
+      lede="Artemis helps forex and brokerage teams analyse multilingual conversations, reinforce playbooks, and surface conversion risk across desks—while leaving regulatory judgement to your compliance function."
     >
-      <Section title="Where Iris helps on the floor">
+      <Section title="Where Artemis helps on the floor">
         <div className="grid gap-4 md:grid-cols-2">
           <ContentCard>
             <FeatureList
@@ -40,8 +40,8 @@ function Page() {
           <ContentCard>
             <h3 className="font-semibold">Important note on compliance</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Iris can help you monitor whether required disclosures and scripts appear in
-              conversations, and flag moments for review. Iris does not guarantee regulatory
+              Artemis can help you monitor whether required disclosures and scripts appear in
+              conversations, and flag moments for review. Artemis does not guarantee regulatory
               compliance. Your compliance and legal teams remain responsible for policy design and
               regulatory obligations.
             </p>

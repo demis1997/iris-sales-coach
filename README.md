@@ -1,6 +1,6 @@
-# Iris Sales Coach
+# Artemis Sales Coach
 
-Iris is the **AI operating system for high-performance sales teams**. This repository is a TanStack Start + React demo product and marketing site. Conversation analysis, coaching, pipeline risk, playbooks, and training are illustrated with a coherent multi-tenant-aware seed (single demo organisation: Apex Markets).
+Artemis is the **AI operating system for high-performance sales teams**. This repository is a TanStack Start + React demo product and marketing site. Conversation analysis, coaching, pipeline risk, playbooks, and training are illustrated with a coherent multi-tenant-aware seed (single demo organisation: Apex Markets).
 
 ## Local setup
 
@@ -25,8 +25,8 @@ Copy `.env.example` to `.env` (optional for local demo).
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `VITE_AI_PROVIDER` | No | `demo` (default) or `production` |
-| `IRIS_AI_PROVIDER` | No | Server-side provider selector (same values) |
-| `IRIS_AI_API_KEY` | No | Production AI key — **server only**, never `VITE_` |
+| `ARTEMIS_AI_PROVIDER` | No | Server-side provider selector (same values) |
+| `ARTEMIS_AI_API_KEY` | No | Production AI key — **server only**, never `VITE_` |
 | `VITE_PUBLIC_SITE_URL` | No | Canonical site URL for SEO helpers |
 
 No database URL is required today — data is in-memory seed + browser storage for leads/onboarding/integrations.
@@ -40,7 +40,7 @@ There is **no production database** in this build. Domain entities live in:
 - `src/lib/demo/queries.ts` / `operations.ts` — scoped selectors and mutations
 - `src/lib/demo/coherence.ts` — consistency checks (covered by tests)
 
-When a real DB is added, map the same entities (see `IRIS_DATA_MODEL.md`) and keep organisation scoping server-side.
+When a real DB is added, map the same entities (see `ARTEMIS_DATA_MODEL.md`) and keep organisation scoping server-side.
 
 ## Seed data
 
@@ -77,9 +77,9 @@ Demo auth: `src/lib/auth/demo-auth.ts`
 Abstraction: `src/lib/ai/`
 
 - Default: deterministic **demo** provider (no network, no secrets)
-- Production stub reads `IRIS_AI_API_KEY` server-side and falls back to demo if missing
+- Production stub reads `ARTEMIS_AI_API_KEY` server-side and falls back to demo if missing
 
-Wire Ask Iris, analysis, coaching, follow-up email, CRM update, playbook generation, and roleplay feedback through `getAiProvider()`.
+Wire Ask Artemis, analysis, coaching, follow-up email, CRM update, playbook generation, and roleplay feedback through `getAiProvider()`.
 
 ## Tests
 
@@ -112,7 +112,7 @@ Nothing is labelled **Connected** unless configured in the demo workspace.
 
 ## Documentation
 
-- `IRIS_ARCHITECTURE.md` — system shape
-- `IRIS_DATA_MODEL.md` — entities
-- `IRIS_SECURITY_NOTES.md` — security posture
-- `IRIS_REBUILD_PLAN.md` — product rebuild phases
+- `ARTEMIS_ARCHITECTURE.md` — system shape
+- `ARTEMIS_DATA_MODEL.md` — entities
+- `ARTEMIS_SECURITY_NOTES.md` — security posture
+- `ARTEMIS_REBUILD_PLAN.md` — product rebuild phases

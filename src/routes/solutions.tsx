@@ -6,9 +6,9 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/solutions")({
   head: () =>
     pageHead({
-      title: "Solutions — Iris for Reps, Managers & Executives",
+      title: "Solutions — Artemis for Reps, Managers & Executives",
       description:
-        "See how Iris serves sales representatives, managers, and executives with coaching, visibility, and revenue intelligence.",
+        "See how Artemis serves sales representatives, managers, and executives with coaching, visibility, and revenue intelligence.",
       path: "/solutions",
     }),
   component: SolutionsPage,
@@ -37,7 +37,7 @@ function SolutionsPage() {
     <MarketingPage
       eyebrow="Solutions"
       title="Role-specific value from the same conversations"
-      lede="Iris does not give every user the same dashboard. Representatives improve privately. Managers prioritise coaching. Executives see organisational risk and performance."
+      lede="Artemis does not give every user the same dashboard. Representatives improve privately. Managers prioritise coaching. Executives see organisational risk and performance."
     >
       <Section>
         <div className="grid gap-4 md:grid-cols-3">

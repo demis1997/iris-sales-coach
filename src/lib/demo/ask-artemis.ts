@@ -2,12 +2,12 @@ import type { AccessContext } from "@/lib/demo/queries";
 import { getAnalysis, getCallById, userById } from "@/lib/demo/queries";
 import { analysisByCallId } from "@/lib/demo/seed";
 
-export type AskIrisMessage = { role: "user" | "assistant"; content: string };
+export type AskArtemisMessage = { role: "user" | "assistant"; content: string };
 
 /**
- * Deterministic demo assistant. Swap `answerAskIris` for a model provider later.
+ * Deterministic demo assistant. Swap `answerAskArtemis` for a model provider later.
  */
-export async function answerAskIris(
+export async function answerAskArtemis(
   ctx: AccessContext,
   question: string,
   scope?: { callId?: string },

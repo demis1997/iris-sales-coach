@@ -6,7 +6,7 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/solutions/executives")({
   head: () =>
     pageHead({
-      title: "Iris for Executives",
+      title: "Artemis for Executives",
       description:
         "Understand what is driving or threatening revenue—pipeline risk, conversion drivers, coaching impact, and forecast confidence.",
       path: "/solutions/executives",
@@ -39,7 +39,7 @@ function Page() {
           <ContentCard>
             <h3 className="font-semibold">Conversation-backed forecasting</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Stage dates and subjective probability alone are not enough. Iris surfaces deals where
+              Stage dates and subjective probability alone are not enough. Artemis surfaces deals where
               buyers show pricing hesitation, missing stakeholders, or no agreed next step—before
               the forecast slips.
             </p>

@@ -6,7 +6,7 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/solutions/sales-representatives")({
   head: () =>
     pageHead({
-      title: "Iris for Sales Representatives",
+      title: "Artemis for Sales Representatives",
       description:
         "A private AI coach for every call—next-call prep, objection practice, personal progress, and less CRM admin.",
       path: "/solutions/sales-representatives",
@@ -39,7 +39,7 @@ function Page() {
           <ContentCard>
             <h3 className="font-semibold">What it feels like day to day</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Finish a call. Iris surfaces one clear coaching focus with evidence from the
+              Finish a call. Artemis surfaces one clear coaching focus with evidence from the
               transcript. Draft the follow-up. See progress on discovery, listening, and closing
               over weeks—not only a single score.
             </p>

@@ -68,7 +68,7 @@ export function ProblemSection() {
     "Deal risks are often discovered too late",
   ];
 
-  const withoutIris = [
+  const withoutArtemis = [
     "Manual call reviews",
     "Inconsistent coaching",
     "Incomplete CRM notes",
@@ -76,7 +76,7 @@ export function ProblemSection() {
     "Hidden revenue risk",
   ];
 
-  const withIris = [
+  const withArtemis = [
     "Every conversation analysed",
     "Personalised coaching at scale",
     "Automatic CRM updates",
@@ -87,7 +87,7 @@ export function ProblemSection() {
   return (
     <Section
       eyebrow="The problem"
-      title="Managers cannot listen to every call. Iris can."
+      title="Managers cannot listen to every call. Artemis can."
       lede="High-volume sales teams produce thousands of conversations. Without a system that learns from all of them, performance stays uneven and revenue risk stays invisible."
     >
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -105,10 +105,10 @@ export function ProblemSection() {
         <Reveal>
           <ContentCard className="h-full">
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              Without Iris
+              Without Artemis
             </p>
             <ul className="mt-4 space-y-3">
-              {withoutIris.map((item) => (
+              {withoutArtemis.map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <X className="mt-0.5 size-4 shrink-0 text-destructive/80" aria-hidden />
                   {item}
@@ -119,9 +119,9 @@ export function ProblemSection() {
         </Reveal>
         <Reveal delay={0.08}>
           <ContentCard className="h-full border-primary/25 bg-primary/5">
-            <p className="text-xs font-medium tracking-wide text-primary uppercase">With Iris</p>
+            <p className="text-xs font-medium tracking-wide text-primary uppercase">With Artemis</p>
             <ul className="mt-4 space-y-3">
-              {withIris.map((item) => (
+              {withArtemis.map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm text-foreground">
                   <Check className="mt-0.5 size-4 shrink-0 text-success" aria-hidden />
                   {item}
@@ -172,9 +172,9 @@ export function WorkflowSection() {
   return (
     <Section
       id="workflow"
-      eyebrow="How Iris works"
+      eyebrow="How Artemis works"
       title="From conversation to organisational intelligence"
-      lede="Iris connects analysis, coaching, CRM hygiene, and leadership visibility into one operating loop."
+      lede="Artemis connects analysis, coaching, CRM hygiene, and leadership visibility into one operating loop."
     >
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {steps.map((step, i) => (
@@ -322,7 +322,7 @@ export function CapabilitiesSection() {
       id="platform"
       eyebrow="Platform"
       title="One operating system for conversation-driven sales"
-      lede="Iris is not a pile of disconnected AI features. Analysis feeds coaching, coaching feeds playbooks, and conversations feed forecasting and CRM hygiene."
+      lede="Artemis is not a pile of disconnected AI features. Analysis feeds coaching, coaching feeds playbooks, and conversations feed forecasting and CRM hygiene."
     >
       <div className="grid gap-4 md:grid-cols-2">
         {capabilities.map((cap, i) => (
@@ -371,7 +371,7 @@ export function RolesSection() {
         "Reduce CRM administration",
         "Learn from the organisation’s best calls",
       ],
-      cta: "Explore Iris for representatives",
+      cta: "Explore Artemis for representatives",
       to: "/solutions/sales-representatives" as const,
     },
     {
@@ -385,7 +385,7 @@ export function RolesSection() {
         "Compare teams and representatives fairly",
         "Find examples from top performers",
       ],
-      cta: "Explore Iris for managers",
+      cta: "Explore Artemis for managers",
       to: "/solutions/sales-managers" as const,
     },
     {
@@ -399,7 +399,7 @@ export function RolesSection() {
         "Compare branches, teams, and markets",
         "Improve forecast confidence",
       ],
-      cta: "Explore Iris for executives",
+      cta: "Explore Artemis for executives",
       to: "/solutions/executives" as const,
     },
   ];
@@ -452,8 +452,8 @@ export function AssistantSection() {
 
   return (
     <Section
-      eyebrow="Ask Iris"
-      title="Ask Iris what is happening across your sales organisation."
+      eyebrow="Ask Artemis"
+      title="Ask Artemis what is happening across your sales organisation."
       lede="Natural-language questions over your conversations, coaching, and pipeline—answered with evidence, not slogans."
     >
       <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
@@ -476,7 +476,7 @@ export function AssistantSection() {
           <ContentCard className="border-primary/20 bg-primary/5">
             <div className="flex items-center gap-2">
               <Sparkles className="size-4 text-primary" aria-hidden />
-              <p className="text-xs font-medium text-primary">Example Iris response · demo</p>
+              <p className="text-xs font-medium text-primary">Example Artemis response · demo</p>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-foreground">
               Close rates declined primarily because pricing was introduced before sufficient
@@ -552,7 +552,7 @@ export function PipelineDemoSection() {
     <Section
       eyebrow="Pipeline intelligence"
       title="See risk in the conversation—not only in the CRM stage."
-      lede="Illustrative demo table. In production, Iris scores opportunity health from actual buyer dialogue."
+      lede="Illustrative demo table. In production, Artemis scores opportunity health from actual buyer dialogue."
     >
       <Reveal>
         <div className="overflow-x-auto rounded-xl border border-border">
@@ -625,7 +625,7 @@ export function PlaybookSection() {
     <Section
       eyebrow="Playbook intelligence"
       title="Turn your best calls into the company standard."
-      lede="Iris surfaces patterns from top-performing conversations so every desk can execute the same play. Patterns below are illustrative demo insights."
+      lede="Artemis surfaces patterns from top-performing conversations so every desk can execute the same play. Patterns below are illustrative demo insights."
     >
       <div className="grid gap-3 md:grid-cols-2">
         {insights.map((insight, i) => (
@@ -684,7 +684,7 @@ export function IndustriesSection() {
     <Section
       eyebrow="Industries"
       title="Designed for teams where conversations are the business"
-      lede="Iris adapts scorecards, playbooks, and risk signals to how your floor actually sells."
+      lede="Artemis adapts scorecards, playbooks, and risk signals to how your floor actually sells."
     >
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {industries.map((ind, i) => (
@@ -740,7 +740,7 @@ export function SecurityTeaser() {
             <div>
               <h3 className="text-base font-semibold">Security programme</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Read how Iris handles data lifecycle, access, AI data use, and enterprise review
+                Read how Artemis handles data lifecycle, access, AI data use, and enterprise review
                 requests. We do not claim SOC 2, ISO 27001, or GDPR certification unless achieved.
               </p>
             </div>
@@ -773,7 +773,7 @@ export function UseCasesSection() {
     <Section
       eyebrow="Outcomes"
       title="Designed for teams where every conversation matters."
-      lede="Customer logos and testimonials will appear here once we have permission to publish them. Until then, these are the problems Iris is built to solve."
+      lede="Customer logos and testimonials will appear here once we have permission to publish them. Until then, these are the problems Artemis is built to solve."
     >
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {cases.map((c, i) => (
@@ -796,10 +796,10 @@ export function FinalCtaSection() {
       <div className="container-page py-20 text-center md:py-28">
         <Reveal className="mx-auto max-w-2xl">
           <h2 className="text-3xl leading-[1.1] font-semibold tracking-tight text-balance md:text-4xl">
-            Your team is already producing the data. Iris turns it into performance.
+            Your team is already producing the data. Artemis turns it into performance.
           </h2>
           <p className="mt-5 text-base text-muted-foreground">
-            See how Iris can analyse your conversations, coach your team, and reveal what is
+            See how Artemis can analyse your conversations, coach your team, and reveal what is
             driving revenue.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">

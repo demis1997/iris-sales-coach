@@ -11,7 +11,7 @@ import { PRICING_FAQS, PRICING_PLANS, recommendPlan } from "@/lib/pricing/plans"
 export const Route = createFileRoute("/pricing")({
   head: () =>
     pageHead({
-      title: "Pricing — Iris",
+      title: "Pricing — Artemis",
       description:
         "Starter, Growth, and Enterprise plans for sales teams that need coaching, pipeline intelligence, and management visibility. Book a demo for a scoped quote.",
       path: "/pricing",

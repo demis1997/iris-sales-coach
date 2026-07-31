@@ -250,7 +250,7 @@ type DealBase = Omit<
   | "riskReasons"
   | "stakeholders"
   | "crmSyncStatus"
-  | "irisRecommendation"
+  | "artemisRecommendation"
 >;
 
 const dealBases: DealBase[] = [
@@ -680,7 +680,7 @@ function enrichDeal(d: DealBase): Deal {
     riskReasons: [...new Set(reasons)],
     stakeholders: d.riskLevel === "High" ? ["Champion"] : ["Champion", "Economic buyer"],
     crmSyncStatus: d.crmSource === "Pipedrive" ? "Needs mapping" : "Synced",
-    irisRecommendation: d.nextStep,
+    artemisRecommendation: d.nextStep,
   };
 }
 

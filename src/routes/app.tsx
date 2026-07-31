@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 export const Route = createFileRoute("/app")({
   head: () => ({
     meta: [
-      { title: "Iris — Sales operating system" },
+      { title: "Artemis — Sales operating system" },
       {
         name: "description",
         content: "Overview, calls, coaching, pipeline, and revenue intelligence for your team.",

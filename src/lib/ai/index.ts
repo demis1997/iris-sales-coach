@@ -3,7 +3,7 @@ import { demoAiProvider } from "@/lib/ai/demo-provider";
 import { getConfiguredProviderName } from "@/lib/ai/types";
 
 /**
- * Production stub — activates only when IRIS_AI_PROVIDER / VITE_AI_PROVIDER=production
+ * Production stub — activates only when ARTEMIS_AI_PROVIDER / VITE_AI_PROVIDER=production
  * and a server-side key is configured. Falls back to demo with a clear message.
  */
 export const productionAiProvider: AiProvider = {
@@ -24,14 +24,14 @@ export const productionAiProvider: AiProvider = {
   generateCoaching: (req) => demoAiProvider.generateCoaching(req),
   generateFollowUpEmail: (req) => demoAiProvider.generateFollowUpEmail(req),
   generateCrmUpdate: (req) => demoAiProvider.generateCrmUpdate(req),
-  askIris: (req) => demoAiProvider.askIris(req),
+  askArtemis: (req) => demoAiProvider.askArtemis(req),
   generatePlaybook: (req) => demoAiProvider.generatePlaybook(req),
   roleplayFeedback: (req) => demoAiProvider.roleplayFeedback(req),
 };
 
 function hasServerAiCredentials() {
   if (typeof process === "undefined") return false;
-  return Boolean(process.env.IRIS_AI_API_KEY);
+  return Boolean(process.env.ARTEMIS_AI_API_KEY);
 }
 
 let override: AiProvider | null = null;
@@ -45,16 +45,16 @@ export function getAiProvider(): AiProvider {
   return getConfiguredProviderName() === "production" ? productionAiProvider : demoAiProvider;
 }
 
-export async function askIrisSafe(
-  ...args: Parameters<AiProvider["askIris"]>
+export async function askArtemisSafe(
+  ...args: Parameters<AiProvider["askArtemis"]>
 ): Promise<{ ok: true; answer: string } | { ok: false; error: string }> {
   try {
-    const answer = await getAiProvider().askIris(...args);
+    const answer = await getAiProvider().askArtemis(...args);
     return { ok: true, answer };
   } catch {
     return {
       ok: false,
-      error: "Iris could not answer right now. Try again or open the related call detail.",
+      error: "Artemis could not answer right now. Try again or open the related call detail.",
     };
   }
 }

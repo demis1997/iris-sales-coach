@@ -25,4 +25,4 @@ export type Permission =
   | "settings:security"
   | "settings:billing"
   | "users:manage"
-  | "ask_iris";
+  | "ask_artemis";

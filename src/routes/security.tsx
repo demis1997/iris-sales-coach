@@ -9,9 +9,9 @@ import { track } from "@/lib/analytics";
 export const Route = createFileRoute("/security")({
   head: () =>
     pageHead({
-      title: "Security — Iris",
+      title: "Security — Artemis",
       description:
-        "How Iris approaches encryption, access control, data lifecycle, AI data use, and enterprise security reviews. No unverified certification claims.",
+        "How Artemis approaches encryption, access control, data lifecycle, AI data use, and enterprise security reviews. No unverified certification claims.",
       path: "/security",
     }),
   component: Page,
@@ -26,7 +26,7 @@ function Page() {
     <MarketingPage
       eyebrow="Security"
       title="Built for sensitive sales conversations."
-      lede="This page describes our security posture honestly: what the product architecture supports today, what is on the roadmap, and how enterprises can review Iris. We do not claim SOC 2, ISO 27001, GDPR certification, or PCI compliance unless achieved."
+      lede="This page describes our security posture honestly: what the product architecture supports today, what is on the roadmap, and how enterprises can review Artemis. We do not claim SOC 2, ISO 27001, GDPR certification, or PCI compliance unless achieved."
     >
       <Section title="Security architecture">
         <CardGrid
@@ -110,7 +110,7 @@ function Page() {
         <ContentCard className="max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
           <p>
             Configurable retention windows and admin-initiated deletion are enterprise roadmap
-            items. During pilots, contact Iris for the current export and deletion process.
+            items. During pilots, contact Artemis for the current export and deletion process.
           </p>
           <p>
             We do not claim automated right-to-erasure workflows are generally available until they
@@ -121,7 +121,7 @@ function Page() {
 
       <Section title="Recording consent">
         <ContentCard className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          Customers remain responsible for lawful recording consent in their jurisdictions. Iris can
+          Customers remain responsible for lawful recording consent in their jurisdictions. Artemis can
           store consent configuration and source metadata when connected; it does not replace legal
           advice or local notice requirements.
         </ContentCard>
@@ -130,7 +130,7 @@ function Page() {
       <Section title="AI data use policy">
         <ContentCard className="max-w-3xl text-sm leading-relaxed text-muted-foreground">
           <p>
-            Customer conversation data is used to provide Iris features for that customer’s
+            Customer conversation data is used to provide Artemis features for that customer’s
             organisation. We will not train public foundation models on your private call content
             without an explicit contractual agreement. Fine-grained data-use controls and redaction
             options are on the product roadmap.
@@ -141,7 +141,7 @@ function Page() {
       <Section title="Subprocessors">
         <ContentCard className="max-w-3xl text-sm text-muted-foreground">
           A formal subprocessors list will be published for production customers. During evaluation,
-          ask your Iris contact for the current hosting and AI processing providers relevant to your
+          ask your Artemis contact for the current hosting and AI processing providers relevant to your
           region.
         </ContentCard>
       </Section>
@@ -150,8 +150,8 @@ function Page() {
         <ContentCard className="max-w-3xl">
           <p className="text-sm text-muted-foreground">
             If you believe you have found a security issue, email{" "}
-            <a href="mailto:security@iris.sales" className="text-primary hover:underline">
-              security@iris.sales
+            <a href="mailto:security@artemis.sales" className="text-primary hover:underline">
+              security@artemis.sales
             </a>{" "}
             with steps to reproduce. Please give us a reasonable window to investigate before public
             disclosure.

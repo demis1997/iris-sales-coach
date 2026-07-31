@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/integrations")({
   head: () =>
     pageHead({
-      title: "Integrations — Iris",
+      title: "Integrations — Artemis",
       description:
-        "See how Iris connects to CRM, communication, productivity, and automation tools. Statuses are labelled honestly: available, in development, or planned.",
+        "See how Artemis connects to CRM, communication, productivity, and automation tools. Statuses are labelled honestly: available, in development, or planned.",
       path: "/integrations",
     }),
   component: Page,
@@ -24,7 +24,7 @@ function Page() {
     <MarketingPage
       eyebrow="Integrations"
       title="Connect the systems your floor already uses."
-      lede="Iris is designed to sit alongside your dialer and CRM. Integration statuses below are labelled honestly—we never present a connector as live unless it is."
+      lede="Artemis is designed to sit alongside your dialer and CRM. Integration statuses below are labelled honestly—we never present a connector as live unless it is."
     >
       <Section>
         <p className="mb-6 text-sm text-muted-foreground">

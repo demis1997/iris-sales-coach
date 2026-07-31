@@ -192,7 +192,7 @@ export function CallsPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "iris-calls.csv";
+    a.download = "artemis-calls.csv";
     a.click();
     URL.revokeObjectURL(url);
   }

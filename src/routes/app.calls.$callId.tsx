@@ -4,7 +4,7 @@ import { CallDetailPage } from "@/components/app/call-detail";
 export const Route = createFileRoute("/app/calls/$callId")({
   head: ({ params }) => ({
     meta: [
-      { title: `Call ${params.callId} — Iris` },
+      { title: `Call ${params.callId} — Artemis` },
       { name: "description", content: "Recording, transcript, AI analysis, and deal intelligence." },
       { name: "robots", content: "noindex" },
     ],

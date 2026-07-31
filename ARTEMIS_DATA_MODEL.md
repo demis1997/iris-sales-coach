@@ -1,4 +1,4 @@
-# Iris data model
+# Artemis data model
 
 Typed in `src/lib/demo/types.ts`. Demo seed: `src/lib/demo/seed.ts`. No SQL migrations yet — this document is the contract for a future database.
 

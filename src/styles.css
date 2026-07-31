@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Iris design system — enterprise sales OS.
+ * Artemis design system — enterprise sales OS.
  * Cool slate surfaces, single blue accent, restrained elevation.
  */
 
@@ -103,7 +103,7 @@
   --sidebar-border: oklch(0.99 0 0 / 7%);
   --sidebar-ring: oklch(0.68 0.14 235);
 
-  --gradient-iris: linear-gradient(
+  --gradient-artemis: linear-gradient(
     135deg,
     oklch(0.72 0.12 230),
     oklch(0.68 0.14 235) 50%,
@@ -150,14 +150,14 @@
 }
 
 @utility gradient-text {
-  background: var(--gradient-iris);
+  background: var(--gradient-artemis);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 @utility gradient-surface {
-  background: var(--gradient-iris);
+  background: var(--gradient-artemis);
 }
 
 @utility gradient-border {

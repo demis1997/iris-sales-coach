@@ -87,9 +87,9 @@ export const PRICING_FAQS: { question: string; answer: string }[] = [
       "Plans include a monthly analysis allowance based on analysed minutes and seats. Exact allowances are confirmed during demo based on your call volume.",
   },
   {
-    question: "Can Iris analyse existing recordings?",
+    question: "Can Artemis analyse existing recordings?",
     answer:
-      "Yes. During onboarding you can upload historical recordings or connect a call source so Iris can establish a baseline before live coaching starts.",
+      "Yes. During onboarding you can upload historical recordings or connect a call source so Artemis can establish a baseline before live coaching starts.",
   },
   {
     question: "Which languages are supported?",
@@ -97,7 +97,7 @@ export const PRICING_FAQS: { question: string; answer: string }[] = [
       "Language coverage expands over time. Confirm your primary languages in the demo so we can validate fit for your desks.",
   },
   {
-    question: "Does Iris integrate with our CRM?",
+    question: "Does Artemis integrate with our CRM?",
     answer:
       "CRM connectors are rolling out with clear Available / In development / Planned statuses on the integrations page. We scope your stack in the demo.",
   },
@@ -107,19 +107,19 @@ export const PRICING_FAQS: { question: string; answer: string }[] = [
       "Yes. Managers and admins define required stages, terminology, products, competitors, and playbook rules.",
   },
   {
-    question: "How does Iris protect call data?",
+    question: "How does Artemis protect call data?",
     answer:
       "See the Security page for current controls and roadmap items. We do not claim certifications we have not achieved.",
   },
   {
-    question: "Can we use Iris across multiple teams?",
+    question: "Can we use Artemis across multiple teams?",
     answer:
       "Growth and Enterprise support multiple teams. Enterprise adds offices, advanced permissions, and regional controls.",
   },
   {
-    question: "Does Iris support regulated industries?",
+    question: "Does Artemis support regulated industries?",
     answer:
-      "Iris can support monitoring of scripts and disclosures you define. It does not replace your compliance programme or guarantee regulatory outcomes.",
+      "Artemis can support monitoring of scripts and disclosures you define. It does not replace your compliance programme or guarantee regulatory outcomes.",
   },
 ];
 

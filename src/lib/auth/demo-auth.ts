@@ -8,7 +8,7 @@ import type { Role, User } from "@/lib/demo/types";
 import { assertActiveUser } from "@/lib/security/tenant";
 import { recordAudit } from "@/lib/security/audit";
 
-const SESSION_KEY = "iris-demo-session";
+const SESSION_KEY = "artemis-demo-session";
 
 export type DemoSession = {
   userId: string;

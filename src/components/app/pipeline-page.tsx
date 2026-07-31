@@ -18,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Chip } from "@/components/iris/primitives";
+import { Chip } from "@/components/artemis/primitives";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
@@ -207,7 +207,7 @@ export function PipelinePage() {
                     <RiskPill level={d.riskLevel} />
                   </td>
                   <td className="px-3 py-3 text-muted-foreground">{d.lastInteraction}</td>
-                  <td className="px-3 py-3 text-muted-foreground">{d.irisRecommendation}</td>
+                  <td className="px-3 py-3 text-muted-foreground">{d.artemisRecommendation}</td>
                 </tr>
               ))}
             </tbody>
@@ -326,8 +326,8 @@ function DealDrawer({
           <Row label="CRM sync" value={`${deal.crmSource} · ${deal.crmSyncStatus}`} />
         </dl>
         <div className="mt-4 rounded-lg border border-primary/25 bg-primary/5 p-3 text-sm">
-          <p className="text-xs font-medium text-primary">Iris recommendation</p>
-          <p className="mt-1">{deal.irisRecommendation}</p>
+          <p className="text-xs font-medium text-primary">Artemis recommendation</p>
+          <p className="mt-1">{deal.artemisRecommendation}</p>
         </div>
         <h3 className="mt-5 text-sm font-semibold">Conversation timeline</h3>
         <ul className="mt-2 space-y-2 text-sm">

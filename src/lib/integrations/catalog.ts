@@ -54,7 +54,7 @@ export const INTEGRATIONS: IntegrationDef[] = [
     category: "CRM",
     status: "In development",
     description:
-      "Sync opportunities, activities, and Iris conversation intelligence into Salesforce.",
+      "Sync opportunities, activities, and Artemis conversation intelligence into Salesforce.",
     permissions: ["Read/write Opportunities", "Create Tasks", "Read Contacts & Accounts"],
     dataSynced: ["Deals", "Call summaries", "Sentiment", "Risk", "Follow-up tasks"],
     setupSteps: [
@@ -73,7 +73,7 @@ export const INTEGRATIONS: IntegrationDef[] = [
       "Next step": "Opportunity.NextStep",
       "Call summary": "Task.Description",
       Sentiment: "custom__Sentiment__c",
-      Risk: "custom__Iris_Risk__c",
+      Risk: "custom__Artemis_Risk__c",
       "Follow-up task": "Task",
     },
   },
@@ -100,8 +100,8 @@ export const INTEGRATIONS: IntegrationDef[] = [
       Value: "deal.amount",
       "Next step": "deal.hs_next_step",
       "Call summary": "engagement.note",
-      Sentiment: "deal.iris_sentiment",
-      Risk: "deal.iris_risk",
+      Sentiment: "deal.artemis_sentiment",
+      Risk: "deal.artemis_risk",
       "Follow-up task": "task",
     },
   },
@@ -187,7 +187,7 @@ export const INTEGRATIONS: IntegrationDef[] = [
     name: "Twilio",
     category: "Communication",
     status: "Planned",
-    description: "Pull Twilio Voice recordings into Iris.",
+    description: "Pull Twilio Voice recordings into Artemis.",
     permissions: ["Recordings read"],
     dataSynced: ["Recordings", "Call SIDs"],
     setupSteps: ["Create API key", "Configure webhook", "Map accounts"],
@@ -242,7 +242,7 @@ export const INTEGRATIONS: IntegrationDef[] = [
     name: "Gmail",
     category: "Productivity",
     status: "Planned",
-    description: "Draft and send follow-up emails from Iris insights.",
+    description: "Draft and send follow-up emails from Artemis insights.",
     permissions: ["gmail.compose"],
     dataSynced: ["Draft emails"],
     setupSteps: ["Google OAuth", "Enable compose"],
@@ -286,10 +286,10 @@ export const INTEGRATIONS: IntegrationDef[] = [
     name: "Zapier",
     category: "Automation",
     status: "Planned",
-    description: "Trigger Zaps from Iris events (call analysed, coaching assigned).",
+    description: "Trigger Zaps from Artemis events (call analysed, coaching assigned).",
     permissions: ["Webhook subscribe"],
     dataSynced: ["Event payloads"],
-    setupSteps: ["Create Zap", "Use Iris trigger (when available)"],
+    setupSteps: ["Create Zap", "Use Artemis trigger (when available)"],
     isCrm: false,
   },
   {
@@ -297,7 +297,7 @@ export const INTEGRATIONS: IntegrationDef[] = [
     name: "Make",
     category: "Automation",
     status: "Planned",
-    description: "Scenario automation from Iris webhooks.",
+    description: "Scenario automation from Artemis webhooks.",
     permissions: ["Webhook"],
     dataSynced: ["Event payloads"],
     setupSteps: ["Create scenario", "Add webhook module"],
@@ -339,7 +339,7 @@ export function integrationsByCategory() {
   return map;
 }
 
-const STORAGE_KEY = "iris-integration-state";
+const STORAGE_KEY = "artemis-integration-state";
 
 export type IntegrationRuntimeState = {
   status: IntegrationStatus;

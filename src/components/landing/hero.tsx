@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, PhoneCall, Play, Sparkles, Trophy } from "lucide-react";
-import { Panel } from "@/components/iris/primitives";
+import { Panel } from "@/components/artemis/primitives";
 import { Reveal, fadeUp } from "@/components/landing/marketing-bits";
 
 const bars = [18, 34, 52, 28, 66, 82, 47, 71, 90, 62, 38, 74, 55, 86, 41, 68, 33, 79, 49, 60];
@@ -185,7 +185,7 @@ export function Hero() {
             <span className="gradient-text">your team better.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Iris automatically analyzes every sales call, identifies what prevented a deal from
+            Artemis automatically analyzes every sales call, identifies what prevented a deal from
             closing, coaches every salesperson individually, and gives managers complete visibility
             into team performance — without listening to hours of recordings.
           </p>

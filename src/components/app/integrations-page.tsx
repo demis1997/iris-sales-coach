@@ -14,12 +14,12 @@ import {
 import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Chip } from "@/components/iris/primitives";
+import { Chip } from "@/components/artemis/primitives";
 import { toast } from "sonner";
 
-const STATUS_TONE: Record<IntegrationStatus, "good" | "iris" | "warn" | "neutral"> = {
+const STATUS_TONE: Record<IntegrationStatus, "good" | "artemis" | "warn" | "neutral"> = {
   Connected: "good",
-  Available: "iris",
+  Available: "artemis",
   "Requires configuration": "warn",
   "In development": "neutral",
   Planned: "neutral",
@@ -275,7 +275,7 @@ function IntegrationDrawer({
 
           {(item.status === "In development" || item.status === "Planned") && (
             <p className="rounded-lg border border-border bg-secondary/30 p-3 text-xs text-muted-foreground">
-              This connector is {item.status.toLowerCase()}. Contact sales for timeline — Iris will
+              This connector is {item.status.toLowerCase()}. Contact sales for timeline — Artemis will
               not show it as active until implemented.
             </p>
           )}

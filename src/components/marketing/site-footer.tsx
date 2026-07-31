@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { IrisMark } from "@/components/iris/app-shell";
+import { ArtemisMark } from "@/components/artemis/app-shell";
 
 const columns = [
   {
@@ -50,7 +50,7 @@ export function SiteFooter() {
       <div className="container-page py-14">
         <div className="grid gap-10 md:grid-cols-[1.5fr_repeat(4,1fr)]">
           <div>
-            <IrisMark />
+            <ArtemisMark />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
               The AI operating system for high-performance sales teams. Every conversation makes
               your entire team smarter.
@@ -78,7 +78,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Iris. All rights reserved.
+            © {new Date().getFullYear()} Artemis. All rights reserved.
           </p>
           <div className="flex gap-5 text-xs text-muted-foreground">
             <Link to="/app" className="hover:text-foreground">

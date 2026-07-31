@@ -22,7 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Meter, ScoreRing } from "@/components/iris/primitives";
+import { Meter, ScoreRing } from "@/components/artemis/primitives";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -369,7 +369,7 @@ function StepBody({
             <p className="text-sm">Selected: {state.playbookName}</p>
           ) : (
             <p className="text-xs text-muted-foreground">
-              Optional — skip if you will use Iris playbooks later.
+              Optional — skip if you will use Artemis playbooks later.
             </p>
           )}
         </div>
@@ -529,11 +529,11 @@ function FirstInsightStep({ state }: { state: OnboardingState }) {
     <div className="space-y-3 text-sm">
       <div className="flex items-center gap-2">
         <CheckCircle2 className="size-5 text-success" />
-        <p className="font-medium">Your first Iris insight is ready</p>
+        <p className="font-medium">Your first Artemis insight is ready</p>
       </div>
       <p className="text-muted-foreground">
         {analysis?.recommendations[0] ??
-          "Iris will surface coaching and pipeline signals as soon as calls are analysed."}
+          "Artemis will surface coaching and pipeline signals as soon as calls are analysed."}
       </p>
       {analysis ? (
         <div className="rounded-lg border border-border bg-secondary/20 p-3">
@@ -562,7 +562,7 @@ function CompletionSummary({
       <CheckCircle2 className="mx-auto size-10 text-success" />
       <h1 className="mt-4 text-2xl font-semibold">You are ready</h1>
       <p className="mt-2 text-sm text-muted-foreground">
-        {state.organisationName || "Your organisation"} is configured for Iris demo exploration.
+        {state.organisationName || "Your organisation"} is configured for Artemis demo exploration.
       </p>
       <ul className="mt-6 space-y-2 text-left text-sm">
         <li>Industry: {state.industry || "—"}</li>

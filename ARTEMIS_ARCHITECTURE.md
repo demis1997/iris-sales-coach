@@ -1,8 +1,8 @@
-# Iris architecture
+# Artemis architecture
 
 ## Positioning
 
-Iris is a **sales operating system**: every conversation feeds coaching, pipeline risk, playbooks, training, and reporting — not a standalone call-scoring widget.
+Artemis is a **sales operating system**: every conversation feeds coaching, pipeline risk, playbooks, training, and reporting — not a standalone call-scoring widget.
 
 ## Runtime stack
 
@@ -51,7 +51,7 @@ Roles: representative, manager, director, executive, admin (`rbac.ts`). Sensitiv
 
 ## AI
 
-`getAiProvider()` returns the demo provider unless production env is configured. Ask Iris UI uses `askIrisSafe` with graceful fallback copy.
+`getAiProvider()` returns the demo provider unless production env is configured. Ask Artemis UI uses `askArtemisSafe` with graceful fallback copy.
 
 ## Future production shape
 

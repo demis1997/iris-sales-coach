@@ -25,9 +25,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/book-demo")({
   head: () =>
     pageHead({
-      title: "Book a Demo — Iris",
+      title: "Book a Demo — Artemis",
       description:
-        "Book a personalised Iris demo. Tell us about your team, call volume, CRM, and main challenges.",
+        "Book a personalised Artemis demo. Tell us about your team, call volume, CRM, and main challenges.",
       path: "/book-demo",
     }),
   component: BookDemoPage,
@@ -98,7 +98,7 @@ function BookDemoPage() {
       });
       setSubmitted(true);
     } catch {
-      setError("Something went wrong. Please try again or email sales@iris.sales.");
+      setError("Something went wrong. Please try again or email sales@artemis.sales.");
     } finally {
       setSubmitting(false);
     }
@@ -118,7 +118,7 @@ function BookDemoPage() {
     <MarketingLayout>
       <PageHero
         eyebrow="Book a demo"
-        title="See Iris on the conversations that drive your revenue"
+        title="See Artemis on the conversations that drive your revenue"
         lede="Tell us about your team and stack. We will prepare a personalised walkthrough—no generic pitch deck marathon."
       />
 

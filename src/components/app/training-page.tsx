@@ -11,7 +11,7 @@ import {
 import { userById } from "@/lib/demo/queries";
 import type { RoleplaySession } from "@/lib/demo/types";
 import { Button } from "@/components/ui/button";
-import { Chip } from "@/components/iris/primitives";
+import { Chip } from "@/components/artemis/primitives";
 import {
   Select,
   SelectContent,
@@ -110,7 +110,7 @@ export function TrainingPage() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Chip tone={a.status === "completed" ? "good" : "iris"}>
+                  <Chip tone={a.status === "completed" ? "good" : "artemis"}>
                     {a.status}
                     {a.score != null ? ` · ${a.score}` : ""}
                   </Chip>

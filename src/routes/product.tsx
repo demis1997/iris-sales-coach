@@ -6,9 +6,9 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/product")({
   head: () =>
     pageHead({
-      title: "Product — Iris Sales Operating System",
+      title: "Product — Artemis Sales Operating System",
       description:
-        "Explore Iris capabilities: AI coaching, manager intelligence, pipeline risk, playbooks, training, CRM automation, and executive visibility.",
+        "Explore Artemis capabilities: AI coaching, manager intelligence, pipeline risk, playbooks, training, CRM automation, and executive visibility.",
       path: "/product",
     }),
   component: ProductPage,
@@ -19,7 +19,7 @@ function ProductPage() {
     <MarketingPage
       eyebrow="Product"
       title="The AI operating system for high-performance sales teams"
-      lede="Iris turns every sales conversation into coaching, playbooks, CRM hygiene, and revenue intelligence—so performance compounds across the organisation."
+      lede="Artemis turns every sales conversation into coaching, playbooks, CRM hygiene, and revenue intelligence—so performance compounds across the organisation."
     >
       <Section
         title="Capability overview"

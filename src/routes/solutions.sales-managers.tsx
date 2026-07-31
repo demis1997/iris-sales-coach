@@ -6,7 +6,7 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/solutions/sales-managers")({
   head: () =>
     pageHead({
-      title: "Iris for Sales Managers",
+      title: "Artemis for Sales Managers",
       description:
         "Coach the right person on the right skill—priorities, skill gaps, behaviour change, and fair comparisons.",
       path: "/solutions/sales-managers",
@@ -19,7 +19,7 @@ function Page() {
     <MarketingPage
       eyebrow="For sales managers"
       title="Coach the right person on the right skill."
-      lede="Stop sampling random calls. Iris ranks coaching by expected impact, shows team skill gaps, and helps you prove whether coaching changed behaviour."
+      lede="Stop sampling random calls. Artemis ranks coaching by expected impact, shows team skill gaps, and helps you prove whether coaching changed behaviour."
     >
       <Section title="What managers get">
         <div className="grid gap-4 md:grid-cols-2">
@@ -39,7 +39,7 @@ function Page() {
           <ContentCard>
             <h3 className="font-semibold">Built for the reality of the floor</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              You cannot listen to every call. Iris can. Your queue becomes “who needs discovery
+              You cannot listen to every call. Artemis can. Your queue becomes “who needs discovery
               coaching this week,” not “whoever you happened to overhear.”
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">

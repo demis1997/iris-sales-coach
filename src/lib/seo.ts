@@ -5,7 +5,7 @@ export type PageSeo = {
   ogImage?: string;
 };
 
-const SITE = "https://iris.sales";
+const SITE = "https://artemis.sales";
 
 export function pageHead({ title, description, path, ogImage }: PageSeo) {
   const url = `${SITE}${path === "/" ? "" : path}`;
@@ -35,7 +35,7 @@ export function softwareApplicationJsonLd(description: string) {
     children: JSON.stringify({
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      name: "Iris",
+      name: "Artemis",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
       description,

@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useSession } from "@/components/app/session";
-import { SUGGESTED_PROMPTS } from "@/lib/demo/ask-iris";
-import { askIrisSafe } from "@/lib/ai";
+import { SUGGESTED_PROMPTS } from "@/lib/demo/ask-artemis";
+import { askArtemisSafe } from "@/lib/ai";
 import { cn } from "@/lib/utils";
 
-export function AskIrisPanel({
+export function AskArtemisPanel({
   open,
   onOpenChange,
   callId,
@@ -49,7 +49,7 @@ export function AskIrisPanel({
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onOpenChange]);
 
-  if (!open || !allowed("ask_iris")) return null;
+  if (!open || !allowed("ask_artemis")) return null;
 
   async function send(text: string) {
     const q = text.trim();
@@ -58,7 +58,7 @@ export function AskIrisPanel({
     setMessages((m) => [...m, { role: "user", content: q }]);
     setLoading(true);
     try {
-      const result = await askIrisSafe({ ctx: access, question: q, callId });
+      const result = await askArtemisSafe({ ctx: access, question: q, callId });
       setMessages((m) => [
         ...m,
         {
@@ -76,7 +76,7 @@ export function AskIrisPanel({
       <button
         type="button"
         className="absolute inset-0 bg-black/40"
-        aria-label="Close Ask Iris"
+        aria-label="Close Ask Artemis"
         onClick={() => onOpenChange(false)}
       />
       <div
@@ -91,7 +91,7 @@ export function AskIrisPanel({
             <Sparkles className="size-4 text-primary" aria-hidden />
             <div>
               <p id={titleId} className="text-sm font-semibold">
-                Ask Iris
+                Ask Artemis
               </p>
               <p className="text-[11px] text-muted-foreground">
                 Demo responses · model-ready layer
@@ -102,7 +102,7 @@ export function AskIrisPanel({
             ref={closeRef}
             type="button"
             onClick={() => onOpenChange(false)}
-            aria-label="Close Ask Iris panel"
+            aria-label="Close Ask Artemis panel"
             className="rounded-md p-1 focus-visible:ring-2 focus-visible:ring-ring"
           >
             <X className="size-4 text-muted-foreground" />
@@ -157,14 +157,14 @@ export function AskIrisPanel({
           }}
         >
           <Label htmlFor={inputId} className="sr-only">
-            Ask Iris a question
+            Ask Artemis a question
           </Label>
           <Textarea
             id={inputId}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             rows={3}
-            placeholder="Ask Iris…"
+            placeholder="Ask Artemis…"
             disabled={loading}
           />
           <Button type="submit" className="mt-2 w-full" disabled={loading || !input.trim()}>

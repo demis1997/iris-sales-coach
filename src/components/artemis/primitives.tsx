@@ -88,7 +88,7 @@ export function ScoreRing({ value, size = 132 }: { value: number; size?: number 
     <div className="relative" style={{ width: size, height: size }}>
       <svg width={size} height={size} className="-rotate-90">
         <defs>
-          <linearGradient id="iris-ring" x1="0" y1="0" x2="1" y2="1">
+          <linearGradient id="artemis-ring" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="oklch(0.72 0.12 230)" />
             <stop offset="55%" stopColor="oklch(0.68 0.14 235)" />
             <stop offset="100%" stopColor="oklch(0.75 0.08 210)" />
@@ -107,7 +107,7 @@ export function ScoreRing({ value, size = 132 }: { value: number; size?: number 
           cy={size / 2}
           r={r}
           strokeWidth={8}
-          stroke="url(#iris-ring)"
+          stroke="url(#artemis-ring)"
           strokeLinecap="round"
           fill="none"
           strokeDasharray={c}
@@ -122,11 +122,11 @@ export function ScoreRing({ value, size = 132 }: { value: number; size?: number 
   );
 }
 
-export function Meter({ value, tone = "iris" }: { value: number; tone?: "iris" | "flat" }) {
+export function Meter({ value, tone = "artemis" }: { value: number; tone?: "artemis" | "flat" }) {
   return (
     <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
       <div
-        className={cn("h-full rounded-full", tone === "iris" ? "gradient-surface" : "bg-muted-foreground")}
+        className={cn("h-full rounded-full", tone === "artemis" ? "gradient-surface" : "bg-muted-foreground")}
         style={{ width: `${Math.min(100, value)}%` }}
       />
     </div>
@@ -138,14 +138,14 @@ export function Chip({
   tone = "neutral",
 }: {
   children: ReactNode;
-  tone?: "neutral" | "good" | "warn" | "bad" | "iris";
+  tone?: "neutral" | "good" | "warn" | "bad" | "artemis";
 }) {
   const tones: Record<string, string> = {
     neutral: "bg-secondary text-muted-foreground",
     good: "bg-success/15 text-success",
     warn: "bg-warning/15 text-warning",
     bad: "bg-destructive/15 text-destructive",
-    iris: "bg-primary/15 text-primary",
+    artemis: "bg-primary/15 text-primary",
   };
   return (
     <span

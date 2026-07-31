@@ -37,13 +37,13 @@ export function HomeHero() {
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <Reveal>
             <p className="text-[11px] font-medium tracking-[0.16em] text-primary uppercase">
-              Iris · Sales operating system
+              Artemis · Sales operating system
             </p>
             <h1 className="mt-4 max-w-xl text-4xl leading-[1.05] font-semibold tracking-tight text-balance md:text-5xl lg:text-[3.25rem]">
               Every sales conversation makes your entire team smarter.
             </h1>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
-              Iris analyses every call, coaches every representative, identifies winning behaviours,
+              Artemis analyses every call, coaches every representative, identifies winning behaviours,
               predicts pipeline risk, and gives managers a clear view of what is driving revenue.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -61,7 +61,7 @@ export function HomeHero() {
                   href="#platform"
                   onClick={() => track("hero_demo_cta_clicked", { source: "hero_secondary" })}
                 >
-                  See Iris in action
+                  See Artemis in action
                 </a>
               </Button>
             </div>
@@ -85,7 +85,7 @@ function ProductPreview() {
     <div className="relative">
       <div
         className="overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-elevated)]"
-        aria-label="Illustrative Iris product preview with demo metrics"
+        aria-label="Illustrative Artemis product preview with demo metrics"
       >
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <div className="flex items-center gap-2">
@@ -176,7 +176,7 @@ function ProductPreview() {
           </div>
           <div className="rounded-lg border border-primary/25 bg-primary/5 p-3">
             <p className="flex items-center gap-1.5 text-[10px] font-medium tracking-wide text-primary uppercase">
-              <Sparkles className="size-3" /> Iris insight
+              <Sparkles className="size-3" /> Artemis insight
             </p>
             <p className="mt-2 text-[12px] leading-relaxed text-muted-foreground">
               Assign the “Value Before Price” playbook to Elena and Andreas, then review the five

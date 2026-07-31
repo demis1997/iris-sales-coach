@@ -23,7 +23,7 @@ export type OnboardingState = {
   updatedAt: string;
 };
 
-const KEY = "iris-onboarding-state";
+const KEY = "artemis-onboarding-state";
 
 export const ONBOARDING_STEPS = [
   { id: "org", title: "Create organisation", optional: false },
@@ -34,7 +34,7 @@ export const ONBOARDING_STEPS = [
   { id: "playbook", title: "Upload playbook", optional: true },
   { id: "scorecard", title: "Configure scorecard", optional: false },
   { id: "first-call", title: "Analyse first call", optional: false },
-  { id: "insight", title: "First Iris insight", optional: false },
+  { id: "insight", title: "First Artemis insight", optional: false },
 ] as const;
 
 export function defaultOnboardingState(): OnboardingState {

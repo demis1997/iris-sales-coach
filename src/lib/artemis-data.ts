@@ -18,4 +18,4 @@ export const personality: { trait: string; value: number }[] = [];
 export const callsPerDay: { day: string; calls: number; closed: number }[] = [];
 export const revenueTrend: { month: string; revenue: number; score: number }[] = [];
 export const hourlyCloseRate: { hour: string; rate: number }[] = [];
-export const coachMessages: { from: "iris" | "user"; text: string }[] = [];
+export const coachMessages: { from: "artemis" | "user"; text: string }[] = [];

@@ -1,5 +1,5 @@
 import type { AiProvider } from "@/lib/ai/types";
-import { answerAskIris } from "@/lib/demo/ask-iris";
+import { answerAskArtemis } from "@/lib/demo/ask-artemis";
 
 /** Deterministic demo AI — no network, no secrets. */
 export const demoAiProvider: AiProvider = {
@@ -60,12 +60,12 @@ export const demoAiProvider: AiProvider = {
       nextStep: analysis.nextSteps[0] ?? "No agreed next step — needs follow-up",
       sentiment: analysis.sentiment,
       risk: analysis.dealIntel.riskLevel,
-      summary: analysis.recommendations[0] ?? "Call analysed by Iris (demo).",
+      summary: analysis.recommendations[0] ?? "Call analysed by Artemis (demo).",
     };
   },
 
-  async askIris({ ctx, question, callId }) {
-    return answerAskIris(ctx, question, { callId });
+  async askArtemis({ ctx, question, callId }) {
+    return answerAskArtemis(ctx, question, { callId });
   },
 
   async generatePlaybook({ theme }) {

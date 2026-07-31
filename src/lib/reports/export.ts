@@ -53,7 +53,7 @@ export function openPrintableReport(title: string, bodyHtml: string) {
   return true;
 }
 
-const VIEWS_KEY = "iris-report-saved-views";
+const VIEWS_KEY = "artemis-report-saved-views";
 
 export type SavedReportView = {
   id: string;

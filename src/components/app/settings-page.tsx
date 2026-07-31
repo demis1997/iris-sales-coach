@@ -7,7 +7,7 @@ import { inviteUser } from "@/lib/auth/demo-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Chip } from "@/components/iris/primitives";
+import { Chip } from "@/components/artemis/primitives";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -196,7 +196,7 @@ export function SettingsPage() {
           {section === "analysis" ? (
             <Panel title="Analysis">
               <p className="text-sm text-muted-foreground">
-                Configure how Iris scores conversations for your floor.
+                Configure how Artemis scores conversations for your floor.
               </p>
               <Checklist
                 items={[

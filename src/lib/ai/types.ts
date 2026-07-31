@@ -31,7 +31,7 @@ export type CrmUpdateRequest = {
   dealId: string | null;
 };
 
-export type AskIrisRequest = {
+export type AskArtemisRequest = {
   ctx: AccessContext;
   question: string;
   callId?: string;
@@ -68,7 +68,7 @@ export type AiProvider = {
     risk: string;
     summary: string;
   }>;
-  askIris: (req: AskIrisRequest) => Promise<string>;
+  askArtemis: (req: AskArtemisRequest) => Promise<string>;
   generatePlaybook: (req: PlaybookGenerationRequest) => Promise<{
     name: string;
     purpose: string;
@@ -88,7 +88,7 @@ export type AiProvider = {
 export function getConfiguredProviderName(): AiProviderName {
   const raw =
     (typeof import.meta !== "undefined" && import.meta.env?.VITE_AI_PROVIDER) ||
-    (typeof process !== "undefined" && process.env?.IRIS_AI_PROVIDER) ||
+    (typeof process !== "undefined" && process.env?.ARTEMIS_AI_PROVIDER) ||
     "demo";
   return raw === "production" ? "production" : "demo";
 }

@@ -1,10 +1,10 @@
 import { FileLock2, Fingerprint, Globe2, KeyRound, ScrollText, ServerCog } from "lucide-react";
-import { Panel } from "@/components/iris/primitives";
+import { Panel } from "@/components/artemis/primitives";
 import { Reveal, Section } from "@/components/landing/marketing-bits";
 
 const testimonials = [
   {
-    q: "Our close rate moved from 19% to 27% in one quarter. Iris found that reps were pitching before discovery on almost every call — something four managers had missed for two years.",
+    q: "Our close rate moved from 19% to 27% in one quarter. Artemis found that reps were pitching before discovery on almost every call — something four managers had missed for two years.",
     n: "Elena Kovač",
     r: "Sales Director",
     c: "Meridian FX",
@@ -45,7 +45,7 @@ export function Testimonials() {
     <Section
       eyebrow="Customer proof"
       title="Trusted on the loudest sales floors in Europe"
-      lede="Forex brokers, insurers, agencies and call centres running Iris across regulated, high-volume outbound."
+      lede="Forex brokers, insurers, agencies and call centres running Artemis across regulated, high-volume outbound."
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {testimonials.map((t, i) => (
@@ -98,7 +98,7 @@ export function Security() {
       id="security"
       eyebrow="Security & compliance"
       title="Built for forex, finance and insurance"
-      lede="Regulated conversations demand more than a transcription vendor. Iris is designed for the audit that follows the call."
+      lede="Regulated conversations demand more than a transcription vendor. Artemis is designed for the audit that follows the call."
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {security.map((s, i) => (
@@ -112,7 +112,7 @@ export function Security() {
         ))}
       </div>
       <p className="mt-6 text-xs text-muted-foreground">
-        This page is maintained by Iris to answer common security questions. It describes product
+        This page is maintained by Artemis to answer common security questions. It describes product
         capabilities and is not an independent certification or audit report.
       </p>
     </Section>

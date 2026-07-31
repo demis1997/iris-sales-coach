@@ -12,7 +12,7 @@ import {
 import { track } from "@/lib/analytics";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Chip } from "@/components/iris/primitives";
+import { Chip } from "@/components/artemis/primitives";
 import { toast } from "sonner";
 import { DEMO_LABEL } from "@/lib/demo/seed";
 import { cn } from "@/lib/utils";
@@ -62,7 +62,7 @@ export function KnowledgePage() {
   }
 
   useEffect(() => {
-    const savedRaw = window.localStorage.getItem("iris-knowledge-saved");
+    const savedRaw = window.localStorage.getItem("artemis-knowledge-saved");
     if (savedRaw) setSaved(JSON.parse(savedRaw) as string[]);
   }, []);
 
@@ -79,7 +79,7 @@ export function KnowledgePage() {
   function toggleSave(id: string) {
     const next = saved.includes(id) ? saved.filter((x) => x !== id) : [...saved, id];
     setSaved(next);
-    window.localStorage.setItem("iris-knowledge-saved", JSON.stringify(next));
+    window.localStorage.setItem("artemis-knowledge-saved", JSON.stringify(next));
     toast.success(saved.includes(id) ? "Removed from saved" : "Saved to library");
   }
 
@@ -180,7 +180,7 @@ export function KnowledgePage() {
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <Chip tone="iris">{r.type}</Chip>
+                      <Chip tone="artemis">{r.type}</Chip>
                       {r.sentiment ? <Chip tone="neutral">{r.sentiment}</Chip> : null}
                     </div>
                     <h3 className="mt-2 font-medium">{r.title}</h3>

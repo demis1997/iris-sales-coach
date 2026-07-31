@@ -17,9 +17,9 @@ import {
 } from "@/components/marketing/home-sections";
 import { pageHead, softwareApplicationJsonLd } from "@/lib/seo";
 
-const title = "Iris — AI Sales Coaching and Revenue Intelligence";
+const title = "Artemis — AI Sales Coaching and Revenue Intelligence";
 const description =
-  "Iris analyses every sales conversation, coaches representatives, identifies pipeline risk, automates CRM updates, and gives managers visibility into what drives revenue.";
+  "Artemis analyses every sales conversation, coaches representatives, identifies pipeline risk, automates CRM updates, and gives managers visibility into what drives revenue.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

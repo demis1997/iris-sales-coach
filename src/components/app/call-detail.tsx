@@ -16,7 +16,7 @@ import {
   Volume2,
 } from "lucide-react";
 import { useSession } from "@/components/app/session";
-import { AskIrisPanel } from "@/components/app/ask-iris";
+import { AskArtemisPanel } from "@/components/app/ask-artemis";
 import {
   formatDuration,
   formatEur,
@@ -29,7 +29,7 @@ import {
 import { buildMarkers, buildTranscript } from "@/lib/demo/seed";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Meter, ScoreRing, Chip } from "@/components/iris/primitives";
+import { Meter, ScoreRing, Chip } from "@/components/artemis/primitives";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 
@@ -101,7 +101,7 @@ export function CallDetailPage({ callId }: { callId: string }) {
             {deal ? ` · ${deal.title} (${formatEur(deal.value)})` : ""}
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
-            <Chip tone="iris">{call.callType}</Chip>
+            <Chip tone="artemis">{call.callType}</Chip>
             <Chip tone={call.analysisStatus === "Analyzed" ? "good" : "warn"}>
               {call.analysisStatus}
             </Chip>
@@ -126,7 +126,7 @@ export function CallDetailPage({ callId }: { callId: string }) {
             <Share2 className="size-3.5" /> Share
           </Button>
           <Button size="sm" onClick={() => setAskOpen(true)}>
-            <MessageSquareText className="size-3.5" /> Ask Iris
+            <MessageSquareText className="size-3.5" /> Ask Artemis
           </Button>
         </div>
       </div>
@@ -263,7 +263,7 @@ export function CallDetailPage({ callId }: { callId: string }) {
                     <span className="font-medium text-foreground">{s.speakerName}</span>
                     <span>{s.sentiment}</span>
                     {s.tags.map((t) => (
-                      <Chip key={t} tone="iris">
+                      <Chip key={t} tone="artemis">
                         {t}
                       </Chip>
                     ))}
@@ -499,7 +499,7 @@ export function CallDetailPage({ callId }: { callId: string }) {
         </div>
       </div>
 
-      <AskIrisPanel open={askOpen} onOpenChange={setAskOpen} callId={call.id} />
+      <AskArtemisPanel open={askOpen} onOpenChange={setAskOpen} callId={call.id} />
     </div>
   );
 }

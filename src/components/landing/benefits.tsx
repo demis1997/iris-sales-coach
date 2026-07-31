@@ -11,7 +11,7 @@ import {
   TrendingUp,
   UsersRound,
 } from "lucide-react";
-import { Panel } from "@/components/iris/primitives";
+import { Panel } from "@/components/artemis/primitives";
 import { Reveal, Section } from "@/components/landing/marketing-bits";
 
 const benefits = [
@@ -36,14 +36,14 @@ const benefits = [
   {
     icon: ScrollText,
     t: "Identify your best scripts",
-    d: "Iris finds the phrasing that statistically precedes a close, then teaches it to the floor.",
+    d: "Artemis finds the phrasing that statistically precedes a close, then teaches it to the floor.",
     impact: "Winning-script rollout lifts desk conversion 6–11%",
   },
   {
     icon: ShieldCheck,
     t: "Improve compliance",
     d: "Required disclosures, prohibited claims and consent language checked on every regulated call.",
-    impact: "One avoided regulatory penalty pays for years of Iris",
+    impact: "One avoided regulatory penalty pays for years of Artemis",
   },
   {
     icon: UsersRound,
@@ -65,7 +65,7 @@ export function Benefits() {
       id="results"
       eyebrow="Business outcomes"
       title="What this does to your P&L"
-      lede="Iris is not bought as software. It is bought as revenue, retained margin and reduced risk."
+      lede="Artemis is not bought as software. It is bought as revenue, retained margin and reduced risk."
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {benefits.map((b, i) => (
@@ -140,15 +140,15 @@ const comparison = [
 export function Comparison() {
   return (
     <Section
-      eyebrow="Why Iris is different"
-      title="Traditional QA was built for sampling. Iris was built for scale."
+      eyebrow="Why Artemis is different"
+      title="Traditional QA was built for sampling. Artemis was built for scale."
     >
       <Reveal>
         <Panel className="overflow-hidden p-0">
           <div className="grid grid-cols-[1.1fr_1fr_1fr] border-b border-border text-xs tracking-[0.14em] text-muted-foreground uppercase">
             <div className="px-5 py-4" />
             <div className="px-5 py-4">Traditional QA</div>
-            <div className="bg-primary/8 px-5 py-4 text-foreground">Iris</div>
+            <div className="bg-primary/8 px-5 py-4 text-foreground">Artemis</div>
           </div>
           {comparison.map(([k, a, b]) => (
             <div
