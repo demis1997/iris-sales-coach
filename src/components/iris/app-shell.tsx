@@ -8,8 +8,8 @@ export type NavItem = { label: string; to: string; icon: LucideIcon };
 export function IrisMark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2", className)}>
-      <span className="grid size-7 place-items-center rounded-lg gradient-surface">
-        <Sparkles className="size-4 text-background" />
+      <span className="grid size-7 place-items-center rounded-md bg-primary text-primary-foreground">
+        <Sparkles className="size-3.5" aria-hidden />
       </span>
       <span className="text-[15px] font-semibold tracking-tight">Iris</span>
     </span>

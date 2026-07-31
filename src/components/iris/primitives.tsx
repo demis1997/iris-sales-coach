@@ -89,9 +89,9 @@ export function ScoreRing({ value, size = 132 }: { value: number; size?: number 
       <svg width={size} height={size} className="-rotate-90">
         <defs>
           <linearGradient id="iris-ring" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="oklch(0.66 0.2 293)" />
-            <stop offset="55%" stopColor="oklch(0.66 0.18 258)" />
-            <stop offset="100%" stopColor="oklch(0.78 0.14 200)" />
+            <stop offset="0%" stopColor="oklch(0.72 0.12 230)" />
+            <stop offset="55%" stopColor="oklch(0.68 0.14 235)" />
+            <stop offset="100%" stopColor="oklch(0.75 0.08 210)" />
           </linearGradient>
         </defs>
         <circle
