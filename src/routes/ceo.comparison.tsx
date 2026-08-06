@@ -16,9 +16,9 @@ import { employees } from "@/lib/iris-data";
 export const Route = createFileRoute("/ceo/comparison")({
   head: () => ({
     meta: [
-      { title: "Team Comparison — Iris Executive" },
+      { title: "Team Comparison — Artemis Executive" },
       { name: "description", content: "Compare reps on confidence, closing, pitch timing and compliance." },
-      { property: "og:title", content: "Team Comparison — Iris Executive" },
+      { property: "og:title", content: "Team Comparison — Artemis Executive" },
       { property: "og:description", content: "Compare reps across every behavioural metric." },
     ],
   }),

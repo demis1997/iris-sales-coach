@@ -11,16 +11,21 @@ export type NavItem = {
   section?: string;
 };
 
-export function IrisMark({ className }: { className?: string }) {
+export function ArtemisMark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2", className)}>
       <span className="grid size-7 place-items-center rounded-lg gradient-surface">
         <Sparkles className="size-4 text-background" />
       </span>
-      <span className="text-[15px] font-semibold tracking-tight">Iris</span>
+      <span className="text-[15px] font-semibold tracking-tight">
+        Artemis <span className="text-primary">AI</span>
+      </span>
     </span>
   );
 }
+
+/** @deprecated use ArtemisMark */
+export const IrisMark = ArtemisMark;
 
 const WORKSPACES = [
   { label: "Rep", to: "/app" },
@@ -45,7 +50,7 @@ export function AppShell({
       <div className="mx-auto flex w-full">
         <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-border bg-sidebar px-3 py-4 lg:flex">
           <Link to="/" className="px-2 py-1">
-            <IrisMark />
+            <ArtemisMark />
           </Link>
           <p className="mt-6 px-2 text-[11px] font-medium tracking-wider text-muted-foreground uppercase">
             {workspace}
@@ -103,7 +108,7 @@ export function AppShell({
         <div className="min-w-0 flex-1">
           <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-border bg-background/70 px-4 backdrop-blur-xl lg:px-6">
             <Link to="/" className="lg:hidden">
-              <IrisMark />
+              <ArtemisMark />
             </Link>
             <div className="hidden min-w-0 flex-1 items-center gap-2 rounded-lg border border-border bg-secondary/40 px-3 py-1.5 text-sm text-muted-foreground sm:flex sm:max-w-sm">
               <Search className="size-3.5" />

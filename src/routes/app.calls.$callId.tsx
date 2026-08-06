@@ -20,9 +20,9 @@ export const Route = createFileRoute("/app/calls/$callId")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Call unavailable — Iris" }, { name: "robots", content: "noindex" }] };
+      return { meta: [{ title: "Call unavailable — Artemis AI" }, { name: "robots", content: "noindex" }] };
     }
-    const t = `Call analysis: ${loaderData.call.prospect} — Iris`;
+    const t = `Call analysis: ${loaderData.call.prospect} — Artemis AI`;
     return {
       meta: [
         { title: t },
@@ -122,7 +122,7 @@ function CallAnalysis() {
 
         <div className="space-y-4">
           <Panel>
-            <PanelHeader title="Missing information" subtitle="Checklist coverage detected by Iris" />
+            <PanelHeader title="Missing information" subtitle="Checklist coverage detected by Artemis AI" />
             <div className="grid gap-2 p-5 sm:grid-cols-2">
               {missingInfo.map((m) => (
                 <div
@@ -172,7 +172,7 @@ function CallAnalysis() {
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
           Marcus signalled buying intent at 06:40 when he asked about onboarding timelines, but the
           conversation returned to features for another four minutes. The pricing objection at 06:12
-          was never fully resolved — you moved on after 9 seconds. Iris estimates the deal is still{" "}
+          was never fully resolved — you moved on after 9 seconds. Artemis AI estimates the deal is still{" "}
           <span className="text-success">78% likely to close</span> if you send a written objection
           recap within 24 hours and re-anchor on execution speed rather than spread.
         </p>

@@ -5,9 +5,9 @@ import { employees } from "@/lib/iris-data";
 export const Route = createFileRoute("/manager/coaching")({
   head: () => ({
     meta: [
-      { title: "Coaching — Iris Manager" },
+      { title: "Coaching — Artemis Manager" },
       { name: "description", content: "Assign coaching plans generated from each rep's real conversations." },
-      { property: "og:title", content: "Coaching — Iris Manager" },
+      { property: "og:title", content: "Coaching — Artemis Manager" },
       { property: "og:description", content: "Coaching plans written from real calls." },
     ],
   }),

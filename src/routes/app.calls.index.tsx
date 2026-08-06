@@ -7,9 +7,9 @@ import { calls } from "@/lib/iris-data";
 export const Route = createFileRoute("/app/calls/")({
   head: () => ({
     meta: [
-      { title: "Calls — Iris Rep Workspace" },
+      { title: "Calls — Artemis Rep Workspace" },
       { name: "description", content: "Every analyzed call with scores, outcomes and confidence." },
-      { property: "og:title", content: "Calls — Iris Rep Workspace" },
+      { property: "og:title", content: "Calls — Artemis Rep Workspace" },
       { property: "og:description", content: "Every analyzed call with scores and outcomes." },
     ],
   }),

@@ -12,22 +12,10 @@ import {
   Workflow,
   Zap,
 } from "lucide-react";
-import { RelayButton, RelayMark } from "@/components/relay/brand";
-import { RelayHeader } from "@/components/relay/header";
+import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
+import { ArtemisHeader } from "@/components/relay/header";
 import { cn } from "@/lib/utils";
 
-const LOGOS = [
-  "Xoxoday",
-  "BookingAgora",
-  "Airpaz",
-  "MyHolidays",
-  "Doo Group",
-  "Infomedia",
-  "ThinkLogic",
-  "Edumentors",
-  "Dentfix",
-  "Advanced Markets",
-];
 
 const PILLARS = [
   {
@@ -42,7 +30,7 @@ const PILLARS = [
   {
     eyebrow: "Intelligent workflows",
     title: "Smarter flows, faster resolutions",
-    body: "Build and automate interaction flows with Relay AI’s no-code interface. Set up IVR menus, intelligent routing, and chatbot interactions to ensure fast, seamless customer support.",
+    body: "Build and automate interaction flows with Artemis AI’s no-code interface. Set up IVR menus, intelligent routing, and chatbot interactions to ensure fast, seamless customer support.",
     cta: "Explore Flow Builder",
     href: "#flow",
     accent: "from-[#4F6EF7] to-[#A855F7]",
@@ -51,7 +39,7 @@ const PILLARS = [
   {
     eyebrow: "CRM integrations",
     title: "Sync contacts and track interactions",
-    body: "Connect Relay AI with HubSpot, Salesforce, Zoho and more to automate workflows, sync customer data, and enhance productivity. Reduce manual tasks and keep every team connected.",
+    body: "Connect Artemis AI with HubSpot, Salesforce, Zoho and more to automate workflows, sync customer data, and enhance productivity. Reduce manual tasks and keep every team connected.",
     cta: "Learn more",
     href: "#integrations",
     accent: "from-[#FF7A45] to-[#FF4D8D]",
@@ -59,33 +47,13 @@ const PILLARS = [
   },
 ];
 
-const STORIES = [
-  {
-    quote:
-      "Before Relay AI we had several platforms for our operations. Now everything is managed and monitored from a single system.",
-    name: "Wendy Anwar",
-    role: "Chief Product Officer, Airpaz",
-  },
-  {
-    quote:
-      "Relay AI’s dialer increased our agents’ daily call volume by 40–50% while cutting idle time by nearly half.",
-    name: "Ali Mustafa",
-    role: "CEO & Founder, Realtree Properties",
-  },
-  {
-    quote:
-      "RideNow went live the same day they onboarded, connecting WhatsApp and activating their chatbot within hours.",
-    name: "RideNow",
-    role: "Customer story",
-  },
-];
 
 const PRODUCTS = [
   {
     id: "omnichannel",
     eyebrow: "Many channels, one platform",
     title: "Omnichannel",
-    body: "Deliver a seamless CX with Relay AI Omnichannel. Unify voice, messaging apps, and SMS in one platform for easy management. Provide personalized support, boost satisfaction, and strengthen relationships.",
+    body: "Deliver a seamless CX with Artemis AI Omnichannel. Unify voice, messaging apps, and SMS in one platform for easy management. Provide personalized support, boost satisfaction, and strengthen relationships.",
     metric: null,
     tint: "bg-[#EEF2FF]",
   },
@@ -93,7 +61,7 @@ const PRODUCTS = [
     id: "dialer",
     eyebrow: "400% more calls per hour",
     title: "AI Predictive Dialer",
-    body: "Boost contact rates and agent productivity with Relay AI’s Predictive Dialer. It intelligently dials based on agent availability, reducing idle time and maximizing connections to drive sales.",
+    body: "Boost contact rates and agent productivity with Artemis AI’s Predictive Dialer. It intelligently dials based on agent availability, reducing idle time and maximizing connections to drive sales.",
     metric: "400%",
     tint: "bg-[#E8FFF6]",
   },
@@ -115,26 +83,6 @@ const PRODUCTS = [
   },
 ];
 
-const CLIENTS = [
-  {
-    company: "BookingAgora",
-    quote:
-      "We’re delighted to utilise Relay AI as our trusted contact center solution. With its efficiency and reliability, we can provide unparalleled support regarding travel services to our global clientele.",
-    person: "Kadri Ciga, Co-founder",
-  },
-  {
-    company: "Karma Group",
-    quote:
-      "We have smoothed our entire business process by integrating systems with the Relay AI platform. Facebook-generated leads drop into Zoho, become available in Relay AI, and call outcomes sync back automatically.",
-    person: "David M. Scheckter, COO",
-  },
-  {
-    company: "Weblio",
-    quote:
-      "Relay AI’s dialer revolutionized our communication processes. With seamless automation, our team now efficiently contacts thousands of tutors daily, significantly boosting productivity.",
-    person: "Ody Aporado, Dispatch Supervisor",
-  },
-];
 
 const USE_CASES = [
   {
@@ -195,7 +143,7 @@ const NEXT_LEVEL = [
   },
 ];
 
-export function RelayHomePage() {
+export function ArtemisHomePage() {
   return (
     <div className="min-h-screen bg-white text-[#0B1B33]">
       <div className="border-b border-[#E8EEF7] bg-gradient-to-r from-[#E8FFF6] via-[#EEF2FF] to-[#FFF4E8]">
@@ -209,7 +157,7 @@ export function RelayHomePage() {
         </p>
       </div>
 
-      <RelayHeader />
+      <ArtemisHeader />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -228,55 +176,23 @@ export function RelayHomePage() {
               center platform — boosting agent efficiency and delivering seamless customer experiences.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <RelayButton href="#get-started" className="px-7 py-3 text-base">
+              <ArtemisButton href="#get-started" className="px-7 py-3 text-base">
                 Get Started
-              </RelayButton>
-              <RelayButton href="#products" variant="secondary" className="px-7 py-3 text-base">
+              </ArtemisButton>
+              <ArtemisButton href="#products" variant="secondary" className="px-7 py-3 text-base">
                 Explore products
-              </RelayButton>
+              </ArtemisButton>
             </div>
             <p className="mt-4 text-xs text-[#8A9BB5]">
-              By clicking Get Started you agree to Relay AI’s Privacy Policy and Terms of Service.
+              By clicking Get Started you agree to Artemis AI’s Privacy Policy and Terms of Service.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-6">
-              {[
-                ["Trustpilot", "4.6/5"],
-                ["G2", "4.8/5"],
-                ["Capterra", "4.7/5"],
-              ].map(([name, score]) => (
-                <div key={name} className="min-w-[110px]">
-                  <p className="text-xs font-medium uppercase tracking-wide text-[#8A9BB5]">{name}</p>
-                  <p className="mt-1 text-lg font-bold text-[#0B1B33]">{score}</p>
-                  <div className="mt-1 flex gap-0.5 text-[#2EE6A6]">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <span key={i}>★</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
 
           <HeroVisual />
         </div>
       </section>
 
-      {/* Logo strip */}
-      <section className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-10">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
-            {LOGOS.map((name) => (
-              <span
-                key={name}
-                className="text-sm font-semibold tracking-wide text-[#A8B5C9] transition hover:text-[#4B5C76]"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Three pillars */}
       <section id="capabilities" className="py-20">
@@ -310,31 +226,6 @@ export function RelayHomePage() {
         </div>
       </section>
 
-      {/* Platform for growth */}
-      <section className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-            A platform for growth
-          </h2>
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {STORIES.map((s) => (
-              <blockquote
-                key={s.name}
-                className="rounded-[1.75rem] border border-white bg-white p-7 shadow-[0_12px_40px_-24px_rgba(15,40,80,0.3)]"
-              >
-                <p className="text-[15px] leading-relaxed text-[#4B5C76]">“{s.quote}”</p>
-                <footer className="mt-6">
-                  <p className="font-semibold text-[#0B1B33]">{s.name}</p>
-                  <p className="text-sm text-[#8A9BB5]">{s.role}</p>
-                  <a href="#get-started" className="mt-3 inline-flex text-sm font-semibold text-[#4F6EF7]">
-                    Read the story →
-                  </a>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Product deep dives */}
       <section id="products" className="py-8">
@@ -359,10 +250,10 @@ export function RelayHomePage() {
                 </h3>
                 <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">{p.body}</p>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <RelayButton href="#get-started">Explore {p.title}</RelayButton>
-                  <RelayButton href="#get-started" variant="secondary">
+                  <ArtemisButton href="#get-started">Explore {p.title}</ArtemisButton>
+                  <ArtemisButton href="#get-started" variant="secondary">
                     Contact Sales
-                  </RelayButton>
+                  </ArtemisButton>
                 </div>
               </div>
               <ProductMock title={p.title} tint={p.tint} metric={p.metric} />
@@ -371,26 +262,6 @@ export function RelayHomePage() {
         ))}
       </section>
 
-      {/* What clients say */}
-      <section id="customers" className="border-y border-[#E8EEF7] bg-white py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#8A9BB5]">
-            What clients say
-          </p>
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {CLIENTS.map((c) => (
-              <article
-                key={c.company}
-                className="rounded-[1.75rem] border border-[#E8EEF7] bg-[#F7FAFF] p-7"
-              >
-                <h3 className="text-xl font-bold text-[#0B1B33]">{c.company}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-[#4B5C76]">“{c.quote}”</p>
-                <p className="mt-5 text-sm font-medium text-[#8A9BB5]">{c.person}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Use cases */}
       <section id="solutions" className="bg-[#F7FAFF] py-20">
@@ -429,7 +300,7 @@ export function RelayHomePage() {
               Seamless integration with your CRM
             </h3>
             <p className="mt-3 text-[#4B5C76]">
-              Sync with your favorite apps in just a few clicks to leverage Relay AI’s contact center
+              Sync with your favorite apps in just a few clicks to leverage Artemis AI’s contact center
               features.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -443,10 +314,10 @@ export function RelayHomePage() {
               ))}
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
-              <RelayButton href="#get-started">Explore All Integrations</RelayButton>
-              <RelayButton href="#get-started" variant="secondary">
+              <ArtemisButton href="#get-started">Explore All Integrations</ArtemisButton>
+              <ArtemisButton href="#get-started" variant="secondary">
                 Get Started
-              </RelayButton>
+              </ArtemisButton>
             </div>
           </article>
 
@@ -471,9 +342,9 @@ export function RelayHomePage() {
                 </li>
               ))}
             </ul>
-            <RelayButton href="#get-started" className="mt-8">
+            <ArtemisButton href="#get-started" className="mt-8">
               Go to pricing
-            </RelayButton>
+            </ArtemisButton>
           </article>
         </div>
       </section>
@@ -508,14 +379,14 @@ export function RelayHomePage() {
         </div>
       </section>
 
-      {/* Next level — Relay differentiators */}
+      {/* Next level — Artemis differentiators */}
       <section id="next-level" className="py-20">
         <div className="mx-auto max-w-6xl px-5">
           <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
             Beyond the contact center
           </p>
           <h2 className="mt-3 text-center text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-            Take it to the next level with Relay AI
+            Take it to the next level with Artemis AI
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-[#4B5C76]">
             Match Voiso’s contact-center core — then go further with live coaching, skill DNA,
@@ -595,11 +466,11 @@ export function RelayHomePage() {
             <p className="mx-auto mt-3 max-w-lg text-white/70">
               Let’s discuss a solution that works for you.
             </p>
-            <RelayButton href="/app" className="mt-8 px-8 py-3 text-base">
+            <ArtemisButton href="/app" className="mt-8 px-8 py-3 text-base">
               Get Started
-            </RelayButton>
+            </ArtemisButton>
             <p className="mt-4 text-xs text-white/45">
-              By clicking Get Started you agree to Relay AI’s Privacy Policy and Terms of Service.
+              By clicking Get Started you agree to Artemis AI’s Privacy Policy and Terms of Service.
             </p>
           </div>
         </div>
@@ -608,7 +479,7 @@ export function RelayHomePage() {
       <footer className="border-t border-[#E8EEF7] bg-white py-12">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 sm:flex-row sm:justify-between">
           <div>
-            <RelayMark />
+            <ArtemisMark />
             <p className="mt-3 max-w-xs text-sm text-[#8A9BB5]">
               AI contact center software — omnichannel, predictive dialing, speech analytics, and a
               full revenue OS.
@@ -637,7 +508,7 @@ export function RelayHomePage() {
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-[#A8B5C9]">
-          © {new Date().getFullYear()} Relay AI. All Rights Reserved.
+          © {new Date().getFullYear()} Artemis AI. All Rights Reserved.
         </p>
       </footer>
     </div>

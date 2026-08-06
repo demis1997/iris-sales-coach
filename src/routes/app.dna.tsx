@@ -22,13 +22,13 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/app/dna")({
   head: () => ({
     meta: [
-      { title: "Revenue DNA — Iris AI" },
+      { title: "Revenue DNA — Artemis AI" },
       {
         name: "description",
         content:
           "Continuously evolving selling-skill profile from calls, roleplays, QA, CRM outcomes and closed revenue.",
       },
-      { property: "og:title", content: "Revenue DNA — Iris AI" },
+      { property: "og:title", content: "Revenue DNA — Artemis AI" },
     ],
   }),
   component: DnaPage,

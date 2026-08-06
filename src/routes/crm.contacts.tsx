@@ -5,9 +5,9 @@ import { crmContacts } from "@/lib/revenue-os-data";
 export const Route = createFileRoute("/crm/contacts")({
   head: () => ({
     meta: [
-      { title: "Contacts — Iris CRM" },
+      { title: "Contacts — Artemis CRM" },
       { name: "description", content: "Contacts with AI-detected buying intent, authority and decision-maker role." },
-      { property: "og:title", content: "Contacts — Iris CRM" },
+      { property: "og:title", content: "Contacts — Artemis CRM" },
       { property: "og:description", content: "Know who actually decides, from what they said." },
     ],
   }),

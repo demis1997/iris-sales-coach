@@ -19,7 +19,7 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import { RelayButton, RelayMark } from "@/components/relay/brand";
+import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
 import { cn } from "@/lib/utils";
 
 type NavLink = {
@@ -135,13 +135,13 @@ const NAV: NavItem[] = [
         links: [
           { label: "Documentation", href: "#get-started", description: "Setup guides and feature docs.", icon: BookOpen },
           { label: "Developers", href: "#get-started", description: "APIs, samples, and Postman collections.", icon: Code2 },
-          { label: "Customer Stories", href: "#customers", description: "How teams grow with Relay AI.", icon: Briefcase },
+          { label: "Documentation", href: "#customers", description: "Product docs and guides.", icon: Briefcase },
         ],
       },
       {
         title: "Company",
         links: [
-          { label: "Why Relay AI", href: "#next-level", description: "Beyond dialers — a revenue OS." },
+          { label: "Why Artemis AI", href: "#next-level", description: "Beyond dialers — a revenue OS." },
           { label: "Trust & Compliance", href: "#security", description: "Security, GDPR, certifications." },
           { label: "Go Live in 24 Hours", href: "#get-started", description: "Rapid onboarding and CRM setup." },
         ],
@@ -157,7 +157,7 @@ const NAV: NavItem[] = [
         title: "About us",
         links: [
           { label: "Who we are", href: "#security", description: "Mission and values.", icon: Building2 },
-          { label: "Careers", href: "#get-started", description: "Join the Relay AI team." },
+          { label: "Careers", href: "#get-started", description: "Join the Artemis AI team." },
           { label: "Infrastructure", href: "#security", description: "Global coverage and uptime.", icon: Shield },
           { label: "Contact Sales", href: "#get-started", description: "Talk to a solutions specialist." },
         ],
@@ -166,7 +166,7 @@ const NAV: NavItem[] = [
   },
 ];
 
-export function RelayHeader() {
+export function ArtemisHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopOpen, setDesktopOpen] = useState<string | null>(null);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
@@ -193,8 +193,8 @@ export function RelayHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#E8EEF7] bg-white/95 backdrop-blur-xl">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5">
-        <Link to="/" aria-label="Relay AI home" onClick={() => setDesktopOpen(null)}>
-          <RelayMark />
+        <Link to="/" aria-label="Artemis AI home" onClick={() => setDesktopOpen(null)}>
+          <ArtemisMark />
         </Link>
 
         <nav ref={navRef} className="relative hidden flex-1 items-center justify-center gap-1 lg:flex">
@@ -261,7 +261,7 @@ export function RelayHeader() {
           <Link to="/app" className="text-sm font-medium text-[#4B5C76] hover:text-[#0B1B33]">
             Log In
           </Link>
-          <RelayButton href="#get-started">Try for Free</RelayButton>
+          <ArtemisButton href="#get-started">Try for Free</ArtemisButton>
         </div>
 
         <button
@@ -341,9 +341,9 @@ export function RelayHeader() {
           >
             Log In
           </Link>
-          <RelayButton href="#get-started" className="mt-1 w-full">
+          <ArtemisButton href="#get-started" className="mt-1 w-full">
             Try for Free
-          </RelayButton>
+          </ArtemisButton>
         </div>
       </div>
     </header>
@@ -413,7 +413,7 @@ function MegaMenu({ item, onNavigate }: { item: NavItem; onNavigate: () => void 
       ) : null}
 
       <div className="flex items-center justify-between gap-3 border-t border-[#E8EEF7] bg-[#F7FAFF] px-5 py-3">
-        <p className="text-xs text-[#8A9BB5]">Go live with Relay AI in less than 24 hours.</p>
+        <p className="text-xs text-[#8A9BB5]">Go live with Artemis AI in less than 24 hours.</p>
         <a
           href="#get-started"
           onClick={onNavigate}

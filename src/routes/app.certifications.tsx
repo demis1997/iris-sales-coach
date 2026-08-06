@@ -10,7 +10,7 @@ import {
 export const Route = createFileRoute("/app/certifications")({
   head: () => ({
     meta: [
-      { title: "Certifications — Iris AI" },
+      { title: "Certifications — Artemis AI" },
       {
         name: "description",
         content: "Campaign certifications that gate dialer access until reps pass required training.",

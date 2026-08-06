@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/crm/deal-risk")({
   head: () => ({
     meta: [
-      { title: "Deal Risk — Iris CRM" },
+      { title: "Deal Risk — Artemis CRM" },
       { name: "description", content: "Win probability, risk factors, and next-best actions linked to conversations." },
     ],
   }),

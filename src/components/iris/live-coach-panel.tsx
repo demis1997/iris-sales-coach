@@ -37,7 +37,7 @@ export function LiveCoachPanel({ visibleCount }: { visibleCount: number }) {
     <div className="space-y-4">
       <Panel className="gradient-border">
         <PanelHeader
-          title="Iris live coaching"
+          title="Artemis live coaching"
           subtitle={`${campaign} · ${playbook}`}
           action={<Chip tone="iris">Contextual</Chip>}
         />

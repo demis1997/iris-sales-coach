@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function RelayMark({ className }: { className?: string }) {
+export function ArtemisMark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <span className="grid size-8 place-items-center rounded-xl bg-gradient-to-br from-[#2EE6A6] to-[#18C4FF] shadow-sm shadow-[#2EE6A6]/40">
@@ -15,13 +15,13 @@ export function RelayMark({ className }: { className?: string }) {
         </svg>
       </span>
       <span className="text-[17px] font-semibold tracking-tight text-[#0B1B33]">
-        Relay <span className="font-semibold text-[#12C48A]">AI</span>
+        Artemis <span className="font-semibold text-[#12C48A]">AI</span>
       </span>
     </span>
   );
 }
 
-export function RelayButton({
+export function ArtemisButton({
   children,
   href = "#get-started",
   variant = "primary",

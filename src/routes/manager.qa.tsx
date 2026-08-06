@@ -20,7 +20,7 @@ const highlights = [
 export const Route = createFileRoute("/manager/qa")({
   head: () => ({
     meta: [
-      { title: "QA & Coaching Workspace — Iris Manager" },
+      { title: "QA & Coaching Workspace — Artemis Manager" },
       { name: "description", content: "Unified QA review, coaching assignments, and manager copilot." },
     ],
   }),

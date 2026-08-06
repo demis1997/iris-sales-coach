@@ -7,9 +7,9 @@ import { coachingPlans, coachingRevenueStory } from "@/lib/revenue-intelligence-
 export const Route = createFileRoute("/app/coach")({
   head: () => ({
     meta: [
-      { title: "AI Coach — Iris Rep Workspace" },
+      { title: "AI Coach — Artemis Rep Workspace" },
       { name: "description", content: "Personal AI coaching plans tied to Revenue DNA and deal outcomes." },
-      { property: "og:title", content: "AI Coach — Iris Rep Workspace" },
+      { property: "og:title", content: "AI Coach — Artemis Rep Workspace" },
       { property: "og:description", content: "Personal AI coaching after every sales call." },
     ],
   }),
@@ -47,7 +47,7 @@ function CoachPage() {
 
       <div className="grid gap-4 lg:grid-cols-3">
         <Panel className="flex flex-col lg:col-span-2">
-          <PanelHeader title="Coaching session" subtitle="Iris · updated 2 minutes ago" />
+          <PanelHeader title="Coaching session" subtitle="Artemis AI · updated 2 minutes ago" />
           <div className="flex-1 space-y-4 p-5">
             {coachMessages.map((m, i) => (
               <div
@@ -77,7 +77,7 @@ function CoachPage() {
           </div>
           <div className="flex items-center gap-2 border-t border-border p-3">
             <input
-              placeholder="Ask Iris about this call…"
+              placeholder="Ask Artemis AI about this call…"
               className="flex-1 rounded-xl border border-border bg-secondary/40 px-3 py-2 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/50"
             />
             <button className="grid size-9 place-items-center rounded-xl gradient-surface text-background">

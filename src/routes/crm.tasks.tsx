@@ -6,9 +6,9 @@ import { crmTasks } from "@/lib/revenue-os-data";
 export const Route = createFileRoute("/crm/tasks")({
   head: () => ({
     meta: [
-      { title: "Tasks — Iris CRM" },
+      { title: "Tasks — Artemis CRM" },
       { name: "description", content: "Follow-up tasks generated automatically from calls and workflow automations." },
-      { property: "og:title", content: "Tasks — Iris CRM" },
+      { property: "og:title", content: "Tasks — Artemis CRM" },
       { property: "og:description", content: "Follow-ups written for you after every call." },
     ],
   }),

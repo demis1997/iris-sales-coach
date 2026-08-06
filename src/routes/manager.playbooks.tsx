@@ -5,7 +5,7 @@ import { playbookRecommendations } from "@/lib/revenue-intelligence-data";
 
 export const Route = createFileRoute("/manager/playbooks")({
   head: () => ({
-    meta: [{ title: "Playbook Intelligence — Iris Manager" }],
+    meta: [{ title: "Playbook Intelligence — Artemis Manager" }],
   }),
   component: PlaybooksPage,
 });

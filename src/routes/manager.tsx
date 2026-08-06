@@ -13,9 +13,9 @@ const nav: NavItem[] = [
 export const Route = createFileRoute("/manager")({
   head: () => ({
     meta: [
-      { title: "Manager Workspace — Iris AI" },
+      { title: "Manager Workspace — Artemis AI AI" },
       { name: "description", content: "Live team activity, coaching assignments and QA review for sales managers." },
-      { property: "og:title", content: "Manager Workspace — Iris AI" },
+      { property: "og:title", content: "Manager Workspace — Artemis AI AI" },
       { property: "og:description", content: "Coach the floor in real time." },
     ],
   }),

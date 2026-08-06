@@ -23,9 +23,9 @@ import { improvement, personality, teamComparison } from "@/lib/iris-data";
 export const Route = createFileRoute("/app/performance")({
   head: () => ({
     meta: [
-      { title: "Performance — Iris Rep Workspace" },
+      { title: "Performance — Artemis Rep Workspace" },
       { name: "description", content: "Confidence, close rate and call quality trends over time." },
-      { property: "og:title", content: "Performance — Iris Rep Workspace" },
+      { property: "og:title", content: "Performance — Artemis Rep Workspace" },
       { property: "og:description", content: "Confidence, close rate and call quality trends." },
     ],
   }),

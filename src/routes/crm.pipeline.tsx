@@ -5,9 +5,9 @@ import { pipeline } from "@/lib/revenue-os-data";
 export const Route = createFileRoute("/crm/pipeline")({
   head: () => ({
     meta: [
-      { title: "Pipeline — Iris CRM" },
+      { title: "Pipeline — Artemis CRM" },
       { name: "description", content: "Deal pipeline with AI win probability derived from conversation signals." },
-      { property: "og:title", content: "Pipeline — Iris CRM" },
+      { property: "og:title", content: "Pipeline — Artemis CRM" },
       { property: "og:description", content: "Win probability from what was actually said on the call." },
     ],
   }),
@@ -21,7 +21,7 @@ function PipelinePage() {
     <>
       <PageHeading
         title="Pipeline"
-        subtitle={`€${(total / 1000).toFixed(0)}k across ${pipeline.flatMap((s) => s.deals).length} deals · win probability scored by Iris`}
+        subtitle={`€${(total / 1000).toFixed(0)}k across ${pipeline.flatMap((s) => s.deals).length} deals · win probability scored by Artemis AI`}
       />
 
       <div className="grid gap-3 lg:grid-cols-5">

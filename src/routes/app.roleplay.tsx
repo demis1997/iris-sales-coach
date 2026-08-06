@@ -8,12 +8,12 @@ import { roleplayScenarios } from "@/lib/revenue-os-data";
 export const Route = createFileRoute("/app/roleplay")({
   head: () => ({
     meta: [
-      { title: "AI Roleplay Practice — Iris AI" },
+      { title: "AI Roleplay Practice — Artemis AI" },
       {
         name: "description",
         content: "Practise against an AI customer — angry buyers, price objections, enterprise procurement — and get scored instantly.",
       },
-      { property: "og:title", content: "AI Roleplay Practice — Iris AI" },
+      { property: "og:title", content: "AI Roleplay Practice — Artemis AI" },
       { property: "og:description", content: "Rehearse hard conversations before they cost you a deal." },
     ],
   }),
@@ -28,7 +28,7 @@ function RoleplayPage() {
     <>
       <PageHeading
         title="AI Roleplay"
-        subtitle="Iris becomes the customer. Practise the calls that decide your quarter."
+        subtitle="Artemis AI becomes the customer. Practise the calls that decide your quarter."
       />
 
       <div className="grid gap-4 lg:grid-cols-[1fr_360px]">

@@ -6,9 +6,9 @@ import { alerts } from "@/lib/iris-data";
 export const Route = createFileRoute("/ceo/alerts")({
   head: () => ({
     meta: [
-      { title: "Alerts — Iris Executive" },
+      { title: "Alerts — Artemis Executive" },
       { name: "description", content: "Struggling reps, compliance risks and recognition-worthy performance." },
-      { property: "og:title", content: "Alerts — Iris Executive" },
+      { property: "og:title", content: "Alerts — Artemis Executive" },
       { property: "og:description", content: "Struggling reps, compliance risks and standout performance." },
     ],
   }),

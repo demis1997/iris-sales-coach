@@ -77,11 +77,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Iris — AI Sales Intelligence" },
+      { title: "Artemis AI — AI Sales Intelligence" },
       {
         name: "description",
         content:
-          "Iris analyzes every sales call, coaches every rep individually, and gives leaders full visibility into team performance.",
+          "Artemis AI analyzes every sales call, coaches every rep individually, and gives leaders full visibility into team performance.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

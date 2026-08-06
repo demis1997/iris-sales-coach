@@ -7,15 +7,15 @@ import {
   Sparkles,
   Database,
 } from "lucide-react";
-import { RelayButton, RelayMark } from "@/components/relay/brand";
-import { RelayHeader } from "@/components/relay/header";
+import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
+import { ArtemisHeader } from "@/components/relay/header";
 import { cn } from "@/lib/utils";
 
 const BENEFITS = [
   {
     icon: Headphones,
     title: "Handle calls in CRM",
-    text: "Make and receive calls while in your CRM by using Relay AI’s built-in softphone.",
+    text: "Make and receive calls while in your CRM by using Artemis AI’s built-in softphone.",
     tint: "from-[#E8FFF6] to-[#D9F7FF]",
     iconColor: "text-[#12C48A]",
   },
@@ -36,14 +36,14 @@ const BENEFITS = [
   {
     icon: Import,
     title: "Import calling lists",
-    text: "Import contacts into Relay AI and make outbound calls with our AI Predictive Dialer.",
+    text: "Import contacts into Artemis AI and make outbound calls with our AI Predictive Dialer.",
     tint: "from-[#F3E8FF] to-[#FFE8F7]",
     iconColor: "text-[#A855F7]",
   },
   {
     icon: Sparkles,
     title: "Summarize calls with AI",
-    text: "Relay AI Speech Analytics can generate call summaries directly in your CRM.",
+    text: "Artemis AI Speech Analytics can generate call summaries directly in your CRM.",
     tint: "from-[#E8FFF6] to-[#FFF8E8]",
     iconColor: "text-[#12C48A]",
   },
@@ -79,7 +79,7 @@ const INTEGRATIONS = [
     name: "Bitrix24",
     color: "#2FC6F6",
     blurb:
-      "Boost agent performance directly from Bitrix24. Streamline outbound calls & gain AI insights with Relay AI.",
+      "Boost agent performance directly from Bitrix24. Streamline outbound calls & gain AI insights with Artemis AI.",
   },
   {
     name: "Freshdesk",
@@ -103,7 +103,7 @@ const INTEGRATIONS = [
     name: "Make.com",
     color: "#6D00CC",
     blurb:
-      "Supercharge calling workflows with Make.com and Relay AI. Automate tasks, connect apps & streamline communication.",
+      "Supercharge calling workflows with Make.com and Artemis AI. Automate tasks, connect apps & streamline communication.",
   },
   {
     name: "Pipedrive",
@@ -115,14 +115,14 @@ const INTEGRATIONS = [
     name: "Something else?",
     color: "#12C48A",
     blurb:
-      "Connect your existing business systems to Relay AI. Chat with our team about custom integration and unlock powerful workflows.",
+      "Connect your existing business systems to Artemis AI. Chat with our team about custom integration and unlock powerful workflows.",
   },
 ];
 
 const USE_CASES = [
   {
     title: "Accelerate your sales",
-    body: "Relay AI helps your sales team connect faster and convert more. With omnichannel communication, predictive dialer, answering machine detection, and local caller ID, it maximizes call efficiency.",
+    body: "Artemis AI helps your sales team connect faster and convert more. With omnichannel communication, predictive dialer, answering machine detection, and local caller ID, it maximizes call efficiency.",
     accent: "from-[#2EE6A6] to-[#18C4FF]",
     label: "Sales contact center",
   },
@@ -142,32 +142,32 @@ const USE_CASES = [
 
 const FAQS = [
   {
-    q: "How easy is it to integrate Relay AI with our existing tools?",
-    a: "Relay AI offers out-of-the-box connectors for leading CRMs, helpdesks, and productivity tools. Most integrations can be enabled in a few clicks. For advanced setups, our open API supports flexible custom integrations.",
+    q: "How easy is it to integrate Artemis AI with our existing tools?",
+    a: "Artemis AI offers out-of-the-box connectors for leading CRMs, helpdesks, and productivity tools. Most integrations can be enabled in a few clicks. For advanced setups, our open API supports flexible custom integrations.",
   },
   {
-    q: "Can we connect multiple systems to Relay AI at the same time?",
-    a: "Yes. Relay AI supports multi-platform connectivity, so you can run CRM, helpdesk, marketing, and analytics tools simultaneously in a unified agent experience.",
+    q: "Can we connect multiple systems to Artemis AI at the same time?",
+    a: "Yes. Artemis AI supports multi-platform connectivity, so you can run CRM, helpdesk, marketing, and analytics tools simultaneously in a unified agent experience.",
   },
   {
     q: "What if our team needs a custom integration?",
-    a: "We’ve built Relay AI to be API-first and developer-friendly. Whether you’re connecting internal systems or a niche tool, our team can support you with code samples, documentation, and custom setup plans.",
+    a: "We’ve built Artemis AI to be API-first and developer-friendly. Whether you’re connecting internal systems or a niche tool, our team can support you with code samples, documentation, and custom setup plans.",
   },
   {
     q: "Is there a developer resource center available?",
-    a: "Yes. We provide API documentation, sample code, Postman collections, and other developer tools to help your team integrate Relay AI quickly.",
+    a: "Yes. We provide API documentation, sample code, Postman collections, and other developer tools to help your team integrate Artemis AI quickly.",
   },
   {
     q: "What if we need to go live quickly?",
-    a: "Most Relay AI integrations can be fully deployed in under 24 hours. We offer guided onboarding and implementation packages designed for fast rollout.",
+    a: "Most Artemis AI integrations can be fully deployed in under 24 hours. We offer guided onboarding and implementation packages designed for fast rollout.",
   },
   {
-    q: "How does Relay AI ensure data security across integrations?",
-    a: "Relay AI aligns with major industry standards including ISO 27001, SOC 2, and PCI DSS. We offer data residency options, audit trails, and encryption across integration touchpoints.",
+    q: "How does Artemis AI ensure data security across integrations?",
+    a: "Artemis AI aligns with major industry standards including ISO 27001, SOC 2, and PCI DSS. We offer data residency options, audit trails, and encryption across integration touchpoints.",
   },
 ];
 
-export function RelayIntegrationsPage() {
+export function ArtemisIntegrationsPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
 
@@ -184,7 +184,7 @@ export function RelayIntegrationsPage() {
         </p>
       </div>
 
-      <RelayHeader />
+      <ArtemisHeader />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -195,22 +195,22 @@ export function RelayIntegrationsPage() {
               Integrations
             </p>
             <h1 className="text-4xl font-bold leading-[1.08] tracking-tight text-[#0B1B33] sm:text-5xl lg:text-[3.4rem]">
-              Connect Relay AI with the tools you love
+              Connect Artemis AI with the tools you love
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#4B5C76]">
-              Sync with your favorite apps in just a few clicks to leverage Relay AI’s contact center
+              Sync with your favorite apps in just a few clicks to leverage Artemis AI’s contact center
               features together with other leading platforms.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <RelayButton href="#get-started" className="px-7 py-3 text-base">
+              <ArtemisButton href="#get-started" className="px-7 py-3 text-base">
                 Get Started
-              </RelayButton>
-              <RelayButton href="#integrations" variant="secondary" className="px-7 py-3 text-base">
+              </ArtemisButton>
+              <ArtemisButton href="#integrations" variant="secondary" className="px-7 py-3 text-base">
                 Browse apps
-              </RelayButton>
+              </ArtemisButton>
             </div>
             <p className="mt-4 text-xs text-[#8A9BB5]">
-              By clicking Get Started you agree to Relay AI’s Privacy Policy and Terms of Service.
+              By clicking Get Started you agree to Artemis AI’s Privacy Policy and Terms of Service.
             </p>
           </div>
 
@@ -222,7 +222,7 @@ export function RelayIntegrationsPage() {
       <section id="capabilities" className="border-t border-[#E8EEF7] bg-[#F7FAFF] py-20">
         <div className="mx-auto max-w-6xl px-5">
           <h2 className="text-center text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-            How Relay AI levels up
+            How Artemis AI levels up
             <br className="hidden sm:block" /> CRMs and other apps
           </h2>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -354,7 +354,7 @@ export function RelayIntegrationsPage() {
                 </label>
                 <label className="flex items-start gap-2 text-sm text-[#4B5C76] sm:col-span-2">
                   <input type="checkbox" className="mt-1 accent-[#12C48A]" />
-                  I agree to receive marketing communications from Relay AI
+                  I agree to receive marketing communications from Artemis AI
                 </label>
                 <button
                   type="submit"
@@ -400,7 +400,7 @@ export function RelayIntegrationsPage() {
       <footer className="border-t border-[#E8EEF7] bg-white py-12">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 sm:flex-row sm:justify-between">
           <div>
-            <RelayMark />
+            <ArtemisMark />
             <p className="mt-3 max-w-xs text-sm text-[#8A9BB5]">
               AI contact center software with speech analytics, predictive dialing, and CRM integrations.
             </p>
@@ -427,7 +427,7 @@ export function RelayIntegrationsPage() {
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-[#A8B5C9]">
-          © {new Date().getFullYear()} Relay AI. All Rights Reserved.
+          © {new Date().getFullYear()} Artemis AI. All Rights Reserved.
         </p>
       </footer>
     </div>
@@ -472,7 +472,7 @@ function HeroArt() {
           </div>
           <div className="mt-4 rounded-2xl bg-gradient-to-r from-[#2EE6A6] to-[#18C4FF] p-4 text-[#0B1B33]">
             <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Today</p>
-            <p className="mt-1 text-2xl font-bold">1,284 calls logged</p>
+            <p className="mt-1 text-2xl font-bold">Calls synced today</p>
             <p className="text-sm opacity-80">across CRM + helpdesk automatically</p>
           </div>
         </div>

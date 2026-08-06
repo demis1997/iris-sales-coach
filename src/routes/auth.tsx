@@ -9,9 +9,9 @@ import { lovable } from "@/integrations/lovable/index";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Sign in — Iris AI Revenue OS" },
-      { name: "description", content: "Sign in to Iris AI with a magic link, Google or email and password." },
-      { property: "og:title", content: "Sign in — Iris AI Revenue OS" },
+      { title: "Sign in — Artemis AI AI Revenue OS" },
+      { name: "description", content: "Sign in to Artemis AI with a magic link, Google or email and password." },
+      { property: "og:title", content: "Sign in — Artemis AI AI Revenue OS" },
       { property: "og:description", content: "Access your revenue operating system." },
     ],
   }),

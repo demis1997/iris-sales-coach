@@ -9,7 +9,7 @@ import {
 export const Route = createFileRoute("/ceo/revenue")({
   head: () => ({
     meta: [
-      { title: "Revenue Intelligence — Iris Executive" },
+      { title: "Revenue Intelligence — Artemis Executive" },
       { name: "description", content: "Executive outcomes: forecast, coaching ROI, skill gaps, and drill-down." },
     ],
   }),

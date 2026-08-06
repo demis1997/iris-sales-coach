@@ -6,9 +6,9 @@ import { employees } from "@/lib/iris-data";
 export const Route = createFileRoute("/ceo/leaderboards")({
   head: () => ({
     meta: [
-      { title: "Leaderboards — Iris Executive" },
+      { title: "Leaderboards — Artemis Executive" },
       { name: "description", content: "Top closers, fastest learners and highest confidence across the company." },
-      { property: "og:title", content: "Leaderboards — Iris Executive" },
+      { property: "og:title", content: "Leaderboards — Artemis Executive" },
       { property: "og:description", content: "Top closers, fastest learners and highest confidence." },
     ],
   }),

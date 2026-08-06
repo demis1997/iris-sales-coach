@@ -6,9 +6,9 @@ import { leaderboard, employees } from "@/lib/iris-data";
 export const Route = createFileRoute("/app/leaderboard")({
   head: () => ({
     meta: [
-      { title: "Leaderboard — Iris Rep Workspace" },
+      { title: "Leaderboard — Artemis Rep Workspace" },
       { name: "description", content: "Top closers, most improved and best objection handling." },
-      { property: "og:title", content: "Leaderboard — Iris Rep Workspace" },
+      { property: "og:title", content: "Leaderboard — Artemis Rep Workspace" },
       { property: "og:description", content: "Top closers, most improved and best objection handling." },
     ],
   }),

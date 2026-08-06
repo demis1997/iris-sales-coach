@@ -36,9 +36,9 @@ import {
 export const Route = createFileRoute("/ceo/")({
   head: () => ({
     meta: [
-      { title: "Company Overview — Iris Executive" },
+      { title: "Company Overview — Artemis Executive" },
       { name: "description", content: "Total calls, revenue, close rate and AI score across the company." },
-      { property: "og:title", content: "Company Overview — Iris Executive" },
+      { property: "og:title", content: "Company Overview — Artemis Executive" },
       { property: "og:description", content: "Total calls, revenue, close rate and AI score." },
     ],
   }),

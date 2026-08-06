@@ -24,12 +24,12 @@ import {
 export const Route = createFileRoute("/app/dialer")({
   head: () => ({
     meta: [
-      { title: "Softphone & Live AI Coaching — Iris AI" },
+      { title: "Softphone & Live AI Coaching — Artemis AI" },
       {
         name: "description",
         content: "Cloud softphone with dial pad, queues, campaigns and real-time AI coaching cards during every call.",
       },
-      { property: "og:title", content: "Softphone & Live AI Coaching — Iris AI" },
+      { property: "og:title", content: "Softphone & Live AI Coaching — Artemis AI" },
       { property: "og:description", content: "Real-time AI coaching while you are on the call." },
     ],
   }),

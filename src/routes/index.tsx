@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { RelayHomePage } from "@/components/relay/home-page";
+import { ArtemisHomePage } from "@/components/relay/home-page";
 
-const title = "Relay AI — AI Contact Center Software";
+const title = "Artemis AI — AI Contact Center Software";
 const description =
   "Unify every customer interaction with an AI-powered contact center. Omnichannel, predictive dialer, speech analytics, flow builder — and a revenue OS that coaches reps in real time.";
 
@@ -17,5 +17,5 @@ export const Route = createFileRoute("/")({
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
-  component: RelayHomePage,
+  component: ArtemisHomePage,
 });

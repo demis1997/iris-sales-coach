@@ -4,9 +4,9 @@ import { PageHeading, Panel, PanelHeader, Chip } from "@/components/iris/primiti
 export const Route = createFileRoute("/app/settings")({
   head: () => ({
     meta: [
-      { title: "Settings — Iris Rep Workspace" },
+      { title: "Settings — Artemis Rep Workspace" },
       { name: "description", content: "Coaching preferences, methodology and recording settings." },
-      { property: "og:title", content: "Settings — Iris Rep Workspace" },
+      { property: "og:title", content: "Settings — Artemis Rep Workspace" },
       { property: "og:description", content: "Coaching preferences, methodology and recording settings." },
     ],
   }),
@@ -48,7 +48,7 @@ function Toggle({ on = false }: { on?: boolean }) {
 function SettingsPage() {
   return (
     <>
-      <PageHeading title="Settings" subtitle="Personal preferences for your Iris workspace" />
+      <PageHeading title="Settings" subtitle="Personal preferences for your Artemis AI workspace" />
 
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel>
@@ -59,7 +59,7 @@ function SettingsPage() {
           <Row title="Weekly AI summary" desc="A Friday recap of skill progression and goals.">
             <Toggle on />
           </Row>
-          <Row title="Tone of coaching" desc="How direct Iris should be with feedback.">
+          <Row title="Tone of coaching" desc="How direct Artemis AI should be with feedback.">
             <div className="flex gap-1">
               {["Gentle", "Balanced", "Direct"].map((t) => (
                 <span

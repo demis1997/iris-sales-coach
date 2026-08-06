@@ -15,9 +15,9 @@ const nav: NavItem[] = [
 export const Route = createFileRoute("/ceo")({
   head: () => ({
     meta: [
-      { title: "Executive Dashboard — Iris" },
+      { title: "Executive Dashboard — Artemis AI" },
       { name: "description", content: "Company-wide call intelligence, revenue and team performance." },
-      { property: "og:title", content: "Executive Dashboard — Iris" },
+      { property: "og:title", content: "Executive Dashboard — Artemis AI" },
       { property: "og:description", content: "Company-wide call intelligence and team performance." },
     ],
   }),

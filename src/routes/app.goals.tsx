@@ -6,9 +6,9 @@ import { goals } from "@/lib/iris-data";
 export const Route = createFileRoute("/app/goals")({
   head: () => ({
     meta: [
-      { title: "Goals — Iris Rep Workspace" },
+      { title: "Goals — Artemis Rep Workspace" },
       { name: "description", content: "Track personal sales goals set with your AI coach." },
-      { property: "og:title", content: "Goals — Iris Rep Workspace" },
+      { property: "og:title", content: "Goals — Artemis Rep Workspace" },
       { property: "og:description", content: "Track personal sales goals set with your AI coach." },
     ],
   }),
@@ -20,7 +20,7 @@ function GoalsPage() {
     <>
       <PageHeading
         title="Goals"
-        subtitle="Set with Iris on July 1 · reviewed automatically every Friday"
+        subtitle="Set with Artemis AI on July 1 · reviewed automatically every Friday"
         action={
           <button className="rounded-xl border border-border px-4 py-2 text-sm text-muted-foreground hover:bg-secondary">
             Add goal
@@ -59,7 +59,7 @@ function GoalsPage() {
         </div>
 
         <Panel>
-          <PanelHeader title="Iris goal review" subtitle="Auto-generated Friday brief" />
+          <PanelHeader title="Artemis AI goal review" subtitle="Auto-generated Friday brief" />
           <div className="space-y-3 p-5 text-sm text-muted-foreground">
             <p className="flex gap-2">
               <Sparkles className="mt-0.5 size-3.5 shrink-0 text-primary" />

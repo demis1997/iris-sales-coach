@@ -8,8 +8,8 @@ import {
   Sparkles,
   Tags,
 } from "lucide-react";
-import { RelayButton, RelayMark } from "@/components/relay/brand";
-import { RelayHeader } from "@/components/relay/header";
+import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
+import { ArtemisHeader } from "@/components/relay/header";
 import { cn } from "@/lib/utils";
 
 const CAPABILITIES = [
@@ -48,17 +48,17 @@ const CAPABILITIES = [
 const INSIGHTS = [
   {
     title: "Call Scoring",
-    body: "Gain objective, data-driven insights into agent performance with Relay AI Call Scoring. Automatically analyze every call to identify top performers, pinpoint areas for improvement, and ensure consistent quality. This leads to happier customers and a more successful contact center.",
+    body: "Gain objective, data-driven insights into agent performance with Artemis AI Call Scoring. Automatically analyze every call to identify top performers, pinpoint areas for improvement, and ensure consistent quality. This leads to happier customers and a more successful contact center.",
     mock: "scoring",
   },
   {
     title: "Call Transcription",
-    body: "Tired of missing critical details in customer calls? Relay AI instantly transcribes every conversation in multiple languages, turning spoken words into searchable text. Quickly find key insights, ensure compliance, and improve customer experiences — all without having to listen to a single recording.",
+    body: "Tired of missing critical details in customer calls? Artemis AI instantly transcribes every conversation in multiple languages, turning spoken words into searchable text. Quickly find key insights, ensure compliance, and improve customer experiences — all without having to listen to a single recording.",
     mock: "transcript",
   },
   {
     title: "Call Summaries",
-    body: "Relay AI Call Summaries automatically generate concise recaps of every conversation, highlighting key topics, action items, and customer sentiment. Quickly understand the essence of every interaction, improve agent efficiency, and make better-informed decisions.",
+    body: "Artemis AI Call Summaries automatically generate concise recaps of every conversation, highlighting key topics, action items, and customer sentiment. Quickly understand the essence of every interaction, improve agent efficiency, and make better-informed decisions.",
     mock: "summary",
   },
 ];
@@ -66,7 +66,7 @@ const INSIGHTS = [
 const OTHER = [
   {
     title: "Omnichannel",
-    body: "Deliver a seamless CX with Relay AI Omnichannel. Unify voice, messaging apps, and SMS in one platform for easy management. Provide personalized support, boost satisfaction, and strengthen relationships.",
+    body: "Deliver a seamless CX with Artemis AI Omnichannel. Unify voice, messaging apps, and SMS in one platform for easy management. Provide personalized support, boost satisfaction, and strengthen relationships.",
   },
   {
     title: "Flow Builder",
@@ -82,36 +82,6 @@ const OTHER = [
   },
 ];
 
-const CUSTOMERS = [
-  {
-    metric: "4x",
-    label: "More outbound calls per hour",
-    quote:
-      "We have been using Relay AI for years, and it has helped drive our NPS. I highly recommend it to any looking for a reliable call center software solution.",
-    person: "Vanessa, Head of Hotel Products",
-  },
-  {
-    metric: "50+",
-    label: "Increase in agents productivity",
-    quote:
-      "With Relay AI, we have finally found a solution that covers our call center needs. Improved agent productivity by 50+% in just a few weeks.",
-    person: "Bernardo, Customer Experience Director",
-  },
-  {
-    metric: "+16",
-    label: "Opened new markets",
-    quote:
-      "Relay AI is a cost-effective customer experience solution that allows us to provide service across 16 markets from the US to the Middle East.",
-    person: "Tuncay, Director",
-  },
-  {
-    metric: "100+",
-    label: "Agents, scaled from 15",
-    quote:
-      "100% of our bookings were made by phone. With Relay AI automation, we grew from 15 agents into a 100+ employee omnichannel contact center operating across continents.",
-    person: "David, COO at Karma Group",
-  },
-];
 
 const FAQS: { q: string; a: React.ReactNode }[] = [
   {
@@ -157,8 +127,8 @@ const FAQS: { q: string; a: React.ReactNode }[] = [
     a: "Yes. It uses ASR, NLP, machine learning, sentiment analysis, and acoustic analysis to convert conversations into searchable, actionable intelligence.",
   },
   {
-    q: "How does Relay AI’s speech analytics compare to other solutions?",
-    a: "Relay AI focuses on fast multilingual transcription, AI call summaries, keyword tagging, conversation scoring, and compliance monitoring for contact centers — with rapid onboarding and transparent product status.",
+    q: "How does Artemis AI’s speech analytics compare to other solutions?",
+    a: "Artemis AI focuses on fast multilingual transcription, AI call summaries, keyword tagging, conversation scoring, and compliance monitoring for contact centers — with rapid onboarding and transparent product status.",
   },
 ];
 
@@ -175,7 +145,7 @@ const COUNTRIES = [
   "Other",
 ];
 
-export function RelaySpeechAnalyticsPage() {
+export function ArtemisSpeechAnalyticsPage() {
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -188,7 +158,7 @@ export function RelaySpeechAnalyticsPage() {
         </a>
       </div>
 
-      <RelayHeader />
+      <ArtemisHeader />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -209,18 +179,13 @@ export function RelaySpeechAnalyticsPage() {
               help teams make faster, more informed decisions.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <RelayButton href="#get-started" className="px-7 py-3 text-base">
+              <ArtemisButton href="#get-started" className="px-7 py-3 text-base">
                 Get Started
-              </RelayButton>
+              </ArtemisButton>
               <p className="max-w-xs text-xs text-white/45">
-                By clicking &quot;Get Started&quot; you agree to Relay AI&apos;s Privacy Policy and
+                By clicking &quot;Get Started&quot; you agree to Artemis AI&apos;s Privacy Policy and
                 Terms of Service.
               </p>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-6 text-sm text-white/70">
-              <Badge label="Trustpilot" score="4.6/5" />
-              <Badge label="G2" score="4.8/5" />
-              <Badge label="Capterra" score="4.7/5" />
             </div>
           </div>
 
@@ -266,10 +231,10 @@ export function RelaySpeechAnalyticsPage() {
                   <h3 className="text-2xl font-semibold">{item.title}</h3>
                   <p className="mt-4 text-base leading-relaxed text-white/65">{item.body}</p>
                   <div className="mt-6 flex flex-wrap gap-3">
-                    <RelayButton href="#get-started">Explore {item.title}</RelayButton>
-                    <RelayButton href="#get-started" variant="secondary">
+                    <ArtemisButton href="#get-started">Explore {item.title}</ArtemisButton>
+                    <ArtemisButton href="#get-started" variant="secondary">
                       Contact Sales
-                    </RelayButton>
+                    </ArtemisButton>
                   </div>
                 </div>
                 <FeatureMock kind={item.mock as "scoring" | "transcript" | "summary"} />
@@ -281,9 +246,9 @@ export function RelaySpeechAnalyticsPage() {
             <h3 className="text-2xl font-semibold text-balance sm:text-3xl">
               Identify coaching opportunities and customer trends automatically
             </h3>
-            <RelayButton href="#get-started" className="mt-6 px-8 py-3">
+            <ArtemisButton href="#get-started" className="mt-6 px-8 py-3">
               Get Started
-            </RelayButton>
+            </ArtemisButton>
           </div>
         </div>
       </section>
@@ -315,30 +280,6 @@ export function RelaySpeechAnalyticsPage() {
       </section>
 
       {/* Customers */}
-      <section id="customers" className="py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Hear from Relay AI customers
-          </h2>
-          <p className="mt-3 max-w-2xl text-white/60">
-            Our platform streamlines the management of high-performing contact centers, allowing
-            businesses to deliver more value to their customers.
-          </p>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {CUSTOMERS.map((c) => (
-              <blockquote
-                key={c.person}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6"
-              >
-                <p className="text-4xl font-semibold text-[#2EE6A6]">{c.metric}</p>
-                <p className="mt-1 text-sm font-medium text-white/80">{c.label}</p>
-                <p className="mt-4 text-sm leading-relaxed text-white/60">&ldquo;{c.quote}&rdquo;</p>
-                <footer className="mt-4 text-xs text-white/40">{c.person}</footer>
-              </blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Integrations */}
       <section id="integrations" className="border-t border-white/10 bg-[#0E1628] py-20">
@@ -347,7 +288,7 @@ export function RelaySpeechAnalyticsPage() {
             Seamless integration with your CRM
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/60">
-            Sync with your favorite apps in just a few clicks to leverage the power of Relay AI
+            Sync with your favorite apps in just a few clicks to leverage the power of Artemis AI
             contact center features.
           </p>
           <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
@@ -363,10 +304,10 @@ export function RelaySpeechAnalyticsPage() {
             )}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <RelayButton href="#get-started" variant="secondary">
+            <ArtemisButton href="#get-started" variant="secondary">
               Explore All Integrations
-            </RelayButton>
-            <RelayButton href="#get-started">Get Started</RelayButton>
+            </ArtemisButton>
+            <ArtemisButton href="#get-started">Get Started</ArtemisButton>
           </div>
         </div>
       </section>
@@ -457,7 +398,7 @@ export function RelaySpeechAnalyticsPage() {
                 </label>
                 <label className="flex items-start gap-2 text-xs text-white/55">
                   <input type="checkbox" className="mt-0.5 accent-[#2EE6A6]" />
-                  I agree to receive marketing communications from Relay AI
+                  I agree to receive marketing communications from Artemis AI
                 </label>
                 <button
                   type="submit"
@@ -512,7 +453,7 @@ export function RelaySpeechAnalyticsPage() {
       <footer className="border-t border-white/10 py-12">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 sm:flex-row sm:justify-between">
           <div>
-            <RelayMark />
+            <ArtemisMark />
             <p className="mt-3 max-w-sm text-sm text-white/50">
               AI speech analytics for contact centers — turn every conversation into actionable
               intelligence.
@@ -545,7 +486,7 @@ export function RelaySpeechAnalyticsPage() {
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-white/35">
-          © {new Date().getFullYear()} Relay AI. All rights reserved.
+          © {new Date().getFullYear()} Artemis AI. All rights reserved.
         </p>
       </footer>
     </div>

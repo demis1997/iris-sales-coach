@@ -5,9 +5,9 @@ import { liveFloor } from "@/lib/revenue-os-data";
 export const Route = createFileRoute("/manager/")({
   head: () => ({
     meta: [
-      { title: "Live Floor — Iris Manager" },
+      { title: "Live Floor — Artemis Manager" },
       { name: "description", content: "See who is on a call, live sentiment and which conversations need help right now." },
-      { property: "og:title", content: "Live Floor — Iris Manager" },
+      { property: "og:title", content: "Live Floor — Artemis Manager" },
       { property: "og:description", content: "Real-time visibility of every conversation." },
     ],
   }),

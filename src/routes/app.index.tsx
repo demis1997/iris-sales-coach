@@ -28,9 +28,9 @@ import { chartTooltip } from "@/components/iris/chart-bits";
 export const Route = createFileRoute("/app/")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Iris Rep Workspace" },
+      { title: "Dashboard — Artemis Rep Workspace" },
       { name: "description", content: "Today's calls, scores, confidence and close rate." },
-      { property: "og:title", content: "Dashboard — Iris Rep Workspace" },
+      { property: "og:title", content: "Dashboard — Artemis Rep Workspace" },
       { property: "og:description", content: "Today's calls, scores, confidence and close rate." },
     ],
   }),
@@ -100,7 +100,7 @@ function RepDashboard() {
         </Panel>
 
         <Panel>
-          <PanelHeader title="Iris daily brief" subtitle="Generated 08:04" />
+          <PanelHeader title="Artemis AI daily brief" subtitle="Generated 08:04" />
           <div className="space-y-3 p-5 text-sm">
             {[
               "Your talk ratio dropped to 55% — the best week you've had.",

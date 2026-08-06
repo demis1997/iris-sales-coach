@@ -5,7 +5,7 @@ import { knowledgeDocuments, playbookRecommendations } from "@/lib/revenue-intel
 
 export const Route = createFileRoute("/app/knowledge")({
   head: () => ({
-    meta: [{ title: "Knowledge Base — Iris AI" }],
+    meta: [{ title: "Knowledge Base — Artemis AI" }],
   }),
   component: KnowledgePage,
 });
@@ -31,7 +31,7 @@ function KnowledgePage() {
               </span>
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              If a live suggestion lacks approved content, Iris shows “No approved information available.”
+              If a live suggestion lacks approved content, Artemis AI shows “No approved information available.”
             </p>
           </Panel>
         ))}

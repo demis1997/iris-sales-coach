@@ -14,9 +14,9 @@ const nav: NavItem[] = [
 export const Route = createFileRoute("/crm")({
   head: () => ({
     meta: [
-      { title: "CRM — Iris AI Revenue OS" },
+      { title: "CRM — Artemis AI AI Revenue OS" },
       { name: "description", content: "Accounts, contacts, pipeline, tasks and workflow automation, all fed by conversation intelligence." },
-      { property: "og:title", content: "CRM — Iris AI Revenue OS" },
+      { property: "og:title", content: "CRM — Artemis AI AI Revenue OS" },
       { property: "og:description", content: "A CRM that updates itself from every conversation." },
     ],
   }),
