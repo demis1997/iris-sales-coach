@@ -1,27 +1,47 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ProductShell } from "@/components/app/shell";
-import { SessionProvider } from "@/components/app/session";
-import { Toaster } from "@/components/ui/sonner";
+import {
+  LayoutDashboard,
+  PhoneCall,
+  Sparkles,
+  LineChart,
+  Target,
+  Trophy,
+  Settings,
+  Headphones,
+  Dna,
+  Bot,
+  BookOpen,
+  BadgeCheck,
+  Brain,
+} from "lucide-react";
+import { AppShell, type NavItem } from "@/components/iris/app-shell";
+
+const nav: NavItem[] = [
+  { label: "Dashboard", to: "/app", icon: LayoutDashboard, section: "Workspace" },
+  { label: "Dialer / Live Coach", to: "/app/dialer", icon: Headphones, section: "AI Workspace" },
+  { label: "Calls & analysis", to: "/app/calls", icon: PhoneCall, section: "AI Workspace" },
+  { label: "Knowledge Base", to: "/app/knowledge", icon: BookOpen, section: "AI Workspace" },
+  { label: "Revenue DNA", to: "/app/dna", icon: Dna, section: "Performance" },
+  { label: "Coaching Plans", to: "/app/coach", icon: Sparkles, section: "Performance" },
+  { label: "Certifications", to: "/app/certifications", icon: BadgeCheck, section: "Performance" },
+  { label: "Leaderboard", to: "/app/leaderboard", icon: Trophy, section: "Performance" },
+  { label: "AI Roleplay", to: "/app/roleplay", icon: Bot, section: "Training" },
+  { label: "Performance", to: "/app/performance", icon: LineChart, section: "Training" },
+  { label: "Goals", to: "/app/goals", icon: Target, section: "Training" },
+  { label: "AI Insights", to: "/app/coach", icon: Brain, section: "Intelligence" },
+  { label: "Settings", to: "/app/settings", icon: Settings, section: "Admin" },
+];
 
 export const Route = createFileRoute("/app")({
   head: () => ({
     meta: [
-      { title: "Artemis — Sales operating system" },
-      {
-        name: "description",
-        content: "Overview, calls, coaching, pipeline, and revenue intelligence for your team.",
-      },
-      { name: "robots", content: "noindex" },
+      { title: "Rep Workspace — Iris" },
+      { name: "description", content: "Your calls, AI coaching, performance and goals in Iris." },
+      { property: "og:title", content: "Rep Workspace — Iris" },
+      { property: "og:description", content: "Your calls, AI coaching, performance and goals." },
     ],
   }),
-  component: AppLayout,
+  component: () => (
+    <AppShell nav={nav} workspace="Sales rep" user={{ name: "Alex Moreau", role: "Forex Desk" }} />
+  ),
 });
-
-function AppLayout() {
-  return (
-    <SessionProvider>
-      <ProductShell />
-      <Toaster />
-    </SessionProvider>
-  );
-}

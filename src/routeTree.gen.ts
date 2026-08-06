@@ -10,52 +10,40 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as AppRouteImport } from './routes/app'
-import { Route as BookDemoRouteImport } from './routes/book-demo'
-import { Route as CareersRouteImport } from './routes/careers'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CeoRouteImport } from './routes/ceo'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as CookiesRouteImport } from './routes/cookies'
-import { Route as DataProcessingRouteImport } from './routes/data-processing'
-import { Route as IntegrationsRouteImport } from './routes/integrations'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as PricingRouteImport } from './routes/pricing'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as ProductRouteImport } from './routes/product'
-import { Route as SecurityRouteImport } from './routes/security'
-import { Route as SolutionsRouteImport } from './routes/solutions'
-import { Route as TermsRouteImport } from './routes/terms'
+import { Route as CrmRouteImport } from './routes/crm'
+import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppCertificationsRouteImport } from './routes/app.certifications'
 import { Route as AppCoachRouteImport } from './routes/app.coach'
-import { Route as AppCoachingRouteImport } from './routes/app.coaching'
+import { Route as AppDialerRouteImport } from './routes/app.dialer'
+import { Route as AppDnaRouteImport } from './routes/app.dna'
 import { Route as AppGoalsRouteImport } from './routes/app.goals'
-import { Route as AppIntegrationsRouteImport } from './routes/app.integrations'
 import { Route as AppKnowledgeRouteImport } from './routes/app.knowledge'
 import { Route as AppLeaderboardRouteImport } from './routes/app.leaderboard'
 import { Route as AppPerformanceRouteImport } from './routes/app.performance'
-import { Route as AppPipelineRouteImport } from './routes/app.pipeline'
-import { Route as AppPlaybooksRouteImport } from './routes/app.playbooks'
-import { Route as AppReportsRouteImport } from './routes/app.reports'
+import { Route as AppRoleplayRouteImport } from './routes/app.roleplay'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
-import { Route as AppTeamRouteImport } from './routes/app.team'
-import { Route as AppTrainingRouteImport } from './routes/app.training'
 import { Route as CeoIndexRouteImport } from './routes/ceo.index'
 import { Route as CeoAlertsRouteImport } from './routes/ceo.alerts'
 import { Route as CeoComparisonRouteImport } from './routes/ceo.comparison'
 import { Route as CeoInsightsRouteImport } from './routes/ceo.insights'
 import { Route as CeoLeaderboardsRouteImport } from './routes/ceo.leaderboards'
-import { Route as IndustriesCallCentresRouteImport } from './routes/industries.call-centres'
-import { Route as IndustriesFinancialServicesRouteImport } from './routes/industries.financial-services'
-import { Route as IndustriesForexRouteImport } from './routes/industries.forex'
-import { Route as IndustriesRealEstateRouteImport } from './routes/industries.real-estate'
-import { Route as SolutionsExecutivesRouteImport } from './routes/solutions.executives'
-import { Route as SolutionsSalesManagersRouteImport } from './routes/solutions.sales-managers'
-import { Route as SolutionsSalesRepresentativesRouteImport } from './routes/solutions.sales-representatives'
+import { Route as CeoRevenueRouteImport } from './routes/ceo.revenue'
+import { Route as CrmIndexRouteImport } from './routes/crm.index'
+import { Route as CrmAutomationsRouteImport } from './routes/crm.automations'
+import { Route as CrmContactsRouteImport } from './routes/crm.contacts'
+import { Route as CrmDealRiskRouteImport } from './routes/crm.deal-risk'
+import { Route as CrmPipelineRouteImport } from './routes/crm.pipeline'
+import { Route as CrmTasksRouteImport } from './routes/crm.tasks'
+import { Route as ManagerIndexRouteImport } from './routes/manager.index'
+import { Route as ManagerCoachingRouteImport } from './routes/manager.coaching'
+import { Route as ManagerPlaybooksRouteImport } from './routes/manager.playbooks'
+import { Route as ManagerQaRouteImport } from './routes/manager.qa'
 import { Route as AppCallsIndexRouteImport } from './routes/app.calls.index'
 import { Route as AppCallsCallIdRouteImport } from './routes/app.calls.$callId'
-import { Route as AppTeamUserIdRouteImport } from './routes/app.team.$userId'
 import { Route as CeoEmployeesIndexRouteImport } from './routes/ceo.employees.index'
 import { Route as CeoEmployeesEmployeeIdRouteImport } from './routes/ceo.employees.$employeeId'
 
@@ -64,24 +52,14 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AppRoute = AppRouteImport.update({
   id: '/app',
   path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BookDemoRoute = BookDemoRouteImport.update({
-  id: '/book-demo',
-  path: '/book-demo',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CareersRoute = CareersRouteImport.update({
-  id: '/careers',
-  path: '/careers',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CeoRoute = CeoRouteImport.update({
@@ -89,64 +67,14 @@ const CeoRoute = CeoRouteImport.update({
   path: '/ceo',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const CrmRoute = CrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CookiesRoute = CookiesRouteImport.update({
-  id: '/cookies',
-  path: '/cookies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DataProcessingRoute = DataProcessingRouteImport.update({
-  id: '/data-processing',
-  path: '/data-processing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IntegrationsRoute = IntegrationsRouteImport.update({
-  id: '/integrations',
-  path: '/integrations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PricingRoute = PricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductRoute = ProductRouteImport.update({
-  id: '/product',
-  path: '/product',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SecurityRoute = SecurityRouteImport.update({
-  id: '/security',
-  path: '/security',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SolutionsRoute = SolutionsRouteImport.update({
-  id: '/solutions',
-  path: '/solutions',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
+const ManagerRoute = ManagerRouteImport.update({
+  id: '/manager',
+  path: '/manager',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -154,24 +82,29 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCertificationsRoute = AppCertificationsRouteImport.update({
+  id: '/certifications',
+  path: '/certifications',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCoachRoute = AppCoachRouteImport.update({
   id: '/coach',
   path: '/coach',
   getParentRoute: () => AppRoute,
 } as any)
-const AppCoachingRoute = AppCoachingRouteImport.update({
-  id: '/coaching',
-  path: '/coaching',
+const AppDialerRoute = AppDialerRouteImport.update({
+  id: '/dialer',
+  path: '/dialer',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDnaRoute = AppDnaRouteImport.update({
+  id: '/dna',
+  path: '/dna',
   getParentRoute: () => AppRoute,
 } as any)
 const AppGoalsRoute = AppGoalsRouteImport.update({
   id: '/goals',
   path: '/goals',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppIntegrationsRoute = AppIntegrationsRouteImport.update({
-  id: '/integrations',
-  path: '/integrations',
   getParentRoute: () => AppRoute,
 } as any)
 const AppKnowledgeRoute = AppKnowledgeRouteImport.update({
@@ -189,34 +122,14 @@ const AppPerformanceRoute = AppPerformanceRouteImport.update({
   path: '/performance',
   getParentRoute: () => AppRoute,
 } as any)
-const AppPipelineRoute = AppPipelineRouteImport.update({
-  id: '/pipeline',
-  path: '/pipeline',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppPlaybooksRoute = AppPlaybooksRouteImport.update({
-  id: '/playbooks',
-  path: '/playbooks',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppReportsRoute = AppReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
+const AppRoleplayRoute = AppRoleplayRouteImport.update({
+  id: '/roleplay',
+  path: '/roleplay',
   getParentRoute: () => AppRoute,
 } as any)
 const AppSettingsRoute = AppSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppTeamRoute = AppTeamRouteImport.update({
-  id: '/team',
-  path: '/team',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppTrainingRoute = AppTrainingRouteImport.update({
-  id: '/training',
-  path: '/training',
   getParentRoute: () => AppRoute,
 } as any)
 const CeoIndexRoute = CeoIndexRouteImport.update({
@@ -244,43 +157,61 @@ const CeoLeaderboardsRoute = CeoLeaderboardsRouteImport.update({
   path: '/leaderboards',
   getParentRoute: () => CeoRoute,
 } as any)
-const IndustriesCallCentresRoute = IndustriesCallCentresRouteImport.update({
-  id: '/industries/call-centres',
-  path: '/industries/call-centres',
-  getParentRoute: () => rootRouteImport,
+const CeoRevenueRoute = CeoRevenueRouteImport.update({
+  id: '/revenue',
+  path: '/revenue',
+  getParentRoute: () => CeoRoute,
 } as any)
-const IndustriesFinancialServicesRoute =
-  IndustriesFinancialServicesRouteImport.update({
-    id: '/industries/financial-services',
-    path: '/industries/financial-services',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const IndustriesForexRoute = IndustriesForexRouteImport.update({
-  id: '/industries/forex',
-  path: '/industries/forex',
-  getParentRoute: () => rootRouteImport,
+const CrmIndexRoute = CrmIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CrmRoute,
 } as any)
-const IndustriesRealEstateRoute = IndustriesRealEstateRouteImport.update({
-  id: '/industries/real-estate',
-  path: '/industries/real-estate',
-  getParentRoute: () => rootRouteImport,
+const CrmAutomationsRoute = CrmAutomationsRouteImport.update({
+  id: '/automations',
+  path: '/automations',
+  getParentRoute: () => CrmRoute,
 } as any)
-const SolutionsExecutivesRoute = SolutionsExecutivesRouteImport.update({
-  id: '/executives',
-  path: '/executives',
-  getParentRoute: () => SolutionsRoute,
+const CrmContactsRoute = CrmContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => CrmRoute,
 } as any)
-const SolutionsSalesManagersRoute = SolutionsSalesManagersRouteImport.update({
-  id: '/sales-managers',
-  path: '/sales-managers',
-  getParentRoute: () => SolutionsRoute,
+const CrmDealRiskRoute = CrmDealRiskRouteImport.update({
+  id: '/deal-risk',
+  path: '/deal-risk',
+  getParentRoute: () => CrmRoute,
 } as any)
-const SolutionsSalesRepresentativesRoute =
-  SolutionsSalesRepresentativesRouteImport.update({
-    id: '/sales-representatives',
-    path: '/sales-representatives',
-    getParentRoute: () => SolutionsRoute,
-  } as any)
+const CrmPipelineRoute = CrmPipelineRouteImport.update({
+  id: '/pipeline',
+  path: '/pipeline',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmTasksRoute = CrmTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => CrmRoute,
+} as any)
+const ManagerIndexRoute = ManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerCoachingRoute = ManagerCoachingRouteImport.update({
+  id: '/coaching',
+  path: '/coaching',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerPlaybooksRoute = ManagerPlaybooksRouteImport.update({
+  id: '/playbooks',
+  path: '/playbooks',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerQaRoute = ManagerQaRouteImport.update({
+  id: '/qa',
+  path: '/qa',
+  getParentRoute: () => ManagerRoute,
+} as any)
 const AppCallsIndexRoute = AppCallsIndexRouteImport.update({
   id: '/calls/',
   path: '/calls/',
@@ -290,11 +221,6 @@ const AppCallsCallIdRoute = AppCallsCallIdRouteImport.update({
   id: '/calls/$callId',
   path: '/calls/$callId',
   getParentRoute: () => AppRoute,
-} as any)
-const AppTeamUserIdRoute = AppTeamUserIdRouteImport.update({
-  id: '/$userId',
-  path: '/$userId',
-  getParentRoute: () => AppTeamRoute,
 } as any)
 const CeoEmployeesIndexRoute = CeoEmployeesIndexRouteImport.update({
   id: '/employees/',
@@ -309,100 +235,74 @@ const CeoEmployeesEmployeeIdRoute = CeoEmployeesEmployeeIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/app': typeof AppRouteWithChildren
-  '/book-demo': typeof BookDemoRoute
-  '/careers': typeof CareersRoute
+  '/auth': typeof AuthRoute
   '/ceo': typeof CeoRouteWithChildren
-  '/contact': typeof ContactRoute
-  '/cookies': typeof CookiesRoute
-  '/data-processing': typeof DataProcessingRoute
-  '/integrations': typeof IntegrationsRoute
-  '/login': typeof LoginRoute
-  '/onboarding': typeof OnboardingRoute
-  '/pricing': typeof PricingRoute
-  '/privacy': typeof PrivacyRoute
-  '/product': typeof ProductRoute
-  '/security': typeof SecurityRoute
-  '/solutions': typeof SolutionsRouteWithChildren
-  '/terms': typeof TermsRoute
+  '/crm': typeof CrmRouteWithChildren
+  '/manager': typeof ManagerRouteWithChildren
+  '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
-  '/app/coaching': typeof AppCoachingRoute
+  '/app/dialer': typeof AppDialerRoute
+  '/app/dna': typeof AppDnaRoute
   '/app/goals': typeof AppGoalsRoute
-  '/app/integrations': typeof AppIntegrationsRoute
   '/app/knowledge': typeof AppKnowledgeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/performance': typeof AppPerformanceRoute
-  '/app/pipeline': typeof AppPipelineRoute
-  '/app/playbooks': typeof AppPlaybooksRoute
-  '/app/reports': typeof AppReportsRoute
+  '/app/roleplay': typeof AppRoleplayRoute
   '/app/settings': typeof AppSettingsRoute
-  '/app/team': typeof AppTeamRouteWithChildren
-  '/app/training': typeof AppTrainingRoute
   '/ceo/alerts': typeof CeoAlertsRoute
   '/ceo/comparison': typeof CeoComparisonRoute
   '/ceo/insights': typeof CeoInsightsRoute
   '/ceo/leaderboards': typeof CeoLeaderboardsRoute
-  '/industries/call-centres': typeof IndustriesCallCentresRoute
-  '/industries/financial-services': typeof IndustriesFinancialServicesRoute
-  '/industries/forex': typeof IndustriesForexRoute
-  '/industries/real-estate': typeof IndustriesRealEstateRoute
-  '/solutions/executives': typeof SolutionsExecutivesRoute
-  '/solutions/sales-managers': typeof SolutionsSalesManagersRoute
-  '/solutions/sales-representatives': typeof SolutionsSalesRepresentativesRoute
+  '/ceo/revenue': typeof CeoRevenueRoute
+  '/crm/automations': typeof CrmAutomationsRoute
+  '/crm/contacts': typeof CrmContactsRoute
+  '/crm/deal-risk': typeof CrmDealRiskRoute
+  '/crm/pipeline': typeof CrmPipelineRoute
+  '/crm/tasks': typeof CrmTasksRoute
+  '/manager/coaching': typeof ManagerCoachingRoute
+  '/manager/playbooks': typeof ManagerPlaybooksRoute
+  '/manager/qa': typeof ManagerQaRoute
   '/app/': typeof AppIndexRoute
   '/ceo/': typeof CeoIndexRoute
+  '/crm/': typeof CrmIndexRoute
+  '/manager/': typeof ManagerIndexRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
-  '/app/team/$userId': typeof AppTeamUserIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
   '/app/calls/': typeof AppCallsIndexRoute
   '/ceo/employees/': typeof CeoEmployeesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
-  '/book-demo': typeof BookDemoRoute
-  '/careers': typeof CareersRoute
-  '/contact': typeof ContactRoute
-  '/cookies': typeof CookiesRoute
-  '/data-processing': typeof DataProcessingRoute
-  '/integrations': typeof IntegrationsRoute
-  '/login': typeof LoginRoute
-  '/onboarding': typeof OnboardingRoute
-  '/pricing': typeof PricingRoute
-  '/privacy': typeof PrivacyRoute
-  '/product': typeof ProductRoute
-  '/security': typeof SecurityRoute
-  '/solutions': typeof SolutionsRouteWithChildren
-  '/terms': typeof TermsRoute
+  '/auth': typeof AuthRoute
+  '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
-  '/app/coaching': typeof AppCoachingRoute
+  '/app/dialer': typeof AppDialerRoute
+  '/app/dna': typeof AppDnaRoute
   '/app/goals': typeof AppGoalsRoute
-  '/app/integrations': typeof AppIntegrationsRoute
   '/app/knowledge': typeof AppKnowledgeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/performance': typeof AppPerformanceRoute
-  '/app/pipeline': typeof AppPipelineRoute
-  '/app/playbooks': typeof AppPlaybooksRoute
-  '/app/reports': typeof AppReportsRoute
+  '/app/roleplay': typeof AppRoleplayRoute
   '/app/settings': typeof AppSettingsRoute
-  '/app/team': typeof AppTeamRouteWithChildren
-  '/app/training': typeof AppTrainingRoute
   '/ceo/alerts': typeof CeoAlertsRoute
   '/ceo/comparison': typeof CeoComparisonRoute
   '/ceo/insights': typeof CeoInsightsRoute
   '/ceo/leaderboards': typeof CeoLeaderboardsRoute
-  '/industries/call-centres': typeof IndustriesCallCentresRoute
-  '/industries/financial-services': typeof IndustriesFinancialServicesRoute
-  '/industries/forex': typeof IndustriesForexRoute
-  '/industries/real-estate': typeof IndustriesRealEstateRoute
-  '/solutions/executives': typeof SolutionsExecutivesRoute
-  '/solutions/sales-managers': typeof SolutionsSalesManagersRoute
-  '/solutions/sales-representatives': typeof SolutionsSalesRepresentativesRoute
+  '/ceo/revenue': typeof CeoRevenueRoute
+  '/crm/automations': typeof CrmAutomationsRoute
+  '/crm/contacts': typeof CrmContactsRoute
+  '/crm/deal-risk': typeof CrmDealRiskRoute
+  '/crm/pipeline': typeof CrmPipelineRoute
+  '/crm/tasks': typeof CrmTasksRoute
+  '/manager/coaching': typeof ManagerCoachingRoute
+  '/manager/playbooks': typeof ManagerPlaybooksRoute
+  '/manager/qa': typeof ManagerQaRoute
   '/app': typeof AppIndexRoute
   '/ceo': typeof CeoIndexRoute
+  '/crm': typeof CrmIndexRoute
+  '/manager': typeof ManagerIndexRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
-  '/app/team/$userId': typeof AppTeamUserIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
   '/app/calls': typeof AppCallsIndexRoute
   '/ceo/employees': typeof CeoEmployeesIndexRoute
@@ -410,51 +310,39 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/app': typeof AppRouteWithChildren
-  '/book-demo': typeof BookDemoRoute
-  '/careers': typeof CareersRoute
+  '/auth': typeof AuthRoute
   '/ceo': typeof CeoRouteWithChildren
-  '/contact': typeof ContactRoute
-  '/cookies': typeof CookiesRoute
-  '/data-processing': typeof DataProcessingRoute
-  '/integrations': typeof IntegrationsRoute
-  '/login': typeof LoginRoute
-  '/onboarding': typeof OnboardingRoute
-  '/pricing': typeof PricingRoute
-  '/privacy': typeof PrivacyRoute
-  '/product': typeof ProductRoute
-  '/security': typeof SecurityRoute
-  '/solutions': typeof SolutionsRouteWithChildren
-  '/terms': typeof TermsRoute
+  '/crm': typeof CrmRouteWithChildren
+  '/manager': typeof ManagerRouteWithChildren
+  '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
-  '/app/coaching': typeof AppCoachingRoute
+  '/app/dialer': typeof AppDialerRoute
+  '/app/dna': typeof AppDnaRoute
   '/app/goals': typeof AppGoalsRoute
-  '/app/integrations': typeof AppIntegrationsRoute
   '/app/knowledge': typeof AppKnowledgeRoute
   '/app/leaderboard': typeof AppLeaderboardRoute
   '/app/performance': typeof AppPerformanceRoute
-  '/app/pipeline': typeof AppPipelineRoute
-  '/app/playbooks': typeof AppPlaybooksRoute
-  '/app/reports': typeof AppReportsRoute
+  '/app/roleplay': typeof AppRoleplayRoute
   '/app/settings': typeof AppSettingsRoute
-  '/app/team': typeof AppTeamRouteWithChildren
-  '/app/training': typeof AppTrainingRoute
   '/ceo/alerts': typeof CeoAlertsRoute
   '/ceo/comparison': typeof CeoComparisonRoute
   '/ceo/insights': typeof CeoInsightsRoute
   '/ceo/leaderboards': typeof CeoLeaderboardsRoute
-  '/industries/call-centres': typeof IndustriesCallCentresRoute
-  '/industries/financial-services': typeof IndustriesFinancialServicesRoute
-  '/industries/forex': typeof IndustriesForexRoute
-  '/industries/real-estate': typeof IndustriesRealEstateRoute
-  '/solutions/executives': typeof SolutionsExecutivesRoute
-  '/solutions/sales-managers': typeof SolutionsSalesManagersRoute
-  '/solutions/sales-representatives': typeof SolutionsSalesRepresentativesRoute
+  '/ceo/revenue': typeof CeoRevenueRoute
+  '/crm/automations': typeof CrmAutomationsRoute
+  '/crm/contacts': typeof CrmContactsRoute
+  '/crm/deal-risk': typeof CrmDealRiskRoute
+  '/crm/pipeline': typeof CrmPipelineRoute
+  '/crm/tasks': typeof CrmTasksRoute
+  '/manager/coaching': typeof ManagerCoachingRoute
+  '/manager/playbooks': typeof ManagerPlaybooksRoute
+  '/manager/qa': typeof ManagerQaRoute
   '/app/': typeof AppIndexRoute
   '/ceo/': typeof CeoIndexRoute
+  '/crm/': typeof CrmIndexRoute
+  '/manager/': typeof ManagerIndexRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
-  '/app/team/$userId': typeof AppTeamUserIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
   '/app/calls/': typeof AppCallsIndexRoute
   '/ceo/employees/': typeof CeoEmployeesIndexRoute
@@ -463,151 +351,113 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/app'
-    | '/book-demo'
-    | '/careers'
+    | '/auth'
     | '/ceo'
-    | '/contact'
-    | '/cookies'
-    | '/data-processing'
-    | '/integrations'
-    | '/login'
-    | '/onboarding'
-    | '/pricing'
-    | '/privacy'
-    | '/product'
-    | '/security'
-    | '/solutions'
-    | '/terms'
+    | '/crm'
+    | '/manager'
+    | '/app/certifications'
     | '/app/coach'
-    | '/app/coaching'
+    | '/app/dialer'
+    | '/app/dna'
     | '/app/goals'
-    | '/app/integrations'
     | '/app/knowledge'
     | '/app/leaderboard'
     | '/app/performance'
-    | '/app/pipeline'
-    | '/app/playbooks'
-    | '/app/reports'
+    | '/app/roleplay'
     | '/app/settings'
-    | '/app/team'
-    | '/app/training'
     | '/ceo/alerts'
     | '/ceo/comparison'
     | '/ceo/insights'
     | '/ceo/leaderboards'
-    | '/industries/call-centres'
-    | '/industries/financial-services'
-    | '/industries/forex'
-    | '/industries/real-estate'
-    | '/solutions/executives'
-    | '/solutions/sales-managers'
-    | '/solutions/sales-representatives'
+    | '/ceo/revenue'
+    | '/crm/automations'
+    | '/crm/contacts'
+    | '/crm/deal-risk'
+    | '/crm/pipeline'
+    | '/crm/tasks'
+    | '/manager/coaching'
+    | '/manager/playbooks'
+    | '/manager/qa'
     | '/app/'
     | '/ceo/'
+    | '/crm/'
+    | '/manager/'
     | '/app/calls/$callId'
-    | '/app/team/$userId'
     | '/ceo/employees/$employeeId'
     | '/app/calls/'
     | '/ceo/employees/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
-    | '/book-demo'
-    | '/careers'
-    | '/contact'
-    | '/cookies'
-    | '/data-processing'
-    | '/integrations'
-    | '/login'
-    | '/onboarding'
-    | '/pricing'
-    | '/privacy'
-    | '/product'
-    | '/security'
-    | '/solutions'
-    | '/terms'
+    | '/auth'
+    | '/app/certifications'
     | '/app/coach'
-    | '/app/coaching'
+    | '/app/dialer'
+    | '/app/dna'
     | '/app/goals'
-    | '/app/integrations'
     | '/app/knowledge'
     | '/app/leaderboard'
     | '/app/performance'
-    | '/app/pipeline'
-    | '/app/playbooks'
-    | '/app/reports'
+    | '/app/roleplay'
     | '/app/settings'
-    | '/app/team'
-    | '/app/training'
     | '/ceo/alerts'
     | '/ceo/comparison'
     | '/ceo/insights'
     | '/ceo/leaderboards'
-    | '/industries/call-centres'
-    | '/industries/financial-services'
-    | '/industries/forex'
-    | '/industries/real-estate'
-    | '/solutions/executives'
-    | '/solutions/sales-managers'
-    | '/solutions/sales-representatives'
+    | '/ceo/revenue'
+    | '/crm/automations'
+    | '/crm/contacts'
+    | '/crm/deal-risk'
+    | '/crm/pipeline'
+    | '/crm/tasks'
+    | '/manager/coaching'
+    | '/manager/playbooks'
+    | '/manager/qa'
     | '/app'
     | '/ceo'
+    | '/crm'
+    | '/manager'
     | '/app/calls/$callId'
-    | '/app/team/$userId'
     | '/ceo/employees/$employeeId'
     | '/app/calls'
     | '/ceo/employees'
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/app'
-    | '/book-demo'
-    | '/careers'
+    | '/auth'
     | '/ceo'
-    | '/contact'
-    | '/cookies'
-    | '/data-processing'
-    | '/integrations'
-    | '/login'
-    | '/onboarding'
-    | '/pricing'
-    | '/privacy'
-    | '/product'
-    | '/security'
-    | '/solutions'
-    | '/terms'
+    | '/crm'
+    | '/manager'
+    | '/app/certifications'
     | '/app/coach'
-    | '/app/coaching'
+    | '/app/dialer'
+    | '/app/dna'
     | '/app/goals'
-    | '/app/integrations'
     | '/app/knowledge'
     | '/app/leaderboard'
     | '/app/performance'
-    | '/app/pipeline'
-    | '/app/playbooks'
-    | '/app/reports'
+    | '/app/roleplay'
     | '/app/settings'
-    | '/app/team'
-    | '/app/training'
     | '/ceo/alerts'
     | '/ceo/comparison'
     | '/ceo/insights'
     | '/ceo/leaderboards'
-    | '/industries/call-centres'
-    | '/industries/financial-services'
-    | '/industries/forex'
-    | '/industries/real-estate'
-    | '/solutions/executives'
-    | '/solutions/sales-managers'
-    | '/solutions/sales-representatives'
+    | '/ceo/revenue'
+    | '/crm/automations'
+    | '/crm/contacts'
+    | '/crm/deal-risk'
+    | '/crm/pipeline'
+    | '/crm/tasks'
+    | '/manager/coaching'
+    | '/manager/playbooks'
+    | '/manager/qa'
     | '/app/'
     | '/ceo/'
+    | '/crm/'
+    | '/manager/'
     | '/app/calls/$callId'
-    | '/app/team/$userId'
     | '/ceo/employees/$employeeId'
     | '/app/calls/'
     | '/ceo/employees/'
@@ -615,27 +465,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   AppRoute: typeof AppRouteWithChildren
-  BookDemoRoute: typeof BookDemoRoute
-  CareersRoute: typeof CareersRoute
+  AuthRoute: typeof AuthRoute
   CeoRoute: typeof CeoRouteWithChildren
-  ContactRoute: typeof ContactRoute
-  CookiesRoute: typeof CookiesRoute
-  DataProcessingRoute: typeof DataProcessingRoute
-  IntegrationsRoute: typeof IntegrationsRoute
-  LoginRoute: typeof LoginRoute
-  OnboardingRoute: typeof OnboardingRoute
-  PricingRoute: typeof PricingRoute
-  PrivacyRoute: typeof PrivacyRoute
-  ProductRoute: typeof ProductRoute
-  SecurityRoute: typeof SecurityRoute
-  SolutionsRoute: typeof SolutionsRouteWithChildren
-  TermsRoute: typeof TermsRoute
-  IndustriesCallCentresRoute: typeof IndustriesCallCentresRoute
-  IndustriesFinancialServicesRoute: typeof IndustriesFinancialServicesRoute
-  IndustriesForexRoute: typeof IndustriesForexRoute
-  IndustriesRealEstateRoute: typeof IndustriesRealEstateRoute
+  CrmRoute: typeof CrmRouteWithChildren
+  ManagerRoute: typeof ManagerRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -647,13 +481,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/app': {
       id: '/app'
       path: '/app'
@@ -661,18 +488,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/book-demo': {
-      id: '/book-demo'
-      path: '/book-demo'
-      fullPath: '/book-demo'
-      preLoaderRoute: typeof BookDemoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/careers': {
-      id: '/careers'
-      path: '/careers'
-      fullPath: '/careers'
-      preLoaderRoute: typeof CareersRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ceo': {
@@ -682,88 +502,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CeoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/crm': {
+      id: '/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof CrmRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cookies': {
-      id: '/cookies'
-      path: '/cookies'
-      fullPath: '/cookies'
-      preLoaderRoute: typeof CookiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/data-processing': {
-      id: '/data-processing'
-      path: '/data-processing'
-      fullPath: '/data-processing'
-      preLoaderRoute: typeof DataProcessingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/integrations': {
-      id: '/integrations'
-      path: '/integrations'
-      fullPath: '/integrations'
-      preLoaderRoute: typeof IntegrationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pricing': {
-      id: '/pricing'
-      path: '/pricing'
-      fullPath: '/pricing'
-      preLoaderRoute: typeof PricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/product': {
-      id: '/product'
-      path: '/product'
-      fullPath: '/product'
-      preLoaderRoute: typeof ProductRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/security': {
-      id: '/security'
-      path: '/security'
-      fullPath: '/security'
-      preLoaderRoute: typeof SecurityRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/solutions': {
-      id: '/solutions'
-      path: '/solutions'
-      fullPath: '/solutions'
-      preLoaderRoute: typeof SolutionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
+    '/manager': {
+      id: '/manager'
+      path: '/manager'
+      fullPath: '/manager'
+      preLoaderRoute: typeof ManagerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/': {
@@ -773,6 +523,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/certifications': {
+      id: '/app/certifications'
+      path: '/certifications'
+      fullPath: '/app/certifications'
+      preLoaderRoute: typeof AppCertificationsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/coach': {
       id: '/app/coach'
       path: '/coach'
@@ -780,11 +537,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCoachRouteImport
       parentRoute: typeof AppRoute
     }
-    '/app/coaching': {
-      id: '/app/coaching'
-      path: '/coaching'
-      fullPath: '/app/coaching'
-      preLoaderRoute: typeof AppCoachingRouteImport
+    '/app/dialer': {
+      id: '/app/dialer'
+      path: '/dialer'
+      fullPath: '/app/dialer'
+      preLoaderRoute: typeof AppDialerRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dna': {
+      id: '/app/dna'
+      path: '/dna'
+      fullPath: '/app/dna'
+      preLoaderRoute: typeof AppDnaRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/goals': {
@@ -792,13 +556,6 @@ declare module '@tanstack/react-router' {
       path: '/goals'
       fullPath: '/app/goals'
       preLoaderRoute: typeof AppGoalsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/integrations': {
-      id: '/app/integrations'
-      path: '/integrations'
-      fullPath: '/app/integrations'
-      preLoaderRoute: typeof AppIntegrationsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/knowledge': {
@@ -822,25 +579,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppPerformanceRouteImport
       parentRoute: typeof AppRoute
     }
-    '/app/pipeline': {
-      id: '/app/pipeline'
-      path: '/pipeline'
-      fullPath: '/app/pipeline'
-      preLoaderRoute: typeof AppPipelineRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/playbooks': {
-      id: '/app/playbooks'
-      path: '/playbooks'
-      fullPath: '/app/playbooks'
-      preLoaderRoute: typeof AppPlaybooksRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/reports': {
-      id: '/app/reports'
-      path: '/reports'
-      fullPath: '/app/reports'
-      preLoaderRoute: typeof AppReportsRouteImport
+    '/app/roleplay': {
+      id: '/app/roleplay'
+      path: '/roleplay'
+      fullPath: '/app/roleplay'
+      preLoaderRoute: typeof AppRoleplayRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/settings': {
@@ -848,20 +591,6 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/app/settings'
       preLoaderRoute: typeof AppSettingsRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/team': {
-      id: '/app/team'
-      path: '/team'
-      fullPath: '/app/team'
-      preLoaderRoute: typeof AppTeamRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/app/training': {
-      id: '/app/training'
-      path: '/training'
-      fullPath: '/app/training'
-      preLoaderRoute: typeof AppTrainingRouteImport
       parentRoute: typeof AppRoute
     }
     '/ceo/': {
@@ -899,54 +628,82 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CeoLeaderboardsRouteImport
       parentRoute: typeof CeoRoute
     }
-    '/industries/call-centres': {
-      id: '/industries/call-centres'
-      path: '/industries/call-centres'
-      fullPath: '/industries/call-centres'
-      preLoaderRoute: typeof IndustriesCallCentresRouteImport
-      parentRoute: typeof rootRouteImport
+    '/ceo/revenue': {
+      id: '/ceo/revenue'
+      path: '/revenue'
+      fullPath: '/ceo/revenue'
+      preLoaderRoute: typeof CeoRevenueRouteImport
+      parentRoute: typeof CeoRoute
     }
-    '/industries/financial-services': {
-      id: '/industries/financial-services'
-      path: '/industries/financial-services'
-      fullPath: '/industries/financial-services'
-      preLoaderRoute: typeof IndustriesFinancialServicesRouteImport
-      parentRoute: typeof rootRouteImport
+    '/crm/': {
+      id: '/crm/'
+      path: '/'
+      fullPath: '/crm/'
+      preLoaderRoute: typeof CrmIndexRouteImport
+      parentRoute: typeof CrmRoute
     }
-    '/industries/forex': {
-      id: '/industries/forex'
-      path: '/industries/forex'
-      fullPath: '/industries/forex'
-      preLoaderRoute: typeof IndustriesForexRouteImport
-      parentRoute: typeof rootRouteImport
+    '/crm/automations': {
+      id: '/crm/automations'
+      path: '/automations'
+      fullPath: '/crm/automations'
+      preLoaderRoute: typeof CrmAutomationsRouteImport
+      parentRoute: typeof CrmRoute
     }
-    '/industries/real-estate': {
-      id: '/industries/real-estate'
-      path: '/industries/real-estate'
-      fullPath: '/industries/real-estate'
-      preLoaderRoute: typeof IndustriesRealEstateRouteImport
-      parentRoute: typeof rootRouteImport
+    '/crm/contacts': {
+      id: '/crm/contacts'
+      path: '/contacts'
+      fullPath: '/crm/contacts'
+      preLoaderRoute: typeof CrmContactsRouteImport
+      parentRoute: typeof CrmRoute
     }
-    '/solutions/executives': {
-      id: '/solutions/executives'
-      path: '/executives'
-      fullPath: '/solutions/executives'
-      preLoaderRoute: typeof SolutionsExecutivesRouteImport
-      parentRoute: typeof SolutionsRoute
+    '/crm/deal-risk': {
+      id: '/crm/deal-risk'
+      path: '/deal-risk'
+      fullPath: '/crm/deal-risk'
+      preLoaderRoute: typeof CrmDealRiskRouteImport
+      parentRoute: typeof CrmRoute
     }
-    '/solutions/sales-managers': {
-      id: '/solutions/sales-managers'
-      path: '/sales-managers'
-      fullPath: '/solutions/sales-managers'
-      preLoaderRoute: typeof SolutionsSalesManagersRouteImport
-      parentRoute: typeof SolutionsRoute
+    '/crm/pipeline': {
+      id: '/crm/pipeline'
+      path: '/pipeline'
+      fullPath: '/crm/pipeline'
+      preLoaderRoute: typeof CrmPipelineRouteImport
+      parentRoute: typeof CrmRoute
     }
-    '/solutions/sales-representatives': {
-      id: '/solutions/sales-representatives'
-      path: '/sales-representatives'
-      fullPath: '/solutions/sales-representatives'
-      preLoaderRoute: typeof SolutionsSalesRepresentativesRouteImport
-      parentRoute: typeof SolutionsRoute
+    '/crm/tasks': {
+      id: '/crm/tasks'
+      path: '/tasks'
+      fullPath: '/crm/tasks'
+      preLoaderRoute: typeof CrmTasksRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/manager/': {
+      id: '/manager/'
+      path: '/'
+      fullPath: '/manager/'
+      preLoaderRoute: typeof ManagerIndexRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/coaching': {
+      id: '/manager/coaching'
+      path: '/coaching'
+      fullPath: '/manager/coaching'
+      preLoaderRoute: typeof ManagerCoachingRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/playbooks': {
+      id: '/manager/playbooks'
+      path: '/playbooks'
+      fullPath: '/manager/playbooks'
+      preLoaderRoute: typeof ManagerPlaybooksRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/qa': {
+      id: '/manager/qa'
+      path: '/qa'
+      fullPath: '/manager/qa'
+      preLoaderRoute: typeof ManagerQaRouteImport
+      parentRoute: typeof ManagerRoute
     }
     '/app/calls/': {
       id: '/app/calls/'
@@ -961,13 +718,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/app/calls/$callId'
       preLoaderRoute: typeof AppCallsCallIdRouteImport
       parentRoute: typeof AppRoute
-    }
-    '/app/team/$userId': {
-      id: '/app/team/$userId'
-      path: '/$userId'
-      fullPath: '/app/team/$userId'
-      preLoaderRoute: typeof AppTeamUserIdRouteImport
-      parentRoute: typeof AppTeamRoute
     }
     '/ceo/employees/': {
       id: '/ceo/employees/'
@@ -986,50 +736,33 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AppTeamRouteChildren {
-  AppTeamUserIdRoute: typeof AppTeamUserIdRoute
-}
-
-const AppTeamRouteChildren: AppTeamRouteChildren = {
-  AppTeamUserIdRoute: AppTeamUserIdRoute,
-}
-
-const AppTeamRouteWithChildren =
-  AppTeamRoute._addFileChildren(AppTeamRouteChildren)
-
 interface AppRouteChildren {
+  AppCertificationsRoute: typeof AppCertificationsRoute
   AppCoachRoute: typeof AppCoachRoute
-  AppCoachingRoute: typeof AppCoachingRoute
+  AppDialerRoute: typeof AppDialerRoute
+  AppDnaRoute: typeof AppDnaRoute
   AppGoalsRoute: typeof AppGoalsRoute
-  AppIntegrationsRoute: typeof AppIntegrationsRoute
   AppKnowledgeRoute: typeof AppKnowledgeRoute
   AppLeaderboardRoute: typeof AppLeaderboardRoute
   AppPerformanceRoute: typeof AppPerformanceRoute
-  AppPipelineRoute: typeof AppPipelineRoute
-  AppPlaybooksRoute: typeof AppPlaybooksRoute
-  AppReportsRoute: typeof AppReportsRoute
+  AppRoleplayRoute: typeof AppRoleplayRoute
   AppSettingsRoute: typeof AppSettingsRoute
-  AppTeamRoute: typeof AppTeamRouteWithChildren
-  AppTrainingRoute: typeof AppTrainingRoute
   AppIndexRoute: typeof AppIndexRoute
   AppCallsCallIdRoute: typeof AppCallsCallIdRoute
   AppCallsIndexRoute: typeof AppCallsIndexRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppCertificationsRoute: AppCertificationsRoute,
   AppCoachRoute: AppCoachRoute,
-  AppCoachingRoute: AppCoachingRoute,
+  AppDialerRoute: AppDialerRoute,
+  AppDnaRoute: AppDnaRoute,
   AppGoalsRoute: AppGoalsRoute,
-  AppIntegrationsRoute: AppIntegrationsRoute,
   AppKnowledgeRoute: AppKnowledgeRoute,
   AppLeaderboardRoute: AppLeaderboardRoute,
   AppPerformanceRoute: AppPerformanceRoute,
-  AppPipelineRoute: AppPipelineRoute,
-  AppPlaybooksRoute: AppPlaybooksRoute,
-  AppReportsRoute: AppReportsRoute,
+  AppRoleplayRoute: AppRoleplayRoute,
   AppSettingsRoute: AppSettingsRoute,
-  AppTeamRoute: AppTeamRouteWithChildren,
-  AppTrainingRoute: AppTrainingRoute,
   AppIndexRoute: AppIndexRoute,
   AppCallsCallIdRoute: AppCallsCallIdRoute,
   AppCallsIndexRoute: AppCallsIndexRoute,
@@ -1042,6 +775,7 @@ interface CeoRouteChildren {
   CeoComparisonRoute: typeof CeoComparisonRoute
   CeoInsightsRoute: typeof CeoInsightsRoute
   CeoLeaderboardsRoute: typeof CeoLeaderboardsRoute
+  CeoRevenueRoute: typeof CeoRevenueRoute
   CeoIndexRoute: typeof CeoIndexRoute
   CeoEmployeesEmployeeIdRoute: typeof CeoEmployeesEmployeeIdRoute
   CeoEmployeesIndexRoute: typeof CeoEmployeesIndexRoute
@@ -1052,6 +786,7 @@ const CeoRouteChildren: CeoRouteChildren = {
   CeoComparisonRoute: CeoComparisonRoute,
   CeoInsightsRoute: CeoInsightsRoute,
   CeoLeaderboardsRoute: CeoLeaderboardsRoute,
+  CeoRevenueRoute: CeoRevenueRoute,
   CeoIndexRoute: CeoIndexRoute,
   CeoEmployeesEmployeeIdRoute: CeoEmployeesEmployeeIdRoute,
   CeoEmployeesIndexRoute: CeoEmployeesIndexRoute,
@@ -1059,45 +794,50 @@ const CeoRouteChildren: CeoRouteChildren = {
 
 const CeoRouteWithChildren = CeoRoute._addFileChildren(CeoRouteChildren)
 
-interface SolutionsRouteChildren {
-  SolutionsExecutivesRoute: typeof SolutionsExecutivesRoute
-  SolutionsSalesManagersRoute: typeof SolutionsSalesManagersRoute
-  SolutionsSalesRepresentativesRoute: typeof SolutionsSalesRepresentativesRoute
+interface CrmRouteChildren {
+  CrmAutomationsRoute: typeof CrmAutomationsRoute
+  CrmContactsRoute: typeof CrmContactsRoute
+  CrmDealRiskRoute: typeof CrmDealRiskRoute
+  CrmPipelineRoute: typeof CrmPipelineRoute
+  CrmTasksRoute: typeof CrmTasksRoute
+  CrmIndexRoute: typeof CrmIndexRoute
 }
 
-const SolutionsRouteChildren: SolutionsRouteChildren = {
-  SolutionsExecutivesRoute: SolutionsExecutivesRoute,
-  SolutionsSalesManagersRoute: SolutionsSalesManagersRoute,
-  SolutionsSalesRepresentativesRoute: SolutionsSalesRepresentativesRoute,
+const CrmRouteChildren: CrmRouteChildren = {
+  CrmAutomationsRoute: CrmAutomationsRoute,
+  CrmContactsRoute: CrmContactsRoute,
+  CrmDealRiskRoute: CrmDealRiskRoute,
+  CrmPipelineRoute: CrmPipelineRoute,
+  CrmTasksRoute: CrmTasksRoute,
+  CrmIndexRoute: CrmIndexRoute,
 }
 
-const SolutionsRouteWithChildren = SolutionsRoute._addFileChildren(
-  SolutionsRouteChildren,
-)
+const CrmRouteWithChildren = CrmRoute._addFileChildren(CrmRouteChildren)
+
+interface ManagerRouteChildren {
+  ManagerCoachingRoute: typeof ManagerCoachingRoute
+  ManagerPlaybooksRoute: typeof ManagerPlaybooksRoute
+  ManagerQaRoute: typeof ManagerQaRoute
+  ManagerIndexRoute: typeof ManagerIndexRoute
+}
+
+const ManagerRouteChildren: ManagerRouteChildren = {
+  ManagerCoachingRoute: ManagerCoachingRoute,
+  ManagerPlaybooksRoute: ManagerPlaybooksRoute,
+  ManagerQaRoute: ManagerQaRoute,
+  ManagerIndexRoute: ManagerIndexRoute,
+}
+
+const ManagerRouteWithChildren =
+  ManagerRoute._addFileChildren(ManagerRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   AppRoute: AppRouteWithChildren,
-  BookDemoRoute: BookDemoRoute,
-  CareersRoute: CareersRoute,
+  AuthRoute: AuthRoute,
   CeoRoute: CeoRouteWithChildren,
-  ContactRoute: ContactRoute,
-  CookiesRoute: CookiesRoute,
-  DataProcessingRoute: DataProcessingRoute,
-  IntegrationsRoute: IntegrationsRoute,
-  LoginRoute: LoginRoute,
-  OnboardingRoute: OnboardingRoute,
-  PricingRoute: PricingRoute,
-  PrivacyRoute: PrivacyRoute,
-  ProductRoute: ProductRoute,
-  SecurityRoute: SecurityRoute,
-  SolutionsRoute: SolutionsRouteWithChildren,
-  TermsRoute: TermsRoute,
-  IndustriesCallCentresRoute: IndustriesCallCentresRoute,
-  IndustriesFinancialServicesRoute: IndustriesFinancialServicesRoute,
-  IndustriesForexRoute: IndustriesForexRoute,
-  IndustriesRealEstateRoute: IndustriesRealEstateRoute,
+  CrmRoute: CrmRouteWithChildren,
+  ManagerRoute: ManagerRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,7 +1,245 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import {
+  Area,
+  AreaChart,
+  CartesianGrid,
+  PolarAngleAxis,
+  PolarGrid,
+  Radar,
+  RadarChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { ArrowLeft, Sparkles } from "lucide-react";
+import { Panel, PanelHeader, StatCard, Chip, Meter } from "@/components/iris/primitives";
+import { chartTooltip } from "@/components/iris/chart-bits";
+import { calls, employees, improvement, personality } from "@/lib/iris-data";
 
 export const Route = createFileRoute("/ceo/employees/$employeeId")({
-  beforeLoad: () => {
-    throw redirect({ to: "/app/team" });
+  loader: ({ params }) => {
+    const employee = employees.find((e) => e.id === params.employeeId);
+    if (!employee) throw notFound();
+    return { employee };
   },
+  head: ({ loaderData }) => {
+    if (!loaderData) {
+      return { meta: [{ title: "Employee unavailable — Iris" }, { name: "robots", content: "noindex" }] };
+    }
+    const t = `${loaderData.employee.name} — Iris Executive`;
+    return {
+      meta: [
+        { title: t },
+        { name: "description", content: `Performance, coaching and personality insights for ${loaderData.employee.name}.` },
+        { property: "og:title", content: t },
+        { property: "og:description", content: "Performance, coaching and personality insights." },
+      ],
+    };
+  },
+  component: EmployeeProfile,
 });
+
+const heat = [
+  ["Mon", [82, 74, 91, 66, 58, 71, 88, 62]],
+  ["Tue", [74, 88, 92, 79, 61, 68, 84, 70]],
+  ["Wed", [69, 81, 95, 84, 72, 66, 79, 74]],
+  ["Thu", [77, 86, 89, 71, 64, 73, 81, 68]],
+  ["Fri", [61, 72, 84, 69, 55, 62, 70, 58]],
+] as const;
+
+function EmployeeProfile() {
+  const { employee } = Route.useLoaderData();
+  const initials = employee.name
+    .split(" ")
+    .map((n: string) => n[0])
+    .join("");
+
+  return (
+    <>
+      <Link
+        to="/ceo/employees"
+        className="mb-4 inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground"
+      >
+        <ArrowLeft className="size-3.5" /> Back to employees
+      </Link>
+
+      <div className="mb-6 flex flex-wrap items-center gap-4">
+        <span className="grid size-12 place-items-center rounded-2xl gradient-surface text-sm font-semibold text-background">
+          {initials}
+        </span>
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">{employee.name}</h1>
+          <p className="text-sm text-muted-foreground">
+            {employee.dept} · joined Mar 2024 · {employee.calls} calls this month
+          </p>
+        </div>
+        <span className="ml-auto flex gap-2">
+          <Chip tone={employee.risk === "Low" ? "good" : employee.risk === "Medium" ? "warn" : "bad"}>
+            {employee.risk} risk
+          </Chip>
+          <Chip tone="iris">MEDDIC</Chip>
+        </span>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <StatCard label="AI score" value={`${employee.score}`} delta={employee.trend} />
+        <StatCard label="Close rate" value={`${employee.closeRate}%`} delta={employee.trend} />
+        <StatCard label="Confidence" value={`${employee.confidence}%`} delta={employee.trend} />
+        <StatCard label="Revenue" value={`$${(employee.revenue / 1000).toFixed(0)}K`} delta={employee.trend} />
+        <StatCard label="Calls" value={`${employee.calls}`} hint="This month" />
+      </div>
+
+      <div className="mt-4 grid gap-4 lg:grid-cols-3">
+        <Panel className="lg:col-span-2">
+          <PanelHeader title="Improvement" subtitle="Score and confidence, last 8 weeks" />
+          <div className="h-60 p-4">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={improvement}>
+                <defs>
+                  <linearGradient id="emp-a" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="var(--violet)" stopOpacity={0.4} />
+                    <stop offset="100%" stopColor="var(--violet)" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid stroke="var(--border)" vertical={false} />
+                <XAxis dataKey="week" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
+                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+                <Tooltip {...chartTooltip} />
+                <Area type="monotone" dataKey="score" stroke="var(--violet)" strokeWidth={2} fill="url(#emp-a)" />
+                <Area type="monotone" dataKey="confidence" stroke="var(--cyan)" strokeWidth={2} fillOpacity={0} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </Panel>
+
+        <Panel>
+          <PanelHeader title="Personality insights" subtitle="Generated by Iris" />
+          <div className="space-y-2 p-5 text-sm text-muted-foreground">
+            <p className="text-foreground">
+              {employee.name.split(" ")[0]} performs exceptionally under pressure.
+            </p>
+            <p>Excellent confidence and energy in the first three minutes of every call.</p>
+            <p>Weak objection handling — hesitates for 2s+ on price pushback.</p>
+            <p>Should ask more discovery questions before pitching.</p>
+            <p className="text-success">Likely to improve rapidly with weekly objection drills.</p>
+          </div>
+        </Panel>
+      </div>
+
+      <div className="mt-4 grid gap-4 lg:grid-cols-3">
+        <Panel>
+          <PanelHeader title="Skill radar" />
+          <div className="h-64 p-2">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart data={personality} outerRadius="72%">
+                <PolarGrid stroke="var(--border)" />
+                <PolarAngleAxis dataKey="trait" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} />
+                <Tooltip {...chartTooltip} />
+                <Radar dataKey="value" stroke="var(--cyan)" fill="var(--cyan)" fillOpacity={0.25} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </Panel>
+
+        <Panel>
+          <PanelHeader title="Call quality heatmap" subtitle="Average score by hour · 09:00–16:00" />
+          <div className="space-y-1.5 p-5">
+            {heat.map(([day, vals]) => (
+              <div key={day} className="flex items-center gap-2">
+                <span className="w-8 text-[11px] text-muted-foreground">{day}</span>
+                <div className="flex flex-1 gap-1">
+                  {vals.map((v, i) => (
+                    <span
+                      key={i}
+                      title={`${v}`}
+                      className="h-6 flex-1 rounded"
+                      style={{
+                        background: `color-mix(in oklab, var(--violet) ${v}%, var(--secondary))`,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+            <div className="flex justify-between pt-1 text-[10px] text-muted-foreground">
+              <span>09</span>
+              <span>16</span>
+            </div>
+          </div>
+        </Panel>
+
+        <Panel>
+          <PanelHeader title="Strengths & weaknesses" />
+          <div className="space-y-3 p-5">
+            {[
+              ["Opening & rapport", 92],
+              ["Discovery depth", 61],
+              ["Pitch clarity", 87],
+              ["Objection handling", 58],
+              ["Closing", 84],
+              ["Compliance", 95],
+            ].map(([k, v]) => (
+              <div key={k as string}>
+                <div className="mb-1 flex justify-between text-xs">
+                  <span className="text-muted-foreground">{k}</span>
+                  <span className="font-mono">{v}</span>
+                </div>
+                <Meter value={v as number} />
+              </div>
+            ))}
+          </div>
+        </Panel>
+      </div>
+
+      <Panel className="mt-4 overflow-hidden">
+        <PanelHeader title="Recent calls" subtitle="Latest analyzed conversations" />
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[720px] text-sm">
+            <thead>
+              <tr className="border-b border-border text-left text-[11px] tracking-wider text-muted-foreground uppercase">
+                {["Date", "Prospect", "Duration", "Outcome", "Score", "Confidence"].map((h) => (
+                  <th key={h} className="px-5 py-3 font-medium">
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {calls.slice(0, 6).map((c) => (
+                <tr key={c.id} className="border-b border-border/60 hover:bg-secondary/30">
+                  <td className="px-5 py-3 text-muted-foreground">
+                    {c.date} · {c.time}
+                  </td>
+                  <td className="px-5 py-3">{c.prospect}</td>
+                  <td className="px-5 py-3 font-mono text-xs">{c.duration}</td>
+                  <td className="px-5 py-3 text-muted-foreground">{c.outcome}</td>
+                  <td className="px-5 py-3 font-mono">{c.score || "—"}</td>
+                  <td className="px-5 py-3 font-mono">{c.confidence ? `${c.confidence}%` : "—"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Panel>
+
+      <Panel className="gradient-border mt-4 p-6">
+        <div className="flex items-center gap-2">
+          <Sparkles className="size-4 text-primary" />
+          <h3 className="text-sm font-semibold">Recommended coaching plan</h3>
+        </div>
+        <div className="mt-4 grid gap-2 md:grid-cols-3">
+          {[
+            "Two objection-handling drills per week with a manager.",
+            "Cap talk ratio at 60% — currently averaging 71%.",
+            "Require 5 discovery questions before any pricing mention.",
+          ].map((t) => (
+            <p key={t} className="rounded-xl border border-border bg-secondary/30 p-3 text-xs text-muted-foreground">
+              {t}
+            </p>
+          ))}
+        </div>
+      </Panel>
+    </>
+  );
+}

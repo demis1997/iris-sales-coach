@@ -1,50 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MarketingLayout } from "@/components/marketing/layout";
-import { HomeHero } from "@/components/marketing/home-hero";
-import {
-  AssistantSection,
-  CapabilitiesSection,
-  FinalCtaSection,
-  IndustriesSection,
-  OutcomeStrip,
-  PipelineDemoSection,
-  PlaybookSection,
-  ProblemSection,
-  RolesSection,
-  SecurityTeaser,
-  UseCasesSection,
-  WorkflowSection,
-} from "@/components/marketing/home-sections";
-import { pageHead, softwareApplicationJsonLd } from "@/lib/seo";
+import { RelayHomePage } from "@/components/relay/home-page";
 
-const title = "Artemis — AI Sales Coaching and Revenue Intelligence";
+const title = "Relay AI — AI Contact Center Software";
 const description =
-  "Artemis analyses every sales conversation, coaches representatives, identifies pipeline risk, automates CRM updates, and gives managers visibility into what drives revenue.";
+  "Unify every customer interaction with an AI-powered contact center. Omnichannel, predictive dialer, speech analytics, flow builder — and a revenue OS that coaches reps in real time.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    ...pageHead({ title, description, path: "/" }),
-    scripts: [softwareApplicationJsonLd(description)],
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
-  component: HomePage,
+  component: RelayHomePage,
 });
-
-function HomePage() {
-  return (
-    <MarketingLayout showAnnouncement>
-      <HomeHero />
-      <OutcomeStrip />
-      <ProblemSection />
-      <WorkflowSection />
-      <CapabilitiesSection />
-      <RolesSection />
-      <AssistantSection />
-      <PipelineDemoSection />
-      <PlaybookSection />
-      <IndustriesSection />
-      <SecurityTeaser />
-      <UseCasesSection />
-      <FinalCtaSection />
-    </MarketingLayout>
-  );
-}

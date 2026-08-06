@@ -13,7 +13,7 @@ import {
   Sparkles,
   UserPlus,
 } from "lucide-react";
-import { Panel } from "@/components/artemis/primitives";
+import { Panel } from "@/components/iris/primitives";
 import { CountUp, Reveal, Section } from "@/components/landing/marketing-bits";
 
 export function Plateau() {
@@ -52,7 +52,7 @@ export function Plateau() {
           ))}
         </div>
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          Modelled outcomes from Artemis deployments on outbound floors of 20–400 reps.
+          Modelled outcomes from Iris deployments on outbound floors of 20–400 reps.
         </p>
       </div>
     </section>
@@ -123,8 +123,8 @@ export function Problem() {
 }
 
 const flow = [
-  { icon: PhoneCall, t: "Salesperson makes a call", d: "Artemis connects to your dialer, VoIP or meeting platform." },
-  { icon: BrainCircuit, t: "Artemis analyzes it", d: "Transcription, sentiment, objections, compliance, stage scoring." },
+  { icon: PhoneCall, t: "Salesperson makes a call", d: "Iris connects to your dialer, VoIP or meeting platform." },
+  { icon: BrainCircuit, t: "Iris analyzes it", d: "Transcription, sentiment, objections, compliance, stage scoring." },
   { icon: Sparkles, t: "Employee gets instant coaching", d: "Specific, personal feedback seconds after hang-up." },
   { icon: LineChart, t: "Manager sees team insights", d: "Patterns, risk flags and revenue impact across every desk." },
   { icon: Gauge, t: "Closing rates improve", d: "Measured weekly, per rep, per objection, per script." },
@@ -140,7 +140,7 @@ export function Solution() {
             <Ear className="size-3" /> The solution
           </span>
           <h2 className="mt-5 text-3xl leading-[1.1] font-semibold tracking-tight text-balance md:text-[2.75rem]">
-            Meet Artemis.
+            Meet Iris.
             <span className="mt-1 block gradient-text">
               The AI sales coach for your entire company.
             </span>

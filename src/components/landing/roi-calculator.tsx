@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Calculator } from "lucide-react";
-import { Panel } from "@/components/artemis/primitives";
+import { Panel } from "@/components/iris/primitives";
 import { Reveal, Section } from "@/components/landing/marketing-bits";
 
 const fmt = (n: number) =>
@@ -92,7 +92,7 @@ export function RoiCalculator() {
               <Field label="Average deals closed per rep, per month" value={deals} min={1} max={60} step={1} onChange={setDeals} />
               <Field label="Average revenue per deal" value={revenue} min={200} max={25000} step={100} suffix=" €" onChange={setRevenue} />
               <Field label="Current close rate" value={closeRate} min={5} max={60} step={1} suffix="%" onChange={setCloseRate} />
-              <Field label="Close rate improvement with Artemis" value={lift} min={1} max={10} step={1} suffix=" pts" onChange={setLift} />
+              <Field label="Close rate improvement with Iris" value={lift} min={1} max={10} step={1} suffix=" pts" onChange={setLift} />
             </div>
 
             <div className="flex flex-col justify-between gap-5 rounded-2xl border border-border bg-secondary/25 p-6">
@@ -117,7 +117,7 @@ export function RoiCalculator() {
                   <div className="h-full w-[62%] rounded-full bg-muted-foreground/40" />
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span>With Artemis</span>
+                  <span>With Iris</span>
                   <span className="font-mono">{fmt(improved)}</span>
                 </div>
                 <div className="h-2 overflow-hidden rounded-full bg-secondary">

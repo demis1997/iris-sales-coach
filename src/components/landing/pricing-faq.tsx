@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, ChevronDown, Linkedin } from "lucide-react";
-import { Panel } from "@/components/artemis/primitives";
-import { ArtemisMark } from "@/components/artemis/app-shell";
+import { Panel } from "@/components/iris/primitives";
+import { IrisMark } from "@/components/iris/app-shell";
 import { Reveal, Section } from "@/components/landing/marketing-bits";
 
 const included = [
@@ -108,11 +108,11 @@ export function Pricing() {
 const faqs = [
   ["How accurate is the AI?", "Transcription accuracy averages 96% on clear telephony audio and scoring is calibrated against your own managers during onboarding. Every score links to the exact audio moment that produced it, so nothing has to be taken on faith."],
   ["How quickly can we onboard?", "Most floors are live within five business days: connect the dialer, import last month's calls for a baseline, calibrate scoring with your managers, then switch reps on desk by desk."],
-  ["Does Artemis integrate with our phone system?", "Yes — Aircall, Genesys, RingCentral, Twilio, Zoom, Teams and Google Meet are supported natively, and anything else can send audio through our SIP recorder or REST API."],
-  ["Can managers customize coaching?", "Managers define the scorecard, the required call stages, the compliance checklist and the methodology (SPIN, MEDDIC, BANT, Challenger). Artemis coaches against your standard, not a generic one."],
+  ["Does Iris integrate with our phone system?", "Yes — Aircall, Genesys, RingCentral, Twilio, Zoom, Teams and Google Meet are supported natively, and anything else can send audio through our SIP recorder or REST API."],
+  ["Can managers customize coaching?", "Managers define the scorecard, the required call stages, the compliance checklist and the methodology (SPIN, MEDDIC, BANT, Challenger). Iris coaches against your standard, not a generic one."],
   ["Is customer data secure?", "Recordings are encrypted at rest and in transit, isolated per tenant, accessible only through role-based permissions, and every access is written to an exportable audit log. EU data residency is available."],
-  ["Can Artemis support multiple languages?", "Artemis analyzes and coaches in 30+ languages including English, German, Spanish, Italian, Polish, Arabic and Greek, with mixed-language calls handled in a single transcript."],
-  ["How does compliance monitoring work?", "You define required disclosures and prohibited claims per product and jurisdiction. Artemis checks every call, flags misses to compliance within minutes, and keeps the evidence trail for audits."],
+  ["Can Iris support multiple languages?", "Iris analyzes and coaches in 30+ languages including English, German, Spanish, Italian, Polish, Arabic and Greek, with mixed-language calls handled in a single transcript."],
+  ["How does compliance monitoring work?", "You define required disclosures and prohibited claims per product and jurisdiction. Iris checks every call, flags misses to compliance within minutes, and keeps the evidence trail for audits."],
 ];
 
 export function Faq() {
@@ -164,7 +164,7 @@ export function FinalCta() {
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <a
-              href="mailto:sales@artemis.sales?subject=Artemis%20demo%20request"
+              href="mailto:sales@iris.ai?subject=Iris%20demo%20request"
               className="inline-flex items-center gap-2 rounded-xl gradient-surface px-6 py-3.5 text-sm font-semibold text-background shadow-[0_10px_40px_-12px_oklch(0.66_0.2_293/0.7)] transition-transform hover:-translate-y-0.5"
             >
               Book your demo <ArrowRight className="size-4" />
@@ -195,7 +195,7 @@ export function Footer() {
       <div className="mx-auto w-full max-w-6xl px-5 py-14">
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div>
-            <ArtemisMark />
+            <IrisMark />
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               The revenue acceleration platform for high-performance sales organizations.
             </p>
@@ -229,7 +229,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
-          <p className="text-xs text-muted-foreground">© 2026 Artemis Intelligence. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">© 2026 Iris Intelligence. All rights reserved.</p>
           <div className="flex gap-6 text-xs text-muted-foreground">
             <Link to="/app" className="hover:text-foreground">Rep dashboard</Link>
             <Link to="/ceo" className="hover:text-foreground">Executive dashboard</Link>

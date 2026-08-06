@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { CircleAlert, MessageSquareQuote, Sparkles, Target, Waves, XCircle } from "lucide-react";
-import { Panel } from "@/components/artemis/primitives";
+import { Panel } from "@/components/iris/primitives";
 import { Reveal, Section } from "@/components/landing/marketing-bits";
 
 const steps = [
@@ -12,7 +12,7 @@ const steps = [
     heading: "06:12 — the prospect pushes back",
     quote:
       "\"Honestly, your spreads look higher than what I'm paying now, and I've been with them four years.\"",
-    body: "Artemis tags this as a competitive price objection with a loyalty component — the two rarely resolve with a discount.",
+    body: "Iris tags this as a competitive price objection with a loyalty component — the two rarely resolve with a discount.",
     meta: [["Objection type", "Price + incumbent loyalty"], ["Frequency on your floor", "31% of lost calls"]],
   },
   {
@@ -50,7 +50,7 @@ const steps = [
     icon: XCircle,
     heading: "Root cause, not CRM guesswork",
     quote: "\"Deal lost at 06:53 — price anchored before value was established.\"",
-    body: "The CRM recorded this as 'price'. Artemis shows the deal was lost 41 seconds earlier, in the discovery gap.",
+    body: "The CRM recorded this as 'price'. Iris shows the deal was lost 41 seconds earlier, in the discovery gap.",
     meta: [["CRM reason", "Price"], ["Actual reason", "Premature pricing"]],
   },
   {
@@ -60,7 +60,7 @@ const steps = [
     heading: "Marcus's plan for the next 10 calls",
     quote:
       "\"Ask both volume questions before any number leaves your mouth. Target talk ratio under 60%.\"",
-    body: "Artemis tracks the two behaviours on every subsequent call and reports the movement to Marcus and his manager weekly.",
+    body: "Iris tracks the two behaviours on every subsequent call and reports the movement to Marcus and his manager weekly.",
     meta: [["Projected impact", "+17% close rate"], ["Review", "After 10 calls"]],
   },
 ];
@@ -73,7 +73,7 @@ export function InteractiveDemo() {
     <Section
       id="interactive"
       eyebrow="Interactive demo"
-      title="Click through a real call the way Artemis sees it"
+      title="Click through a real call the way Iris sees it"
       lede="One outbound forex call, six moments. This is the entire product loop in ninety seconds."
     >
       <Reveal>

@@ -26,7 +26,7 @@ const tabs: Tab[] = [
     who: "What the employee sees every morning",
     title: "Each rep opens one screen and knows exactly what to fix today",
     plain:
-      "No spreadsheets, no waiting for a manager. Artemis scores every call overnight and tells the rep, in plain words, the one habit that is costing them deals.",
+      "No spreadsheets, no waiting for a manager. Iris scores every call overnight and tells the rep, in plain words, the one habit that is costing them deals.",
     bullets: [
       "Score, confidence and close rate for every single call",
       "A daily brief written in plain language, not analytics jargon",
@@ -34,7 +34,7 @@ const tabs: Tab[] = [
     ],
     outcome: "Reps stop guessing why they lost the deal.",
     img: repDashboard.url,
-    alt: "Artemis rep dashboard showing call scores, confidence trend and a daily AI brief",
+    alt: "Iris rep dashboard showing call scores, confidence trend and a daily AI brief",
   },
   {
     key: "coach",
@@ -42,7 +42,7 @@ const tabs: Tab[] = [
     who: "How the employee actually improves",
     title: "Every rep gets a private coach after every call — not once a quarter",
     plain:
-      "Artemis replays the exact moment the deal turned, explains what to say instead, and turns it into a short weekly practice plan the rep can tick off.",
+      "Iris replays the exact moment the deal turned, explains what to say instead, and turns it into a short weekly practice plan the rep can tick off.",
     bullets: [
       "The exact objection that lost the deal, quoted from the call",
       "A better answer, written for your product and your market",
@@ -50,7 +50,7 @@ const tabs: Tab[] = [
     ],
     outcome: "Coaching happens on 100% of calls at zero manager hours.",
     img: aiCoach.url,
-    alt: "Artemis AI coach chat with a coaching plan and stage scores for the last call",
+    alt: "Iris AI coach chat with a coaching plan and stage scores for the last call",
   },
   {
     key: "progress",
@@ -66,7 +66,7 @@ const tabs: Tab[] = [
     ],
     outcome: "Ramp time drops, and weak performance is visible in week 2, not Q3.",
     img: repPerformance.url,
-    alt: "Artemis performance page showing skill breakdown and improvement trend for a rep",
+    alt: "Iris performance page showing skill breakdown and improvement trend for a rep",
   },
   {
     key: "exec",
@@ -82,7 +82,7 @@ const tabs: Tab[] = [
     ],
     outcome: "Decisions based on 100% of calls instead of a 2% sample.",
     img: execOverview.url,
-    alt: "Artemis executive dashboard with revenue charts, risk table and close rate by hour",
+    alt: "Iris executive dashboard with revenue charts, risk table and close rate by hour",
   },
 ];
 
@@ -189,7 +189,7 @@ export function SimpleExplainer() {
       align="center"
       eyebrow="The 30-second version"
       title={<>If you only read one section, read this</>}
-      lede="Artemis turns the conversations your team is already having into more closed revenue. That's it."
+      lede="Iris turns the conversations your team is already having into more closed revenue. That's it."
     >
       <div className="grid gap-4 md:grid-cols-3">
         {simple.map((s, i) => (

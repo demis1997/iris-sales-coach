@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { ArrowRight, PhoneCall, Play, Sparkles, Trophy } from "lucide-react";
-import { Panel } from "@/components/artemis/primitives";
+import { Panel } from "@/components/iris/primitives";
 import { Reveal, fadeUp } from "@/components/landing/marketing-bits";
 
 const bars = [18, 34, 52, 28, 66, 82, 47, 71, 90, 62, 38, 74, 55, 86, 41, 68, 33, 79, 49, 60];
@@ -178,31 +178,31 @@ export function Hero() {
         <motion.div {...fadeUp} className="mx-auto max-w-3xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-3 py-1 text-xs text-muted-foreground">
             <span className="size-1.5 rounded-full bg-cyan" />
-            The revenue acceleration platform for high-volume sales floors
+            The AI Revenue Operating System for high-performance sales teams
           </span>
           <h1 className="mt-6 text-4xl leading-[1.04] font-semibold tracking-tight text-balance md:text-[4rem]">
-            Every sales call makes{" "}
-            <span className="gradient-text">your team better.</span>
+            Every Sales Call. Every Insight.{" "}
+            <span className="gradient-text">Every Deal.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Artemis automatically analyzes every sales call, identifies what prevented a deal from
-            closing, coaches every salesperson individually, and gives managers complete visibility
-            into team performance — without listening to hours of recordings.
+            Iris AI listens to every conversation, coaches every representative, predicts every deal
+            and helps companies increase revenue automatically.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <a
-              href="#demo-form"
+            <Link
+              to="/auth"
               className="inline-flex items-center gap-2 rounded-xl gradient-surface px-5 py-3 text-sm font-semibold text-background shadow-[0_10px_40px_-12px_oklch(0.66_0.2_293/0.7)] transition-transform hover:-translate-y-0.5"
             >
-              Book a demo <ArrowRight className="size-4" />
-            </a>
+              Start free <ArrowRight className="size-4" />
+            </Link>
             <a
-              href="#interactive"
+              href="#demo-form"
               className="inline-flex items-center gap-2 rounded-xl border border-border bg-secondary/40 px-5 py-3 text-sm font-medium transition-colors hover:bg-secondary"
             >
-              <Play className="size-3.5" /> Watch 2-minute demo
+              <Play className="size-3.5" /> Book demo
             </a>
           </div>
+
           <p className="mt-4 text-xs text-muted-foreground">
             Deployed in days · Works with your existing dialer · No recordings leave your region
           </p>
