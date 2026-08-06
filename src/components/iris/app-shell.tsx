@@ -1,6 +1,6 @@
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { Sparkles, Search, Bell } from "lucide-react";
+import { Search, Bell } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type NavItem = {
@@ -14,9 +14,13 @@ export type NavItem = {
 export function ArtemisMark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2", className)}>
-      <span className="grid size-7 place-items-center rounded-lg gradient-surface">
-        <Sparkles className="size-4 text-background" />
-      </span>
+      <img
+        src="/artemis-mark.png?v=artemis"
+        alt=""
+        width={28}
+        height={28}
+        className="size-7 rounded-lg object-cover"
+      />
       <span className="text-[15px] font-semibold tracking-tight">
         Artemis <span className="text-primary">AI</span>
       </span>
