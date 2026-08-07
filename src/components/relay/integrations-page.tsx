@@ -9,6 +9,14 @@ import {
 } from "lucide-react";
 import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
 import { ArtemisHeader } from "@/components/relay/header";
+import { ContactLinks } from "@/components/relay/contact-links";
+import {
+  CONTACT_EMAIL,
+  CONTACT_MAILTO,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_TEL,
+  buildContactMailto,
+} from "@/components/relay/contact";
 import { cn } from "@/lib/utils";
 
 const BENEFITS = [
@@ -306,32 +314,58 @@ export function ArtemisIntegrationsPage() {
             <p className="mt-2 text-center text-[#4B5C76]">
               Let’s chat about a solution that works for you
             </p>
+            <div className="mt-4 flex justify-center">
+              <ContactLinks />
+            </div>
 
             {submitted ? (
               <div className="mt-10 rounded-2xl border border-[#2EE6A6]/40 bg-[#E8FFF6] p-8 text-center">
                 <p className="text-xl font-semibold text-[#0B1B33]">Thank you for your request!</p>
-                <p className="mt-2 text-sm text-[#4B5C76]">We will contact you as soon as possible.</p>
+                <p className="mt-2 text-sm text-[#4B5C76]">
+                  Your email client should open so you can send the message to {CONTACT_EMAIL}.
+                </p>
               </div>
             ) : (
               <form
                 className="mt-8 grid gap-4 sm:grid-cols-2"
                 onSubmit={(e) => {
                   e.preventDefault();
+                  const form = e.currentTarget;
+                  const inputs = Array.from(form.querySelectorAll("input, select")) as (
+                    | HTMLInputElement
+                    | HTMLSelectElement
+                  )[];
+                  const values = Object.fromEntries(
+                    inputs.map((el, i) => [el.name || `field_${i}`, el.value]),
+                  );
+                  const body = [
+                    `Name: ${values.first ?? values.field_0 ?? ""} ${values.last ?? values.field_1 ?? ""}`,
+                    `Company: ${values.company ?? values.field_2 ?? ""}`,
+                    `Email: ${values.email ?? values.field_3 ?? ""}`,
+                    `Phone: ${values.phone ?? values.field_4 ?? ""}`,
+                    `Country: ${values.country ?? values.field_5 ?? ""}`,
+                    `Agents: ${values.agents ?? ""}`,
+                  ].join("\n");
+                  window.location.href = buildContactMailto({
+                    subject: "Artemis AI — Integrations inquiry",
+                    body,
+                  });
                   setSubmitted(true);
                 }}
               >
                 {[
-                  ["First name", "text"],
-                  ["Last name", "text"],
-                  ["Company name", "text"],
-                  ["Business email", "email"],
-                  ["Phone number", "tel"],
-                  ["Country", "text"],
-                ].map(([label, type]) => (
-                  <label key={label} className="block text-sm">
+                  ["First name", "text", "first"],
+                  ["Last name", "text", "last"],
+                  ["Company name", "text", "company"],
+                  ["Business email", "email", "email"],
+                  ["Phone number", "tel", "phone"],
+                  ["Country", "text", "country"],
+                ].map(([label, type, name]) => (
+                  <label key={name} className="block text-sm">
                     <span className="mb-1.5 block font-medium text-[#4B5C76]">{label}</span>
                     <input
                       required
+                      name={name}
                       type={type}
                       className="w-full rounded-xl border border-[#D7E0EF] bg-white px-3.5 py-2.5 text-[#0B1B33] outline-none ring-[#2EE6A6]/40 focus:ring-2"
                     />
@@ -341,6 +375,7 @@ export function ArtemisIntegrationsPage() {
                   <span className="mb-1.5 block font-medium text-[#4B5C76]">Number of agents</span>
                   <select
                     required
+                    name="agents"
                     className="w-full rounded-xl border border-[#D7E0EF] bg-white px-3.5 py-2.5 text-[#0B1B33] outline-none ring-[#2EE6A6]/40 focus:ring-2"
                     defaultValue=""
                   >
@@ -404,6 +439,7 @@ export function ArtemisIntegrationsPage() {
             <p className="mt-3 max-w-xs text-sm text-[#8A9BB5]">
               AI contact center software with speech analytics, predictive dialing, and CRM integrations.
             </p>
+            <ContactLinks className="mt-4" />
           </div>
           <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-3">
             {[
@@ -416,7 +452,10 @@ export function ArtemisIntegrationsPage() {
                 <ul className="mt-3 space-y-2 text-[#8A9BB5]">
                   {(links as string[]).map((l) => (
                     <li key={l}>
-                      <a href="#integrations" className="hover:text-[#12C48A]">
+                      <a
+                        href={l === "Contact Sales" ? CONTACT_MAILTO : "#integrations"}
+                        className="hover:text-[#12C48A]"
+                      >
                         {l}
                       </a>
                     </li>
@@ -427,7 +466,14 @@ export function ArtemisIntegrationsPage() {
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-[#A8B5C9]">
-          © {new Date().getFullYear()} Artemis AI. All Rights Reserved.
+          © {new Date().getFullYear()} Artemis AI. All Rights Reserved. ·{" "}
+          <a href={CONTACT_MAILTO} className="hover:text-[#12C48A]">
+            {CONTACT_EMAIL}
+          </a>{" "}
+          ·{" "}
+          <a href={CONTACT_TEL} className="hover:text-[#12C48A]">
+            {CONTACT_PHONE_DISPLAY}
+          </a>
         </p>
       </footer>
     </div>

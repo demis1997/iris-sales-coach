@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Building2, Contact, KanbanSquare, Workflow, CheckSquare, Gauge } from "lucide-react";
 import { AppShell, type NavItem } from "@/components/iris/app-shell";
+import { RequireAuth } from "@/components/auth/require-auth";
+import { useWorkspaceAccess } from "@/components/auth/auth-provider";
+import { roleLabel } from "@/lib/permissions";
 
 const nav: NavItem[] = [
   { label: "Accounts", to: "/crm", icon: Building2, section: "CRM" },
@@ -14,13 +17,28 @@ const nav: NavItem[] = [
 export const Route = createFileRoute("/crm")({
   head: () => ({
     meta: [
-      { title: "CRM — Artemis AI AI Revenue OS" },
-      { name: "description", content: "Accounts, contacts, pipeline, tasks and workflow automation, all fed by conversation intelligence." },
-      { property: "og:title", content: "CRM — Artemis AI AI Revenue OS" },
+      { title: "CRM — Artemis AI" },
+      {
+        name: "description",
+        content:
+          "Accounts, contacts, pipeline, tasks and workflow automation, all fed by conversation intelligence.",
+      },
+      { property: "og:title", content: "CRM — Artemis AI" },
       { property: "og:description", content: "A CRM that updates itself from every conversation." },
     ],
   }),
-  component: () => (
-    <AppShell nav={nav} workspace="Revenue CRM" user={{ name: "Alex Moreau", role: "Forex Desk" }} />
-  ),
+  component: CrmWorkspace,
 });
+
+function CrmWorkspace() {
+  const { displayName, role } = useWorkspaceAccess();
+  return (
+    <RequireAuth workspace="crm">
+      <AppShell
+        nav={nav}
+        workspace="Revenue CRM"
+        user={{ name: displayName, role: roleLabel(role) }}
+      />
+    </RequireAuth>
+  );
+}

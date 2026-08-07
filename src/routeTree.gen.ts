@@ -14,7 +14,9 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CeoRouteImport } from './routes/ceo'
 import { Route as CrmRouteImport } from './routes/crm'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ManagerRouteImport } from './routes/manager'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppCertificationsRouteImport } from './routes/app.certifications'
 import { Route as AppCoachRouteImport } from './routes/app.coach'
@@ -38,6 +40,7 @@ import { Route as CrmContactsRouteImport } from './routes/crm.contacts'
 import { Route as CrmDealRiskRouteImport } from './routes/crm.deal-risk'
 import { Route as CrmPipelineRouteImport } from './routes/crm.pipeline'
 import { Route as CrmTasksRouteImport } from './routes/crm.tasks'
+import { Route as InviteTokenRouteImport } from './routes/invite.$token'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerCoachingRouteImport } from './routes/manager.coaching'
 import { Route as ManagerPlaybooksRouteImport } from './routes/manager.playbooks'
@@ -72,9 +75,19 @@ const CrmRoute = CrmRouteImport.update({
   path: '/crm',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ManagerRoute = ManagerRouteImport.update({
   id: '/manager',
   path: '/manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -192,6 +205,11 @@ const CrmTasksRoute = CrmTasksRouteImport.update({
   path: '/tasks',
   getParentRoute: () => CrmRoute,
 } as any)
+const InviteTokenRoute = InviteTokenRouteImport.update({
+  id: '/invite/$token',
+  path: '/invite/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ManagerIndexRoute = ManagerIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -239,7 +257,9 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRouteWithChildren
   '/crm': typeof CrmRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
   '/manager': typeof ManagerRouteWithChildren
+  '/onboarding': typeof OnboardingRoute
   '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
   '/app/dialer': typeof AppDialerRoute
@@ -260,6 +280,7 @@ export interface FileRoutesByFullPath {
   '/crm/deal-risk': typeof CrmDealRiskRoute
   '/crm/pipeline': typeof CrmPipelineRoute
   '/crm/tasks': typeof CrmTasksRoute
+  '/invite/$token': typeof InviteTokenRoute
   '/manager/coaching': typeof ManagerCoachingRoute
   '/manager/playbooks': typeof ManagerPlaybooksRoute
   '/manager/qa': typeof ManagerQaRoute
@@ -275,6 +296,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/forgot-password': typeof ForgotPasswordRoute
+  '/onboarding': typeof OnboardingRoute
   '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
   '/app/dialer': typeof AppDialerRoute
@@ -295,6 +318,7 @@ export interface FileRoutesByTo {
   '/crm/deal-risk': typeof CrmDealRiskRoute
   '/crm/pipeline': typeof CrmPipelineRoute
   '/crm/tasks': typeof CrmTasksRoute
+  '/invite/$token': typeof InviteTokenRoute
   '/manager/coaching': typeof ManagerCoachingRoute
   '/manager/playbooks': typeof ManagerPlaybooksRoute
   '/manager/qa': typeof ManagerQaRoute
@@ -314,7 +338,9 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRouteWithChildren
   '/crm': typeof CrmRouteWithChildren
+  '/forgot-password': typeof ForgotPasswordRoute
   '/manager': typeof ManagerRouteWithChildren
+  '/onboarding': typeof OnboardingRoute
   '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
   '/app/dialer': typeof AppDialerRoute
@@ -335,6 +361,7 @@ export interface FileRoutesById {
   '/crm/deal-risk': typeof CrmDealRiskRoute
   '/crm/pipeline': typeof CrmPipelineRoute
   '/crm/tasks': typeof CrmTasksRoute
+  '/invite/$token': typeof InviteTokenRoute
   '/manager/coaching': typeof ManagerCoachingRoute
   '/manager/playbooks': typeof ManagerPlaybooksRoute
   '/manager/qa': typeof ManagerQaRoute
@@ -355,7 +382,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/crm'
+    | '/forgot-password'
     | '/manager'
+    | '/onboarding'
     | '/app/certifications'
     | '/app/coach'
     | '/app/dialer'
@@ -376,6 +405,7 @@ export interface FileRouteTypes {
     | '/crm/deal-risk'
     | '/crm/pipeline'
     | '/crm/tasks'
+    | '/invite/$token'
     | '/manager/coaching'
     | '/manager/playbooks'
     | '/manager/qa'
@@ -391,6 +421,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/forgot-password'
+    | '/onboarding'
     | '/app/certifications'
     | '/app/coach'
     | '/app/dialer'
@@ -411,6 +443,7 @@ export interface FileRouteTypes {
     | '/crm/deal-risk'
     | '/crm/pipeline'
     | '/crm/tasks'
+    | '/invite/$token'
     | '/manager/coaching'
     | '/manager/playbooks'
     | '/manager/qa'
@@ -429,7 +462,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/crm'
+    | '/forgot-password'
     | '/manager'
+    | '/onboarding'
     | '/app/certifications'
     | '/app/coach'
     | '/app/dialer'
@@ -450,6 +485,7 @@ export interface FileRouteTypes {
     | '/crm/deal-risk'
     | '/crm/pipeline'
     | '/crm/tasks'
+    | '/invite/$token'
     | '/manager/coaching'
     | '/manager/playbooks'
     | '/manager/qa'
@@ -469,7 +505,10 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CeoRoute: typeof CeoRouteWithChildren
   CrmRoute: typeof CrmRouteWithChildren
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   ManagerRoute: typeof ManagerRouteWithChildren
+  OnboardingRoute: typeof OnboardingRoute
+  InviteTokenRoute: typeof InviteTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -509,11 +548,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrmRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/manager': {
       id: '/manager'
       path: '/manager'
       fullPath: '/manager'
       preLoaderRoute: typeof ManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/': {
@@ -677,6 +730,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrmTasksRouteImport
       parentRoute: typeof CrmRoute
     }
+    '/invite/$token': {
+      id: '/invite/$token'
+      path: '/invite/$token'
+      fullPath: '/invite/$token'
+      preLoaderRoute: typeof InviteTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/manager/': {
       id: '/manager/'
       path: '/'
@@ -837,7 +897,10 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CeoRoute: CeoRouteWithChildren,
   CrmRoute: CrmRouteWithChildren,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   ManagerRoute: ManagerRouteWithChildren,
+  OnboardingRoute: OnboardingRoute,
+  InviteTokenRoute: InviteTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

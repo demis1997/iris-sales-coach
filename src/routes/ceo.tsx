@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LayoutDashboard, Users, BarChart3, Sparkles, Trophy, Bell, TrendingUp } from "lucide-react";
 import { AppShell, type NavItem } from "@/components/iris/app-shell";
+import { RequireAuth } from "@/components/auth/require-auth";
+import { useWorkspaceAccess } from "@/components/auth/auth-provider";
+import { roleLabel } from "@/lib/permissions";
 
 const nav: NavItem[] = [
   { label: "Overview", to: "/ceo", icon: LayoutDashboard, section: "Executive" },
@@ -21,7 +24,18 @@ export const Route = createFileRoute("/ceo")({
       { property: "og:description", content: "Company-wide call intelligence and team performance." },
     ],
   }),
-  component: () => (
-    <AppShell nav={nav} workspace="Executive" user={{ name: "Elena Kovač", role: "CEO" }} />
-  ),
+  component: CeoWorkspace,
 });
+
+function CeoWorkspace() {
+  const { displayName, role } = useWorkspaceAccess();
+  return (
+    <RequireAuth workspace="ceo">
+      <AppShell
+        nav={nav}
+        workspace="Executive"
+        user={{ name: displayName, role: roleLabel(role) }}
+      />
+    </RequireAuth>
+  );
+}

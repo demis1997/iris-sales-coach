@@ -14,6 +14,8 @@ import {
 } from "lucide-react";
 import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
 import { ArtemisHeader } from "@/components/relay/header";
+import { ContactLinks } from "@/components/relay/contact-links";
+import { CONTACT_EMAIL, CONTACT_MAILTO, CONTACT_PHONE_DISPLAY, CONTACT_TEL } from "@/components/relay/contact";
 import { cn } from "@/lib/utils";
 
 
@@ -251,7 +253,7 @@ export function ArtemisHomePage() {
                 <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">{p.body}</p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <ArtemisButton href="#get-started">Explore {p.title}</ArtemisButton>
-                  <ArtemisButton href="#get-started" variant="secondary">
+                  <ArtemisButton href={CONTACT_MAILTO} variant="secondary">
                     Contact Sales
                   </ArtemisButton>
                 </div>
@@ -280,7 +282,7 @@ export function ArtemisHomePage() {
                 <a href="#get-started" className="text-[#12C48A]">
                   Explore →
                 </a>
-                <a href="#get-started" className="text-[#4F6EF7]">
+                <a href={CONTACT_MAILTO} className="text-[#4F6EF7]">
                   Contact Sales
                 </a>
               </div>
@@ -464,13 +466,25 @@ export function ArtemisHomePage() {
               less than 24 hours
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-white/70">
-              Let’s discuss a solution that works for you.
+              Let’s discuss a solution that works for you. Email or call — we respond quickly.
             </p>
-            <ArtemisButton href="/app" className="mt-8 px-8 py-3 text-base">
-              Get Started
-            </ArtemisButton>
+            <div className="mt-6 flex justify-center">
+              <ContactLinks tone="dark" className="items-center text-center" />
+            </div>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <ArtemisButton href={CONTACT_MAILTO} className="px-8 py-3 text-base">
+                Email us
+              </ArtemisButton>
+              <ArtemisButton href={CONTACT_TEL} variant="secondary" className="px-8 py-3 text-base">
+                Call {CONTACT_PHONE_DISPLAY}
+              </ArtemisButton>
+            </div>
             <p className="mt-4 text-xs text-white/45">
-              By clicking Get Started you agree to Artemis AI’s Privacy Policy and Terms of Service.
+              Prefer to explore first?{" "}
+              <a href="/app" className="underline underline-offset-2 hover:text-white">
+                Open the product demo
+              </a>
+              .
             </p>
           </div>
         </div>
@@ -484,6 +498,7 @@ export function ArtemisHomePage() {
               AI contact center software — omnichannel, predictive dialing, speech analytics, and a
               full revenue OS.
             </p>
+            <ContactLinks className="mt-4" />
           </div>
           <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-4">
             {[
@@ -497,7 +512,10 @@ export function ArtemisHomePage() {
                 <ul className="mt-3 space-y-2 text-[#8A9BB5]">
                   {(links as string[]).map((l) => (
                     <li key={l}>
-                      <a href="#get-started" className="hover:text-[#12C48A]">
+                      <a
+                        href={l === "Contact Sales" ? CONTACT_MAILTO : "#get-started"}
+                        className="hover:text-[#12C48A]"
+                      >
                         {l}
                       </a>
                     </li>
@@ -508,7 +526,14 @@ export function ArtemisHomePage() {
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-[#A8B5C9]">
-          © {new Date().getFullYear()} Artemis AI. All Rights Reserved.
+          © {new Date().getFullYear()} Artemis AI. All Rights Reserved. ·{" "}
+          <a href={CONTACT_MAILTO} className="hover:text-[#12C48A]">
+            {CONTACT_EMAIL}
+          </a>{" "}
+          ·{" "}
+          <a href={CONTACT_TEL} className="hover:text-[#12C48A]">
+            {CONTACT_PHONE_DISPLAY}
+          </a>
         </p>
       </footer>
     </div>

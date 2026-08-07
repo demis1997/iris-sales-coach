@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AuthProvider } from "@/components/auth/auth-provider";
 
 function NotFoundComponent() {
   return (
@@ -77,12 +78,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Artemis AI — AI Sales Intelligence" },
+      { title: "Artemis AI" },
       {
         name: "description",
         content:
           "Artemis AI analyzes every sales call, coaches every rep individually, and gives leaders full visibility into team performance.",
       },
+      { property: "og:title", content: "Artemis AI" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -94,11 +96,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico?v=artemis", type: "image/x-icon", sizes: "any" },
-      { rel: "icon", href: "/favicon-32x32.png?v=artemis", type: "image/png", sizes: "32x32" },
-      { rel: "icon", href: "/favicon-16x16.png?v=artemis", type: "image/png", sizes: "16x16" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=artemis", sizes: "180x180" },
-      { rel: "shortcut icon", href: "/favicon.ico?v=artemis" },
+      { rel: "icon", href: "/favicon.svg?v=eye", type: "image/svg+xml" },
+      { rel: "icon", href: "/favicon.ico?v=eye", type: "image/x-icon", sizes: "any" },
+      { rel: "icon", href: "/favicon-32x32.png?v=eye", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/favicon-16x16.png?v=eye", type: "image/png", sizes: "16x16" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png?v=eye", sizes: "180x180" },
+      { rel: "shortcut icon", href: "/favicon.ico?v=eye" },
     ],
   }),
   shellComponent: RootShell,
@@ -126,8 +129,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <AuthProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

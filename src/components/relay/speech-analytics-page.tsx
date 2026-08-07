@@ -10,6 +10,14 @@ import {
 } from "lucide-react";
 import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
 import { ArtemisHeader } from "@/components/relay/header";
+import { ContactLinks } from "@/components/relay/contact-links";
+import {
+  CONTACT_EMAIL,
+  CONTACT_MAILTO,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_TEL,
+  buildContactMailto,
+} from "@/components/relay/contact";
 import { cn } from "@/lib/utils";
 
 const CAPABILITIES = [
@@ -232,7 +240,7 @@ export function ArtemisSpeechAnalyticsPage() {
                   <p className="mt-4 text-base leading-relaxed text-white/65">{item.body}</p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <ArtemisButton href="#get-started">Explore {item.title}</ArtemisButton>
-                    <ArtemisButton href="#get-started" variant="secondary">
+                    <ArtemisButton href={CONTACT_MAILTO} variant="secondary">
                       Contact Sales
                     </ArtemisButton>
                   </div>
@@ -321,8 +329,9 @@ export function ArtemisSpeechAnalyticsPage() {
             </h2>
             <p className="mt-4 text-white/65">
               Deploy speech analytics tools with fast onboarding, automated conversation analysis,
-              and insights built for modern support and sales teams.
+              and insights built for modern support and sales teams. Or reach us directly:
             </p>
+            <ContactLinks tone="dark" className="mt-4" />
             <ul className="mt-6 space-y-3 text-sm text-white/70">
               {[
                 "AI transcription in 10+ languages",
@@ -350,6 +359,19 @@ export function ArtemisSpeechAnalyticsPage() {
                 className="space-y-3"
                 onSubmit={(e) => {
                   e.preventDefault();
+                  const fd = new FormData(e.currentTarget);
+                  const body = [
+                    `Name: ${fd.get("first") ?? ""} ${fd.get("last") ?? ""}`,
+                    `Company: ${fd.get("company") ?? ""}`,
+                    `Email: ${fd.get("email") ?? ""}`,
+                    `Phone: ${fd.get("phone") ?? ""}`,
+                    `Country: ${fd.get("country") ?? ""}`,
+                    `Agents: ${fd.get("agents") ?? ""}`,
+                  ].join("\n");
+                  window.location.href = buildContactMailto({
+                    subject: "Artemis AI — Speech Analytics inquiry",
+                    body,
+                  });
                   setSubmitted(true);
                 }}
               >
@@ -458,6 +480,7 @@ export function ArtemisSpeechAnalyticsPage() {
               AI speech analytics for contact centers — turn every conversation into actionable
               intelligence.
             </p>
+            <ContactLinks tone="dark" className="mt-4" />
           </div>
           <div className="grid grid-cols-2 gap-8 text-sm text-white/60 sm:grid-cols-3">
             <div>
@@ -473,20 +496,21 @@ export function ArtemisSpeechAnalyticsPage() {
               <div className="mt-3 flex flex-col gap-2">
                 <a href="#customers">Customers</a>
                 <a href="#faq">FAQ</a>
-                <a href="#get-started">Contact</a>
+                <a href={CONTACT_MAILTO}>Contact</a>
               </div>
             </div>
             <div>
               <p className="font-semibold text-white">App</p>
               <div className="mt-3 flex flex-col gap-2">
                 <a href="/app">Log In</a>
-                <a href="#get-started">Try for Free</a>
+                <a href={CONTACT_TEL}>Call {CONTACT_PHONE_DISPLAY}</a>
               </div>
             </div>
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-white/35">
-          © {new Date().getFullYear()} Artemis AI. All rights reserved.
+          © {new Date().getFullYear()} Artemis AI. All rights reserved. · {CONTACT_EMAIL} ·{" "}
+          {CONTACT_PHONE_DISPLAY}
         </p>
       </footer>
     </div>

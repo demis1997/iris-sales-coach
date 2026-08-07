@@ -164,7 +164,7 @@ export function FinalCta() {
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <a
-              href="mailto:sales@iris.ai?subject=Iris%20demo%20request"
+              href="mailto:demis.konstantinou16@gmail.com?subject=Artemis%20AI%20demo%20request"
               className="inline-flex items-center gap-2 rounded-xl gradient-surface px-6 py-3.5 text-sm font-semibold text-background shadow-[0_10px_40px_-12px_oklch(0.66_0.2_293/0.7)] transition-transform hover:-translate-y-0.5"
             >
               Book your demo <ArrowRight className="size-4" />

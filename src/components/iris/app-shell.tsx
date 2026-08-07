@@ -2,6 +2,8 @@ import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { Search, Bell } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useOptionalAuth } from "@/components/auth/auth-provider";
+import { workspacesForRole } from "@/lib/permissions";
 
 export type NavItem = {
   label: string;
@@ -14,13 +16,17 @@ export type NavItem = {
 export function ArtemisMark({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-2", className)}>
-      <img
-        src="/artemis-mark.png?v=artemis"
-        alt=""
-        width={28}
-        height={28}
-        className="size-7 rounded-lg object-cover"
-      />
+      <span className="grid size-7 place-items-center rounded-lg bg-gradient-to-br from-[#2EE6A6] to-[#18C4FF]">
+        <svg viewBox="0 0 24 24" className="size-3.5 text-white" fill="none" aria-hidden>
+          <path
+            d="M4 12c4-6 12-6 16 0-4 6-12 6-16 0Z"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+          <circle cx="12" cy="12" r="2.5" fill="currentColor" />
+        </svg>
+      </span>
       <span className="text-[15px] font-semibold tracking-tight">
         Artemis <span className="text-primary">AI</span>
       </span>
@@ -48,6 +54,22 @@ export function AppShell({
   user: { name: string; role: string };
 }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const auth = useOptionalAuth();
+  const allowed = workspacesForRole(auth?.session?.authz.role ?? null);
+  const visibleWorkspaces = WORKSPACES.filter((w) => {
+    const id = w.to === "/app" ? "app" : w.to === "/manager" ? "manager" : w.to === "/crm" ? "crm" : "ceo";
+    // While demo / unauthenticated shell is shown without auth, keep switcher visible.
+    if (!auth?.session) return true;
+    return allowed.includes(id);
+  });
+  const displayUser = auth?.session
+    ? {
+        name: auth.session.fullName ?? auth.session.email ?? user.name,
+        role: auth.session.membership?.companyName
+          ? `${user.role} · ${auth.session.membership.companyName}`
+          : user.role,
+      }
+    : user;
 
   return (
     <div className="min-h-screen w-full bg-background">
@@ -120,7 +142,7 @@ export function AppShell({
             </div>
             <div className="ml-auto flex items-center gap-3">
               <div className="hidden items-center gap-1 rounded-lg border border-border p-0.5 sm:flex">
-                {WORKSPACES.map((w) => {
+                {visibleWorkspaces.map((w) => {
                   const on =
                     pathname === w.to ||
                     pathname.startsWith(w.to + "/") ||
@@ -145,14 +167,16 @@ export function AppShell({
               </button>
               <div className="flex items-center gap-2">
                 <span className="grid size-7 place-items-center rounded-full gradient-surface text-[11px] font-semibold text-background">
-                  {user.name
+                  {displayUser.name
                     .split(" ")
                     .map((n) => n[0])
-                    .join("")}
+                    .join("")
+                    .slice(0, 2)
+                    .toUpperCase()}
                 </span>
                 <div className="hidden leading-tight sm:block">
-                  <p className="text-xs font-medium">{user.name}</p>
-                  <p className="text-[11px] text-muted-foreground">{user.role}</p>
+                  <p className="text-xs font-medium">{displayUser.name}</p>
+                  <p className="text-[11px] text-muted-foreground">{displayUser.role}</p>
                 </div>
               </div>
             </div>

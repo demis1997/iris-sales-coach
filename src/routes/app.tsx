@@ -15,6 +15,9 @@ import {
   Brain,
 } from "lucide-react";
 import { AppShell, type NavItem } from "@/components/iris/app-shell";
+import { RequireAuth } from "@/components/auth/require-auth";
+import { useWorkspaceAccess } from "@/components/auth/auth-provider";
+import { roleLabel } from "@/lib/permissions";
 
 const nav: NavItem[] = [
   { label: "Dashboard", to: "/app", icon: LayoutDashboard, section: "Workspace" },
@@ -41,7 +44,18 @@ export const Route = createFileRoute("/app")({
       { property: "og:description", content: "Your calls, AI coaching, performance and goals." },
     ],
   }),
-  component: () => (
-    <AppShell nav={nav} workspace="Sales rep" user={{ name: "Alex Moreau", role: "Forex Desk" }} />
-  ),
+  component: AppWorkspace,
 });
+
+function AppWorkspace() {
+  const { displayName, role } = useWorkspaceAccess();
+  return (
+    <RequireAuth workspace="app">
+      <AppShell
+        nav={nav}
+        workspace="Sales rep"
+        user={{ name: displayName, role: roleLabel(role) }}
+      />
+    </RequireAuth>
+  );
+}

@@ -1,6 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Activity, BookOpen, ShieldCheck, Users, Grid3X3 } from "lucide-react";
 import { AppShell, type NavItem } from "@/components/iris/app-shell";
+import { RequireAuth } from "@/components/auth/require-auth";
+import { useWorkspaceAccess } from "@/components/auth/auth-provider";
+import { roleLabel } from "@/lib/permissions";
 
 const nav: NavItem[] = [
   { label: "Live floor", to: "/manager", icon: Activity, section: "Manager" },
@@ -13,13 +16,27 @@ const nav: NavItem[] = [
 export const Route = createFileRoute("/manager")({
   head: () => ({
     meta: [
-      { title: "Manager Workspace — Artemis AI AI" },
-      { name: "description", content: "Live team activity, coaching assignments and QA review for sales managers." },
-      { property: "og:title", content: "Manager Workspace — Artemis AI AI" },
+      { title: "Manager Workspace — Artemis AI" },
+      {
+        name: "description",
+        content: "Live team activity, coaching assignments and QA review for sales managers.",
+      },
+      { property: "og:title", content: "Manager Workspace — Artemis AI" },
       { property: "og:description", content: "Coach the floor in real time." },
     ],
   }),
-  component: () => (
-    <AppShell nav={nav} workspace="Manager" user={{ name: "Sofia Rahman", role: "Sales Manager" }} />
-  ),
+  component: ManagerWorkspace,
 });
+
+function ManagerWorkspace() {
+  const { displayName, role } = useWorkspaceAccess();
+  return (
+    <RequireAuth workspace="manager">
+      <AppShell
+        nav={nav}
+        workspace="Manager"
+        user={{ name: displayName, role: roleLabel(role) }}
+      />
+    </RequireAuth>
+  );
+}

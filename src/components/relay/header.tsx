@@ -20,6 +20,7 @@ import {
   Zap,
 } from "lucide-react";
 import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
+import { CONTACT_MAILTO } from "@/components/relay/contact";
 import { cn } from "@/lib/utils";
 
 type NavLink = {
@@ -159,7 +160,7 @@ const NAV: NavItem[] = [
           { label: "Who we are", href: "#security", description: "Mission and values.", icon: Building2 },
           { label: "Careers", href: "#get-started", description: "Join the Artemis AI team." },
           { label: "Infrastructure", href: "#security", description: "Global coverage and uptime.", icon: Shield },
-          { label: "Contact Sales", href: "#get-started", description: "Talk to a solutions specialist." },
+          { label: "Contact Sales", href: CONTACT_MAILTO, description: "Talk to a solutions specialist." },
         ],
       },
     ],
