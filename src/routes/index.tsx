@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArtemisHomePage } from "@/components/relay/home-page";
 
-const title = "Artemis AI";
+const title = "Artemis AI — The AI Operating System for Revenue Teams";
 const description =
-  "Unify every customer interaction with an AI-powered contact center. Omnichannel, predictive dialer, speech analytics, flow builder — and a revenue OS that coaches reps in real time.";
+  "Artemis listens to every customer conversation, coaches every sales representative, predicts revenue outcomes, and continuously improves high-volume sales organizations.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

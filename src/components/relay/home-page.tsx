@@ -1,371 +1,531 @@
+import { useEffect, useRef, useState } from "react";
 import {
+  ArrowDown,
   ArrowRight,
-  Bot,
+  Brain,
   Building2,
-  Globe2,
-  Headphones,
+  Dna,
+  Gauge,
   Layers,
-  LineChart,
-  PhoneCall,
+  Radio,
   ShieldCheck,
   Sparkles,
-  Workflow,
+  Target,
+  TrendingUp,
   Zap,
 } from "lucide-react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
 import { ArtemisHeader } from "@/components/relay/header";
 import { ContactLinks } from "@/components/relay/contact-links";
 import { CONTACT_EMAIL, CONTACT_MAILTO, CONTACT_PHONE_DISPLAY, CONTACT_TEL } from "@/components/relay/contact";
 import { cn } from "@/lib/utils";
 
-
-const PILLARS = [
-  {
-    eyebrow: "Embrace AI",
-    title: "Elevate engagement with AI-powered tools",
-    body: "Boost call volume by 400% with our AI Predictive Dialer and gain deep insights with speech analytics, transcriptions, sentiment analysis, summaries, and more — all available in 10+ languages.",
-    cta: "Explore AI tools",
-    href: "#speech",
-    accent: "from-[#2EE6A6] to-[#18C4FF]",
-    icon: Sparkles,
-  },
-  {
-    eyebrow: "Intelligent workflows",
-    title: "Smarter flows, faster resolutions",
-    body: "Build and automate interaction flows with Artemis AI’s no-code interface. Set up IVR menus, intelligent routing, and chatbot interactions to ensure fast, seamless customer support.",
-    cta: "Explore Flow Builder",
-    href: "#flow",
-    accent: "from-[#4F6EF7] to-[#A855F7]",
-    icon: Workflow,
-  },
-  {
-    eyebrow: "CRM integrations",
-    title: "Sync contacts and track interactions",
-    body: "Connect Artemis AI with HubSpot, Salesforce, Zoho and more to automate workflows, sync customer data, and enhance productivity. Reduce manual tasks and keep every team connected.",
-    cta: "Learn more",
-    href: "#integrations",
-    accent: "from-[#FF7A45] to-[#FF4D8D]",
-    icon: Layers,
-  },
-];
-
-
-const PRODUCTS = [
-  {
-    id: "omnichannel",
-    eyebrow: "Many channels, one platform",
-    title: "Omnichannel",
-    body: "Deliver a seamless CX with Artemis AI Omnichannel. Unify voice, messaging apps, and SMS in one platform for easy management. Provide personalized support, boost satisfaction, and strengthen relationships.",
-    metric: null,
-    tint: "bg-[#EEF2FF]",
-  },
-  {
-    id: "dialer",
-    eyebrow: "400% more calls per hour",
-    title: "AI Predictive Dialer",
-    body: "Boost contact rates and agent productivity with Artemis AI’s Predictive Dialer. It intelligently dials based on agent availability, reducing idle time and maximizing connections to drive sales.",
-    metric: "400%",
-    tint: "bg-[#E8FFF6]",
-  },
-  {
-    id: "speech",
-    eyebrow: "Conversation intelligence",
-    title: "AI Speech Analytics",
-    body: "Unlock insights with AI Speech Analytics. Transcribe calls, analyze sentiment, and identify key topics automatically. Improve agent performance, enhance CX, and drive smarter decisions.",
-    metric: null,
-    tint: "bg-[#FFF4E8]",
-  },
-  {
-    id: "flow",
-    eyebrow: "Design, automate, optimize",
-    title: "Flow Builder",
-    body: "Create custom call flows with a no-code, drag-and-drop Flow Builder. Design IVR menus, intelligent routing, and CRM-connected journeys across voice, chat, and messaging.",
-    metric: null,
-    tint: "bg-[#F3E8FF]",
-  },
-];
-
-
-const USE_CASES = [
-  {
-    label: "Outbound",
-    title: "Accelerate your sales",
-    body: "Help your sales team connect faster and convert more. Omnichannel outreach, predictive dialing, answering machine detection, and local caller ID maximize talk time with the right prospects.",
-  },
-  {
-    label: "Inbound",
-    title: "Elevate customer support",
-    body: "Deliver faster support with visual flow building, AI insights, and self-service chatbots. Reduce wait times and ensure every caller reaches the right agent.",
-  },
-  {
-    label: "Remote",
-    title: "Empower remote agents",
-    body: "Keep remote teams connected with a cloud platform, global call routing, and real-time monitoring — high performance from anywhere.",
-  },
-];
-
-const INDUSTRIES = [
-  "BPOs",
-  "Travel & Hospitality",
-  "Fintech",
-  "Healthcare",
-  "IT & Technology",
-  "eCommerce",
-  "EdTech",
-  "Retail",
-  "iGaming",
-  "Recruitment",
-  "Non Profit",
+const MARKETS = [
+  "Forex",
   "Insurance",
-  "Telemarketing",
-  "Loans",
-  "Transportation",
+  "Real Estate",
+  "Solar",
+  "SaaS Sales",
+  "Recruiting",
+  "BPOs",
+  "Call Centers",
+  "Mortgage",
+  "Financial Services",
 ];
 
-const NEXT_LEVEL = [
+const CATEGORY_PILLARS = [
   {
-    icon: Bot,
-    title: "Live AI coach in every call",
-    body: "Real-time prompts, objection handlers, and talk-track guidance while agents are still on the line — not just after-call scoring.",
+    title: "Revenue Intelligence",
+    body: "Know what is converting, what is stalling, and why — from every conversation.",
+    icon: TrendingUp,
+    accent: "from-[#2EE6A6] to-[#18C4FF]",
   },
   {
-    icon: LineChart,
-    title: "Rep DNA & skill graphs",
-    body: "Map each agent’s strengths, gaps, and coaching plan automatically so managers know exactly who to train and why.",
+    title: "Continuous Coaching",
+    body: "Every rep improves after every call. Managers stop guessing who needs help.",
+    icon: Sparkles,
+    accent: "from-[#4F6EF7] to-[#A855F7]",
   },
   {
-    icon: Headphones,
-    title: "AI roleplay & certification",
-    body: "Practice tough scenarios with an AI buyer, score the session, and unlock campaigns only when reps are certified.",
+    title: "Sales Infrastructure",
+    body: "Playbooks, memory, forecasting, and ops in one system — not five tools duct-taped together.",
+    icon: Layers,
+    accent: "from-[#FF7A45] to-[#FF4D8D]",
+  },
+];
+
+const REVENUE_LOOP = [
+  "Call",
+  "Transcript",
+  "AI Understanding",
+  "Manager",
+  "CRM",
+  "Rep Improvement",
+  "Higher Revenue",
+];
+
+const DNA_SKILLS = [
+  "Confidence",
+  "Discovery",
+  "Listening",
+  "Objection Handling",
+  "Closing",
+  "Compliance",
+  "Urgency",
+  "Product Knowledge",
+];
+
+const COPILOT_CARDS = [
+  {
+    signal: "Customer mentioned pricing.",
+    action: "Ask about budget.",
   },
   {
-    icon: Zap,
-    title: "Revenue OS, not just dialer",
-    body: "Pipeline, tasks, coaching, QA, and executive dashboards in one system — so contact center data becomes closed-won revenue.",
+    signal: "Customer sounds uncertain.",
+    action: "Slow down.",
   },
+  {
+    signal: "High buying intent detected.",
+    action: "Move toward closing.",
+  },
+  {
+    signal: "Compliance reminder.",
+    action: "Mention risk disclosure.",
+  },
+];
+
+const OPS_SIGNALS = [
+  "Team performance",
+  "Coaching impact",
+  "Revenue trends",
+  "Deal risk",
+  "Conversion bottlenecks",
+  "Top objections",
+  "Agent comparisons",
+  "Skill gaps",
+  "Upcoming coaching",
+];
+
+const COMMAND_SIGNALS = [
+  "Revenue generated",
+  "Forecast",
+  "Conversion trend",
+  "Pipeline health",
+  "Coaching ROI",
+  "AI insights",
+  "Biggest risks",
+  "Fastest growing teams",
+  "Weekly recommendations",
+];
+
+const KNOWLEDGE_UPLOADS = [
+  "Sales playbooks",
+  "Pricing",
+  "FAQs",
+  "Compliance",
+  "Winning calls",
+  "Scripts",
+  "Policies",
+];
+
+const KNOWLEDGE_USES = [
+  "Live coaching",
+  "Call analysis",
+  "Roleplay",
+  "Follow-ups",
+  "Manager recommendations",
+];
+
+const COMPARISON = {
+  traditional: [
+    "Records calls",
+    "Stores CRM notes",
+    "Static playbooks",
+    "Weekly reports",
+    "Manual coaching",
+  ],
+  artemis: [
+    "Learns from every conversation",
+    "Continuously improves every rep",
+    "Adaptive playbooks",
+    "Predicts revenue",
+    "AI coaching after every call",
+    "AI coaching during every call",
+    "Company memory",
+    "Revenue intelligence",
+  ],
+};
+
+const FLYWHEEL = [
+  "Good reps",
+  "Better playbooks",
+  "Smarter AI",
+  "Better coaching",
+  "Higher conversion",
+  "More successful calls",
+  "Even smarter AI",
 ];
 
 export function ArtemisHomePage() {
   return (
     <div className="min-h-screen bg-white text-[#0B1B33]">
-      <div className="border-b border-[#E8EEF7] bg-gradient-to-r from-[#E8FFF6] via-[#EEF2FF] to-[#FFF4E8]">
-        <p className="mx-auto max-w-6xl px-5 py-2.5 text-center text-sm text-[#4B5C76]">
-          <span className="mr-1.5">🎯</span>
-          BPO Growth Program: <span className="font-semibold text-[#12C48A]">30% off</span> your
-          first year — August only.{" "}
-          <a href="#get-started" className="font-semibold text-[#4F6EF7] underline-offset-2 hover:underline">
-            Learn more
-          </a>
-        </p>
-      </div>
-
       <ArtemisHeader />
 
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#E8FFF6_0%,_transparent_50%),radial-gradient(ellipse_at_90%_10%,_#EEF2FF_0%,_transparent_40%),radial-gradient(ellipse_at_10%_90%,_#FFF4E8_0%,_transparent_35%)]" />
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
+        <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
-              AI Contact Center Software
+              AI Operating System
             </p>
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-[#0B1B33] sm:text-5xl lg:text-[3.5rem]">
-              Every interaction,
-              <br />a human connection.
+            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-[#0B1B33] sm:text-5xl lg:text-[3.35rem]">
+              The AI Operating System
+              <br />
+              for Revenue Teams.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#4B5C76]">
-              Unify customer interactions across all channels with an intelligent, AI-powered contact
-              center platform — boosting agent efficiency and delivering seamless customer experiences.
+              Artemis listens to every customer conversation, understands what happened, coaches every
+              sales representative, predicts revenue outcomes, identifies deal risk, and continuously
+              improves your entire sales organization.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <ArtemisButton href="#get-started" className="px-7 py-3 text-base">
-                Get Started
+                Book Demo
               </ArtemisButton>
-              <ArtemisButton href="#products" variant="secondary" className="px-7 py-3 text-base">
-                Explore products
+              <ArtemisButton href="/app" variant="secondary" className="px-7 py-3 text-base">
+                Watch Live Demo
               </ArtemisButton>
             </div>
-            <p className="mt-4 text-xs text-[#8A9BB5]">
-              By clicking Get Started you agree to Artemis AI’s Privacy Policy and Terms of Service.
+            <p className="mt-6 text-xs font-medium tracking-wide text-[#8A9BB5] uppercase">
+              Built for high-volume sales organizations
             </p>
-
+            <div className="mt-3 flex flex-wrap gap-2">
+              {MARKETS.slice(0, 6).map((m) => (
+                <span
+                  key={m}
+                  className="rounded-full border border-[#E8EEF7] bg-white/80 px-3 py-1 text-xs font-medium text-[#4B5C76]"
+                >
+                  {m}
+                </span>
+              ))}
+            </div>
           </div>
-
           <HeroVisual />
         </div>
       </section>
 
-
-      {/* Three pillars */}
+      {/* Category pillars */}
       <section id="capabilities" className="py-20">
-        <div className="mx-auto grid max-w-6xl gap-6 px-5 lg:grid-cols-3">
-          {PILLARS.map((item) => (
-            <article
-              key={item.eyebrow}
-              className="flex flex-col rounded-[1.75rem] border border-[#E8EEF7] bg-white p-7 shadow-[0_16px_50px_-30px_rgba(15,40,80,0.35)]"
-            >
-              <div
-                className={cn(
-                  "mb-5 grid size-12 place-items-center rounded-2xl bg-gradient-to-br text-white",
-                  item.accent,
-                )}
-              >
-                <item.icon className="size-5" />
-              </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
-                {item.eyebrow}
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#0B1B33]">{item.title}</h2>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-[#4B5C76]">{item.body}</p>
-              <a
-                href={item.href}
-                className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#12C48A]"
-              >
-                {item.cta} <ArrowRight className="size-4" />
-              </a>
-            </article>
-          ))}
-        </div>
-      </section>
-
-
-      {/* Product deep dives */}
-      <section id="products" className="py-8">
-        {PRODUCTS.map((p, i) => (
-          <div
-            key={p.id}
-            id={p.id}
-            className={cn("py-16", i % 2 === 1 ? "bg-[#F7FAFF]" : "bg-white")}
-          >
-            <div
-              className={cn(
-                "mx-auto grid max-w-6xl items-center gap-10 px-5 lg:grid-cols-2",
-                i % 2 === 1 && "lg:[&>*:first-child]:order-2",
-              )}
-            >
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#12C48A]">
-                  {p.eyebrow}
-                </p>
-                <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-                  {p.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">{p.body}</p>
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <ArtemisButton href="#get-started">Explore {p.title}</ArtemisButton>
-                  <ArtemisButton href={CONTACT_MAILTO} variant="secondary">
-                    Contact Sales
-                  </ArtemisButton>
-                </div>
-              </div>
-              <ProductMock title={p.title} tint={p.tint} metric={p.metric} />
-            </div>
-          </div>
-        ))}
-      </section>
-
-
-      {/* Use cases */}
-      <section id="solutions" className="bg-[#F7FAFF] py-20">
-        <div className="mx-auto grid max-w-6xl gap-5 px-5 lg:grid-cols-3">
-          {USE_CASES.map((u) => (
-            <article
-              key={u.title}
-              className="rounded-[1.75rem] border border-white bg-white p-7 shadow-[0_12px_40px_-24px_rgba(15,40,80,0.28)]"
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
-                {u.label}
-              </p>
-              <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#0B1B33]">{u.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">{u.body}</p>
-              <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
-                <a href="#get-started" className="text-[#12C48A]">
-                  Explore →
-                </a>
-                <a href={CONTACT_MAILTO} className="text-[#4F6EF7]">
-                  Contact Sales
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Integrations + Pricing */}
-      <section id="integrations" className="py-20">
-        <div className="mx-auto grid max-w-6xl gap-6 px-5 lg:grid-cols-2">
-          <article className="rounded-[2rem] bg-gradient-to-br from-[#E8FFF6] via-white to-[#EEF2FF] p-8 sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#12C48A]">
-              Integrations
-            </p>
-            <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33]">
-              Seamless integration with your CRM
-            </h3>
-            <p className="mt-3 text-[#4B5C76]">
-              Sync with your favorite apps in just a few clicks to leverage Artemis AI’s contact center
-              features.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {["HubSpot", "Salesforce", "Zoho", "Zendesk", "Pipedrive", "Zapier"].map((n) => (
-                <span
-                  key={n}
-                  className="rounded-full border border-[#D7E0EF] bg-white px-3 py-1.5 text-xs font-semibold text-[#4B5C76]"
-                >
-                  {n}
-                </span>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ArtemisButton href="#get-started">Explore All Integrations</ArtemisButton>
-              <ArtemisButton href="#get-started" variant="secondary">
-                Get Started
-              </ArtemisButton>
-            </div>
-          </article>
-
-          <article id="pricing" className="rounded-[2rem] border border-[#E8EEF7] bg-white p-8 sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">Pricing</p>
-            <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33]">
-              Prices and features suitable for all sizes
-            </h3>
-            <p className="mt-3 text-[#4B5C76]">
-              Whether you are an enterprise or a medium-sized business, we’ve built a flexible
-              platform that scales with you while providing fair pricing based on your needs.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm text-[#4B5C76]">
-              {[
-                "Per-agent plans that grow with your team",
-                "Omnichannel + dialer + analytics included",
-                "Go live in less than 24 hours",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-2">
-                  <span className="mt-0.5 text-[#12C48A]">✓</span>
-                  {t}
-                </li>
-              ))}
-            </ul>
-            <ArtemisButton href="#get-started" className="mt-8">
-              Go to pricing
-            </ArtemisButton>
-          </article>
-        </div>
-      </section>
-
-      {/* Industries */}
-      <section className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
         <div className="mx-auto max-w-6xl px-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
-            Industries
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8A9BB5]">
+            Not another analytics tool
           </p>
           <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-            Built for your industry
+            Infrastructure for how revenue teams actually work.
           </h2>
-          <p className="mt-3 max-w-2xl text-[#4B5C76]">
-            Our platform streamlines high-performing contact centers, helping businesses deliver more
-            value to their customers.
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {CATEGORY_PILLARS.map((item) => (
+              <article
+                key={item.title}
+                className="flex flex-col rounded-[1.75rem] border border-[#E8EEF7] bg-white p-7 shadow-[0_16px_50px_-30px_rgba(15,40,80,0.35)]"
+              >
+                <div
+                  className={cn(
+                    "mb-5 grid size-12 place-items-center rounded-2xl bg-gradient-to-br text-white",
+                    item.accent,
+                  )}
+                >
+                  <item.icon className="size-5" />
+                </div>
+                <h3 className="text-2xl font-bold tracking-tight text-[#0B1B33]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Revenue Loop */}
+      <section id="revenue-loop" className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            Revenue Loop
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            Every conversation improves your business.
+          </h2>
+          <p className="mt-3 max-w-xl text-[#4B5C76]">
+            Every call becomes structured knowledge.
+            <br />
+            The AI continuously learns what wins deals.
+          </p>
+          <RevenueLoop />
+        </div>
+      </section>
+
+      {/* Company Brain */}
+      <section id="company-brain" className="py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+              Company Memory
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+              Your company finally remembers every conversation.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">
+              Instead of losing customer conversations forever, Artemis transforms every interaction
+              into searchable institutional knowledge.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-[#4B5C76]">
+              Top-performing reps automatically teach the rest of the organization.
+            </p>
+          </div>
+          <div className="rounded-[2rem] border border-[#E8EEF7] bg-gradient-to-br from-[#E8FFF6] via-white to-[#EEF2FF] p-8">
+            <div className="space-y-3">
+              {[
+                ["Company Intelligence", "What works across every team"],
+                ["Rep Intelligence", "Who is improving — and why"],
+                ["Revenue Forecasting", "Where pipeline will land"],
+                ["AI Decision Engine", "What to do next, not just what happened"],
+              ].map(([t, d]) => (
+                <div key={t} className="rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-sm">
+                  <p className="text-sm font-semibold text-[#0B1B33]">{t}</p>
+                  <p className="mt-0.5 text-xs text-[#8A9BB5]">{d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Rep DNA */}
+      <section id="rep-dna" className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            Rep Intelligence
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            Rep DNA™
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#4B5C76]">
+            Artemis builds a continuously evolving profile of every sales representative.
+          </p>
+          <p className="mt-2 max-w-2xl text-base leading-relaxed text-[#4B5C76]">
+            Not personality. Sales behaviour.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-2">
+            {DNA_SKILLS.map((skill) => (
+              <span
+                key={skill}
+                className="rounded-full border border-[#D7E0EF] bg-white px-4 py-2 text-sm font-medium text-[#0B1B33]"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {[
+              ["Who is improving", "Track 7- and 30-day skill trends with evidence from real calls."],
+              ["Who needs coaching", "Surface the highest-impact gaps before they hit revenue."],
+              ["Who is ready for promotion", "Promote on behaviour patterns — not gut feel."],
+            ].map(([t, b]) => (
+              <article key={t} className="rounded-[1.5rem] border border-white bg-white p-6">
+                <Dna className="size-5 text-[#12C48A]" />
+                <h3 className="mt-4 text-lg font-semibold text-[#0B1B33]">{t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#4B5C76]">{b}</p>
+              </article>
+            ))}
+          </div>
+          <p className="mt-8 text-sm font-medium text-[#4B5C76]">
+            Every call updates the model.
+          </p>
+        </div>
+      </section>
+
+      {/* Live AI Copilot */}
+      <section id="copilot" className="py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            Live AI Copilot
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            The AI doesn’t wait until the call ends.
+          </h2>
+          <p className="mt-3 max-w-xl text-[#4B5C76]">
+            It assists during the conversation.
+          </p>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            {COPILOT_CARDS.map((card, i) => (
+              <motion.article
+                key={card.signal}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ delay: i * 0.08, duration: 0.4 }}
+                className="rounded-[1.5rem] border border-[#E8EEF7] bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,40,80,0.3)]"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="grid size-9 shrink-0 place-items-center rounded-xl bg-[#E8FFF6] text-[#12C48A]">
+                    <Radio className="size-4" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-[#8A9BB5]">{card.signal}</p>
+                    <p className="mt-1 text-lg font-semibold text-[#0B1B33]">{card.action}</p>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Operations Center */}
+      <section id="operations" className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-2 lg:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+              Manager Operating System
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+              Operations Center
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">
+              Run the floor from one place. See coaching impact, bottlenecks, and deal risk before
+              the week is lost.
+            </p>
+            <ArtemisButton href="/manager" className="mt-8">
+              Open Operations Center
+            </ArtemisButton>
+          </div>
+          <SignalGrid items={OPS_SIGNALS} />
+        </div>
+      </section>
+
+      {/* Revenue Command Center */}
+      <section id="command" className="py-20">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-2 lg:items-center">
+          <SignalGrid items={COMMAND_SIGNALS} tint="executive" />
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+              Executive Command Center
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+              Revenue Command Center
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">
+              Not another analytics page.
+              <br />
+              A command surface for forecast, risk, and weekly action.
+            </p>
+            <ArtemisButton href="/ceo" className="mt-8">
+              Open Command Center
+            </ArtemisButton>
+          </div>
+        </div>
+      </section>
+
+      {/* Knowledge Engine */}
+      <section id="knowledge" className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            Knowledge Engine
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            Teach Artemis once.
+            <br />
+            Improve every salesperson forever.
+          </h2>
+          <div className="mt-12 grid gap-8 lg:grid-cols-2">
+            <div>
+              <p className="text-sm font-semibold text-[#0B1B33]">Upload</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {KNOWLEDGE_UPLOADS.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-[#D7E0EF] bg-white px-3 py-1.5 text-xs font-medium text-[#4B5C76]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-[#0B1B33]">Used during</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {KNOWLEDGE_USES.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-[#2EE6A6]/40 bg-[#E8FFF6] px-3 py-1.5 text-xs font-medium text-[#0B1B33]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Roleplay */}
+      <section id="roleplay" className="py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+              Roleplay & Certification
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+              Practice before customers.
+              <br />
+              Not after.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">
+              Managers create AI customers. Agents practice. AI scores every simulation.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-[#4B5C76]">
+              Certification before campaigns.
+            </p>
+          </div>
+          <div className="rounded-[2rem] border border-[#E8EEF7] bg-white p-8 shadow-[0_20px_50px_-30px_rgba(15,40,80,0.25)]">
+            <div className="flex items-center justify-between">
+              <p className="text-sm font-semibold text-[#0B1B33]">Scenario · Price objection</p>
+              <span className="rounded-full bg-[#E8FFF6] px-2.5 py-1 text-[11px] font-semibold text-[#12C48A]">
+                Score 86
+              </span>
+            </div>
+            <div className="mt-5 space-y-3 text-sm">
+              <div className="rounded-xl bg-[#F7FAFF] px-4 py-3 text-[#4B5C76]">
+                AI buyer: “I need to think about it — your fees feel high.”
+              </div>
+              <div className="rounded-xl border border-[#E8EEF7] px-4 py-3 text-[#0B1B33]">
+                Rep: “Fair — what part of the fee feels unclear versus expensive?”
+              </div>
+            </div>
+            <p className="mt-5 text-xs text-[#8A9BB5]">
+              Ready for campaign assignment after two more scenarios.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Markets */}
+      <section id="markets" className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8A9BB5]">
+            Markets
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            One operating system.
+            <br />
+            Many high-volume sales motions.
+          </h2>
+          <p className="mt-3 max-w-xl text-[#4B5C76]">
+            Forex is where we started. The category is broader.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            {INDUSTRIES.map((name) => (
+            {MARKETS.map((name) => (
               <a
                 key={name}
                 href="#get-started"
@@ -375,80 +535,164 @@ export function ArtemisHomePage() {
               </a>
             ))}
           </div>
-          <a href="#get-started" className="mt-8 inline-flex text-sm font-semibold text-[#4F6EF7]">
-            All Industries →
-          </a>
         </div>
       </section>
 
-      {/* Next level — Artemis differentiators */}
-      <section id="next-level" className="py-20">
+      {/* Comparison */}
+      <section id="comparison" className="py-20">
         <div className="mx-auto max-w-6xl px-5">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
-            Beyond the contact center
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            Category shift
           </p>
-          <h2 className="mt-3 text-center text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-            Take it to the next level with Artemis AI
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            Traditional sales software records.
+            <br />
+            Artemis learns.
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-center text-[#4B5C76]">
-            Match Voiso’s contact-center core — then go further with live coaching, skill DNA,
-            roleplay certification, and a full revenue OS.
-          </p>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {NEXT_LEVEL.map((item) => (
-              <article
-                key={item.title}
-                className="rounded-[1.5rem] border border-[#E8EEF7] bg-white p-6 shadow-[0_12px_40px_-28px_rgba(15,40,80,0.35)]"
-              >
-                <div className="mb-4 grid size-11 place-items-center rounded-2xl bg-[#E8FFF6] text-[#12C48A]">
-                  <item.icon className="size-5" />
-                </div>
-                <h3 className="font-semibold text-[#0B1B33]">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#4B5C76]">{item.body}</p>
-              </article>
-            ))}
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-[1.75rem] border border-[#E8EEF7] bg-[#F7FAFF] p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
+                Traditional Sales Software
+              </p>
+              <ul className="mt-6 space-y-3">
+                {COMPARISON.traditional.map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-[#4B5C76]">
+                    <span className="size-1.5 rounded-full bg-[#A8B5C9]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-[1.75rem] border border-[#2EE6A6]/40 bg-gradient-to-br from-[#E8FFF6] to-white p-8 shadow-[0_20px_50px_-30px_rgba(18,196,138,0.35)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#12C48A]">
+                Artemis
+              </p>
+              <ul className="mt-6 space-y-3">
+                {COMPARISON.artemis.map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm font-medium text-[#0B1B33]">
+                    <span className="size-1.5 rounded-full bg-[#12C48A]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Infrastructure */}
-      <section id="security" className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
+      {/* Why Artemis */}
+      <section id="why" className="border-y border-[#E8EEF7] bg-[#0B1B33] py-20 text-white">
+        <div className="mx-auto max-w-3xl px-5 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#2EE6A6]">
+            Why Artemis
+          </p>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            Most CRMs store what happened.
+            <br />
+            Artemis understands why it happened.
+          </h2>
+        </div>
+      </section>
+
+      {/* Flywheel */}
+      <section id="flywheel" className="py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            Flywheel
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            The system gets smarter every week you use it.
+          </h2>
+          <p className="mt-3 max-w-xl text-[#4B5C76]">
+            Good calls create better playbooks. Better playbooks create smarter AI. Smarter AI creates
+            better coaching — and higher conversion.
+          </p>
+          <Flywheel />
+        </div>
+      </section>
+
+      {/* Integrations + Pricing */}
+      <section id="integrations" className="border-t border-[#E8EEF7] bg-[#F7FAFF] py-20">
+        <div className="mx-auto grid max-w-6xl gap-6 px-5 lg:grid-cols-2">
+          <article className="rounded-[2rem] bg-gradient-to-br from-[#E8FFF6] via-white to-[#EEF2FF] p-8 sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#12C48A]">
+              Integrations
+            </p>
+            <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33]">
+              Plugs into the stack you already run
+            </h3>
+            <p className="mt-3 text-[#4B5C76]">
+              Sync outcomes, coaching tasks, and deal risk into your CRM — without making Artemis a
+              note-taking tool.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["HubSpot", "Salesforce", "Zoho", "Pipedrive", "Webhook", "API"].map((n) => (
+                <span
+                  key={n}
+                  className="rounded-full border border-[#D7E0EF] bg-white px-3 py-1.5 text-xs font-semibold text-[#4B5C76]"
+                >
+                  {n}
+                </span>
+              ))}
+            </div>
+          </article>
+
+          <article id="pricing" className="rounded-[2rem] border border-[#E8EEF7] bg-white p-8 sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">Pricing</p>
+            <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33]">
+              €50 per user / month
+            </h3>
+            <p className="mt-3 text-[#4B5C76]">
+              Simple seat pricing for high-volume sales organizations. Pay for the people Artemis
+              coaches — not for vanity features.
+            </p>
+            <ul className="mt-6 space-y-3 text-sm text-[#4B5C76]">
+              {[
+                "Revenue OS for every seat",
+                "Live AI Copilot + Rep DNA™",
+                "Operations + Command centers included",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2">
+                  <span className="mt-0.5 text-[#12C48A]">✓</span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <ArtemisButton href="#get-started" className="mt-8">
+              Book Demo
+            </ArtemisButton>
+          </article>
+        </div>
+      </section>
+
+      {/* Security */}
+      <section id="security" className="py-20">
         <div className="mx-auto max-w-6xl px-5">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
-            Certified & Trusted
+            Trust
           </p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-            Infrastructure and security
+            Built for regulated revenue teams
           </h2>
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            <article className="rounded-[1.75rem] border border-white bg-white p-8">
+            <article className="rounded-[1.75rem] border border-[#E8EEF7] bg-white p-8">
               <div className="mb-4 grid size-12 place-items-center rounded-2xl bg-[#EEF2FF] text-[#4F6EF7]">
-                <Globe2 className="size-5" />
-              </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
-                Worldwide
-              </p>
-              <h3 className="mt-2 text-xl font-bold text-[#0B1B33]">
-                Global coverage you can count on
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">
-                We maintain a worldwide network of data centers and NOCs, ensuring reliable service,
-                superior call quality, and global coverage.
-              </p>
-            </article>
-            <article className="rounded-[1.75rem] border border-white bg-white p-8">
-              <div className="mb-4 grid size-12 place-items-center rounded-2xl bg-[#E8FFF6] text-[#12C48A]">
                 <ShieldCheck className="size-5" />
               </div>
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
-                Certified
-              </p>
-              <h3 className="mt-2 text-xl font-bold text-[#0B1B33]">
-                Protecting you and your customers
-              </h3>
+              <h3 className="text-xl font-bold text-[#0B1B33]">Tenant isolation by design</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">
-                End-to-end encryption for all data handling, GDPR compliance, and alignment with ISO
-                27001, ISO 9001, and PCI DSS.
+                Company data stays inside company boundaries. Multi-company memberships without
+                cross-tenant leaks.
+              </p>
+            </article>
+            <article className="rounded-[1.75rem] border border-[#E8EEF7] bg-white p-8">
+              <div className="mb-4 grid size-12 place-items-center rounded-2xl bg-[#E8FFF6] text-[#12C48A]">
+                <Brain className="size-5" />
+              </div>
+              <h3 className="text-xl font-bold text-[#0B1B33]">AI that cites evidence</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">
+                Scores and coaching reference real moments. Insights are assistance — not legal
+                conclusions.
               </p>
             </article>
           </div>
@@ -461,30 +705,26 @@ export function ArtemisHomePage() {
           <div className="rounded-[2rem] bg-gradient-to-br from-[#0B1B33] via-[#132742] to-[#1A3358] p-10 text-center text-white sm:p-14">
             <Building2 className="mx-auto size-8 text-[#2EE6A6]" />
             <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-              Get started in
+              Put Artemis at the center
               <br />
-              less than 24 hours
+              of your sales organization.
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-white/70">
-              Let’s discuss a solution that works for you. Email or call — we respond quickly.
+              Book a demo. See the Revenue Loop on your calls — not a slide deck.
             </p>
             <div className="mt-6 flex justify-center">
               <ContactLinks tone="dark" className="items-center text-center" />
             </div>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <ArtemisButton href={CONTACT_MAILTO} className="px-8 py-3 text-base">
-                Email us
+                Book Demo
               </ArtemisButton>
-              <ArtemisButton href={CONTACT_TEL} variant="secondary" className="px-8 py-3 text-base">
-                Call {CONTACT_PHONE_DISPLAY}
+              <ArtemisButton href="/app" variant="secondary" className="px-8 py-3 text-base">
+                Watch Live Demo
               </ArtemisButton>
             </div>
             <p className="mt-4 text-xs text-white/45">
-              Prefer to explore first?{" "}
-              <a href="/app" className="underline underline-offset-2 hover:text-white">
-                Open the product demo
-              </a>
-              .
+              Or call {CONTACT_PHONE_DISPLAY}
             </p>
           </div>
         </div>
@@ -495,31 +735,37 @@ export function ArtemisHomePage() {
           <div>
             <ArtemisMark />
             <p className="mt-3 max-w-xs text-sm text-[#8A9BB5]">
-              AI contact center software — omnichannel, predictive dialing, speech analytics, and a
-              full revenue OS.
+              The AI Operating System for high-volume sales organizations.
             </p>
             <ContactLinks className="mt-4" />
           </div>
           <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-4">
             {[
-              ["Solutions", ["Sales", "Support", "BPOs", "Virtual Numbers"]],
-              ["Products", ["Omnichannel", "Flow Builder", "Speech Analytics", "Predictive Dialer"]],
-              ["Resources", ["Integrations", "Documentation", "Developers", "Blog"]],
-              ["Company", ["About", "Careers", "Contact Sales", "Privacy"]],
+              ["Product", ["Revenue Loop", "Rep DNA™", "Live Copilot", "Command Center"]],
+              ["Platform", ["Operations Center", "Knowledge Engine", "Roleplay", "Integrations"]],
+              ["Markets", ["Forex", "Insurance", "Real Estate", "BPOs"]],
+              ["Company", ["Why Artemis", "Trust", "Contact Sales", "Privacy"]],
             ].map(([title, links]) => (
               <div key={title as string}>
                 <p className="font-semibold text-[#0B1B33]">{title as string}</p>
                 <ul className="mt-3 space-y-2 text-[#8A9BB5]">
-                  {(links as string[]).map((l) => (
-                    <li key={l}>
-                      <a
-                        href={l === "Contact Sales" ? CONTACT_MAILTO : "#get-started"}
-                        className="hover:text-[#12C48A]"
-                      >
-                        {l}
-                      </a>
-                    </li>
-                  ))}
+                  {(links as string[]).map((l) => {
+                    const href =
+                      l === "Contact Sales"
+                        ? CONTACT_MAILTO
+                        : l === "Why Artemis"
+                          ? "#why"
+                          : l === "Trust"
+                            ? "#security"
+                            : "#capabilities";
+                    return (
+                      <li key={l}>
+                        <a href={href} className="hover:text-[#12C48A]">
+                          {l}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
@@ -540,6 +786,102 @@ export function ArtemisHomePage() {
   );
 }
 
+function RevenueLoop() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const reduce = useReducedMotion();
+
+  return (
+    <div ref={ref} className="mt-12 overflow-x-auto pb-2">
+      <div className="flex min-w-max items-center gap-2 md:min-w-0 md:flex-wrap md:justify-center">
+        {REVENUE_LOOP.map((step, i) => (
+          <div key={step} className="flex items-center gap-2">
+            <motion.div
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={inView ? { opacity: 1, y: 0 } : undefined}
+              transition={{ delay: i * 0.1, duration: 0.35 }}
+              className="rounded-2xl border border-[#D7E0EF] bg-white px-4 py-3 text-sm font-semibold text-[#0B1B33] shadow-sm"
+            >
+              {step}
+            </motion.div>
+            {i < REVENUE_LOOP.length - 1 ? (
+              <ArrowDown className="hidden size-4 rotate-[-90deg] text-[#12C48A] md:block" />
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Flywheel() {
+  const [active, setActive] = useState(0);
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (reduce) return;
+    const id = window.setInterval(() => {
+      setActive((i) => (i + 1) % FLYWHEEL.length);
+    }, 1600);
+    return () => window.clearInterval(id);
+  }, [reduce]);
+
+  return (
+    <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {FLYWHEEL.map((step, i) => (
+        <div
+          key={step}
+          className={cn(
+            "rounded-[1.25rem] border px-4 py-4 text-sm font-semibold transition-all duration-500",
+            i === active
+              ? "border-[#2EE6A6] bg-[#E8FFF6] text-[#0B1B33] shadow-[0_12px_40px_-24px_rgba(18,196,138,0.55)]"
+              : "border-[#E8EEF7] bg-white text-[#8A9BB5]",
+          )}
+        >
+          <span className="mr-2 text-xs font-bold text-[#12C48A]">{i + 1}</span>
+          {step}
+          {i < FLYWHEEL.length - 1 ? (
+            <ArrowRight className="ml-2 inline size-3.5 opacity-40" />
+          ) : (
+            <Zap className="ml-2 inline size-3.5 text-[#12C48A]" />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SignalGrid({
+  items,
+  tint = "ops",
+}: {
+  items: string[];
+  tint?: "ops" | "executive";
+}) {
+  return (
+    <div
+      className={cn(
+        "grid grid-cols-2 gap-3 rounded-[2rem] border p-6 sm:grid-cols-3",
+        tint === "executive"
+          ? "border-[#E8EEF7] bg-gradient-to-br from-[#0B1B33] to-[#1A3358] text-white"
+          : "border-[#E8EEF7] bg-white",
+      )}
+    >
+      {items.map((item) => (
+        <div
+          key={item}
+          className={cn(
+            "rounded-xl px-3 py-3 text-xs font-semibold leading-snug",
+            tint === "executive" ? "bg-white/10 text-white/90" : "bg-[#F7FAFF] text-[#0B1B33]",
+          )}
+        >
+          {item}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function HeroVisual() {
   return (
     <div className="relative mx-auto w-full max-w-lg">
@@ -547,19 +889,19 @@ function HeroVisual() {
       <div className="relative overflow-hidden rounded-[2rem] border border-white bg-white/90 p-5 shadow-[0_30px_80px_-28px_rgba(15,40,80,0.45)] backdrop-blur">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <PhoneCall className="size-4 text-[#12C48A]" />
-            <p className="text-sm font-semibold text-[#0B1B33]">Live contact center</p>
+            <Gauge className="size-4 text-[#12C48A]" />
+            <p className="text-sm font-semibold text-[#0B1B33]">Revenue OS</p>
           </div>
           <span className="rounded-full bg-[#E8FFF6] px-2.5 py-1 text-[11px] font-semibold text-[#12C48A]">
-            24 agents online
+            Live
           </span>
         </div>
 
         <div className="mt-5 grid grid-cols-3 gap-3">
           {[
-            ["Calls / hr", "412", "+38%"],
-            ["Answer rate", "67%", "+5x local ID"],
-            ["CSAT", "4.8", "AI scored"],
+            ["Forecast", "+12%", "this week"],
+            ["Conversion", "18.4%", "coaching lift"],
+            ["Risk deals", "7", "need action"],
           ].map(([l, v, s]) => (
             <div key={l} className="rounded-2xl bg-[#F7FAFF] p-3">
               <p className="text-[10px] font-medium uppercase tracking-wide text-[#8A9BB5]">{l}</p>
@@ -571,9 +913,9 @@ function HeroVisual() {
 
         <div className="mt-4 space-y-2">
           {[
-            ["Inbound · WhatsApp", "routed · 00:12"],
-            ["Outbound · Predictive", "connected · live"],
-            ["QA · Speech AI", "score 4.6 · summarized"],
+            ["Rep DNA · Closing", "rising · top quartile"],
+            ["Copilot · Pricing objection", "suggested · used"],
+            ["Command · Pipeline risk", "3 deals flagged"],
           ].map(([a, b]) => (
             <div
               key={a}
@@ -586,43 +928,14 @@ function HeroVisual() {
         </div>
 
         <div className="mt-4 rounded-2xl bg-gradient-to-r from-[#2EE6A6] to-[#18C4FF] p-4 text-[#0B1B33]">
-          <p className="text-xs font-semibold uppercase tracking-wide opacity-80">AI coach tip</p>
+          <div className="flex items-center gap-2">
+            <Target className="size-3.5 opacity-80" />
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Weekly action</p>
+          </div>
           <p className="mt-1 text-sm font-semibold">
-            Prospect mentioned budget — ask for decision timeline before pitching tiers.
+            Three teams drove 61% of conversion lift. Double coaching capacity there first.
           </p>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function ProductMock({
-  title,
-  tint,
-  metric,
-}: {
-  title: string;
-  tint: string;
-  metric: string | null;
-}) {
-  return (
-    <div className={cn("relative overflow-hidden rounded-[2rem] p-8", tint)}>
-      <div className="rounded-[1.5rem] border border-white/80 bg-white/90 p-6 shadow-[0_20px_50px_-30px_rgba(15,40,80,0.4)]">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[#8A9BB5]">{title}</p>
-        {metric ? (
-          <p className="mt-3 text-5xl font-bold tracking-tight text-[#0B1B33]">{metric}</p>
-        ) : (
-          <div className="mt-4 space-y-2">
-            {[88, 64, 76, 52].map((w, i) => (
-              <div key={i} className="h-2.5 rounded-full bg-[#E8EEF7]">
-                <div className="h-2.5 rounded-full bg-[#2EE6A6]" style={{ width: `${w}%` }} />
-              </div>
-            ))}
-          </div>
-        )}
-        <p className="mt-4 text-sm text-[#4B5C76]">
-          Real-time visibility across agents, queues, and customer journeys.
-        </p>
       </div>
     </div>
   );
