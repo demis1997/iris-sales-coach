@@ -14,7 +14,6 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CeoRouteImport } from './routes/ceo'
 import { Route as CrmRouteImport } from './routes/crm'
-import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
@@ -42,6 +41,10 @@ import { Route as CrmContactsRouteImport } from './routes/crm.contacts'
 import { Route as CrmDealRiskRouteImport } from './routes/crm.deal-risk'
 import { Route as CrmPipelineRouteImport } from './routes/crm.pipeline'
 import { Route as CrmTasksRouteImport } from './routes/crm.tasks'
+import { Route as DemoIndexRouteImport } from './routes/demo.index'
+import { Route as DemoAgentRouteImport } from './routes/demo.agent'
+import { Route as DemoCeoRouteImport } from './routes/demo.ceo'
+import { Route as DemoManagerRouteImport } from './routes/demo.manager'
 import { Route as InviteTokenRouteImport } from './routes/invite.$token'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerCoachingRouteImport } from './routes/manager.coaching'
@@ -54,6 +57,28 @@ import { Route as AppCallsIndexRouteImport } from './routes/app.calls.index'
 import { Route as AppCallsCallIdRouteImport } from './routes/app.calls.$callId'
 import { Route as CeoEmployeesIndexRouteImport } from './routes/ceo.employees.index'
 import { Route as CeoEmployeesEmployeeIdRouteImport } from './routes/ceo.employees.$employeeId'
+import { Route as DemoAgentIndexRouteImport } from './routes/demo.agent.index'
+import { Route as DemoAgentCallsRouteImport } from './routes/demo.agent.calls'
+import { Route as DemoAgentCoachRouteImport } from './routes/demo.agent.coach'
+import { Route as DemoAgentDnaRouteImport } from './routes/demo.agent.dna'
+import { Route as DemoAgentGoalsRouteImport } from './routes/demo.agent.goals'
+import { Route as DemoAgentPracticeRouteImport } from './routes/demo.agent.practice'
+import { Route as DemoCallsCallIdRouteImport } from './routes/demo.calls.$callId'
+import { Route as DemoCeoIndexRouteImport } from './routes/demo.ceo.index'
+import { Route as DemoCeoCallsRouteImport } from './routes/demo.ceo.calls'
+import { Route as DemoCeoInsightsRouteImport } from './routes/demo.ceo.insights'
+import { Route as DemoCeoOpportunitiesRouteImport } from './routes/demo.ceo.opportunities'
+import { Route as DemoCeoRevenueRouteImport } from './routes/demo.ceo.revenue'
+import { Route as DemoContactsContactIdRouteImport } from './routes/demo.contacts.$contactId'
+import { Route as DemoManagerIndexRouteImport } from './routes/demo.manager.index'
+import { Route as DemoManagerCallsRouteImport } from './routes/demo.manager.calls'
+import { Route as DemoManagerCoachingRouteImport } from './routes/demo.manager.coaching'
+import { Route as DemoManagerLiveRouteImport } from './routes/demo.manager.live'
+import { Route as DemoManagerTeamRouteImport } from './routes/demo.manager.team'
+import { Route as DemoCeoAgentsIndexRouteImport } from './routes/demo.ceo.agents.index'
+import { Route as DemoCeoAgentsAgentIdRouteImport } from './routes/demo.ceo.agents.$agentId'
+import { Route as DemoCeoTeamsIndexRouteImport } from './routes/demo.ceo.teams.index'
+import { Route as DemoCeoTeamsTeamIdRouteImport } from './routes/demo.ceo.teams.$teamId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -78,11 +103,6 @@ const CeoRoute = CeoRouteImport.update({
 const CrmRoute = CrmRouteImport.update({
   id: '/crm',
   path: '/crm',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoRoute = DemoRouteImport.update({
-  id: '/demo',
-  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
@@ -220,6 +240,26 @@ const CrmTasksRoute = CrmTasksRouteImport.update({
   path: '/tasks',
   getParentRoute: () => CrmRoute,
 } as any)
+const DemoIndexRoute = DemoIndexRouteImport.update({
+  id: '/demo/',
+  path: '/demo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoAgentRoute = DemoAgentRouteImport.update({
+  id: '/demo/agent',
+  path: '/demo/agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoCeoRoute = DemoCeoRouteImport.update({
+  id: '/demo/ceo',
+  path: '/demo/ceo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoManagerRoute = DemoManagerRouteImport.update({
+  id: '/demo/manager',
+  path: '/demo/manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InviteTokenRoute = InviteTokenRouteImport.update({
   id: '/invite/$token',
   path: '/invite/$token',
@@ -280,6 +320,116 @@ const CeoEmployeesEmployeeIdRoute = CeoEmployeesEmployeeIdRouteImport.update({
   path: '/employees/$employeeId',
   getParentRoute: () => CeoRoute,
 } as any)
+const DemoAgentIndexRoute = DemoAgentIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemoAgentRoute,
+} as any)
+const DemoAgentCallsRoute = DemoAgentCallsRouteImport.update({
+  id: '/calls',
+  path: '/calls',
+  getParentRoute: () => DemoAgentRoute,
+} as any)
+const DemoAgentCoachRoute = DemoAgentCoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
+  getParentRoute: () => DemoAgentRoute,
+} as any)
+const DemoAgentDnaRoute = DemoAgentDnaRouteImport.update({
+  id: '/dna',
+  path: '/dna',
+  getParentRoute: () => DemoAgentRoute,
+} as any)
+const DemoAgentGoalsRoute = DemoAgentGoalsRouteImport.update({
+  id: '/goals',
+  path: '/goals',
+  getParentRoute: () => DemoAgentRoute,
+} as any)
+const DemoAgentPracticeRoute = DemoAgentPracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => DemoAgentRoute,
+} as any)
+const DemoCallsCallIdRoute = DemoCallsCallIdRouteImport.update({
+  id: '/demo/calls/$callId',
+  path: '/demo/calls/$callId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoCeoIndexRoute = DemoCeoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
+const DemoCeoCallsRoute = DemoCeoCallsRouteImport.update({
+  id: '/calls',
+  path: '/calls',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
+const DemoCeoInsightsRoute = DemoCeoInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
+const DemoCeoOpportunitiesRoute = DemoCeoOpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
+const DemoCeoRevenueRoute = DemoCeoRevenueRouteImport.update({
+  id: '/revenue',
+  path: '/revenue',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
+const DemoContactsContactIdRoute = DemoContactsContactIdRouteImport.update({
+  id: '/demo/contacts/$contactId',
+  path: '/demo/contacts/$contactId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoManagerIndexRoute = DemoManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DemoManagerRoute,
+} as any)
+const DemoManagerCallsRoute = DemoManagerCallsRouteImport.update({
+  id: '/calls',
+  path: '/calls',
+  getParentRoute: () => DemoManagerRoute,
+} as any)
+const DemoManagerCoachingRoute = DemoManagerCoachingRouteImport.update({
+  id: '/coaching',
+  path: '/coaching',
+  getParentRoute: () => DemoManagerRoute,
+} as any)
+const DemoManagerLiveRoute = DemoManagerLiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => DemoManagerRoute,
+} as any)
+const DemoManagerTeamRoute = DemoManagerTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => DemoManagerRoute,
+} as any)
+const DemoCeoAgentsIndexRoute = DemoCeoAgentsIndexRouteImport.update({
+  id: '/agents/',
+  path: '/agents/',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
+const DemoCeoAgentsAgentIdRoute = DemoCeoAgentsAgentIdRouteImport.update({
+  id: '/agents/$agentId',
+  path: '/agents/$agentId',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
+const DemoCeoTeamsIndexRoute = DemoCeoTeamsIndexRouteImport.update({
+  id: '/teams/',
+  path: '/teams/',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
+const DemoCeoTeamsTeamIdRoute = DemoCeoTeamsTeamIdRouteImport.update({
+  id: '/teams/$teamId',
+  path: '/teams/$teamId',
+  getParentRoute: () => DemoCeoRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -287,7 +437,6 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRouteWithChildren
   '/crm': typeof CrmRouteWithChildren
-  '/demo': typeof DemoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/manager': typeof ManagerRouteWithChildren
   '/onboarding': typeof OnboardingRoute
@@ -312,6 +461,9 @@ export interface FileRoutesByFullPath {
   '/crm/deal-risk': typeof CrmDealRiskRoute
   '/crm/pipeline': typeof CrmPipelineRoute
   '/crm/tasks': typeof CrmTasksRoute
+  '/demo/agent': typeof DemoAgentRouteWithChildren
+  '/demo/ceo': typeof DemoCeoRouteWithChildren
+  '/demo/manager': typeof DemoManagerRouteWithChildren
   '/invite/$token': typeof InviteTokenRoute
   '/manager/coaching': typeof ManagerCoachingRoute
   '/manager/playbooks': typeof ManagerPlaybooksRoute
@@ -319,19 +471,41 @@ export interface FileRoutesByFullPath {
   '/app/': typeof AppIndexRoute
   '/ceo/': typeof CeoIndexRoute
   '/crm/': typeof CrmIndexRoute
+  '/demo/': typeof DemoIndexRoute
   '/manager/': typeof ManagerIndexRoute
   '/api/twilio/recording': typeof ApiTwilioRecordingRoute
   '/api/twilio/status': typeof ApiTwilioStatusRoute
   '/api/twilio/voice': typeof ApiTwilioVoiceRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
+  '/demo/agent/calls': typeof DemoAgentCallsRoute
+  '/demo/agent/coach': typeof DemoAgentCoachRoute
+  '/demo/agent/dna': typeof DemoAgentDnaRoute
+  '/demo/agent/goals': typeof DemoAgentGoalsRoute
+  '/demo/agent/practice': typeof DemoAgentPracticeRoute
+  '/demo/calls/$callId': typeof DemoCallsCallIdRoute
+  '/demo/ceo/calls': typeof DemoCeoCallsRoute
+  '/demo/ceo/insights': typeof DemoCeoInsightsRoute
+  '/demo/ceo/opportunities': typeof DemoCeoOpportunitiesRoute
+  '/demo/ceo/revenue': typeof DemoCeoRevenueRoute
+  '/demo/contacts/$contactId': typeof DemoContactsContactIdRoute
+  '/demo/manager/calls': typeof DemoManagerCallsRoute
+  '/demo/manager/coaching': typeof DemoManagerCoachingRoute
+  '/demo/manager/live': typeof DemoManagerLiveRoute
+  '/demo/manager/team': typeof DemoManagerTeamRoute
   '/app/calls/': typeof AppCallsIndexRoute
   '/ceo/employees/': typeof CeoEmployeesIndexRoute
+  '/demo/agent/': typeof DemoAgentIndexRoute
+  '/demo/ceo/': typeof DemoCeoIndexRoute
+  '/demo/manager/': typeof DemoManagerIndexRoute
+  '/demo/ceo/agents/$agentId': typeof DemoCeoAgentsAgentIdRoute
+  '/demo/ceo/teams/$teamId': typeof DemoCeoTeamsTeamIdRoute
+  '/demo/ceo/agents/': typeof DemoCeoAgentsIndexRoute
+  '/demo/ceo/teams/': typeof DemoCeoTeamsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/demo': typeof DemoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/onboarding': typeof OnboardingRoute
   '/app/certifications': typeof AppCertificationsRoute
@@ -362,14 +536,37 @@ export interface FileRoutesByTo {
   '/app': typeof AppIndexRoute
   '/ceo': typeof CeoIndexRoute
   '/crm': typeof CrmIndexRoute
+  '/demo': typeof DemoIndexRoute
   '/manager': typeof ManagerIndexRoute
   '/api/twilio/recording': typeof ApiTwilioRecordingRoute
   '/api/twilio/status': typeof ApiTwilioStatusRoute
   '/api/twilio/voice': typeof ApiTwilioVoiceRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
+  '/demo/agent/calls': typeof DemoAgentCallsRoute
+  '/demo/agent/coach': typeof DemoAgentCoachRoute
+  '/demo/agent/dna': typeof DemoAgentDnaRoute
+  '/demo/agent/goals': typeof DemoAgentGoalsRoute
+  '/demo/agent/practice': typeof DemoAgentPracticeRoute
+  '/demo/calls/$callId': typeof DemoCallsCallIdRoute
+  '/demo/ceo/calls': typeof DemoCeoCallsRoute
+  '/demo/ceo/insights': typeof DemoCeoInsightsRoute
+  '/demo/ceo/opportunities': typeof DemoCeoOpportunitiesRoute
+  '/demo/ceo/revenue': typeof DemoCeoRevenueRoute
+  '/demo/contacts/$contactId': typeof DemoContactsContactIdRoute
+  '/demo/manager/calls': typeof DemoManagerCallsRoute
+  '/demo/manager/coaching': typeof DemoManagerCoachingRoute
+  '/demo/manager/live': typeof DemoManagerLiveRoute
+  '/demo/manager/team': typeof DemoManagerTeamRoute
   '/app/calls': typeof AppCallsIndexRoute
   '/ceo/employees': typeof CeoEmployeesIndexRoute
+  '/demo/agent': typeof DemoAgentIndexRoute
+  '/demo/ceo': typeof DemoCeoIndexRoute
+  '/demo/manager': typeof DemoManagerIndexRoute
+  '/demo/ceo/agents/$agentId': typeof DemoCeoAgentsAgentIdRoute
+  '/demo/ceo/teams/$teamId': typeof DemoCeoTeamsTeamIdRoute
+  '/demo/ceo/agents': typeof DemoCeoAgentsIndexRoute
+  '/demo/ceo/teams': typeof DemoCeoTeamsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -378,7 +575,6 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRouteWithChildren
   '/crm': typeof CrmRouteWithChildren
-  '/demo': typeof DemoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/manager': typeof ManagerRouteWithChildren
   '/onboarding': typeof OnboardingRoute
@@ -403,6 +599,9 @@ export interface FileRoutesById {
   '/crm/deal-risk': typeof CrmDealRiskRoute
   '/crm/pipeline': typeof CrmPipelineRoute
   '/crm/tasks': typeof CrmTasksRoute
+  '/demo/agent': typeof DemoAgentRouteWithChildren
+  '/demo/ceo': typeof DemoCeoRouteWithChildren
+  '/demo/manager': typeof DemoManagerRouteWithChildren
   '/invite/$token': typeof InviteTokenRoute
   '/manager/coaching': typeof ManagerCoachingRoute
   '/manager/playbooks': typeof ManagerPlaybooksRoute
@@ -410,14 +609,37 @@ export interface FileRoutesById {
   '/app/': typeof AppIndexRoute
   '/ceo/': typeof CeoIndexRoute
   '/crm/': typeof CrmIndexRoute
+  '/demo/': typeof DemoIndexRoute
   '/manager/': typeof ManagerIndexRoute
   '/api/twilio/recording': typeof ApiTwilioRecordingRoute
   '/api/twilio/status': typeof ApiTwilioStatusRoute
   '/api/twilio/voice': typeof ApiTwilioVoiceRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
+  '/demo/agent/calls': typeof DemoAgentCallsRoute
+  '/demo/agent/coach': typeof DemoAgentCoachRoute
+  '/demo/agent/dna': typeof DemoAgentDnaRoute
+  '/demo/agent/goals': typeof DemoAgentGoalsRoute
+  '/demo/agent/practice': typeof DemoAgentPracticeRoute
+  '/demo/calls/$callId': typeof DemoCallsCallIdRoute
+  '/demo/ceo/calls': typeof DemoCeoCallsRoute
+  '/demo/ceo/insights': typeof DemoCeoInsightsRoute
+  '/demo/ceo/opportunities': typeof DemoCeoOpportunitiesRoute
+  '/demo/ceo/revenue': typeof DemoCeoRevenueRoute
+  '/demo/contacts/$contactId': typeof DemoContactsContactIdRoute
+  '/demo/manager/calls': typeof DemoManagerCallsRoute
+  '/demo/manager/coaching': typeof DemoManagerCoachingRoute
+  '/demo/manager/live': typeof DemoManagerLiveRoute
+  '/demo/manager/team': typeof DemoManagerTeamRoute
   '/app/calls/': typeof AppCallsIndexRoute
   '/ceo/employees/': typeof CeoEmployeesIndexRoute
+  '/demo/agent/': typeof DemoAgentIndexRoute
+  '/demo/ceo/': typeof DemoCeoIndexRoute
+  '/demo/manager/': typeof DemoManagerIndexRoute
+  '/demo/ceo/agents/$agentId': typeof DemoCeoAgentsAgentIdRoute
+  '/demo/ceo/teams/$teamId': typeof DemoCeoTeamsTeamIdRoute
+  '/demo/ceo/agents/': typeof DemoCeoAgentsIndexRoute
+  '/demo/ceo/teams/': typeof DemoCeoTeamsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -427,7 +649,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/crm'
-    | '/demo'
     | '/forgot-password'
     | '/manager'
     | '/onboarding'
@@ -452,6 +673,9 @@ export interface FileRouteTypes {
     | '/crm/deal-risk'
     | '/crm/pipeline'
     | '/crm/tasks'
+    | '/demo/agent'
+    | '/demo/ceo'
+    | '/demo/manager'
     | '/invite/$token'
     | '/manager/coaching'
     | '/manager/playbooks'
@@ -459,19 +683,41 @@ export interface FileRouteTypes {
     | '/app/'
     | '/ceo/'
     | '/crm/'
+    | '/demo/'
     | '/manager/'
     | '/api/twilio/recording'
     | '/api/twilio/status'
     | '/api/twilio/voice'
     | '/app/calls/$callId'
     | '/ceo/employees/$employeeId'
+    | '/demo/agent/calls'
+    | '/demo/agent/coach'
+    | '/demo/agent/dna'
+    | '/demo/agent/goals'
+    | '/demo/agent/practice'
+    | '/demo/calls/$callId'
+    | '/demo/ceo/calls'
+    | '/demo/ceo/insights'
+    | '/demo/ceo/opportunities'
+    | '/demo/ceo/revenue'
+    | '/demo/contacts/$contactId'
+    | '/demo/manager/calls'
+    | '/demo/manager/coaching'
+    | '/demo/manager/live'
+    | '/demo/manager/team'
     | '/app/calls/'
     | '/ceo/employees/'
+    | '/demo/agent/'
+    | '/demo/ceo/'
+    | '/demo/manager/'
+    | '/demo/ceo/agents/$agentId'
+    | '/demo/ceo/teams/$teamId'
+    | '/demo/ceo/agents/'
+    | '/demo/ceo/teams/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
-    | '/demo'
     | '/forgot-password'
     | '/onboarding'
     | '/app/certifications'
@@ -502,14 +748,37 @@ export interface FileRouteTypes {
     | '/app'
     | '/ceo'
     | '/crm'
+    | '/demo'
     | '/manager'
     | '/api/twilio/recording'
     | '/api/twilio/status'
     | '/api/twilio/voice'
     | '/app/calls/$callId'
     | '/ceo/employees/$employeeId'
+    | '/demo/agent/calls'
+    | '/demo/agent/coach'
+    | '/demo/agent/dna'
+    | '/demo/agent/goals'
+    | '/demo/agent/practice'
+    | '/demo/calls/$callId'
+    | '/demo/ceo/calls'
+    | '/demo/ceo/insights'
+    | '/demo/ceo/opportunities'
+    | '/demo/ceo/revenue'
+    | '/demo/contacts/$contactId'
+    | '/demo/manager/calls'
+    | '/demo/manager/coaching'
+    | '/demo/manager/live'
+    | '/demo/manager/team'
     | '/app/calls'
     | '/ceo/employees'
+    | '/demo/agent'
+    | '/demo/ceo'
+    | '/demo/manager'
+    | '/demo/ceo/agents/$agentId'
+    | '/demo/ceo/teams/$teamId'
+    | '/demo/ceo/agents'
+    | '/demo/ceo/teams'
   id:
     | '__root__'
     | '/'
@@ -517,7 +786,6 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/crm'
-    | '/demo'
     | '/forgot-password'
     | '/manager'
     | '/onboarding'
@@ -542,6 +810,9 @@ export interface FileRouteTypes {
     | '/crm/deal-risk'
     | '/crm/pipeline'
     | '/crm/tasks'
+    | '/demo/agent'
+    | '/demo/ceo'
+    | '/demo/manager'
     | '/invite/$token'
     | '/manager/coaching'
     | '/manager/playbooks'
@@ -549,14 +820,37 @@ export interface FileRouteTypes {
     | '/app/'
     | '/ceo/'
     | '/crm/'
+    | '/demo/'
     | '/manager/'
     | '/api/twilio/recording'
     | '/api/twilio/status'
     | '/api/twilio/voice'
     | '/app/calls/$callId'
     | '/ceo/employees/$employeeId'
+    | '/demo/agent/calls'
+    | '/demo/agent/coach'
+    | '/demo/agent/dna'
+    | '/demo/agent/goals'
+    | '/demo/agent/practice'
+    | '/demo/calls/$callId'
+    | '/demo/ceo/calls'
+    | '/demo/ceo/insights'
+    | '/demo/ceo/opportunities'
+    | '/demo/ceo/revenue'
+    | '/demo/contacts/$contactId'
+    | '/demo/manager/calls'
+    | '/demo/manager/coaching'
+    | '/demo/manager/live'
+    | '/demo/manager/team'
     | '/app/calls/'
     | '/ceo/employees/'
+    | '/demo/agent/'
+    | '/demo/ceo/'
+    | '/demo/manager/'
+    | '/demo/ceo/agents/$agentId'
+    | '/demo/ceo/teams/$teamId'
+    | '/demo/ceo/agents/'
+    | '/demo/ceo/teams/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -565,14 +859,19 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CeoRoute: typeof CeoRouteWithChildren
   CrmRoute: typeof CrmRouteWithChildren
-  DemoRoute: typeof DemoRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   ManagerRoute: typeof ManagerRouteWithChildren
   OnboardingRoute: typeof OnboardingRoute
+  DemoAgentRoute: typeof DemoAgentRouteWithChildren
+  DemoCeoRoute: typeof DemoCeoRouteWithChildren
+  DemoManagerRoute: typeof DemoManagerRouteWithChildren
   InviteTokenRoute: typeof InviteTokenRoute
+  DemoIndexRoute: typeof DemoIndexRoute
   ApiTwilioRecordingRoute: typeof ApiTwilioRecordingRoute
   ApiTwilioStatusRoute: typeof ApiTwilioStatusRoute
   ApiTwilioVoiceRoute: typeof ApiTwilioVoiceRoute
+  DemoCallsCallIdRoute: typeof DemoCallsCallIdRoute
+  DemoContactsContactIdRoute: typeof DemoContactsContactIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -610,13 +909,6 @@ declare module '@tanstack/react-router' {
       path: '/crm'
       fullPath: '/crm'
       preLoaderRoute: typeof CrmRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo': {
-      id: '/demo'
-      path: '/demo'
-      fullPath: '/demo'
-      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forgot-password': {
@@ -808,6 +1100,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrmTasksRouteImport
       parentRoute: typeof CrmRoute
     }
+    '/demo/': {
+      id: '/demo/'
+      path: '/demo'
+      fullPath: '/demo/'
+      preLoaderRoute: typeof DemoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/agent': {
+      id: '/demo/agent'
+      path: '/demo/agent'
+      fullPath: '/demo/agent'
+      preLoaderRoute: typeof DemoAgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/ceo': {
+      id: '/demo/ceo'
+      path: '/demo/ceo'
+      fullPath: '/demo/ceo'
+      preLoaderRoute: typeof DemoCeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/manager': {
+      id: '/demo/manager'
+      path: '/demo/manager'
+      fullPath: '/demo/manager'
+      preLoaderRoute: typeof DemoManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/invite/$token': {
       id: '/invite/$token'
       path: '/invite/$token'
@@ -891,6 +1211,160 @@ declare module '@tanstack/react-router' {
       fullPath: '/ceo/employees/$employeeId'
       preLoaderRoute: typeof CeoEmployeesEmployeeIdRouteImport
       parentRoute: typeof CeoRoute
+    }
+    '/demo/agent/': {
+      id: '/demo/agent/'
+      path: '/'
+      fullPath: '/demo/agent/'
+      preLoaderRoute: typeof DemoAgentIndexRouteImport
+      parentRoute: typeof DemoAgentRoute
+    }
+    '/demo/agent/calls': {
+      id: '/demo/agent/calls'
+      path: '/calls'
+      fullPath: '/demo/agent/calls'
+      preLoaderRoute: typeof DemoAgentCallsRouteImport
+      parentRoute: typeof DemoAgentRoute
+    }
+    '/demo/agent/coach': {
+      id: '/demo/agent/coach'
+      path: '/coach'
+      fullPath: '/demo/agent/coach'
+      preLoaderRoute: typeof DemoAgentCoachRouteImport
+      parentRoute: typeof DemoAgentRoute
+    }
+    '/demo/agent/dna': {
+      id: '/demo/agent/dna'
+      path: '/dna'
+      fullPath: '/demo/agent/dna'
+      preLoaderRoute: typeof DemoAgentDnaRouteImport
+      parentRoute: typeof DemoAgentRoute
+    }
+    '/demo/agent/goals': {
+      id: '/demo/agent/goals'
+      path: '/goals'
+      fullPath: '/demo/agent/goals'
+      preLoaderRoute: typeof DemoAgentGoalsRouteImport
+      parentRoute: typeof DemoAgentRoute
+    }
+    '/demo/agent/practice': {
+      id: '/demo/agent/practice'
+      path: '/practice'
+      fullPath: '/demo/agent/practice'
+      preLoaderRoute: typeof DemoAgentPracticeRouteImport
+      parentRoute: typeof DemoAgentRoute
+    }
+    '/demo/calls/$callId': {
+      id: '/demo/calls/$callId'
+      path: '/demo/calls/$callId'
+      fullPath: '/demo/calls/$callId'
+      preLoaderRoute: typeof DemoCallsCallIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/ceo/': {
+      id: '/demo/ceo/'
+      path: '/'
+      fullPath: '/demo/ceo/'
+      preLoaderRoute: typeof DemoCeoIndexRouteImport
+      parentRoute: typeof DemoCeoRoute
+    }
+    '/demo/ceo/calls': {
+      id: '/demo/ceo/calls'
+      path: '/calls'
+      fullPath: '/demo/ceo/calls'
+      preLoaderRoute: typeof DemoCeoCallsRouteImport
+      parentRoute: typeof DemoCeoRoute
+    }
+    '/demo/ceo/insights': {
+      id: '/demo/ceo/insights'
+      path: '/insights'
+      fullPath: '/demo/ceo/insights'
+      preLoaderRoute: typeof DemoCeoInsightsRouteImport
+      parentRoute: typeof DemoCeoRoute
+    }
+    '/demo/ceo/opportunities': {
+      id: '/demo/ceo/opportunities'
+      path: '/opportunities'
+      fullPath: '/demo/ceo/opportunities'
+      preLoaderRoute: typeof DemoCeoOpportunitiesRouteImport
+      parentRoute: typeof DemoCeoRoute
+    }
+    '/demo/ceo/revenue': {
+      id: '/demo/ceo/revenue'
+      path: '/revenue'
+      fullPath: '/demo/ceo/revenue'
+      preLoaderRoute: typeof DemoCeoRevenueRouteImport
+      parentRoute: typeof DemoCeoRoute
+    }
+    '/demo/contacts/$contactId': {
+      id: '/demo/contacts/$contactId'
+      path: '/demo/contacts/$contactId'
+      fullPath: '/demo/contacts/$contactId'
+      preLoaderRoute: typeof DemoContactsContactIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/manager/': {
+      id: '/demo/manager/'
+      path: '/'
+      fullPath: '/demo/manager/'
+      preLoaderRoute: typeof DemoManagerIndexRouteImport
+      parentRoute: typeof DemoManagerRoute
+    }
+    '/demo/manager/calls': {
+      id: '/demo/manager/calls'
+      path: '/calls'
+      fullPath: '/demo/manager/calls'
+      preLoaderRoute: typeof DemoManagerCallsRouteImport
+      parentRoute: typeof DemoManagerRoute
+    }
+    '/demo/manager/coaching': {
+      id: '/demo/manager/coaching'
+      path: '/coaching'
+      fullPath: '/demo/manager/coaching'
+      preLoaderRoute: typeof DemoManagerCoachingRouteImport
+      parentRoute: typeof DemoManagerRoute
+    }
+    '/demo/manager/live': {
+      id: '/demo/manager/live'
+      path: '/live'
+      fullPath: '/demo/manager/live'
+      preLoaderRoute: typeof DemoManagerLiveRouteImport
+      parentRoute: typeof DemoManagerRoute
+    }
+    '/demo/manager/team': {
+      id: '/demo/manager/team'
+      path: '/team'
+      fullPath: '/demo/manager/team'
+      preLoaderRoute: typeof DemoManagerTeamRouteImport
+      parentRoute: typeof DemoManagerRoute
+    }
+    '/demo/ceo/agents/': {
+      id: '/demo/ceo/agents/'
+      path: '/agents'
+      fullPath: '/demo/ceo/agents/'
+      preLoaderRoute: typeof DemoCeoAgentsIndexRouteImport
+      parentRoute: typeof DemoCeoRoute
+    }
+    '/demo/ceo/agents/$agentId': {
+      id: '/demo/ceo/agents/$agentId'
+      path: '/agents/$agentId'
+      fullPath: '/demo/ceo/agents/$agentId'
+      preLoaderRoute: typeof DemoCeoAgentsAgentIdRouteImport
+      parentRoute: typeof DemoCeoRoute
+    }
+    '/demo/ceo/teams/': {
+      id: '/demo/ceo/teams/'
+      path: '/teams'
+      fullPath: '/demo/ceo/teams/'
+      preLoaderRoute: typeof DemoCeoTeamsIndexRouteImport
+      parentRoute: typeof DemoCeoRoute
+    }
+    '/demo/ceo/teams/$teamId': {
+      id: '/demo/ceo/teams/$teamId'
+      path: '/teams/$teamId'
+      fullPath: '/demo/ceo/teams/$teamId'
+      preLoaderRoute: typeof DemoCeoTeamsTeamIdRouteImport
+      parentRoute: typeof DemoCeoRoute
     }
   }
 }
@@ -992,20 +1466,94 @@ const ManagerRouteChildren: ManagerRouteChildren = {
 const ManagerRouteWithChildren =
   ManagerRoute._addFileChildren(ManagerRouteChildren)
 
+interface DemoAgentRouteChildren {
+  DemoAgentCallsRoute: typeof DemoAgentCallsRoute
+  DemoAgentCoachRoute: typeof DemoAgentCoachRoute
+  DemoAgentDnaRoute: typeof DemoAgentDnaRoute
+  DemoAgentGoalsRoute: typeof DemoAgentGoalsRoute
+  DemoAgentPracticeRoute: typeof DemoAgentPracticeRoute
+  DemoAgentIndexRoute: typeof DemoAgentIndexRoute
+}
+
+const DemoAgentRouteChildren: DemoAgentRouteChildren = {
+  DemoAgentCallsRoute: DemoAgentCallsRoute,
+  DemoAgentCoachRoute: DemoAgentCoachRoute,
+  DemoAgentDnaRoute: DemoAgentDnaRoute,
+  DemoAgentGoalsRoute: DemoAgentGoalsRoute,
+  DemoAgentPracticeRoute: DemoAgentPracticeRoute,
+  DemoAgentIndexRoute: DemoAgentIndexRoute,
+}
+
+const DemoAgentRouteWithChildren = DemoAgentRoute._addFileChildren(
+  DemoAgentRouteChildren,
+)
+
+interface DemoCeoRouteChildren {
+  DemoCeoCallsRoute: typeof DemoCeoCallsRoute
+  DemoCeoInsightsRoute: typeof DemoCeoInsightsRoute
+  DemoCeoOpportunitiesRoute: typeof DemoCeoOpportunitiesRoute
+  DemoCeoRevenueRoute: typeof DemoCeoRevenueRoute
+  DemoCeoIndexRoute: typeof DemoCeoIndexRoute
+  DemoCeoAgentsAgentIdRoute: typeof DemoCeoAgentsAgentIdRoute
+  DemoCeoTeamsTeamIdRoute: typeof DemoCeoTeamsTeamIdRoute
+  DemoCeoAgentsIndexRoute: typeof DemoCeoAgentsIndexRoute
+  DemoCeoTeamsIndexRoute: typeof DemoCeoTeamsIndexRoute
+}
+
+const DemoCeoRouteChildren: DemoCeoRouteChildren = {
+  DemoCeoCallsRoute: DemoCeoCallsRoute,
+  DemoCeoInsightsRoute: DemoCeoInsightsRoute,
+  DemoCeoOpportunitiesRoute: DemoCeoOpportunitiesRoute,
+  DemoCeoRevenueRoute: DemoCeoRevenueRoute,
+  DemoCeoIndexRoute: DemoCeoIndexRoute,
+  DemoCeoAgentsAgentIdRoute: DemoCeoAgentsAgentIdRoute,
+  DemoCeoTeamsTeamIdRoute: DemoCeoTeamsTeamIdRoute,
+  DemoCeoAgentsIndexRoute: DemoCeoAgentsIndexRoute,
+  DemoCeoTeamsIndexRoute: DemoCeoTeamsIndexRoute,
+}
+
+const DemoCeoRouteWithChildren =
+  DemoCeoRoute._addFileChildren(DemoCeoRouteChildren)
+
+interface DemoManagerRouteChildren {
+  DemoManagerCallsRoute: typeof DemoManagerCallsRoute
+  DemoManagerCoachingRoute: typeof DemoManagerCoachingRoute
+  DemoManagerLiveRoute: typeof DemoManagerLiveRoute
+  DemoManagerTeamRoute: typeof DemoManagerTeamRoute
+  DemoManagerIndexRoute: typeof DemoManagerIndexRoute
+}
+
+const DemoManagerRouteChildren: DemoManagerRouteChildren = {
+  DemoManagerCallsRoute: DemoManagerCallsRoute,
+  DemoManagerCoachingRoute: DemoManagerCoachingRoute,
+  DemoManagerLiveRoute: DemoManagerLiveRoute,
+  DemoManagerTeamRoute: DemoManagerTeamRoute,
+  DemoManagerIndexRoute: DemoManagerIndexRoute,
+}
+
+const DemoManagerRouteWithChildren = DemoManagerRoute._addFileChildren(
+  DemoManagerRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   AuthRoute: AuthRoute,
   CeoRoute: CeoRouteWithChildren,
   CrmRoute: CrmRouteWithChildren,
-  DemoRoute: DemoRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   ManagerRoute: ManagerRouteWithChildren,
   OnboardingRoute: OnboardingRoute,
+  DemoAgentRoute: DemoAgentRouteWithChildren,
+  DemoCeoRoute: DemoCeoRouteWithChildren,
+  DemoManagerRoute: DemoManagerRouteWithChildren,
   InviteTokenRoute: InviteTokenRoute,
+  DemoIndexRoute: DemoIndexRoute,
   ApiTwilioRecordingRoute: ApiTwilioRecordingRoute,
   ApiTwilioStatusRoute: ApiTwilioStatusRoute,
   ApiTwilioVoiceRoute: ApiTwilioVoiceRoute,
+  DemoCallsCallIdRoute: DemoCallsCallIdRoute,
+  DemoContactsContactIdRoute: DemoContactsContactIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,0 +1,372 @@
+import type { AIAnalysis, DemoCall, TranscriptLine } from "@/lib/demo/types";
+
+function scores(partial: Partial<AIAnalysis["scores"]> & { overall: number }): AIAnalysis["scores"] {
+  return {
+    opening: 88,
+    discovery: 86,
+    listening: 80,
+    productKnowledge: 85,
+    objectionHandling: 75,
+    closing: 70,
+    compliance: 95,
+    ...partial,
+  };
+}
+
+const danielTranscript: TranscriptLine[] = [
+  {
+    id: "t1",
+    at: "00:42",
+    speaker: "agent",
+    name: "Daniel P.",
+    text: "Before we go further, what would you primarily use the account for?",
+    highlight: "good",
+  },
+  {
+    id: "t2",
+    at: "01:08",
+    speaker: "prospect",
+    name: "Prospect",
+    text: "Mostly EURUSD and a bit of gold. I've traded before on another broker.",
+  },
+  {
+    id: "t3",
+    at: "03:20",
+    speaker: "agent",
+    name: "Daniel P.",
+    text: "Our spreads are very competitive and we have MT5, plus a welcome bonus if you fund today.",
+    highlight: "opportunity",
+  },
+  {
+    id: "t4",
+    at: "07:51",
+    speaker: "prospect",
+    name: "Prospect",
+    text: "Okay, that sounds pretty good.",
+    highlight: "good",
+  },
+  {
+    id: "t5",
+    at: "08:14",
+    speaker: "agent",
+    name: "Daniel P.",
+    text: "Great, and another feature we offer is advanced charting plus educational webinars every week…",
+    highlight: "risk",
+  },
+  {
+    id: "t6",
+    at: "09:02",
+    speaker: "prospect",
+    name: "Prospect",
+    text: "I need to think about it. Also I'm worried about withdrawals — I've heard stories.",
+    highlight: "objection",
+  },
+  {
+    id: "t7",
+    at: "09:40",
+    speaker: "agent",
+    name: "Daniel P.",
+    text: "Sure, no problem. I can send you more information on the platforms.",
+    highlight: "risk",
+  },
+];
+
+const mariaTranscript: TranscriptLine[] = [
+  {
+    id: "m1",
+    at: "00:35",
+    speaker: "agent",
+    name: "Maria G.",
+    text: "Before we go further, what would you primarily use the account for?",
+    highlight: "good",
+  },
+  {
+    id: "m2",
+    at: "02:10",
+    speaker: "prospect",
+    name: "Prospect",
+    text: "I'm interested, but I'm worried about withdrawals.",
+    highlight: "objection",
+  },
+  {
+    id: "m3",
+    at: "02:18",
+    speaker: "agent",
+    name: "Maria G.",
+    text: "That's completely understandable. Let me explain exactly how the withdrawal process works before we discuss anything else.",
+    highlight: "good",
+  },
+  {
+    id: "m4",
+    at: "05:40",
+    speaker: "prospect",
+    name: "Prospect",
+    text: "I've heard stories about brokers making withdrawals difficult.",
+    highlight: "objection",
+  },
+  {
+    id: "m5",
+    at: "06:02",
+    speaker: "agent",
+    name: "Maria G.",
+    text: "Here's our policy in plain terms — same-day processing for verified accounts, and I'll send the steps in writing after this call.",
+    highlight: "good",
+  },
+  {
+    id: "m6",
+    at: "10:55",
+    speaker: "prospect",
+    name: "Prospect",
+    text: "Okay… send me that and I'll review this afternoon.",
+    highlight: "opportunity",
+  },
+  {
+    id: "m7",
+    at: "11:12",
+    speaker: "agent",
+    name: "Maria G.",
+    text: "Perfect — I'll WhatsApp the withdrawal guide now and we can continue before 17:00 if that works.",
+    highlight: "good",
+  },
+];
+
+export const DEMO_CALLS: DemoCall[] = [
+  {
+    id: "call-daniel-lost",
+    contactId: "contact-10482",
+    contactLabel: "Client 10482",
+    agentId: "agt-daniel",
+    agentName: "Daniel Petrou",
+    teamId: "team-velocity",
+    teamName: "Velocity Desk",
+    startedAt: "Today · 10:18",
+    duration: "11:42",
+    outcome: "Lost · follow-up vague",
+    intent: "high",
+    primaryObjection: "Withdrawal concerns",
+    estimatedValue: 8000,
+    aiScore: 64,
+    direction: "outbound",
+    lostReason: "trust",
+    storyBeat: "daniel_lost_close",
+    analysis: {
+      intent: "high",
+      outcome: "Lost opportunity — buying signal ignored",
+      conversionProbability: 58,
+      dealRisk: "high",
+      primaryObjection: "Withdrawal trust",
+      recommendedAction: "Coach closing + trust handling; assign roleplay before next shift",
+      scores: scores({
+        overall: 64,
+        opening: 86,
+        discovery: 81,
+        listening: 68,
+        productKnowledge: 88,
+        objectionHandling: 52,
+        closing: 41,
+        compliance: 94,
+      }),
+      coaching: [
+        {
+          id: "c1",
+          title: "Close when buying intent appears",
+          detail: "At 08:14 the prospect said “that sounds pretty good.” Daniel continued pitching features instead of asking for commitment.",
+          timestamp: "08:14",
+          priority: "high",
+        },
+        {
+          id: "c2",
+          title: "Resolve trust before discussing more product",
+          detail: "Withdrawal fear appeared at 09:02. Daniel deferred instead of explaining the withdrawal process.",
+          timestamp: "09:02",
+          priority: "high",
+        },
+        {
+          id: "c3",
+          title: "Ask one more discovery question on objectives",
+          detail: "Lot size and news-trading sensitivity were never confirmed before the offer.",
+          timestamp: "03:20",
+          priority: "medium",
+        },
+      ],
+      nextBestAction: {
+        title: "Manager review + roleplay assignment",
+        reason: "High-intent prospect; agent missed close window and trust objection.",
+        due: "Today",
+      },
+      summary:
+        "Demo analysis: Prospect showed clear buying intent. Agent over-explained after the signal and failed to address withdrawal trust, resulting in a vague deferral.",
+    },
+    transcript: danielTranscript,
+  },
+  {
+    id: "call-maria-followup",
+    contactId: "contact-10821",
+    contactLabel: "Client 10821",
+    agentId: "agt-maria",
+    agentName: "Maria Georgiou",
+    teamId: "team-alpha",
+    teamName: "Alpha Desk",
+    startedAt: "Today · 11:42",
+    duration: "12:08",
+    outcome: "Follow-up",
+    intent: "very_high",
+    primaryObjection: "Withdrawal concerns",
+    estimatedValue: 8000,
+    aiScore: 82,
+    direction: "outbound",
+    storyBeat: "maria_followup",
+    analysis: {
+      intent: "very_high",
+      outcome: "Follow-up — strong trust recovery",
+      conversionProbability: 72,
+      dealRisk: "medium",
+      primaryObjection: "Withdrawal trust",
+      recommendedAction: "Follow up today before 17:00 with withdrawal guide",
+      scores: scores({
+        overall: 82,
+        opening: 90,
+        discovery: 94,
+        listening: 83,
+        productKnowledge: 89,
+        objectionHandling: 72,
+        closing: 68,
+        compliance: 97,
+      }),
+      coaching: [
+        {
+          id: "mc1",
+          title: "Close when buying intent appears",
+          detail: "Prospect softened after policy explanation — a soft close for KYC start would lift conversion probability.",
+          timestamp: "10:55",
+          priority: "high",
+        },
+        {
+          id: "mc2",
+          title: "Resolve trust before deposit talk",
+          detail: "You correctly paused the pitch at 02:18. Keep this pattern.",
+          timestamp: "02:18",
+          priority: "medium",
+        },
+        {
+          id: "mc3",
+          title: "One more discovery on investment objectives",
+          detail: "Confirm risk comfort before sending funding link on the next touch.",
+          timestamp: "00:35",
+          priority: "low",
+        },
+      ],
+      nextBestAction: {
+        title: "Follow up today before 17:00",
+        reason: "Prospect showed high intent but still has unresolved withdrawal concern in writing.",
+        suggestedMessage:
+          "Hi — good speaking earlier. I wanted to send you the withdrawal information we discussed so you can review it before we continue.",
+        due: "Today · before 17:00",
+      },
+      summary:
+        "Demo analysis: Strong discovery and trust handling. Follow-up booked; conversion probability high if withdrawal proof is delivered same day.",
+    },
+    transcript: mariaTranscript,
+  },
+  {
+    id: "call-maria-live",
+    contactId: "contact-10901",
+    contactLabel: "Client 10901",
+    agentId: "agt-maria",
+    agentName: "Maria Georgiou",
+    teamId: "team-alpha",
+    teamName: "Alpha Desk",
+    startedAt: "Live now",
+    duration: "08:42",
+    outcome: "In progress",
+    intent: "high",
+    primaryObjection: "Withdrawal concerns",
+    estimatedValue: 6500,
+    aiScore: 0,
+    direction: "outbound",
+    analysis: {
+      intent: "high",
+      outcome: "Live · simulated",
+      conversionProbability: 61,
+      dealRisk: "medium",
+      primaryObjection: "Withdrawal trust",
+      recommendedAction: "Address trust before continuing the pitch",
+      scores: scores({ overall: 0 }),
+      coaching: [],
+      nextBestAction: {
+        title: "Stay on trust objection",
+        reason: "Simulated live AI: do not push deposit yet.",
+      },
+      summary: "Simulated AI demo — live coaching suggestions.",
+    },
+    transcript: [
+      {
+        id: "l1",
+        at: "02:14",
+        speaker: "agent",
+        name: "Maria G.",
+        text: "Before we go further, what would you primarily use the account for?",
+        highlight: "good",
+      },
+      {
+        id: "l2",
+        at: "02:40",
+        speaker: "prospect",
+        name: "Prospect",
+        text: "I'm interested, but I'm worried about withdrawals.",
+        highlight: "objection",
+      },
+    ],
+  },
+];
+
+// Additional list calls for tables
+const extraRows: Array<
+  [string, string, string, string, string, string, DemoCall["intent"], number, number]
+> = [
+  ["call-e1", "agt-leo", "Leo Andreou", "team-alpha", "Alpha Desk", "Closed · FTD", "very_high", 92, 12000],
+  ["call-e2", "agt-sofia", "Sofia Markou", "team-alpha", "Alpha Desk", "Follow-up", "high", 78, 5000],
+  ["call-e3", "agt-chris", "Chris Nicolaou", "team-alpha", "Alpha Desk", "Compliance review", "medium", 61, 3000],
+  ["call-e4", "agt-anna", "Anna Demetriou", "team-alpha", "Alpha Desk", "Closed · FTD", "very_high", 94, 15000],
+  ["call-e5", "agt-daniel", "Daniel Petrou", "team-velocity", "Velocity Desk", "Lost", "high", 59, 7000],
+];
+
+const extras: DemoCall[] = extraRows.map((row, idx) => {
+  const [id, agentId, agentName, teamId, teamName, outcome, intent, aiScore, estimatedValue] = row;
+  return {
+    id,
+    contactId: `contact-${id}`,
+    contactLabel: `Client ${11000 + idx}`,
+    agentId,
+    agentName,
+    teamId,
+    teamName,
+    startedAt: "Today",
+    duration: "09:20",
+    outcome,
+    intent,
+    primaryObjection: intent === "very_high" ? "None" : "Price / fees",
+    estimatedValue,
+    aiScore,
+    direction: "outbound",
+    analysis: {
+      intent,
+      outcome,
+      conversionProbability: aiScore - 10,
+      dealRisk: "medium",
+      primaryObjection: "Price / fees",
+      recommendedAction: "Review in coaching",
+      scores: scores({ overall: aiScore }),
+      coaching: [],
+      nextBestAction: { title: "Continue sequence", reason: "Demo placeholder" },
+      summary: "Demo analysis summary.",
+    },
+    transcript: [],
+  };
+});
+
+export const ALL_DEMO_CALLS: DemoCall[] = [...DEMO_CALLS, ...extras];
+
+export function getCall(id: string) {
+  return ALL_DEMO_CALLS.find((c) => c.id === id);
+}
