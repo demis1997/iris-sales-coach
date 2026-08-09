@@ -11,20 +11,34 @@ export const Route = createFileRoute("/demo/contacts/$contactId")({
 function ContactPage() {
   const { contactId } = Route.useParams();
   const { data: contact, loading } = useDemoQuery(() => demoService.getContact(contactId), [contactId]);
-  if (loading) return <DemoLoading />;
+  if (loading) {
+    return (
+      <div className="artemis-product min-h-screen px-4 py-8">
+        <DemoLoading />
+      </div>
+    );
+  }
   if (!contact) {
     return (
-      <DemoPage>
-        <PageHeading title="Contact" subtitle="Not in featured demo set" />
-        <p className="text-sm text-muted-foreground">Open a featured call contact such as Client 10482.</p>
-        <Link to="/demo/ceo/opportunities" className="text-sm text-primary hover:underline">
-          Back to opportunities
-        </Link>
-      </DemoPage>
+      <div className="artemis-product min-h-screen">
+        <div className="mx-auto max-w-[1440px] px-4 py-7 md:px-8">
+          <DemoPage>
+            <PageHeading title="Contact" subtitle="Not in featured demo set" />
+            <p className="text-sm text-muted-foreground">
+              Open a featured call contact such as Client 10482.
+            </p>
+            <Link to="/demo/ceo/opportunities" className="text-sm text-primary hover:underline">
+              Back to opportunities
+            </Link>
+          </DemoPage>
+        </div>
+      </div>
     );
   }
   return (
-    <DemoPage>
+    <div className="artemis-product min-h-screen">
+      <div className="mx-auto max-w-[1440px] px-4 py-7 md:px-8">
+      <DemoPage>
       <PageHeading title={contact.label} subtitle={`${contact.country} · ${contact.leadSource}`} action={<Chip tone="iris">Demo</Chip>} />
       <div className="grid gap-4 md:grid-cols-2">
         <Panel className="space-y-2 p-5 text-sm">
@@ -46,6 +60,8 @@ function ContactPage() {
         </Panel>
       </div>
     </DemoPage>
+      </div>
+    </div>
   );
 }
 

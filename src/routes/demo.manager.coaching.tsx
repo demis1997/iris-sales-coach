@@ -31,7 +31,7 @@ function CoachingPage() {
               <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
-                  className="rounded-xl gradient-surface px-3 py-1.5 text-xs font-semibold text-background"
+                  className="product-btn-primary !px-3 !py-1.5 text-xs"
                   onClick={() => toast.success(`Assigned “${c.assignment}” to ${c.agentName} (demo)`)}
                 >
                   Assign coaching

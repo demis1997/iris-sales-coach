@@ -40,9 +40,17 @@ function CallDetailPage() {
     ] as const;
   }, [analysis]);
 
-  if (loading || !call || !analysis) return <DemoLoading />;
+  if (loading || !call || !analysis) {
+    return (
+      <div className="artemis-product min-h-screen px-4 py-8 md:px-8">
+        <DemoLoading />
+      </div>
+    );
+  }
 
   return (
+    <div className="artemis-product min-h-screen">
+      <div className="mx-auto max-w-[1440px] px-4 py-7 md:px-8 md:py-9">
     <DemoPage>
       <div className="mb-2 flex flex-wrap gap-2">
         <Chip tone="iris">Demo Workspace</Chip>
@@ -52,6 +60,9 @@ function CallDetailPage() {
         </Link>
         <Link to="/demo/manager" className="text-xs text-primary hover:underline">
           Manager
+        </Link>
+        <Link to="/demo/agent/live" search={{ mode: "midcall" }} className="text-xs text-primary hover:underline">
+          Agent workspace
         </Link>
       </div>
       <PageHeading
@@ -77,7 +88,7 @@ function CallDetailPage() {
             <button
               type="button"
               onClick={() => setPlaying((v) => !v)}
-              className="rounded-xl gradient-surface px-3 py-1.5 text-xs font-semibold text-background"
+              className="product-btn-primary !px-3 !py-1.5 text-xs"
             >
               {playing ? "Pause" : "Play"}
             </button>
@@ -195,7 +206,7 @@ function CallDetailPage() {
               <div className="flex flex-wrap gap-2">
                 <button
                   type="button"
-                  className="rounded-xl gradient-surface px-3 py-1.5 text-xs font-semibold text-background"
+                  className="product-btn-primary !px-3 !py-1.5 text-xs"
                   onClick={() => {
                     void navigator.clipboard?.writeText(analysis.nextBestAction.suggestedMessage ?? "");
                     toast.success("Message copied");
@@ -219,6 +230,8 @@ function CallDetailPage() {
         </div>
       </div>
     </DemoPage>
+      </div>
+    </div>
   );
 }
 

@@ -1,0 +1,8 @@
+{
+  "name": "sales-coach-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:coach": "node scripts/test-sales-coach.mjs"
+  }
+}

@@ -9,17 +9,17 @@ import {
   ChevronDown,
   Dna,
   Gauge,
+  Headphones,
   Menu,
+  PhoneCall,
   Radio,
   Shield,
   Sparkles,
   Target,
   Users,
   X,
-  Zap,
 } from "lucide-react";
 import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
-import { CONTACT_MAILTO } from "@/components/relay/contact";
 import { cn } from "@/lib/utils";
 
 type NavLink = {
@@ -29,10 +29,7 @@ type NavLink = {
   icon?: React.ComponentType<{ className?: string }>;
 };
 
-type NavColumn = {
-  title: string;
-  links: NavLink[];
-};
+type NavColumn = { title: string; links: NavLink[] };
 
 type NavItem =
   | { label: string; href: string; columns?: never; featured?: never }
@@ -40,36 +37,30 @@ type NavItem =
 
 const NAV: NavItem[] = [
   {
-    label: "Platform",
+    label: "Product",
     featured: [
       {
-        label: "Revenue Loop",
-        href: "#revenue-loop",
-        description: "Every conversation improves the business.",
-        icon: Zap,
-      },
-      {
-        label: "Rep DNA™",
-        href: "#rep-dna",
-        description: "Continuously evolving sales behaviour profiles.",
-        icon: Dna,
-      },
-      {
-        label: "Live AI Copilot",
-        href: "#copilot",
-        description: "Assistance during the conversation — not after.",
+        label: "Artemis Copilot",
+        href: "/artemis-copilot",
+        description: "Live guidance during every conversation.",
         icon: Radio,
       },
       {
-        label: "Operations Center",
-        href: "#operations",
-        description: "The manager operating system.",
+        label: "Revenue Intelligence",
+        href: "/revenue-intelligence",
+        description: "Know why revenue is moving.",
+        icon: BarChart3,
+      },
+      {
+        label: "Manager Operations",
+        href: "/manager-operations",
+        description: "Run the floor without listening to every call.",
         icon: Users,
       },
       {
-        label: "Revenue Command Center",
-        href: "#command",
-        description: "Executive forecast, risk, and weekly action.",
+        label: "Executive Command Center",
+        href: "/executive-command-center",
+        description: "See what drives revenue.",
         icon: Gauge,
       },
     ],
@@ -78,106 +69,193 @@ const NAV: NavItem[] = [
         title: "Intelligence",
         links: [
           {
-            label: "Company Memory",
-            href: "#company-brain",
-            description: "Institutional knowledge from every call.",
+            label: "Conversation Intelligence",
+            href: "/conversation-intelligence",
+            description: "The layer underneath Artemis.",
             icon: Brain,
           },
           {
-            label: "Knowledge Engine",
-            href: "#knowledge",
-            description: "Teach Artemis once. Improve everyone forever.",
-            icon: BookOpen,
+            label: "Revenue Intelligence",
+            href: "/revenue-intelligence",
+            description: "Know why revenue is moving.",
+            icon: BarChart3,
           },
           {
-            label: "Roleplay & Certification",
-            href: "#roleplay",
-            description: "Practice before customers. Not after.",
+            label: "Call Intelligence",
+            href: "/call-intelligence",
+            description: "Every call as structured intelligence.",
+            icon: PhoneCall,
+          },
+        ],
+      },
+      {
+        title: "Coaching",
+        links: [
+          {
+            label: "Artemis Copilot",
+            href: "/artemis-copilot",
+            description: "Live guidance during every conversation.",
+            icon: Radio,
+          },
+          {
+            label: "AI Coaching",
+            href: "/ai-coaching",
+            description: "Personal coaching after every call.",
+            icon: Sparkles,
+          },
+          {
+            label: "Rep DNA",
+            href: "/rep-dna",
+            description: "How every rep sells.",
+            icon: Dna,
+          },
+          {
+            label: "AI Roleplay",
+            href: "/ai-roleplay",
+            description: "Practice before customers.",
             icon: Bot,
           },
         ],
       },
       {
-        title: "Outcomes",
+        title: "Management",
         links: [
           {
-            label: "Revenue Intelligence",
-            href: "#capabilities",
-            description: "What converts, what stalls, and why.",
-            icon: BarChart3,
+            label: "Manager Operations",
+            href: "/manager-operations",
+            description: "Run the floor without listening to every call.",
+            icon: Users,
           },
           {
-            label: "Continuous Coaching",
-            href: "#capabilities",
-            description: "Every rep improves after every call.",
-            icon: Sparkles,
+            label: "Executive Command Center",
+            href: "/executive-command-center",
+            description: "See what drives revenue.",
+            icon: Gauge,
           },
           {
-            label: "Category shift",
-            href: "#comparison",
-            description: "Why Artemis is infrastructure — not a tool.",
+            label: "Adaptive Playbooks",
+            href: "/adaptive-playbooks",
+            description: "Turn winning calls into guidance.",
+            icon: BookOpen,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Solutions",
+    columns: [
+      {
+        title: "By role",
+        links: [
+          { label: "Sales Agents", href: "/solutions/sales", description: "Live copilot and personal improvement." },
+          { label: "Managers", href: "/solutions/sales-management", description: "Attention queues and coaching." },
+          { label: "Revenue Leaders", href: "/solutions/revenue-leaders", description: "Conversation-driven revenue views." },
+        ],
+      },
+      {
+        title: "By function",
+        links: [
+          { label: "Quality Assurance", href: "/solutions/quality-assurance" },
+          { label: "Training", href: "/solutions/training" },
+          { label: "Compliance", href: "/solutions/compliance" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Industries",
+    columns: [
+      {
+        title: "Beachhead",
+        links: [
+          {
+            label: "Forex & CFD",
+            href: "/industries/forex",
+            description: "FTDs, desks, trust objections.",
             icon: Target,
           },
         ],
       },
+      {
+        title: "Also built for",
+        links: [
+          { label: "Financial Services", href: "/industries/financial-services" },
+          { label: "Insurance", href: "/industries/insurance" },
+          { label: "Real Estate", href: "/industries/real-estate" },
+          { label: "BPO & Contact Centers", href: "/industries/bpo" },
+          { label: "SaaS Sales", href: "/industries/saas" },
+          { label: "Recruiting", href: "/industries/recruiting" },
+          { label: "Telemarketing", href: "/industries/telemarketing" },
+          { label: "All industries", href: "/industries" },
+        ],
+      },
     ],
   },
   {
-    label: "Markets",
+    label: "Resources",
     columns: [
       {
-        title: "High-volume sales",
+        title: "Learn",
         links: [
-          { label: "Forex", href: "#markets", description: "Our first market — not our only one." },
-          { label: "Insurance", href: "#markets" },
-          { label: "Real Estate", href: "#markets" },
-          { label: "Solar", href: "#markets" },
-          { label: "SaaS Sales", href: "#markets" },
-          { label: "Recruiting", href: "#markets" },
+          { label: "Guides", href: "/resources", description: "Practical writing on high-volume sales." },
+          { label: "Documentation", href: "/docs", description: "Product docs preview." },
+          { label: "Integrations", href: "/integrations", description: "CRM, telephony, and APIs." },
         ],
       },
       {
-        title: "Operations at scale",
+        title: "Explore",
         links: [
-          { label: "BPOs", href: "#markets" },
-          { label: "Call Centers", href: "#markets" },
-          { label: "Mortgage", href: "#markets" },
-          { label: "Financial Services", href: "#markets" },
+          {
+            label: "Product Demo",
+            href: "/demo",
+            description: "CEO, manager, and agent views.",
+            icon: Headphones,
+          },
+          { label: "Pricing", href: "/pricing" },
         ],
       },
     ],
   },
-  { label: "Why Artemis", href: "#why" },
-  { label: "Pricing", href: "#pricing" },
   {
     label: "Company",
     columns: [
       {
-        title: "About",
+        title: "Artemis",
         links: [
-          {
-            label: "Forex product demo",
-            href: "/demo",
-            description: "CEO, manager & agent views for a forex floor.",
-            icon: Gauge,
-          },
-          {
-            label: "Trust",
-            href: "#security",
-            description: "Tenant isolation and evidence-based AI.",
-            icon: Shield,
-          },
-          {
-            label: "Contact Sales",
-            href: CONTACT_MAILTO,
-            description: "Talk to a solutions specialist.",
-            icon: Building2,
-          },
+          { label: "About", href: "/company", description: "What we're building and why.", icon: Building2 },
+          { label: "Security", href: "/security", description: "Architecture and roadmap.", icon: Shield },
+          { label: "Contact", href: "/contact", description: "Talk to us." },
         ],
       },
     ],
   },
 ];
+
+function NavHref({
+  href,
+  className,
+  onClick,
+  children,
+}: {
+  href: string;
+  className?: string;
+  onClick?: () => void;
+  children: React.ReactNode;
+}) {
+  if (href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("#")) {
+    return (
+      <a href={href} className={className} onClick={onClick}>
+        {children}
+      </a>
+    );
+  }
+  return (
+    <Link to={href as "/"} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
 
 export function ArtemisHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -214,20 +292,18 @@ export function ArtemisHeader() {
           {NAV.map((item) => {
             const hasMenu = Boolean(item.columns || item.featured);
             const isOpen = desktopOpen === item.label;
-
             if (!hasMenu) {
               return (
-                <a
+                <NavHref
                   key={item.label}
-                  href={item.href}
+                  href={item.href!}
                   className="rounded-lg px-3 py-2 text-sm font-medium text-[#4B5C76] transition-colors hover:bg-[#F7FAFF] hover:text-[#0B1B33]"
                   onClick={() => setDesktopOpen(null)}
                 >
                   {item.label}
-                </a>
+                </NavHref>
               );
             }
-
             return (
               <div
                 key={item.label}
@@ -266,12 +342,9 @@ export function ArtemisHeader() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link to="/demo" className="text-sm font-medium text-[#4B5C76] hover:text-[#0B1B33]">
-            Product Demo
+            Explore Demo
           </Link>
-          <Link to="/app" className="text-sm font-medium text-[#4B5C76] hover:text-[#0B1B33]">
-            Log In
-          </Link>
-          <ArtemisButton href="#get-started">Book Demo</ArtemisButton>
+          <ArtemisButton href="/contact">Book a Demo</ArtemisButton>
         </div>
 
         <button
@@ -284,25 +357,20 @@ export function ArtemisHeader() {
         </button>
       </div>
 
-      <div
-        className={cn(
-          "border-t border-[#E8EEF7] bg-white lg:hidden",
-          mobileOpen ? "block" : "hidden",
-        )}
-      >
+      <div className={cn("border-t border-[#E8EEF7] bg-white lg:hidden", mobileOpen ? "block" : "hidden")}>
         <div className="mx-auto max-w-6xl space-y-1 px-5 py-4">
           {NAV.map((item) => {
             const hasMenu = Boolean(item.columns || item.featured);
             if (!hasMenu) {
               return (
-                <a
+                <NavHref
                   key={item.label}
-                  href={item.href}
+                  href={item.href!}
                   className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[#0B1B33]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
-                </a>
+                </NavHref>
               );
             }
             const open = mobileSection === item.label;
@@ -319,7 +387,7 @@ export function ArtemisHeader() {
                 {open ? (
                   <div className="space-y-3 border-t border-[#E8EEF7] px-3 py-3">
                     {item.featured?.map((link) => (
-                      <a
+                      <NavHref
                         key={link.label}
                         href={link.href}
                         className="block"
@@ -329,7 +397,7 @@ export function ArtemisHeader() {
                         {link.description ? (
                           <p className="mt-0.5 text-xs text-[#8A9BB5]">{link.description}</p>
                         ) : null}
-                      </a>
+                      </NavHref>
                     ))}
                     {item.columns?.map((col) => (
                       <div key={col.title}>
@@ -338,14 +406,14 @@ export function ArtemisHeader() {
                         </p>
                         <div className="space-y-2">
                           {col.links.map((link) => (
-                            <a
+                            <NavHref
                               key={link.label}
                               href={link.href}
                               className="block text-sm text-[#4B5C76]"
                               onClick={() => setMobileOpen(false)}
                             >
                               {link.label}
-                            </a>
+                            </NavHref>
                           ))}
                         </div>
                       </div>
@@ -361,19 +429,16 @@ export function ArtemisHeader() {
               className="flex-1 rounded-full border border-[#D7E0EF] px-4 py-2.5 text-center text-sm font-semibold"
               onClick={() => setMobileOpen(false)}
             >
-              Forex Demo
+              Explore Demo
             </Link>
             <Link
-              to="/app"
-              className="flex-1 rounded-full border border-[#D7E0EF] px-4 py-2.5 text-center text-sm font-semibold"
+              to="/contact"
+              className="flex-1 rounded-full bg-[#2EE6A6] px-4 py-2.5 text-center text-sm font-semibold text-[#0B1B33]"
               onClick={() => setMobileOpen(false)}
             >
-              Log In
+              Book a Demo
             </Link>
           </div>
-          <ArtemisButton href="#get-started" className="w-full">
-            Book Demo
-          </ArtemisButton>
         </div>
       </div>
     </header>
@@ -388,11 +453,11 @@ function MegaMenu({
   onNavigate: () => void;
 }) {
   return (
-    <div className="w-[min(92vw,720px)] overflow-hidden rounded-2xl border border-[#E8EEF7] bg-white shadow-[0_30px_80px_-28px_rgba(15,40,80,0.45)]">
+    <div className="w-[min(92vw,880px)] overflow-hidden rounded-2xl border border-[#E8EEF7] bg-white shadow-[0_30px_80px_-28px_rgba(15,40,80,0.45)]">
       {item.featured ? (
         <div className="grid gap-2 border-b border-[#E8EEF7] bg-[#F7FAFF] p-4 sm:grid-cols-2">
           {item.featured.map((link) => (
-            <a
+            <NavHref
               key={link.label}
               href={link.href}
               onClick={onNavigate}
@@ -411,38 +476,33 @@ function MegaMenu({
                   </span>
                 ) : null}
               </span>
-            </a>
+            </NavHref>
           ))}
         </div>
       ) : null}
-
       {item.columns ? (
-        <div className="grid gap-6 p-5 sm:grid-cols-2">
+        <div
+          className={cn(
+            "grid gap-6 p-5",
+            item.columns.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2",
+          )}
+        >
           {item.columns.map((col) => (
             <div key={col.title}>
-              <p className="text-[11px] font-semibold tracking-wide text-[#8A9BB5] uppercase">
-                {col.title}
-              </p>
+              <p className="text-[11px] font-semibold tracking-wide text-[#8A9BB5] uppercase">{col.title}</p>
               <ul className="mt-3 space-y-2">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <NavHref
                       href={link.href}
                       onClick={onNavigate}
                       className="block rounded-lg px-2 py-1.5 transition hover:bg-[#F7FAFF]"
                     >
-                      <span className="flex items-start gap-2">
-                        {link.icon ? <link.icon className="mt-0.5 size-3.5 text-[#12C48A]" /> : null}
-                        <span>
-                          <span className="block text-sm font-medium text-[#0B1B33]">{link.label}</span>
-                          {link.description ? (
-                            <span className="mt-0.5 block text-xs leading-relaxed text-[#8A9BB5]">
-                              {link.description}
-                            </span>
-                          ) : null}
-                        </span>
-                      </span>
-                    </a>
+                      <span className="block text-sm font-medium text-[#0B1B33]">{link.label}</span>
+                      {link.description ? (
+                        <span className="mt-0.5 block text-xs text-[#8A9BB5]">{link.description}</span>
+                      ) : null}
+                    </NavHref>
                   </li>
                 ))}
               </ul>
@@ -450,16 +510,11 @@ function MegaMenu({
           ))}
         </div>
       ) : null}
-
       <div className="flex items-center justify-between gap-3 border-t border-[#E8EEF7] bg-[#F7FAFF] px-5 py-3">
         <p className="text-xs text-[#8A9BB5]">The AI Operating System for revenue teams.</p>
-        <a
-          href="#get-started"
-          onClick={onNavigate}
-          className="shrink-0 text-xs font-semibold text-[#12C48A] hover:underline"
-        >
-          Book Demo →
-        </a>
+        <NavHref href="/contact" onClick={onNavigate} className="shrink-0 text-xs font-semibold text-[#12C48A] hover:underline">
+          Book a Demo →
+        </NavHref>
       </div>
     </div>
   );

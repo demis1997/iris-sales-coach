@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { DemoLoading, DemoPage } from "@/components/demo/demo-shell";
 import { useDemoQuery } from "@/components/demo/use-demo-query";
 import { Chip, PageHeading, Panel, PanelHeader } from "@/components/iris/primitives";
+import { StatusBadge } from "@/components/product/ui";
 import { demoService } from "@/lib/demo/demo-service";
 import { cn } from "@/lib/utils";
 
@@ -38,10 +39,10 @@ function LiveFloorPage() {
     <DemoPage>
       <PageHeading
         title="Live floor"
-        subtitle="Simulated AI demo · Alpha Desk"
-        action={<Chip tone="iris">Simulated AI demo</Chip>}
+        subtitle="Simulated AI · Alpha Desk"
+        action={<StatusBadge tone="ai">Simulated AI</StatusBadge>}
       />
-      <div className="grid gap-4 lg:grid-cols-[1fr_380px]">
+      <div className="grid gap-5 lg:grid-cols-[1fr_360px]">
         <Panel>
           <PanelHeader title="Agents" subtitle="Click a LIVE call" />
           <div className="grid gap-2 p-4 sm:grid-cols-2">
@@ -52,48 +53,76 @@ function LiveFloorPage() {
                 disabled={a.status !== "live" || !a.callId}
                 onClick={() => a.callId && setSelected(a.callId)}
                 className={cn(
-                  "rounded-xl border px-4 py-3 text-left text-sm transition-colors",
-                  selected === a.callId ? "border-primary bg-primary/10" : "border-border",
-                  a.status !== "live" && "opacity-60",
+                  "rounded-2xl border px-4 py-3.5 text-left text-sm transition-colors",
+                  selected === a.callId
+                    ? "border-[#2EE6A6]/35 bg-[#2EE6A6]/8"
+                    : "border-border hover:bg-secondary/30",
+                  a.status !== "live" && "opacity-55",
                 )}
               >
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-2">
                   <span className="font-medium">{a.name}</span>
-                  <Chip tone={a.status === "live" ? "good" : "neutral"}>
-                    {a.status === "live" ? `LIVE ${a.duration}` : a.status}
-                  </Chip>
+                  {a.status === "live" ? (
+                    <StatusBadge tone="live">LIVE {a.duration}</StatusBadge>
+                  ) : (
+                    <StatusBadge tone="neutral">{a.status}</StatusBadge>
+                  )}
                 </div>
                 {a.signal ? (
-                  <p className="mt-1 text-xs text-muted-foreground">{a.signal.replace("_", " ")}</p>
+                  <p className="mt-1.5 text-[12px] capitalize text-muted-foreground">
+                    {a.signal.replaceAll("_", " ")}
+                  </p>
                 ) : null}
               </button>
             ))}
           </div>
         </Panel>
 
-        <Panel className="border-primary/30">
-          <PanelHeader title="Live call assist" subtitle={call?.agentName ?? "Select a live agent"} />
+        <Panel>
+          <PanelHeader
+            title="Artemis Copilot"
+            subtitle={call?.agentName ?? "Select a live agent"}
+            action={<StatusBadge tone="ai">Listening</StatusBadge>}
+          />
           <div className="space-y-3 p-4">
             {(call?.transcript ?? []).map((l) => (
-              <div key={l.id} className="rounded-xl border border-border px-3 py-2 text-xs">
+              <div key={l.id} className="rounded-xl border border-border px-3 py-2.5 text-xs">
                 <span className="font-mono text-muted-foreground">{l.at}</span> {l.name}
                 <p className="mt-1 text-sm">{l.text}</p>
               </div>
             ))}
             {(suggestions ?? []).slice(0, visibleTips).map((s) => (
-              <div key={s.id} className="rounded-xl border border-primary/40 bg-primary/10 p-3 text-sm">
+              <div
+                key={s.id}
+                className="rounded-xl border border-[#18C4FF]/25 bg-[#18C4FF]/8 p-3 text-sm"
+              >
                 <Chip tone="iris">{s.label}</Chip>
                 <p className="mt-2 font-medium">{s.suggestion}</p>
-                {s.script ? <p className="mt-2 text-xs text-muted-foreground">Suggested: “{s.script}”</p> : null}
+                {s.script ? (
+                  <p className="mt-2 text-xs text-muted-foreground">Suggested: “{s.script}”</p>
+                ) : null}
               </div>
             ))}
             {visibleTips === 0 && selected ? (
               <p className="text-xs text-muted-foreground">Waiting for simulated AI suggestions…</p>
             ) : null}
             {selected ? (
-              <Link to="/demo/calls/$callId" params={{ callId: selected }} className="text-xs text-primary hover:underline">
-                Open full call review →
-              </Link>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <Link
+                  to="/demo/agent/live"
+                  search={{ mode: "midcall" }}
+                  className="text-[13px] font-semibold text-[#2EE6A6] hover:underline"
+                >
+                  Open agent Sales Workspace →
+                </Link>
+                <Link
+                  to="/demo/calls/$callId"
+                  params={{ callId: selected }}
+                  className="text-[13px] font-semibold text-[#18C4FF] hover:underline"
+                >
+                  Open full call review →
+                </Link>
+              </div>
             ) : null}
           </div>
         </Panel>

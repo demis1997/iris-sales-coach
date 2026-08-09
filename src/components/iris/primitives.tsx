@@ -51,15 +51,15 @@ export function StatCard({
 }) {
   const up = (delta ?? 0) >= 0;
   return (
-    <Panel className="group relative overflow-hidden p-4 transition-colors hover:border-primary/40">
+    <Panel className="group relative overflow-hidden p-5 transition-colors hover:border-primary/30">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+        <span className="text-[11px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
           {label}
         </span>
         {Icon ? <Icon className="size-4 text-muted-foreground" /> : null}
       </div>
       <div className="mt-3 flex items-end gap-2">
-        <span className="font-mono text-2xl font-semibold text-foreground tabular-nums">
+        <span className="font-mono text-[28px] font-semibold text-foreground tabular-nums">
           {value}
         </span>
         {delta !== undefined ? (
@@ -76,7 +76,6 @@ export function StatCard({
         ) : null}
       </div>
       {hint ? <p className="mt-1 text-xs text-muted-foreground">{hint}</p> : null}
-      <div className="pointer-events-none absolute -right-10 -bottom-10 size-24 rounded-full bg-primary/10 blur-2xl transition-opacity group-hover:opacity-100 opacity-0" />
     </Panel>
   );
 }
@@ -89,9 +88,8 @@ export function ScoreRing({ value, size = 132 }: { value: number; size?: number 
       <svg width={size} height={size} className="-rotate-90">
         <defs>
           <linearGradient id="iris-ring" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="oklch(0.66 0.2 293)" />
-            <stop offset="55%" stopColor="oklch(0.66 0.18 258)" />
-            <stop offset="100%" stopColor="oklch(0.78 0.14 200)" />
+            <stop offset="0%" stopColor="#2EE6A6" />
+            <stop offset="100%" stopColor="#18C4FF" />
           </linearGradient>
         </defs>
         <circle
@@ -145,7 +143,7 @@ export function Chip({
     good: "bg-success/15 text-success",
     warn: "bg-warning/15 text-warning",
     bad: "bg-destructive/15 text-destructive",
-    iris: "bg-primary/15 text-primary",
+    iris: "bg-cyan/15 text-cyan",
   };
   return (
     <span
@@ -169,10 +167,10 @@ export function PageHeading({
   action?: ReactNode;
 }) {
   return (
-    <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-        {subtitle ? <p className="mt-1 text-sm text-muted-foreground">{subtitle}</p> : null}
+    <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
+      <div className="max-w-3xl">
+        <h1 className="text-[28px] font-semibold tracking-tight md:text-[32px]">{title}</h1>
+        {subtitle ? <p className="mt-2 text-[15px] text-muted-foreground">{subtitle}</p> : null}
       </div>
       {action}
     </div>

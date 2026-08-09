@@ -16,7 +16,8 @@ import {
 import { DemoLoading, DemoPage } from "@/components/demo/demo-shell";
 import { useDemoQuery } from "@/components/demo/use-demo-query";
 import { chartTooltip } from "@/components/iris/chart-bits";
-import { Chip, PageHeading, Panel, PanelHeader, StatCard } from "@/components/iris/primitives";
+import { Chip, Panel, PanelHeader } from "@/components/iris/primitives";
+import { AIInsight, KPICard, PageHeader } from "@/components/product/ui";
 import { demoService } from "@/lib/demo/demo-service";
 
 export const Route = createFileRoute("/demo/ceo/")({
@@ -41,70 +42,70 @@ function CeoOverviewPage() {
 
   return (
     <DemoPage>
-      <PageHeading
+      <PageHeader
         title="Good morning, Alex."
         subtitle="Here's what's happening across Apex Markets today."
-        action={<Chip tone="iris">Demo Workspace</Chip>}
       />
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        <StatCard label="Total Deposits" value={`€${(kpis.totalDeposits / 1000).toFixed(1)}K`} delta={kpis.totalDepositsDelta} />
-        <StatCard label="First-Time Depositors" value={`${kpis.ftds}`} delta={kpis.ftdsDelta} />
-        <StatCard label="Conversion Rate" value={`${kpis.conversionRate}%`} delta={kpis.conversionDeltaPts} hint="+pts vs prior" />
-        <StatCard label="Active Sales Agents" value={`${kpis.activeAgents} / ${kpis.totalAgents}`} />
-        <StatCard label="Calls Today" value={kpis.callsToday.toLocaleString()} />
-        <StatCard
-          label="Revenue At Risk"
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <KPICard
+          label="Total Deposits"
+          value={`€${(kpis.totalDeposits / 1000).toFixed(1)}K`}
+          delta={kpis.totalDepositsDelta}
+        />
+        <KPICard label="FTDs" value={`${kpis.ftds}`} delta={kpis.ftdsDelta} />
+        <KPICard
+          label="Conversion"
+          value={`${kpis.conversionRate}%`}
+          delta={kpis.conversionDeltaPts}
+        />
+        <KPICard
+          label="Revenue at Risk"
           value={`€${(kpis.revenueAtRisk / 1000).toFixed(1)}K`}
           hint={kpis.revenueAtRiskTooltip}
         />
       </div>
 
-      <Panel className="border-primary/25 bg-primary/5">
-        <PanelHeader
-          title="Artemis Executive Brief"
-          subtitle="Simulated AI · Chief Revenue style summary"
-          action={<Chip tone="iris">Demo Analysis</Chip>}
-        />
-        <div className="space-y-3 p-5">
-          <p className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">{brief?.body}</p>
+      <AIInsight
+        title="Artemis Executive Brief"
+        subtitle="Simulated AI · Chief Revenue style summary"
+        action={
           <div className="flex flex-wrap gap-2">
-            <Link
-              to="/demo/ceo/opportunities"
-              className="rounded-xl gradient-surface px-4 py-2 text-xs font-semibold text-background"
-            >
+            <Link to="/demo/ceo/opportunities" className="product-btn-primary !px-4 !py-2 text-xs">
               View opportunities
             </Link>
-            <Link
-              to="/demo/ceo/teams"
-              className="rounded-xl border border-border px-4 py-2 text-xs font-medium hover:bg-secondary"
-            >
+            <Link to="/demo/ceo/teams" className="product-btn-secondary !px-4 !py-2 text-xs">
               View teams
             </Link>
-            <Link
-              to="/demo/ceo/teams/$teamId"
-              params={{ teamId: "team-velocity" }}
-              className="rounded-xl border border-border px-4 py-2 text-xs font-medium hover:bg-secondary"
-            >
-              Open Velocity Desk
-            </Link>
           </div>
-        </div>
-      </Panel>
+        }
+      >
+        <p className="whitespace-pre-line text-[15px] leading-relaxed text-[#C5D0E0]">{brief?.body}</p>
+        <Link
+          to="/demo/ceo/teams/$teamId"
+          params={{ teamId: "team-velocity" }}
+          className="mt-4 inline-flex text-[13px] font-semibold text-[#2EE6A6] hover:underline"
+        >
+          Open Velocity Desk →
+        </Link>
+      </AIInsight>
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2">
         <Panel>
           <PanelHeader title="Revenue by team" subtitle="Deposits · click a desk" />
           <div className="h-56 p-3">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={teams ?? []}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                <XAxis dataKey="name" tick={{ fontSize: 10 }} />
-                <YAxis tick={{ fontSize: 11 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#8A9BB5" }} />
+                <YAxis tick={{ fontSize: 11, fill: "#8A9BB5" }} />
                 <Tooltip {...chartTooltip} />
-                <Bar dataKey="deposits" name="Deposits €" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="deposits" name="Deposits €" radius={[6, 6, 0, 0]}>
                   {(teams ?? []).map((t) => (
-                    <Cell key={t.id} fill={t.id === "team-velocity" ? "hsl(25 90% 55%)" : "hsl(var(--primary))"} />
+                    <Cell
+                      key={t.id}
+                      fill={t.id === "team-velocity" ? "#F5B942" : "#18C4FF"}
+                    />
                   ))}
                 </Bar>
               </BarChart>
@@ -116,7 +117,7 @@ function CeoOverviewPage() {
                 key={t.id}
                 to="/demo/ceo/teams/$teamId"
                 params={{ teamId: t.id }}
-                className="flex flex-wrap items-center justify-between gap-2 px-5 py-3 text-sm hover:bg-secondary/40"
+                className="flex flex-wrap items-center justify-between gap-2 px-5 py-3.5 text-sm hover:bg-secondary/40"
               >
                 <span className="font-medium">{t.name}</span>
                 <span className="text-xs text-muted-foreground">
@@ -300,7 +301,7 @@ function CeoOverviewPage() {
                 <Tooltip {...chartTooltip} cursor={{ strokeDasharray: "3 3" }} />
                 <Scatter
                   data={scatter ?? []}
-                  fill="hsl(var(--primary))"
+                  fill="#18C4FF"
                   onClick={(d) => {
                     const payload = d as unknown as { id?: string };
                     if (payload.id) {

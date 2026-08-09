@@ -196,3 +196,125 @@
     linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
   background-size: 64px 64px;
 }
+
+/*
+ * Artemis product app theme — navy + mint from marketing site.
+ * Scoped so marketing (light) and legacy purple tokens stay intact outside.
+ */
+.artemis-product {
+  --radius: 1rem;
+  --background: #0b1b33;
+  --foreground: #f7faff;
+  --card: #132742;
+  --card-foreground: #f7faff;
+  --popover: #152a45;
+  --popover-foreground: #f7faff;
+  --primary: #2ee6a6;
+  --primary-foreground: #0b1b33;
+  --secondary: #1a3358;
+  --secondary-foreground: #e8eef7;
+  --muted: #162942;
+  --muted-foreground: #8a9bb5;
+  --accent: #1a3358;
+  --accent-foreground: #f7faff;
+  --destructive: #f07167;
+  --destructive-foreground: #fff;
+  --border: rgb(255 255 255 / 9%);
+  --input: rgb(255 255 255 / 12%);
+  --ring: #18c4ff;
+
+  --violet: #4f6ef7;
+  --blue: #18c4ff;
+  --cyan: #18c4ff;
+  --success: #2ee6a6;
+  --warning: #f5b942;
+
+  --chart-1: #18c4ff;
+  --chart-2: #4f6ef7;
+  --chart-3: #2ee6a6;
+  --chart-4: #f5b942;
+  --chart-5: #8a9bb5;
+
+  --sidebar: #0a182c;
+  --sidebar-foreground: #e8eef7;
+  --sidebar-primary: #2ee6a6;
+  --sidebar-primary-foreground: #0b1b33;
+  --sidebar-accent: #132742;
+  --sidebar-accent-foreground: #f7faff;
+  --sidebar-border: rgb(255 255 255 / 8%);
+  --sidebar-ring: #18c4ff;
+
+  --gradient-iris: linear-gradient(120deg, #2ee6a6, #18c4ff 70%);
+  --shadow-glass: 0 16px 50px -28px rgb(0 0 0 / 45%);
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+.artemis-product .glass {
+  background: color-mix(in oklab, var(--card) 96%, transparent);
+  backdrop-filter: none;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 40px -28px rgb(0 0 0 / 40%);
+}
+
+.artemis-product .gradient-surface {
+  background: #2ee6a6;
+  color: #0b1b33;
+}
+
+.artemis-product .gradient-text {
+  background: linear-gradient(120deg, #2ee6a6, #18c4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility product-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #2ee6a6;
+  color: #0b1b33;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  box-shadow: 0 10px 30px -12px rgb(46 230 166 / 45%);
+  transition: background-color 0.15s ease;
+  &:hover {
+    background: #5cf0bc;
+  }
+}
+
+@utility product-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgb(255 255 255 / 14%);
+  background: rgb(255 255 255 / 4%);
+  color: #f7faff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  &:hover {
+    border-color: rgb(46 230 166 / 45%);
+    background: rgb(46 230 166 / 8%);
+  }
+}
+
+@utility product-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: #8a9bb5;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 0.875rem;
+  transition: color 0.15s ease;
+  &:hover {
+    color: #f7faff;
+  }
+}

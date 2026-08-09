@@ -15,10 +15,11 @@ import {
   Zap,
 } from "lucide-react";
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
+import { ArtemisFooter } from "@/components/marketing/footer";
+import { ArtemisButton } from "@/components/relay/brand";
 import { ArtemisHeader } from "@/components/relay/header";
 import { ContactLinks } from "@/components/relay/contact-links";
-import { CONTACT_EMAIL, CONTACT_MAILTO, CONTACT_PHONE_DISPLAY, CONTACT_TEL } from "@/components/relay/contact";
+import { CONTACT_PHONE_DISPLAY } from "@/components/relay/contact";
 import { cn } from "@/lib/utils";
 
 const MARKETS = [
@@ -40,18 +41,21 @@ const CATEGORY_PILLARS = [
     body: "Know what is converting, what is stalling, and why — from every conversation.",
     icon: TrendingUp,
     accent: "from-[#2EE6A6] to-[#18C4FF]",
+    href: "/revenue-intelligence",
   },
   {
     title: "Continuous Coaching",
     body: "Every rep improves after every call. Managers stop guessing who needs help.",
     icon: Sparkles,
     accent: "from-[#4F6EF7] to-[#A855F7]",
+    href: "/ai-coaching",
   },
   {
     title: "Sales Infrastructure",
     body: "Playbooks, memory, forecasting, and ops in one system — not five tools duct-taped together.",
     icon: Layers,
     accent: "from-[#FF7A45] to-[#FF4D8D]",
+    href: "/manager-operations",
   },
 ];
 
@@ -191,7 +195,7 @@ export function ArtemisHomePage() {
               continuously, not only after the week is over.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <ArtemisButton href="#get-started" className="px-7 py-3 text-base">
+              <ArtemisButton href="/contact" className="px-7 py-3 text-base">
                 Book a Demo
               </ArtemisButton>
               <ArtemisButton href="/demo" variant="secondary" className="px-7 py-3 text-base">
@@ -227,9 +231,10 @@ export function ArtemisHomePage() {
           </h2>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {CATEGORY_PILLARS.map((item) => (
-              <article
+              <a
                 key={item.title}
-                className="flex flex-col rounded-[1.75rem] border border-[#E8EEF7] bg-white p-7 shadow-[0_16px_50px_-30px_rgba(15,40,80,0.35)]"
+                href={item.href}
+                className="flex flex-col rounded-[1.75rem] border border-[#E8EEF7] bg-white p-7 shadow-[0_16px_50px_-30px_rgba(15,40,80,0.35)] transition hover:border-[#2EE6A6]/50"
               >
                 <div
                   className={cn(
@@ -241,7 +246,8 @@ export function ArtemisHomePage() {
                 </div>
                 <h3 className="text-2xl font-bold tracking-tight text-[#0B1B33]">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">{item.body}</p>
-              </article>
+                <span className="mt-4 text-sm font-semibold text-[#12C48A]">Learn more →</span>
+              </a>
             ))}
           </div>
         </div>
@@ -694,22 +700,25 @@ export function ArtemisHomePage() {
                 </span>
               ))}
             </div>
+            <ArtemisButton href="/integrations" variant="secondary" className="mt-8">
+              View integrations
+            </ArtemisButton>
           </article>
 
           <article id="pricing" className="rounded-[2rem] border border-[#E8EEF7] bg-white p-8 sm:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">Pricing</p>
             <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33]">
-              €50 per user / month
+              Start as a Design Partner
             </h3>
             <p className="mt-3 text-[#4B5C76]">
-              Simple seat pricing for high-volume sales organizations. Pay for the people Artemis
-              coaches — not for vanity features.
+              Pricing is based on seats and conversation volume. Early customers build with us —
+              Growth and Enterprise options for broader rollout.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-[#4B5C76]">
               {[
-                "Revenue OS for every seat",
-                "Live AI Copilot + Rep DNA™",
-                "Operations + Command centers included",
+                "Call intelligence + AI coaching",
+                "Manager and executive dashboards",
+                "Direct founder support",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2">
                   <span className="mt-0.5 text-[#12C48A]">✓</span>
@@ -717,9 +726,12 @@ export function ArtemisHomePage() {
                 </li>
               ))}
             </ul>
-            <ArtemisButton href="#get-started" className="mt-8">
-              Book Demo
-            </ArtemisButton>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ArtemisButton href="/contact">Become a Design Partner</ArtemisButton>
+              <ArtemisButton href="/pricing" variant="secondary">
+                See pricing
+              </ArtemisButton>
+            </div>
           </article>
         </div>
       </section>
@@ -757,7 +769,10 @@ export function ArtemisHomePage() {
           </div>
           <p className="mt-6 text-xs text-[#8A9BB5]">
             Built to support GDPR-conscious workflows (access control, retention, erasure paths). Not a
-            claim of completed certification audits.
+            claim of completed certification audits.{" "}
+            <a href="/security" className="font-semibold text-[#12C48A] hover:underline">
+              Read security →
+            </a>
           </p>
         </div>
       </section>
@@ -776,10 +791,10 @@ export function ArtemisHomePage() {
             real conversations, and real revenue problems.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <ArtemisButton href={CONTACT_MAILTO} className="px-7 py-3 text-base">
+            <ArtemisButton href="/contact" className="px-7 py-3 text-base">
               Become a Design Partner
             </ArtemisButton>
-            <ArtemisButton href="#get-started" variant="secondary" className="px-7 py-3 text-base">
+            <ArtemisButton href="/contact" variant="secondary" className="px-7 py-3 text-base">
               Book a Demo
             </ArtemisButton>
             <ArtemisButton href="/demo" variant="secondary" className="px-7 py-3 text-base">
@@ -806,13 +821,13 @@ export function ArtemisHomePage() {
               <ContactLinks tone="dark" className="items-center text-center" />
             </div>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <ArtemisButton href={CONTACT_MAILTO} className="px-8 py-3 text-base">
+              <ArtemisButton href="/contact" className="px-8 py-3 text-base">
                 Book a Demo
               </ArtemisButton>
               <ArtemisButton href="/demo" variant="secondary" className="px-8 py-3 text-base">
                 Explore the Product
               </ArtemisButton>
-              <ArtemisButton href={CONTACT_MAILTO} variant="secondary" className="px-8 py-3 text-base">
+              <ArtemisButton href="/contact" variant="secondary" className="px-8 py-3 text-base">
                 Request Early Access
               </ArtemisButton>
             </div>
@@ -823,58 +838,7 @@ export function ArtemisHomePage() {
         </div>
       </section>
 
-      <footer className="border-t border-[#E8EEF7] bg-white py-12">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 sm:flex-row sm:justify-between">
-          <div>
-            <ArtemisMark />
-            <p className="mt-3 max-w-xs text-sm text-[#8A9BB5]">
-              The AI Operating System for high-volume sales organizations.
-            </p>
-            <ContactLinks className="mt-4" />
-          </div>
-          <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-4">
-            {[
-              ["Product", ["Revenue Loop", "Rep DNA™", "Live Copilot", "Command Center"]],
-              ["Platform", ["Operations Center", "Knowledge Engine", "Roleplay", "Integrations"]],
-              ["Markets", ["Forex", "Insurance", "Real Estate", "BPOs"]],
-              ["Company", ["Why Artemis", "Trust", "Contact Sales", "Privacy"]],
-            ].map(([title, links]) => (
-              <div key={title as string}>
-                <p className="font-semibold text-[#0B1B33]">{title as string}</p>
-                <ul className="mt-3 space-y-2 text-[#8A9BB5]">
-                  {(links as string[]).map((l) => {
-                    const href =
-                      l === "Contact Sales"
-                        ? CONTACT_MAILTO
-                        : l === "Why Artemis"
-                          ? "#why"
-                          : l === "Trust"
-                            ? "#security"
-                            : "#capabilities";
-                    return (
-                      <li key={l}>
-                        <a href={href} className="hover:text-[#12C48A]">
-                          {l}
-                        </a>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-        <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-[#A8B5C9]">
-          © {new Date().getFullYear()} Artemis AI. All Rights Reserved. ·{" "}
-          <a href={CONTACT_MAILTO} className="hover:text-[#12C48A]">
-            {CONTACT_EMAIL}
-          </a>{" "}
-          ·{" "}
-          <a href={CONTACT_TEL} className="hover:text-[#12C48A]">
-            {CONTACT_PHONE_DISPLAY}
-          </a>
-        </p>
-      </footer>
+      <ArtemisFooter />
     </div>
   );
 }

@@ -1,18 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouterState } from "@tanstack/react-router";
 import { Building2, Headphones, LayoutDashboard, Users } from "lucide-react";
-import { ArtemisMark } from "@/components/iris/app-shell";
-import { Chip, Panel } from "@/components/iris/primitives";
+import { ArtemisMark, ArtemisButton } from "@/components/relay/brand";
 import { DEMO_COMPANY } from "@/data/demo/company";
 import { CONTACT_MAILTO } from "@/components/relay/contact";
 
 export const Route = createFileRoute("/demo/")({
   head: () => ({
     meta: [
-      { title: "Experience Artemis AI — Forex Demo" },
+      { title: "Experience Artemis AI — Product Demo" },
       {
         name: "description",
         content:
-          "Interactive Apex Markets demo — CEO, manager and agent views with simulated AI coaching for forex sales floors.",
+          "Interactive Apex Markets demo — CEO, manager and agent views with simulated AI coaching for high-volume sales floors.",
       },
     ],
   }),
@@ -23,79 +22,109 @@ const cards = [
   {
     to: "/demo/ceo" as const,
     title: "CEO",
-    blurb: "See the entire revenue operation.",
+    headline: "See what drives revenue.",
+    blurb: "Understand conversion, teams, lost opportunities and coaching impact.",
+    cta: "Explore CEO View",
     icon: LayoutDashboard,
   },
   {
     to: "/demo/manager" as const,
     title: "Manager",
-    blurb: "Know exactly who needs coaching and why.",
+    headline: "Know where to intervene.",
+    blurb: "See who needs attention, why calls fail and exactly where to coach.",
+    cta: "Explore Manager View",
     icon: Users,
   },
   {
-    to: "/demo/agent" as const,
+    to: "/demo/agent/live" as const,
     title: "Sales Agent",
-    blurb: "Get better after every conversation.",
+    headline: "Your AI copilot for every conversation.",
+    blurb: "Get live guidance during calls and personalized coaching immediately after.",
+    cta: "Open Agent Workspace",
     icon: Headphones,
   },
 ];
 
 function DemoLanding() {
+  const searchStr = useRouterState({ select: (s) => s.location.searchStr });
+  const presenter = new URLSearchParams(searchStr).get("presenter") === "true";
+
   return (
-    <div className="min-h-screen bg-background">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(46,230,166,0.08),_transparent_50%)]" />
-      <header className="relative mx-auto flex max-w-5xl items-center justify-between px-4 py-5 sm:px-6">
+    <div className="min-h-screen bg-white text-[#0B1B33]">
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top,_#E8FFF6_0%,_transparent_50%),radial-gradient(ellipse_at_90%_10%,_#EEF2FF_0%,_transparent_40%)]" />
+
+      <header className="relative mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
         <Link to="/">
           <ArtemisMark />
         </Link>
-        <div className="flex items-center gap-2">
-          <Chip tone="iris">Demo Workspace</Chip>
-          <a href={CONTACT_MAILTO} className="text-xs text-primary hover:underline">
-            Book walkthrough
-          </a>
+        <div className="flex items-center gap-3">
+          <span className="rounded-full border border-[#E8EEF7] bg-white px-3 py-1 text-[11px] font-medium text-[#8A9BB5]">
+            Demo
+          </span>
+          <ArtemisButton href={CONTACT_MAILTO} variant="secondary" className="px-4 py-2 text-xs">
+            Book a Demo
+          </ArtemisButton>
         </div>
       </header>
 
-      <main className="relative mx-auto max-w-5xl px-4 pb-16 sm:px-6">
-        <p className="text-xs font-medium tracking-wider text-primary uppercase">Product demo</p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Experience Artemis AI</h1>
-        <p className="mt-3 max-w-2xl text-sm text-muted-foreground sm:text-base">
-          See how Artemis AI turns thousands of sales conversations into coaching, revenue intelligence and
-          better-performing teams.
+      <main className="relative mx-auto max-w-6xl px-5 pb-20 pt-8 md:pt-14">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+          Product Demo
+        </p>
+        <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl">
+          Experience Artemis AI
+        </h1>
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#4B5C76]">
+          See how Artemis turns every sales conversation into live guidance, coaching and revenue
+          intelligence.
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-          <Building2 className="size-3.5" />
-          Demo company: {DEMO_COMPANY.name} · {DEMO_COMPANY.agents} sales agents · {DEMO_COMPANY.industry}
+        <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-[#8A9BB5]">
+          <Building2 className="size-4" />
+          Demo company: {DEMO_COMPANY.name} · {DEMO_COMPANY.agents} sales agents ·{" "}
+          {DEMO_COMPANY.industry}
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {cards.map((c) => {
             const Icon = c.icon;
             return (
-              <Panel key={c.to} className="flex flex-col p-5 transition-colors hover:border-primary/40">
-                <Icon className="size-5 text-primary" />
-                <h2 className="mt-4 text-lg font-semibold">{c.title}</h2>
-                <p className="mt-2 flex-1 text-sm text-muted-foreground">{c.blurb}</p>
+              <article
+                key={c.to}
+                className="flex flex-col rounded-[1.75rem] border border-[#E8EEF7] bg-white p-7 shadow-[0_16px_50px_-30px_rgba(15,40,80,0.35)]"
+              >
+                <div className="mb-5 grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-[#E8FFF6] to-[#EEF2FF] text-[#12C48A]">
+                  <Icon className="size-5" />
+                </div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
+                  {c.title}
+                </p>
+                <h2 className="mt-2 text-xl font-bold tracking-tight text-[#0B1B33]">{c.headline}</h2>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-[#4B5C76]">{c.blurb}</p>
                 <Link
                   to={c.to}
-                  className="mt-5 inline-flex rounded-xl gradient-surface px-4 py-2 text-sm font-semibold text-background"
+                  search={c.to === "/demo/agent/live" ? { mode: "midcall" } : undefined}
+                  className="mt-6 inline-flex items-center justify-center rounded-full bg-[#2EE6A6] px-5 py-2.5 text-sm font-semibold text-[#0B1B33] shadow-lg shadow-[#2EE6A6]/30 transition hover:bg-[#5cf0bc]"
                 >
-                  Enter Demo →
+                  {c.cta}
                 </Link>
-              </Panel>
+              </article>
             );
           })}
         </div>
 
-        <Panel className="mt-8 p-5 text-sm text-muted-foreground">
-          <p className="font-medium text-foreground">Suggested meeting story</p>
-          <p className="mt-2">
-            CEO overview → revenue at risk → Velocity Desk → Daniel → lost call at 08:14 → coaching → Rep DNA →
-            Manager live floor → Agent coach → back to CEO coaching ROI.
-          </p>
-          <p className="mt-3 text-xs">All figures are example Apex Markets data. Labels say Demo / Simulated AI.</p>
-        </Panel>
+        {presenter ? (
+          <div className="mt-10 rounded-[1.75rem] border border-[#E8EEF7] bg-[#F7FAFF] p-6 text-sm text-[#4B5C76]">
+            <p className="font-semibold text-[#0B1B33]">Presenter notes</p>
+            <p className="mt-2">
+              Suggested story: CEO overview → revenue at risk → Velocity Desk → Daniel → lost call at
+              08:14 → coaching → Manager live floor → Agent Sales Workspace → back to CEO.
+            </p>
+            <p className="mt-2 text-xs text-[#8A9BB5]">
+              Visible only with <code className="rounded bg-white px-1">?presenter=true</code>
+            </p>
+          </div>
+        ) : null}
       </main>
     </div>
   );
