@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CeoRouteImport } from './routes/ceo'
 import { Route as CrmRouteImport } from './routes/crm'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
@@ -77,6 +78,11 @@ const CeoRoute = CeoRouteImport.update({
 const CrmRoute = CrmRouteImport.update({
   id: '/crm',
   path: '/crm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
@@ -281,6 +287,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRouteWithChildren
   '/crm': typeof CrmRouteWithChildren
+  '/demo': typeof DemoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/manager': typeof ManagerRouteWithChildren
   '/onboarding': typeof OnboardingRoute
@@ -324,6 +331,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/demo': typeof DemoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/onboarding': typeof OnboardingRoute
   '/app/certifications': typeof AppCertificationsRoute
@@ -370,6 +378,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/ceo': typeof CeoRouteWithChildren
   '/crm': typeof CrmRouteWithChildren
+  '/demo': typeof DemoRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/manager': typeof ManagerRouteWithChildren
   '/onboarding': typeof OnboardingRoute
@@ -418,6 +427,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/crm'
+    | '/demo'
     | '/forgot-password'
     | '/manager'
     | '/onboarding'
@@ -461,6 +471,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/demo'
     | '/forgot-password'
     | '/onboarding'
     | '/app/certifications'
@@ -506,6 +517,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/ceo'
     | '/crm'
+    | '/demo'
     | '/forgot-password'
     | '/manager'
     | '/onboarding'
@@ -553,6 +565,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CeoRoute: typeof CeoRouteWithChildren
   CrmRoute: typeof CrmRouteWithChildren
+  DemoRoute: typeof DemoRoute
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   ManagerRoute: typeof ManagerRouteWithChildren
   OnboardingRoute: typeof OnboardingRoute
@@ -597,6 +610,13 @@ declare module '@tanstack/react-router' {
       path: '/crm'
       fullPath: '/crm'
       preLoaderRoute: typeof CrmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forgot-password': {
@@ -978,6 +998,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CeoRoute: CeoRouteWithChildren,
   CrmRoute: CrmRouteWithChildren,
+  DemoRoute: DemoRoute,
   ForgotPasswordRoute: ForgotPasswordRoute,
   ManagerRoute: ManagerRouteWithChildren,
   OnboardingRoute: OnboardingRoute,

@@ -156,6 +156,12 @@ const NAV: NavItem[] = [
         title: "About",
         links: [
           {
+            label: "Forex product demo",
+            href: "/demo",
+            description: "CEO, manager & agent views for a forex floor.",
+            icon: Gauge,
+          },
+          {
             label: "Trust",
             href: "#security",
             description: "Tenant isolation and evidence-based AI.",
@@ -259,6 +265,9 @@ export function ArtemisHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
+          <Link to="/demo" className="text-sm font-medium text-[#4B5C76] hover:text-[#0B1B33]">
+            Forex Demo
+          </Link>
           <Link to="/app" className="text-sm font-medium text-[#4B5C76] hover:text-[#0B1B33]">
             Log In
           </Link>
@@ -348,16 +357,23 @@ export function ArtemisHeader() {
           })}
           <div className="flex gap-2 pt-2">
             <Link
+              to="/demo"
+              className="flex-1 rounded-full border border-[#D7E0EF] px-4 py-2.5 text-center text-sm font-semibold"
+              onClick={() => setMobileOpen(false)}
+            >
+              Forex Demo
+            </Link>
+            <Link
               to="/app"
               className="flex-1 rounded-full border border-[#D7E0EF] px-4 py-2.5 text-center text-sm font-semibold"
               onClick={() => setMobileOpen(false)}
             >
               Log In
             </Link>
-            <ArtemisButton href="#get-started" className="flex-1" >
-              Book Demo
-            </ArtemisButton>
           </div>
+          <ArtemisButton href="#get-started" className="w-full">
+            Book Demo
+          </ArtemisButton>
         </div>
       </div>
     </header>
