@@ -59,13 +59,16 @@ npm run dev
 
 ## Phase 1 verification checklist
 
+See **[STEP1_ACCOUNTS.md](./STEP1_ACCOUNTS.md)** for the full “make accounts real” runbook.
+
 1. Register with company name → company + owner membership created
 2. Redirected to `/onboarding`
 3. Complete wizard steps (data persists in `companies` / checklist)
-4. Invite a user → copy invite link → accept at `/invite/:token`
-5. Invited user joins the same company (no second tenant)
-6. Workspace switcher respects role permissions
-7. Unauthenticated access to `/app` redirects to `/auth`
+4. Owner lands on `/ceo`
+5. Invite a user → copy invite link → accept at `/invite/:token`
+6. Invited user joins the same company (no second tenant)
+7. Workspace switcher respects role permissions
+8. Unauthenticated access to `/app` redirects to `/auth`
 
 ## Deployment
 

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Search, Bell } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useOptionalAuth } from "@/components/auth/auth-provider";
+import { CompanySwitcher } from "@/components/auth/company-switcher";
 import { workspacesForRole } from "@/lib/permissions";
 
 export type NavItem = {
@@ -141,6 +142,7 @@ export function AppShell({
               <span className="truncate">Search calls, reps, deals, objections…</span>
             </div>
             <div className="ml-auto flex items-center gap-3">
+              <CompanySwitcher />
               <div className="hidden items-center gap-1 rounded-lg border border-border p-0.5 sm:flex">
                 {visibleWorkspaces.map((w) => {
                   const on =

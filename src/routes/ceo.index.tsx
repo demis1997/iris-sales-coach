@@ -32,6 +32,10 @@ import {
   hourlyCloseRate,
   revenueTrend,
 } from "@/lib/iris-data";
+import { useAuth } from "@/components/auth/auth-provider";
+import { useQuery } from "@tanstack/react-query";
+import { getCompanyDashboardMetrics } from "@/lib/calls";
+import { listCompanyMembers } from "@/lib/company-members";
 
 export const Route = createFileRoute("/ceo/")({
   head: () => ({
@@ -46,18 +50,47 @@ export const Route = createFileRoute("/ceo/")({
 });
 
 function CeoOverview() {
+  const { session, demoMode } = useAuth();
+  const { data: live } = useQuery({
+    queryKey: ["ceo-metrics", session?.activeCompanyId],
+    queryFn: getCompanyDashboardMetrics,
+    enabled: Boolean(session?.activeCompanyId) && !demoMode,
+  });
+  const { data: members = [] } = useQuery({
+    queryKey: ["company-members", session?.activeCompanyId],
+    queryFn: () => listCompanyMembers(),
+    enabled: Boolean(session?.activeCompanyId) && !demoMode,
+  });
+
   return (
     <>
       <PageHeading
-        title="Company overview"
-        subtitle="All desks · July 2026 · updated 4 minutes ago"
-        action={<Chip tone="good">Team improving +8% this week</Chip>}
+        title="Revenue Command Center"
+        subtitle={
+          demoMode
+            ? "Demo seed data · connect Supabase for live metrics"
+            : `${session?.membership?.companyName ?? "Company"} · live calls + memberships`
+        }
+        action={<Chip tone="good">{demoMode ? "Demo" : "Live"}</Chip>}
       />
 
+      {!demoMode ? (
+        <div className="mb-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <StatCard label="Active members" value={`${members.length}`} icon={Users} />
+          <StatCard label="Calls (recent)" value={`${live?.callsCount ?? 0}`} icon={PhoneCall} />
+          <StatCard
+            label="Avg AI score"
+            value={live?.avgScore != null ? `${live.avgScore}` : "—"}
+            icon={Gauge}
+          />
+          <StatCard label="Conversions (recent)" value={`${live?.conversions ?? 0}`} icon={TrendingUp} />
+        </div>
+      ) : null}
+
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Total employees" value="48" hint="6 desks" icon={Users} />
-        <StatCard label="Calls today" value="487" delta={6} icon={PhoneCall} />
-        <StatCard label="Calls this month" value="9,412" delta={11} icon={PhoneCall} />
+        <StatCard label="Total employees" value={demoMode ? "48" : `${members.length || "—"}`} hint="from memberships" icon={Users} />
+        <StatCard label="Calls today" value={demoMode ? "487" : `${live?.callsCount ?? 0}`} delta={demoMode ? 6 : undefined} icon={PhoneCall} />
+        <StatCard label="Calls this month" value={demoMode ? "9,412" : `${live?.callsCount ?? 0}`} delta={demoMode ? 11 : undefined} icon={PhoneCall} />
         <StatCard label="Revenue generated" value="$1.67M" delta={18} icon={BadgeDollarSign} />
         <StatCard label="Close rate" value="27%" delta={4} icon={Percent} />
         <StatCard label="Average AI score" value="83" delta={5} icon={Gauge} />

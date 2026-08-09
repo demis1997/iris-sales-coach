@@ -94,7 +94,7 @@ function OnboardingPage() {
     void loadOnboardingChecklist().then((data) => {
       if (!data) return;
       if (data.completed) {
-        void navigate({ to: "/app", replace: true });
+        void navigate({ to: "/ceo", replace: true });
         return;
       }
       if (data.wizard?.step) {
@@ -171,7 +171,7 @@ function OnboardingPage() {
         await persist({ ...wizard, step: 7 }, { sample_call_done: true });
         await completeOnboarding();
         await refresh();
-        void navigate({ to: "/app", replace: true });
+        void navigate({ to: "/ceo", replace: true });
       }
     } catch (err) {
       if (err && typeof err === "object" && "issues" in err) {

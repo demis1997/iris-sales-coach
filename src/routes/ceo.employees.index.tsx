@@ -1,67 +1,101 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { PageHeading, Panel, Chip } from "@/components/iris/primitives";
-import { employees } from "@/lib/iris-data";
+import { AuthLoading, PermissionDenied } from "@/components/auth/require-auth";
+import { useAuth } from "@/components/auth/auth-provider";
+import { listCompanyMembers } from "@/lib/company-members";
+import { roleLabel } from "@/lib/permissions";
 
 export const Route = createFileRoute("/ceo/employees/")({
   head: () => ({
     meta: [
       { title: "Employees — Artemis Executive" },
-      { name: "description", content: "Every rep's calls, close rate, confidence, revenue and risk." },
+      { name: "description", content: "Company members from live memberships." },
       { property: "og:title", content: "Employees — Artemis Executive" },
-      { property: "og:description", content: "Every rep's calls, close rate, confidence and risk." },
     ],
   }),
   component: EmployeesPage,
 });
 
 function EmployeesPage() {
+  const { session, loading, demoMode, can } = useAuth();
+  const { data: members = [], isLoading, error, refetch } = useQuery({
+    queryKey: ["company-members", session?.activeCompanyId],
+    queryFn: () => listCompanyMembers(),
+    enabled: Boolean(session?.activeCompanyId) && !demoMode,
+  });
+
+  if (loading) return <AuthLoading />;
+  if (demoMode) {
+    return (
+      <>
+        <PageHeading
+          title="Employees"
+          subtitle="Connect Supabase and invite teammates to populate this list from live memberships."
+        />
+        <Panel className="p-6 text-sm text-muted-foreground">
+          Demo mode is active (no Supabase session). After Step 1 signup + invites, members appear here from
+          `company_memberships`.
+        </Panel>
+      </>
+    );
+  }
+  if (!can("analytics.company") && !can("users.manage")) {
+    return <PermissionDenied message="Your role cannot view the company employee directory." />;
+  }
+
   return (
     <>
-      <PageHeading title="Employees" subtitle="48 reps across 6 desks · showing top 8 by volume" />
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {employees.map((e) => (
-          <Link key={e.id} to="/ceo/employees/$employeeId" params={{ employeeId: e.id }}>
-            <Panel className="h-full p-5 transition-colors hover:border-primary/40">
-              <div className="flex items-center gap-3">
-                <span className="grid size-9 place-items-center rounded-full gradient-surface text-xs font-semibold text-background">
-                  {e.name.split(" ").map((n) => n[0]).join("")}
-                </span>
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium">{e.name}</p>
-                  <p className="text-xs text-muted-foreground">{e.dept}</p>
-                </div>
-                <span className="ml-auto">
-                  <Chip tone={e.risk === "Low" ? "good" : e.risk === "Medium" ? "warn" : "bad"}>
-                    {e.risk}
-                  </Chip>
-                </span>
-              </div>
-              <div className="mt-4 grid grid-cols-4 gap-2 text-center">
-                {[
-                  ["Calls", `${e.calls}`],
-                  ["Close", `${e.closeRate}%`],
-                  ["Conf.", `${e.confidence}%`],
-                  ["Score", `${e.score}`],
-                ].map(([k, v]) => (
-                  <div key={k} className="rounded-lg border border-border bg-secondary/25 py-2">
-                    <p className="text-[10px] text-muted-foreground">{k}</p>
-                    <p className="font-mono text-xs">{v}</p>
+      <PageHeading
+        title="Employees"
+        subtitle={
+          isLoading
+            ? "Loading members…"
+            : `${members.length} active member${members.length === 1 ? "" : "s"} in ${session?.membership?.companyName ?? "your company"}`
+        }
+      />
+      {error ? (
+        <Panel className="mb-4 p-4 text-sm text-destructive">
+          {(error as Error).message}{" "}
+          <button type="button" className="underline" onClick={() => void refetch()}>
+            Retry
+          </button>
+        </Panel>
+      ) : null}
+      {!isLoading && members.length === 0 ? (
+        <Panel className="p-6 text-sm text-muted-foreground">
+          No members yet. Invite managers and agents from onboarding or Settings.
+        </Panel>
+      ) : (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {members.map((m) => (
+            <Link key={m.userId} to="/ceo/employees/$employeeId" params={{ employeeId: m.userId }}>
+              <Panel className="h-full p-5 transition-colors hover:border-primary/40">
+                <div className="flex items-center gap-3">
+                  <span className="grid size-9 place-items-center rounded-full gradient-surface text-xs font-semibold text-background">
+                    {(m.fullName ?? m.email ?? "?")
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase()}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium">{m.fullName ?? "Unnamed"}</p>
+                    <p className="truncate text-xs text-muted-foreground">{m.email}</p>
                   </div>
-                ))}
-              </div>
-              <div className="mt-3 flex justify-between text-xs">
-                <span className="text-muted-foreground">
-                  ${(e.revenue / 1000).toFixed(0)}K revenue
-                </span>
-                <span className={e.trend >= 0 ? "text-success" : "text-destructive"}>
-                  {e.trend > 0 ? "+" : ""}
-                  {e.trend}% trend
-                </span>
-              </div>
-            </Panel>
-          </Link>
-        ))}
-      </div>
+                  <span className="ml-auto">
+                    <Chip tone="iris">{roleLabel(m.role)}</Chip>
+                  </span>
+                </div>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  Joined {new Date(m.joinedAt).toLocaleDateString()}
+                </p>
+              </Panel>
+            </Link>
+          ))}
+        </div>
+      )}
     </>
   );
 }

@@ -32,6 +32,15 @@ async function redirectAfterAuth(navigate: ReturnType<typeof useNavigate>) {
     void navigate({ to: "/onboarding", replace: true });
     return;
   }
+  const role = session.authz.role;
+  if (role === "owner" || role === "admin" || role === "ceo") {
+    void navigate({ to: "/ceo", replace: true });
+    return;
+  }
+  if (role === "manager" || role === "qa" || role === "team_leader") {
+    void navigate({ to: "/manager", replace: true });
+    return;
+  }
   void navigate({ to: "/app", replace: true });
 }
 
