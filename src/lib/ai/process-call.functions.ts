@@ -74,20 +74,53 @@ export const processCallAnalysis = createServerFn({ method: "POST" })
     let model = resolved.model;
     let inputTokens: number | null = null;
     let outputTokens: number | null = null;
+    let promptId = "legacy_sales_coach";
+    let promptVersion = "0.0.0";
 
     try {
-      const coached = await coachFromTranscript(transcript, {
-        repName: undefined,
-        product: call.contact_company ?? undefined,
-        callType: call.direction ?? "sales",
-        contactName: call.contact_name ?? undefined,
-        contactCompany: call.contact_company ?? undefined,
-      });
-      analysis = coached.coaching;
-      provider = coached.provider;
-      model = coached.model;
-      inputTokens = coached.inputTokens;
-      outputTokens = coached.outputTokens;
+      if (process.env.OPENAI_API_KEY) {
+        const { createAIService } = await import("@/ai/services/ai-service");
+        const { toLegacyCallAnalysis } = await import("@/ai/adapters/to-legacy-analysis");
+        const ai = createAIService("openai");
+        const analysisResult = await ai.analyzeCall(
+          {
+            company_context: { companyId: data.companyId },
+            product_context: call.contact_company ?? "unknown",
+            sales_playbook: {},
+            transcript,
+          },
+          { companyId: data.companyId, callId: data.callId },
+        );
+        const coachingResult = await ai.coachAgent(
+          {
+            transcript,
+            call_analysis: analysisResult.data,
+            agent_profile: {},
+            company_playbook: {},
+            scorecard: {},
+          },
+          { companyId: data.companyId, callId: data.callId },
+        );
+        analysis = toLegacyCallAnalysis(analysisResult.data, coachingResult.data);
+        provider = analysisResult.provider;
+        model = analysisResult.model;
+        inputTokens = analysisResult.inputTokens;
+        outputTokens = analysisResult.outputTokens;
+        promptId = analysisResult.promptId;
+        promptVersion = analysisResult.promptVersion;
+      } else {
+        const coached = await coachFromTranscript(transcript, {
+          product: call.contact_company ?? undefined,
+          callType: call.direction ?? "sales",
+          contactName: call.contact_name ?? undefined,
+          contactCompany: call.contact_company ?? undefined,
+        });
+        analysis = coached.coaching;
+        provider = coached.provider;
+        model = coached.model;
+        inputTokens = coached.inputTokens;
+        outputTokens = coached.outputTokens;
+      }
     } catch (err) {
       const errText = err instanceof Error ? err.message : String(err);
       await failJob(admin, jobInsert.data?.id, call.id, errText);
@@ -150,7 +183,7 @@ export const processCallAnalysis = createServerFn({ method: "POST" })
         missed_opportunities: analysis.missedOpportunities,
         compliance_flags: analysis.complianceFlags,
         customer_analysis: analysis.customerAnalysis,
-        prompt_version: "sales-coach-v1",
+        prompt_version: `${promptId}@${promptVersion}`,
         provider,
         model,
         input_tokens: inputTokens,

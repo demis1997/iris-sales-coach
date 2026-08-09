@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test:unit": "node --experimental-strip-types --experimental-transform-types src/lib/permissions.test.ts",
+    "test:ai": "node --experimental-strip-types --experimental-transform-types --import ./scripts/register-ai-alias.mjs --test src/ai/ai-system.test.ts",
     "verify:step1": "node scripts/verify-step1.mjs"
   },
   "dependencies": {
