@@ -266,7 +266,7 @@ export function ArtemisHeader() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link to="/demo" className="text-sm font-medium text-[#4B5C76] hover:text-[#0B1B33]">
-            Forex Demo
+            Product Demo
           </Link>
           <Link to="/app" className="text-sm font-medium text-[#4B5C76] hover:text-[#0B1B33]">
             Log In

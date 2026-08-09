@@ -1,10 +1,7 @@
 import {
-  ArrowUpRight,
   BadgeCheck,
   Bot,
-  Check,
   GraduationCap,
-  Minus,
   ScrollText,
   ShieldCheck,
   Timer,
@@ -17,45 +14,38 @@ import { Reveal, Section } from "@/components/landing/marketing-bits";
 const benefits = [
   {
     icon: TrendingUp,
-    t: "Increase closing rates",
-    d: "Every rep gets the objection language that actually converts on your product, not generic sales theory.",
-    impact: "+4 pts close rate ≈ €1.1M added annual revenue on a 40-rep floor",
+    t: "Identify behaviours that influence conversion",
+    d: "Surface the objection language and call patterns that show up before wins — grounded in your own conversations.",
   },
   {
     icon: Timer,
-    t: "Reduce onboarding time",
-    d: "New hires are coached after their first call instead of their fourth week.",
-    impact: "Ramp cut from 90 to 38 days ≈ €62K earlier revenue per hire",
+    t: "Help new hires improve sooner",
+    d: "Give agents coaching after conversations instead of waiting for a weekly 1:1 sample.",
   },
   {
     icon: Bot,
-    t: "Coach every employee automatically",
-    d: "100% of calls scored and coached — not the 2% a manager can sample.",
-    impact: "Replaces ~1 coaching FTE per 25 reps",
+    t: "Coach after every conversation",
+    d: "Let managers review the calls that need attention instead of manually listening to every recording.",
   },
   {
     icon: ScrollText,
-    t: "Identify your best scripts",
-    d: "Iris finds the phrasing that statistically precedes a close, then teaches it to the floor.",
-    impact: "Winning-script rollout lifts desk conversion 6–11%",
+    t: "Find what top performers actually say",
+    d: "Turn winning moments into playbooks the rest of the floor can practice.",
   },
   {
     icon: ShieldCheck,
-    t: "Improve compliance",
-    d: "Required disclosures, prohibited claims and consent language checked on every regulated call.",
-    impact: "One avoided regulatory penalty pays for years of Iris",
+    t: "Support compliance workflows",
+    d: "Flag missing disclosures and risky claims with evidence for human review.",
   },
   {
     icon: UsersRound,
-    t: "Reduce manager workload",
-    d: "Managers stop auditing recordings and start acting on ranked, evidence-backed insights.",
-    impact: "~14 hours per manager per week returned to selling",
+    t: "Focus manager time where it matters",
+    d: "Ranked insights and coaching queues — not vanity dashboards.",
   },
   {
     icon: GraduationCap,
-    t: "Scale coaching without hiring",
-    d: "Double the floor without doubling sales management or QA headcount.",
-    impact: "Avoids ~€90K per additional sales trainer",
+    t: "Scale coaching without scaling headcount first",
+    d: "Pair AI coaching and roleplay with manager oversight as the floor grows.",
   },
 ];
 
@@ -63,9 +53,9 @@ export function Benefits() {
   return (
     <Section
       id="results"
-      eyebrow="Business outcomes"
-      title="What this does to your P&L"
-      lede="Iris is not bought as software. It is bought as revenue, retained margin and reduced risk."
+      eyebrow="Capabilities"
+      title="What Artemis is built to do for your floor"
+      lede="Product capabilities — not fabricated customer ROI numbers."
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {benefits.map((b, i) => (
@@ -76,10 +66,6 @@ export function Benefits() {
               </span>
               <h3 className="mt-5 text-[0.95rem] font-semibold">{b.t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.d}</p>
-              <p className="mt-5 flex items-start gap-2 border-t border-border pt-4 text-xs text-cyan">
-                <ArrowUpRight className="mt-0.5 size-3.5 shrink-0" />
-                {b.impact}
-              </p>
             </Panel>
           </Reveal>
         ))}
@@ -100,7 +86,7 @@ const capabilities = [
   ["Personalized Learning", "A curriculum built from the rep's own calls"],
   ["Weekly AI Reports", "An executive briefing every Monday morning"],
   ["Knowledge Base Coaching", "Coaching grounded in your product and policy"],
-  ["Natural Language Search", "\"Show me lost forex calls that mentioned spreads\""],
+  ["Natural Language Search", '"Show me lost forex calls that mentioned spreads"'],
 ];
 
 export function Capabilities() {
@@ -124,50 +110,6 @@ export function Capabilities() {
           </Reveal>
         ))}
       </div>
-    </Section>
-  );
-}
-
-const comparison = [
-  ["Call coverage", "Listen to random calls", "Every call analyzed"],
-  ["Coaching speed", "Manual, days later", "Instant, after every call"],
-  ["Feedback quality", "Subjective feedback", "Objective AI scoring"],
-  ["Visibility", "Limited to sampled calls", "Company-wide insights"],
-  ["Consistency", "Varies by manager", "Continuous, identical standard"],
-  ["Proof of impact", "Anecdotal", "Measurable improvement"],
-];
-
-export function Comparison() {
-  return (
-    <Section
-      eyebrow="Why Iris is different"
-      title="Traditional QA was built for sampling. Iris was built for scale."
-    >
-      <Reveal>
-        <Panel className="overflow-hidden p-0">
-          <div className="grid grid-cols-[1.1fr_1fr_1fr] border-b border-border text-xs tracking-[0.14em] text-muted-foreground uppercase">
-            <div className="px-5 py-4" />
-            <div className="px-5 py-4">Traditional QA</div>
-            <div className="bg-primary/8 px-5 py-4 text-foreground">Iris</div>
-          </div>
-          {comparison.map(([k, a, b]) => (
-            <div
-              key={k}
-              className="grid grid-cols-[1.1fr_1fr_1fr] border-b border-border last:border-0"
-            >
-              <div className="px-5 py-4 text-sm font-medium">{k}</div>
-              <div className="flex items-start gap-2 px-5 py-4 text-sm text-muted-foreground">
-                <Minus className="mt-0.5 size-3.5 shrink-0" />
-                {a}
-              </div>
-              <div className="flex items-start gap-2 bg-primary/8 px-5 py-4 text-sm">
-                <Check className="mt-0.5 size-3.5 shrink-0 text-success" />
-                {b}
-              </div>
-            </div>
-          ))}
-        </Panel>
-      </Reveal>
     </Section>
   );
 }

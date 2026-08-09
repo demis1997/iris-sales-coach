@@ -68,62 +68,79 @@ const INTEGRATIONS = [
   {
     name: "HubSpot",
     color: "#FF7A59",
+    status: "Planned",
     blurb:
-      "Close deals faster with our AI calling solution within HubSpot. Auto-log calls, send personalized SMS & run dialer campaigns seamlessly.",
+      "Planned CRM connector for call logging, SMS, and dialer workflows inside HubSpot.",
   },
   {
     name: "Salesforce",
     color: "#00A1E0",
+    status: "Planned",
     blurb:
-      "Connect your calls to the #1 Enterprise CRM and leverage our AI contact center for better agent performance.",
+      "Planned Salesforce connector for call context and coaching insights in the CRM.",
   },
   {
     name: "Zoho",
     color: "#E42527",
+    status: "Planned",
     blurb:
-      "Log calls, run smarter campaigns, and auto-create tickets for an enhanced agent experience with our Zoho integration.",
+      "Planned Zoho integration for call logging, campaigns, and ticket creation.",
   },
   {
     name: "Bitrix24",
     color: "#2FC6F6",
+    status: "Planned",
     blurb:
-      "Boost agent performance directly from Bitrix24. Streamline outbound calls & gain AI insights with Artemis AI.",
+      "Planned Bitrix24 connector for outbound calling and AI insights.",
   },
   {
     name: "Freshdesk",
     color: "#25C16F",
+    status: "Planned",
     blurb:
-      "Resolve tickets faster with call pop-up, call history, and automated ticket creation — so agents serve customers with confidence.",
+      "Planned Freshdesk connector for call pop-up, history, and ticket creation.",
   },
   {
     name: "Zendesk",
     color: "#03363D",
+    status: "Planned",
     blurb:
-      "Empower agents to delight customers. Connect our AI calling features to Zendesk and enhance how inquiries get resolved.",
+      "Planned Zendesk connector for AI calling features in support workflows.",
   },
   {
     name: "Zapier",
     color: "#FF4A00",
+    status: "Planned",
     blurb:
-      "Design smarter workflows by connecting your calls to CRM, helpdesk, marketing automation, and 1,000+ apps.",
+      "Planned Zapier workflows to connect calls to CRM, helpdesk, and marketing tools.",
   },
   {
     name: "Make.com",
     color: "#6D00CC",
+    status: "Planned",
     blurb:
-      "Supercharge calling workflows with Make.com and Artemis AI. Automate tasks, connect apps & streamline communication.",
+      "Planned Make.com automation for calling workflows and app connections.",
   },
   {
     name: "Pipedrive",
     color: "#017737",
+    status: "Planned",
     blurb:
-      "Watch your sales pipeline surge. Increase connections and close more deals with our AI Predictive Dialer.",
+      "Planned Pipedrive connector for pipeline context and dialer workflows.",
+  },
+  {
+    name: "Twilio",
+    color: "#F22F46",
+    status: "In progress",
+    blurb:
+      "Telephony foundation in progress — click-to-call and caller ID for Artemis workspaces.",
   },
   {
     name: "Something else?",
     color: "#12C48A",
+    status: "Talk to us",
     blurb:
-      "Connect your existing business systems to Artemis AI. Chat with our team about custom integration and unlock powerful workflows.",
+      "Tell us which systems your floor runs. We prioritize connectors with design partners.",
   },
 ];
 
@@ -151,27 +168,27 @@ const USE_CASES = [
 const FAQS = [
   {
     q: "How easy is it to integrate Artemis AI with our existing tools?",
-    a: "Artemis AI offers out-of-the-box connectors for leading CRMs, helpdesks, and productivity tools. Most integrations can be enabled in a few clicks. For advanced setups, our open API supports flexible custom integrations.",
+    a: "CRM and telephony connectors are planned or in progress. Demo screens may show simulated integrations. For design partners, we prioritize the connectors your floor actually needs — including API-first options.",
   },
   {
     q: "Can we connect multiple systems to Artemis AI at the same time?",
-    a: "Yes. Artemis AI supports multi-platform connectivity, so you can run CRM, helpdesk, marketing, and analytics tools simultaneously in a unified agent experience.",
+    a: "That is the product direction: CRM, helpdesk, and telephony together in one agent experience. Availability depends on which connectors have shipped for your workspace.",
   },
   {
     q: "What if our team needs a custom integration?",
-    a: "We’ve built Artemis AI to be API-first and developer-friendly. Whether you’re connecting internal systems or a niche tool, our team can support you with code samples, documentation, and custom setup plans.",
+    a: "Artemis is being built API-first. Talk to us about your stack — we work with design partners on custom setup plans where it makes sense.",
   },
   {
     q: "Is there a developer resource center available?",
-    a: "Yes. We provide API documentation, sample code, Postman collections, and other developer tools to help your team integrate Artemis AI quickly.",
+    a: "API documentation and developer tooling are expanding as connectors ship. Contact us if you need early access materials.",
   },
   {
     q: "What if we need to go live quickly?",
-    a: "Most Artemis AI integrations can be fully deployed in under 24 hours. We offer guided onboarding and implementation packages designed for fast rollout.",
+    a: "Book a demo or become a design partner. We will map a realistic rollout for your telephony and CRM stack — without promising overnight connectors that are not shipped yet.",
   },
   {
     q: "How does Artemis AI ensure data security across integrations?",
-    a: "Artemis AI aligns with major industry standards including ISO 27001, SOC 2, and PCI DSS. We offer data residency options, audit trails, and encryption across integration touchpoints.",
+    a: "Artemis AI is designed with enterprise security in mind — encryption, tenant isolation, audit trails, and access controls. We do not claim SOC 2, ISO 27001, or PCI DSS certification until those audits are completed.",
   },
 ];
 
@@ -183,12 +200,15 @@ export function ArtemisIntegrationsPage() {
     <div className="min-h-screen bg-white text-[#0B1B33]">
       <div className="border-b border-[#E8EEF7] bg-gradient-to-r from-[#E8FFF6] via-[#EEF2FF] to-[#FFF4E8]">
         <p className="mx-auto max-w-6xl px-5 py-2.5 text-center text-sm text-[#4B5C76]">
-          <span className="mr-1.5">🎯</span>
-          BPO Growth Program: <span className="font-semibold text-[#12C48A]">30% off</span> your first
-          year — August only.{" "}
-          <a href="#get-started" className="font-semibold text-[#4F6EF7] underline-offset-2 hover:underline">
-            Learn more
+          Building with high-volume sales teams.{" "}
+          <a href="/demo" className="font-semibold text-[#4F6EF7] underline-offset-2 hover:underline">
+            Explore the product demo
+          </a>{" "}
+          or{" "}
+          <a href="#get-started" className="font-semibold text-[#12C48A] underline-offset-2 hover:underline">
+            become a design partner
           </a>
+          .
         </p>
       </div>
 
@@ -206,15 +226,15 @@ export function ArtemisIntegrationsPage() {
               Connect Artemis AI with the tools you love
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#4B5C76]">
-              Sync with your favorite apps in just a few clicks to leverage Artemis AI’s contact center
-              features together with other leading platforms.
+              Planned and in-progress connectors for the CRMs and telephony stacks high-volume sales
+              teams already run. Demo screens may show simulated integrations until live connectors ship.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <ArtemisButton href="#get-started" className="px-7 py-3 text-base">
-                Get Started
+                Talk to Us
               </ArtemisButton>
-              <ArtemisButton href="#integrations" variant="secondary" className="px-7 py-3 text-base">
-                Browse apps
+              <ArtemisButton href="/demo" variant="secondary" className="px-7 py-3 text-base">
+                Explore the Product Demo
               </ArtemisButton>
             </div>
             <p className="mt-4 text-xs text-[#8A9BB5]">
@@ -259,8 +279,11 @@ export function ArtemisIntegrationsPage() {
       <section id="integrations" className="py-20">
         <div className="mx-auto max-w-6xl px-5">
           <h2 className="text-center text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-            Check out all of our integrations
+            Planned integrations for your stack
           </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-[#4B5C76]">
+            Labels below mark roadmap status — not live availability unless noted.
+          </p>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {INTEGRATIONS.map((item) => (
               <article
@@ -274,7 +297,10 @@ export function ArtemisIntegrationsPage() {
                   >
                     {item.name.slice(0, 2).toUpperCase()}
                   </span>
-                  <h3 className="text-lg font-semibold text-[#0B1B33]">{item.name}</h3>
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#0B1B33]">{item.name}</h3>
+                    <p className="text-xs font-medium text-[#8A9BB5]">{item.status}</p>
+                  </div>
                 </div>
                 <p className="text-sm leading-relaxed text-[#4B5C76]">{item.blurb}</p>
               </article>
@@ -309,10 +335,10 @@ export function ArtemisIntegrationsPage() {
         <div className="mx-auto max-w-3xl px-5">
           <div className="rounded-[2rem] border border-[#E8EEF7] bg-gradient-to-br from-white via-[#F7FAFF] to-[#E8FFF6] p-8 shadow-[0_20px_60px_-30px_rgba(15,40,80,0.35)] sm:p-10">
             <h2 className="text-center text-3xl font-bold tracking-tight text-[#0B1B33]">
-              Get started in less than 24 hours
+              Talk through your stack with us
             </h2>
             <p className="mt-2 text-center text-[#4B5C76]">
-              Let’s chat about a solution that works for you
+              Book a demo, request early access, or become a design partner
             </p>
             <div className="mt-4 flex justify-center">
               <ContactLinks />

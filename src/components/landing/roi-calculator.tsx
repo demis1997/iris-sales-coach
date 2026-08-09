@@ -76,12 +76,12 @@ export function RoiCalculator() {
             <Calculator className="size-3" /> ROI calculator
           </span>
           <h2 className="mt-5 text-3xl leading-[1.1] font-semibold tracking-tight text-balance md:text-[2.75rem]">
-            What does a{" "}
-            <span className="gradient-text">three-point close rate lift</span> pay you?
+            Model what a{" "}
+            <span className="gradient-text">close-rate improvement</span> could mean
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
-            Move the inputs to your own floor. Most teams find the answer larger than their entire
-            sales technology budget.
+            Illustrative scenario only — not a customer result. Adjust the inputs to your own floor
+            and talk through the model on a demo.
           </p>
         </Reveal>
 
@@ -92,19 +92,19 @@ export function RoiCalculator() {
               <Field label="Average deals closed per rep, per month" value={deals} min={1} max={60} step={1} onChange={setDeals} />
               <Field label="Average revenue per deal" value={revenue} min={200} max={25000} step={100} suffix=" €" onChange={setRevenue} />
               <Field label="Current close rate" value={closeRate} min={5} max={60} step={1} suffix="%" onChange={setCloseRate} />
-              <Field label="Close rate improvement with Iris" value={lift} min={1} max={10} step={1} suffix=" pts" onChange={setLift} />
+              <Field label="Assumed close-rate improvement (scenario)" value={lift} min={1} max={10} step={1} suffix=" pts" onChange={setLift} />
             </div>
 
             <div className="flex flex-col justify-between gap-5 rounded-2xl border border-border bg-secondary/25 p-6">
               <div>
                 <p className="text-[11px] tracking-[0.16em] text-muted-foreground uppercase">
-                  Estimated additional annual revenue
+                  Illustrative annual revenue delta
                 </p>
                 <p className="mt-3 font-mono text-4xl leading-tight font-semibold gradient-text md:text-5xl">
                   {fmt(delta)}
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  From {closeRate}% to {closeRate + lift}% close rate across {reps} reps.
+                  Scenario: {closeRate}% → {closeRate + lift}% close rate across {reps} reps. Not a guaranteed outcome.
                 </p>
               </div>
 

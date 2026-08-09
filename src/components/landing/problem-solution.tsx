@@ -14,13 +14,13 @@ import {
   UserPlus,
 } from "lucide-react";
 import { Panel } from "@/components/iris/primitives";
-import { CountUp, Reveal, Section } from "@/components/landing/marketing-bits";
+import { Reveal, Section } from "@/components/landing/marketing-bits";
 
 export function Plateau() {
   const stats = [
-    { label: "↑ Closing rate", to: 31, suffix: "%", note: "average lift after two quarters" },
-    { label: "↓ Manager coaching time", to: 68, suffix: "%", note: "hours returned to the floor" },
-    { label: "↑ Employee improvement", to: 3.4, suffix: "×", decimals: 1, note: "faster ramp to quota" },
+    { label: "Every call", note: "Understood with evidence" },
+    { label: "Every rep", note: "Coached after the conversation" },
+    { label: "Every manager", note: "Focused on what needs attention" },
   ];
 
   return (
@@ -39,20 +39,16 @@ export function Plateau() {
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.09}>
               <Panel className="group relative h-full overflow-hidden p-7 transition-colors hover:border-primary/40">
-                <div className="pointer-events-none absolute -top-16 -right-16 size-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60 [background:radial-gradient(circle,oklch(0.66_0.2_293/0.5),transparent_70%)]" />
                 <p className="text-xs font-medium tracking-[0.14em] text-muted-foreground uppercase">
                   {s.label}
                 </p>
-                <p className="mt-4 font-mono text-5xl font-semibold gradient-text">
-                  <CountUp to={s.to} suffix={s.suffix} decimals={s.decimals ?? 0} />
-                </p>
-                <p className="mt-3 text-sm text-muted-foreground">{s.note}</p>
+                <p className="mt-4 text-2xl font-semibold gradient-text">{s.note}</p>
               </Panel>
             </Reveal>
           ))}
         </div>
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          Modelled outcomes from Iris deployments on outbound floors of 20–400 reps.
+          Product capabilities for high-volume outbound floors — explore the interactive demo for the full story.
         </p>
       </div>
     </section>
@@ -63,7 +59,7 @@ const problems = [
   {
     icon: HeadphonesIcon,
     t: "Managers cannot review hundreds of calls",
-    d: "A director with 30 reps would need 62 hours a week to hear every conversation. So they sample five and hope.",
+    d: "Directors cannot hear every conversation. They sample a handful and hope — Artemis is built to surface the calls that need attention.",
   },
   {
     icon: UserPlus,

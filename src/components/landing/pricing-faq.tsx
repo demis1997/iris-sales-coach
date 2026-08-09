@@ -106,13 +106,34 @@ export function Pricing() {
 }
 
 const faqs = [
-  ["How accurate is the AI?", "Transcription accuracy averages 96% on clear telephony audio and scoring is calibrated against your own managers during onboarding. Every score links to the exact audio moment that produced it, so nothing has to be taken on faith."],
-  ["How quickly can we onboard?", "Most floors are live within five business days: connect the dialer, import last month's calls for a baseline, calibrate scoring with your managers, then switch reps on desk by desk."],
-  ["Does Iris integrate with our phone system?", "Yes — Aircall, Genesys, RingCentral, Twilio, Zoom, Teams and Google Meet are supported natively, and anything else can send audio through our SIP recorder or REST API."],
-  ["Can managers customize coaching?", "Managers define the scorecard, the required call stages, the compliance checklist and the methodology (SPIN, MEDDIC, BANT, Challenger). Iris coaches against your standard, not a generic one."],
-  ["Is customer data secure?", "Recordings are encrypted at rest and in transit, isolated per tenant, accessible only through role-based permissions, and every access is written to an exportable audit log. EU data residency is available."],
-  ["Can Iris support multiple languages?", "Iris analyzes and coaches in 30+ languages including English, German, Spanish, Italian, Polish, Arabic and Greek, with mixed-language calls handled in a single transcript."],
-  ["How does compliance monitoring work?", "You define required disclosures and prohibited claims per product and jurisdiction. Iris checks every call, flags misses to compliance within minutes, and keeps the evidence trail for audits."],
+  [
+    "How accurate is the AI?",
+    "Scoring and transcription quality depend on audio clarity and calibration with your managers during onboarding. Every score is designed to link back to moments in the conversation so nothing has to be taken on faith.",
+  ],
+  [
+    "How quickly can we onboard?",
+    "Onboarding is scoped during the demo based on your dialer, call volume, and desk structure. We typically start with a focused pilot rather than a big-bang rollout.",
+  ],
+  [
+    "Does Artemis integrate with our phone system?",
+    "Telephony and CRM connectors are planned or in progress (including Twilio click-to-call). Until a connector is live for your stack, we can work from uploads and demo workflows.",
+  ],
+  [
+    "Can managers customize coaching?",
+    "Managers define the scorecard, required call stages, compliance checklist, and methodology (SPIN, MEDDIC, BANT, Challenger). Artemis is designed to coach against your standard, not a generic one.",
+  ],
+  [
+    "Is customer data secure?",
+    "The product is designed with encryption in transit/at rest, tenant isolation, and role-based access. We do not claim unfinished SOC 2 / ISO certifications. EU-conscious residency and retention options are part of the design direction.",
+  ],
+  [
+    "Can Artemis support multiple languages?",
+    "Multilingual analysis is part of the product roadmap for high-volume international floors. Scope languages with us during the demo.",
+  ],
+  [
+    "How does compliance monitoring work?",
+    "You define required disclosures and prohibited claims per product and jurisdiction. Artemis is designed to flag misses with evidence trails for review — assistance for compliance teams, not a legal determination.",
+  ],
 ];
 
 export function Faq() {

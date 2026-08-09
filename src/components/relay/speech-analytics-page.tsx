@@ -48,8 +48,8 @@ const CAPABILITIES = [
   },
   {
     icon: Languages,
-    title: "Available in 10+ languages",
-    text: "Leverage analytics in English, Spanish, French, Arabic, and many more languages.",
+    title: "Designed for multi-language floors",
+    text: "Language coverage is expanding with the product — talk to us about the languages your floor needs.",
   },
 ];
 
@@ -160,9 +160,9 @@ export function ArtemisSpeechAnalyticsPage() {
   return (
     <div className="min-h-screen bg-[#0B1220] text-white">
       <div className="bg-[#151D2E] px-4 py-2 text-center text-sm text-white/90">
-        🎯 BPO Growth Program: 30% off your first year — August only.{" "}
-        <a href="#get-started" className="font-semibold text-[#2EE6A6] underline-offset-2 hover:underline">
-          Learn more
+        Explore the interactive product demo — or talk to us about early access.{" "}
+        <a href="/demo" className="font-semibold text-[#2EE6A6] underline-offset-2 hover:underline">
+          Open demo
         </a>
       </div>
 
@@ -293,11 +293,11 @@ export function ArtemisSpeechAnalyticsPage() {
       <section id="integrations" className="border-t border-white/10 bg-[#0E1628] py-20">
         <div className="mx-auto max-w-6xl px-5 text-center">
           <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Seamless integration with your CRM
+            Planned CRM & telephony connectors
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-white/60">
-            Sync with your favorite apps in just a few clicks to leverage the power of Artemis AI
-            contact center features.
+            Roadmap destinations for Artemis AI — not a claim that every connector is live today.
+            Demo screens may show simulated integrations.
           </p>
           <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
             {["Salesforce", "HubSpot", "Zendesk", "Freshdesk", "Slack", "Zapier", "Twilio", "Aircall"].map(
@@ -307,15 +307,18 @@ export function ArtemisSpeechAnalyticsPage() {
                   className="rounded-xl border border-white/10 bg-[#0B1220] px-3 py-4 text-sm font-medium text-white/80"
                 >
                   {name}
+                  <span className="mt-1 block text-[10px] font-normal uppercase tracking-wide text-white/40">
+                    {name === "Twilio" ? "In progress" : "Planned"}
+                  </span>
                 </div>
               ),
             )}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <ArtemisButton href="#get-started" variant="secondary">
-              Explore All Integrations
+            <ArtemisButton href="/demo" variant="secondary">
+              Explore Product Demo
             </ArtemisButton>
-            <ArtemisButton href="#get-started">Get Started</ArtemisButton>
+            <ArtemisButton href="#get-started">Book a Demo</ArtemisButton>
           </div>
         </div>
       </section>
@@ -325,11 +328,10 @@ export function ArtemisSpeechAnalyticsPage() {
         <div className="mx-auto grid max-w-6xl gap-10 px-5 lg:grid-cols-2 lg:items-start">
           <div>
             <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-              Get started in less than 24 hours
+              Book a demo or request early access
             </h2>
             <p className="mt-4 text-white/65">
-              Deploy speech analytics tools with fast onboarding, automated conversation analysis,
-              and insights built for modern support and sales teams. Or reach us directly:
+              Talk through conversation intelligence for your sales or support floor. Or reach us directly:
             </p>
             <ContactLinks tone="dark" className="mt-4" />
             <ul className="mt-6 space-y-3 text-sm text-white/70">
@@ -494,7 +496,7 @@ export function ArtemisSpeechAnalyticsPage() {
             <div>
               <p className="font-semibold text-white">Company</p>
               <div className="mt-3 flex flex-col gap-2">
-                <a href="#customers">Customers</a>
+                <a href="/demo">Product Demo</a>
                 <a href="#faq">FAQ</a>
                 <a href={CONTACT_MAILTO}>Contact</a>
               </div>
@@ -556,7 +558,7 @@ function HeroProductMock() {
       <div className="flex items-center justify-between border-b border-white/10 pb-3">
         <p className="text-sm font-semibold">Call intelligence</p>
         <span className="rounded-full bg-[#2EE6A6]/15 px-2.5 py-1 text-[11px] font-semibold text-[#2EE6A6]">
-          Score 4.6
+          Demo preview
         </span>
       </div>
       <div className="mt-4 space-y-3">
@@ -629,9 +631,9 @@ function FeatureMock({ kind }: { kind: "scoring" | "transcript" | "summary" }) {
       <p className="text-xs font-semibold text-white/40 uppercase">AI call scoring</p>
       <div className="mt-4 grid grid-cols-3 gap-3 text-center">
         {[
-          ["Overall", "4.6"],
-          ["Empathy", "4.8"],
-          ["Process", "4.3"],
+          ["Opening", "90"],
+          ["Discovery", "86"],
+          ["Closing", "78"],
         ].map(([l, v]) => (
           <div key={l} className="rounded-xl bg-[#0B1220] p-3">
             <p className="text-2xl font-semibold text-[#2EE6A6]">{v}</p>
@@ -639,6 +641,7 @@ function FeatureMock({ kind }: { kind: "scoring" | "transcript" | "summary" }) {
           </div>
         ))}
       </div>
+      <p className="mt-3 text-center text-[10px] text-white/35">Illustrative demo scores · not a review rating</p>
     </div>
   );
 }

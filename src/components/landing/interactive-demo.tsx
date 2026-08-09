@@ -13,7 +13,7 @@ const steps = [
     quote:
       "\"Honestly, your spreads look higher than what I'm paying now, and I've been with them four years.\"",
     body: "Iris tags this as a competitive price objection with a loyalty component — the two rarely resolve with a discount.",
-    meta: [["Objection type", "Price + incumbent loyalty"], ["Frequency on your floor", "31% of lost calls"]],
+    meta: [["Objection type", "Price + incumbent loyalty"], ["Pattern on many floors", "Common loss driver"]],
   },
   {
     key: "analysis",
@@ -61,7 +61,7 @@ const steps = [
     quote:
       "\"Ask both volume questions before any number leaves your mouth. Target talk ratio under 60%.\"",
     body: "Iris tracks the two behaviours on every subsequent call and reports the movement to Marcus and his manager weekly.",
-    meta: [["Projected impact", "+17% close rate"], ["Review", "After 10 calls"]],
+    meta: [["Projected impact (illustrative)", "Close-rate focus"], ["Review", "After 10 calls"]],
   },
 ];
 

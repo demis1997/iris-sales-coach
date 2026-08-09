@@ -146,12 +146,12 @@ const COMPARISON = {
     "Manual coaching",
   ],
   artemis: [
-    "Learns from every conversation",
-    "Continuously improves every rep",
+    "Designed to learn from every conversation",
+    "Built to continuously improve every rep",
     "Adaptive playbooks",
-    "Predicts revenue",
+    "Revenue intelligence from call evidence",
     "AI coaching after every call",
-    "AI coaching during every call",
+    "Live AI coaching during calls",
     "Company memory",
     "Revenue intelligence",
   ],
@@ -186,16 +186,16 @@ export function ArtemisHomePage() {
               for Revenue Teams.
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#4B5C76]">
-              Artemis listens to every customer conversation, understands what happened, coaches every
-              sales representative, predicts revenue outcomes, identifies deal risk, and continuously
-              improves your entire sales organization.
+              Artemis is designed to turn every customer conversation into coaching, revenue
+              intelligence, and clearer next actions — so high-volume sales organizations improve
+              continuously, not only after the week is over.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <ArtemisButton href="#get-started" className="px-7 py-3 text-base">
-                Book Demo
+                Book a Demo
               </ArtemisButton>
-              <ArtemisButton href="/app" variant="secondary" className="px-7 py-3 text-base">
-                Watch Live Demo
+              <ArtemisButton href="/demo" variant="secondary" className="px-7 py-3 text-base">
+                Explore the Product Demo
               </ArtemisButton>
             </div>
             <p className="mt-6 text-xs font-medium tracking-wide text-[#8A9BB5] uppercase">
@@ -276,11 +276,11 @@ export function ArtemisHomePage() {
               Your company finally remembers every conversation.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">
-              Instead of losing customer conversations forever, Artemis transforms every interaction
-              into searchable institutional knowledge.
+              Artemis is designed to turn customer conversations into searchable institutional
+              knowledge — so winning behaviours are not trapped in one rep's head.
             </p>
             <p className="mt-3 text-base leading-relaxed text-[#4B5C76]">
-              Top-performing reps automatically teach the rest of the organization.
+              Top-performing patterns can teach the rest of the organization.
             </p>
           </div>
           <div className="rounded-[2rem] border border-[#E8EEF7] bg-gradient-to-br from-[#E8FFF6] via-white to-[#EEF2FF] p-8">
@@ -517,22 +517,27 @@ export function ArtemisHomePage() {
             Markets
           </p>
           <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
-            One operating system.
-            <br />
-            Many high-volume sales motions.
+            Built for high-volume revenue teams
           </h2>
           <p className="mt-3 max-w-xl text-[#4B5C76]">
-            Forex is where we started. The category is broader.
+            Industry focus areas — not a claim that these companies are already customers.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            {MARKETS.map((name) => (
-              <a
+            {[
+              "Forex & CFD",
+              "Insurance",
+              "Financial Services",
+              "Real Estate",
+              "BPO & Contact Centers",
+              "SaaS Sales",
+              "Recruiting",
+            ].map((name) => (
+              <span
                 key={name}
-                href="#get-started"
-                className="rounded-full border border-[#D7E0EF] bg-white px-4 py-2 text-sm font-medium text-[#4B5C76] transition hover:border-[#2EE6A6] hover:text-[#0B1B33]"
+                className="rounded-full border border-[#D7E0EF] bg-white px-4 py-2 text-sm font-medium text-[#4B5C76]"
               >
                 {name}
-              </a>
+              </span>
             ))}
           </div>
         </div>
@@ -580,6 +585,53 @@ export function ArtemisHomePage() {
         </div>
       </section>
 
+      {/* Product proof — roles */}
+      <section id="product-proof" className="border-y border-[#E8EEF7] bg-white py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            Product proof
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            Built around the way high-volume sales teams actually operate.
+          </h2>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {[
+              ["CEO", "Understand what's driving revenue.", "/demo/ceo"],
+              ["Manager", "Know who needs attention and why.", "/demo/manager"],
+              ["Agent", "Get better after every conversation.", "/demo/agent"],
+            ].map(([title, body, href]) => (
+              <article
+                key={title}
+                className="flex flex-col rounded-[1.75rem] border border-[#E8EEF7] bg-[#F7FAFF] p-7"
+              >
+                <h3 className="text-xl font-bold text-[#0B1B33]">{title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-[#4B5C76]">{body}</p>
+                <a
+                  href={href}
+                  className="mt-5 inline-flex text-sm font-semibold text-[#12C48A] hover:underline"
+                >
+                  Explore the Demo →
+                </a>
+              </article>
+            ))}
+          </div>
+          <div className="mt-10 grid gap-3 sm:grid-cols-4">
+            {[
+              ["Every Call", "Understood"],
+              ["Every Rep", "Coached"],
+              ["Every Manager", "Informed"],
+              ["Every Team", "Improving"],
+            ].map(([a, b]) => (
+              <div key={a} className="rounded-2xl border border-[#E8EEF7] bg-white px-4 py-4 text-center">
+                <p className="text-sm font-semibold text-[#0B1B33]">{a}</p>
+                <p className="mt-1 text-xs text-[#8A9BB5]">↓</p>
+                <p className="mt-1 text-sm font-medium text-[#12C48A]">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Why Artemis */}
       <section id="why" className="border-y border-[#E8EEF7] bg-[#0B1B33] py-20 text-white">
         <div className="mx-auto max-w-3xl px-5 text-center">
@@ -589,7 +641,7 @@ export function ArtemisHomePage() {
           <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
             Most CRMs store what happened.
             <br />
-            Artemis understands why it happened.
+            Artemis is built to understand why it happened.
           </h2>
         </div>
       </section>
@@ -622,16 +674,23 @@ export function ArtemisHomePage() {
               Plugs into the stack you already run
             </h3>
             <p className="mt-3 text-[#4B5C76]">
-              Sync outcomes, coaching tasks, and deal risk into your CRM — without making Artemis a
-              note-taking tool.
+              CRM and telephony connections are on the roadmap. Demo screens may show simulated
+              integrations while we build the live connectors.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {["HubSpot", "Salesforce", "Zoho", "Pipedrive", "Webhook", "API"].map((n) => (
+              {[
+                ["HubSpot", "Planned"],
+                ["Salesforce", "Planned"],
+                ["Zoho", "Planned"],
+                ["Pipedrive", "Planned"],
+                ["Twilio", "In progress"],
+                ["Webhook / API", "Planned"],
+              ].map(([n, status]) => (
                 <span
                   key={n}
                   className="rounded-full border border-[#D7E0EF] bg-white px-3 py-1.5 text-xs font-semibold text-[#4B5C76]"
                 >
-                  {n}
+                  {n} · <span className="text-[#8A9BB5]">{status}</span>
                 </span>
               ))}
             </div>
@@ -679,10 +738,10 @@ export function ArtemisHomePage() {
               <div className="mb-4 grid size-12 place-items-center rounded-2xl bg-[#EEF2FF] text-[#4F6EF7]">
                 <ShieldCheck className="size-5" />
               </div>
-              <h3 className="text-xl font-bold text-[#0B1B33]">Tenant isolation by design</h3>
+              <h3 className="text-xl font-bold text-[#0B1B33]">Designed with enterprise security in mind</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">
-                Company data stays inside company boundaries. Multi-company memberships without
-                cross-tenant leaks.
+                Role-based access, tenant isolation, and secure data boundaries are part of the
+                product design. We do not claim SOC 2 / ISO certifications we have not completed.
               </p>
             </article>
             <article className="rounded-[1.75rem] border border-[#E8EEF7] bg-white p-8">
@@ -691,10 +750,41 @@ export function ArtemisHomePage() {
               </div>
               <h3 className="text-xl font-bold text-[#0B1B33]">AI that cites evidence</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">
-                Scores and coaching reference real moments. Insights are assistance — not legal
-                conclusions.
+                Coaching and scores are designed to reference moments in the conversation. Insights
+                are assistance — not legal conclusions.
               </p>
             </article>
+          </div>
+          <p className="mt-6 text-xs text-[#8A9BB5]">
+            Built to support GDPR-conscious workflows (access control, retention, erasure paths). Not a
+            claim of completed certification audits.
+          </p>
+        </div>
+      </section>
+
+      {/* Design partners */}
+      <section id="design-partners" className="border-t border-[#E8EEF7] bg-[#F7FAFF] py-20">
+        <div className="mx-auto max-w-3xl px-5 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            Early access
+          </p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            Building with high-volume sales teams.
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-[#4B5C76]">
+            We're inviting sales organizations to build Artemis with us — around real workflows,
+            real conversations, and real revenue problems.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <ArtemisButton href={CONTACT_MAILTO} className="px-7 py-3 text-base">
+              Become a Design Partner
+            </ArtemisButton>
+            <ArtemisButton href="#get-started" variant="secondary" className="px-7 py-3 text-base">
+              Book a Demo
+            </ArtemisButton>
+            <ArtemisButton href="/demo" variant="secondary" className="px-7 py-3 text-base">
+              View Interactive Demo
+            </ArtemisButton>
           </div>
         </div>
       </section>
@@ -710,17 +800,20 @@ export function ArtemisHomePage() {
               of your sales organization.
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-white/70">
-              Book a demo. See the Revenue Loop on your calls — not a slide deck.
+              Book a demo — or explore the interactive product demo and see the CEO → call → coaching story.
             </p>
             <div className="mt-6 flex justify-center">
               <ContactLinks tone="dark" className="items-center text-center" />
             </div>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <ArtemisButton href={CONTACT_MAILTO} className="px-8 py-3 text-base">
-                Book Demo
+                Book a Demo
               </ArtemisButton>
-              <ArtemisButton href="/app" variant="secondary" className="px-8 py-3 text-base">
-                Watch Live Demo
+              <ArtemisButton href="/demo" variant="secondary" className="px-8 py-3 text-base">
+                Explore the Product
+              </ArtemisButton>
+              <ArtemisButton href={CONTACT_MAILTO} variant="secondary" className="px-8 py-3 text-base">
+                Request Early Access
               </ArtemisButton>
             </div>
             <p className="mt-4 text-xs text-white/45">
@@ -893,29 +986,28 @@ function HeroVisual() {
             <p className="text-sm font-semibold text-[#0B1B33]">Revenue OS</p>
           </div>
           <span className="rounded-full bg-[#E8FFF6] px-2.5 py-1 text-[11px] font-semibold text-[#12C48A]">
-            Live
+            Product preview
           </span>
         </div>
 
         <div className="mt-5 grid grid-cols-3 gap-3">
           {[
-            ["Forecast", "+12%", "this week"],
-            ["Conversion", "18.4%", "coaching lift"],
-            ["Risk deals", "7", "need action"],
-          ].map(([l, v, s]) => (
+            ["Every call", "Understood"],
+            ["Every rep", "Coached"],
+            ["Every team", "Visible"],
+          ].map(([l, v]) => (
             <div key={l} className="rounded-2xl bg-[#F7FAFF] p-3">
               <p className="text-[10px] font-medium uppercase tracking-wide text-[#8A9BB5]">{l}</p>
-              <p className="mt-1 text-xl font-bold text-[#0B1B33]">{v}</p>
-              <p className="text-[11px] text-[#12C48A]">{s}</p>
+              <p className="mt-1 text-sm font-bold text-[#0B1B33]">{v}</p>
             </div>
           ))}
         </div>
 
         <div className="mt-4 space-y-2">
           {[
-            ["Rep DNA · Closing", "rising · top quartile"],
-            ["Copilot · Pricing objection", "suggested · used"],
-            ["Command · Pipeline risk", "3 deals flagged"],
+            ["Rep DNA · behaviour model", "skills + evidence"],
+            ["Copilot · in-call assist", "designed for live moments"],
+            ["Command · revenue view", "forecast · risk · coaching"],
           ].map(([a, b]) => (
             <div
               key={a}
@@ -930,10 +1022,10 @@ function HeroVisual() {
         <div className="mt-4 rounded-2xl bg-gradient-to-r from-[#2EE6A6] to-[#18C4FF] p-4 text-[#0B1B33]">
           <div className="flex items-center gap-2">
             <Target className="size-3.5 opacity-80" />
-            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Weekly action</p>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Product proof</p>
           </div>
           <p className="mt-1 text-sm font-semibold">
-            Three teams drove 61% of conversion lift. Double coaching capacity there first.
+            Explore the interactive Apex Markets demo — CEO, manager, agent, call review, and coaching in one flow.
           </p>
         </div>
       </div>

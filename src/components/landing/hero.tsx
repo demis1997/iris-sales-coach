@@ -27,7 +27,7 @@ function HeroVisual() {
             </div>
           </div>
           <span className="flex items-center gap-1.5 rounded-full bg-success/15 px-2 py-1 text-[11px] font-medium text-success">
-            <span className="size-1.5 animate-pulse rounded-full bg-success" /> Live analysis
+            <span className="size-1.5 rounded-full bg-success" /> Demo analysis
           </span>
         </div>
 
@@ -162,7 +162,7 @@ function HeroVisual() {
           <p className="text-xs text-muted-foreground">
             <span className="text-foreground">Coaching recommendation:</span> you quoted pricing
             before quantifying monthly volume. Ask two budget questions before the number —{" "}
-            <span className="text-success">projected +17% close rate.</span>
+            <span className="text-success">focus the next ten calls on that habit.</span>
           </p>
         </div>
       </Panel>
@@ -185,15 +185,15 @@ export function Hero() {
             <span className="gradient-text">Every Deal.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Iris AI listens to every conversation, coaches every representative, predicts every deal
-            and helps companies increase revenue automatically.
+            Iris is designed to turn every customer conversation into coaching, revenue intelligence,
+            and clearer next actions for high-volume sales teams.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link
-              to="/auth"
+              to="/demo"
               className="inline-flex items-center gap-2 rounded-xl gradient-surface px-5 py-3 text-sm font-semibold text-background shadow-[0_10px_40px_-12px_oklch(0.66_0.2_293/0.7)] transition-transform hover:-translate-y-0.5"
             >
-              Start free <ArrowRight className="size-4" />
+              Explore the Product Demo <ArrowRight className="size-4" />
             </Link>
             <a
               href="#demo-form"
@@ -204,7 +204,7 @@ export function Hero() {
           </div>
 
           <p className="mt-4 text-xs text-muted-foreground">
-            Deployed in days · Works with your existing dialer · No recordings leave your region
+            Built for high-volume sales teams · AI-native revenue intelligence
           </p>
         </motion.div>
 
@@ -214,14 +214,14 @@ export function Hero() {
 
         <Reveal className="mx-auto mt-14 max-w-4xl">
           <p className="text-center text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
-            Built for regulated, high-volume sales organizations
+            Built for high-volume revenue teams
           </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 opacity-60">
-            {["MERIDIAN FX", "NORTHGATE", "AURORA", "VAULT TRADING", "KESTREL", "HARBOR WEALTH"].map(
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            {["Forex & CFD", "Insurance", "Financial Services", "Real Estate", "BPO", "SaaS Sales"].map(
               (b) => (
                 <span
                   key={b}
-                  className="text-xs font-medium tracking-[0.22em] text-muted-foreground"
+                  className="rounded-full border border-border bg-secondary/30 px-3 py-1 text-xs font-medium text-muted-foreground"
                 >
                   {b}
                 </span>
@@ -232,10 +232,10 @@ export function Hero() {
 
         <Reveal delay={0.1} className="mx-auto mt-8 flex max-w-4xl justify-center">
           <Link
-            to="/ceo"
+            to="/demo"
             className="text-xs text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
           >
-            Explore the live product tour →
+            View interactive product demo →
           </Link>
         </Reveal>
       </div>

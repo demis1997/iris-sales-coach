@@ -3,7 +3,7 @@ import { ArtemisHomePage } from "@/components/relay/home-page";
 
 const title = "Artemis AI — The AI Operating System for Revenue Teams";
 const description =
-  "Artemis listens to every customer conversation, coaches every sales representative, predicts revenue outcomes, and continuously improves high-volume sales organizations.";
+  "Artemis is building the AI operating system for high-volume revenue teams — conversation intelligence, coaching, and executive visibility. Explore the interactive product demo.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

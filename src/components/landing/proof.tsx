@@ -1,82 +1,57 @@
 import { FileLock2, Fingerprint, Globe2, KeyRound, ScrollText, ServerCog } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Panel } from "@/components/iris/primitives";
 import { Reveal, Section } from "@/components/landing/marketing-bits";
 
-const testimonials = [
-  {
-    q: "Our close rate moved from 19% to 27% in one quarter. Iris found that reps were pitching before discovery on almost every call — something four managers had missed for two years.",
-    n: "Elena Kovač",
-    r: "Sales Director",
-    c: "Meridian FX",
-    stat: "+8 pts close rate",
-  },
-  {
-    q: "We are a regulated broker. Missed risk disclosures used to be found in audits. Now they are found in ninety seconds, and they stopped happening within a month.",
-    n: "Daniel Reisner",
-    r: "Managing Director",
-    c: "Vault Trading (Forex)",
-    stat: "97% fewer disclosure misses",
-  },
-  {
-    q: "Onboarding used to take a full quarter. New advisors now hit quota in six weeks because they get corrected on call two, not week five.",
-    n: "Amira Saleh",
-    r: "COO",
-    c: "Aurora Insurance",
-    stat: "Ramp 90 → 38 days",
-  },
-  {
-    q: "I stopped listening to recordings entirely. I read five ranked insights every morning and know exactly which agent needs me and why.",
-    n: "James Whitmore",
-    r: "Head of Sales",
-    c: "Northgate Realty",
-    stat: "14 hrs/week returned",
-  },
-  {
-    q: "Our top biller's objection language is now taught to the whole floor automatically. That alone changed our placement rate.",
-    n: "Priya Raman",
-    r: "Founder",
-    c: "Kestrel Recruitment",
-    stat: "+21% placements",
-  },
-];
-
+/** Product-focused proof — no fabricated customer testimonials. */
 export function Testimonials() {
   return (
     <Section
-      eyebrow="Customer proof"
-      title="Trusted on the loudest sales floors in Europe"
-      lede="Forex brokers, insurers, agencies and call centres running Iris across regulated, high-volume outbound."
+      eyebrow="Product proof"
+      title="Built around the way high-volume sales teams actually operate."
+      lede="AI-native revenue intelligence for CEOs, managers, and agents — explore the interactive demo."
     >
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {testimonials.map((t, i) => (
-          <Reveal
-            key={t.n}
-            delay={(i % 3) * 0.07}
-            className={i === 0 ? "lg:col-span-2" : undefined}
-          >
+      <div className="grid gap-4 md:grid-cols-3">
+        {[
+          {
+            t: "CEO",
+            d: "Understand what's driving revenue.",
+            to: "/demo/ceo" as const,
+          },
+          {
+            t: "Manager",
+            d: "Know who needs attention and why.",
+            to: "/demo/manager" as const,
+          },
+          {
+            t: "Agent",
+            d: "Get better after every conversation.",
+            to: "/demo/agent" as const,
+          },
+        ].map((card, i) => (
+          <Reveal key={card.t} delay={i * 0.07}>
             <Panel className="flex h-full flex-col p-6">
-              <span className="w-fit rounded-full bg-primary/12 px-2.5 py-1 text-[11px] font-medium text-primary">
-                {t.stat}
-              </span>
-              <p className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-foreground/90">
-                "{t.q}"
-              </p>
-              <div className="mt-6 flex items-center gap-3 border-t border-border pt-4">
-                <span className="grid size-9 place-items-center rounded-full gradient-surface text-[11px] font-semibold text-background">
-                  {t.n
-                    .split(" ")
-                    .map((x) => x[0])
-                    .join("")}
-                </span>
-                <div className="leading-tight">
-                  <p className="text-xs font-medium">{t.n}</p>
-                  <p className="text-[11px] text-muted-foreground">
-                    {t.r} · {t.c}
-                  </p>
-                </div>
-              </div>
+              <h3 className="text-lg font-semibold">{card.t}</h3>
+              <p className="mt-2 flex-1 text-sm text-muted-foreground">{card.d}</p>
+              <Link to={card.to} className="mt-5 text-sm font-semibold text-primary hover:underline">
+                Explore the Demo →
+              </Link>
             </Panel>
           </Reveal>
+        ))}
+      </div>
+      <div className="mt-8 grid gap-3 sm:grid-cols-4">
+        {[
+          ["Every Call", "Understood"],
+          ["Every Rep", "Coached"],
+          ["Every Manager", "Informed"],
+          ["Every Team", "Improving"],
+        ].map(([a, b]) => (
+          <Panel key={a} className="p-4 text-center">
+            <p className="text-sm font-semibold">{a}</p>
+            <p className="mt-1 text-xs text-muted-foreground">↓</p>
+            <p className="mt-1 text-sm text-primary">{b}</p>
+          </Panel>
         ))}
       </div>
     </Section>
@@ -84,12 +59,36 @@ export function Testimonials() {
 }
 
 const security = [
-  { icon: FileLock2, t: "Encrypted recordings", d: "AES-256 at rest, TLS 1.3 in transit, per-tenant key isolation." },
-  { icon: KeyRound, t: "Role-based permissions", d: "Rep, manager, executive and compliance roles with scoped call access." },
-  { icon: ScrollText, t: "Audit logs", d: "Every playback, export and score override recorded and exportable." },
-  { icon: Globe2, t: "GDPR-ready architecture", d: "EU data residency, consent capture, retention windows and right-to-erasure." },
-  { icon: ServerCog, t: "Secure cloud infrastructure", d: "Isolated tenancy, continuous monitoring, annual penetration testing." },
-  { icon: Fingerprint, t: "Enterprise access control", d: "SSO, SCIM provisioning and IP allow-listing on Enterprise plans." },
+  {
+    icon: FileLock2,
+    t: "Encryption in transit and at rest",
+    d: "Designed so recordings and data can be protected with modern transport and storage encryption.",
+  },
+  {
+    icon: KeyRound,
+    t: "Role-based access controls",
+    d: "Rep, manager, executive and compliance-style roles with scoped access patterns.",
+  },
+  {
+    icon: ScrollText,
+    t: "Audit-friendly logging",
+    d: "Access and sensitive actions are designed to be traceable for internal review.",
+  },
+  {
+    icon: Globe2,
+    t: "GDPR-conscious workflows",
+    d: "Designed to support retention, consent, and erasure workflows — not a completed certification claim.",
+  },
+  {
+    icon: ServerCog,
+    t: "Secure data isolation",
+    d: "Multi-tenant design with company boundaries and membership-based access.",
+  },
+  {
+    icon: Fingerprint,
+    t: "Enterprise access controls",
+    d: "SSO and advanced provisioning are planned for enterprise deployments.",
+  },
 ];
 
 export function Security() {
@@ -97,8 +96,8 @@ export function Security() {
     <Section
       id="security"
       eyebrow="Security & compliance"
-      title="Built for forex, finance and insurance"
-      lede="Regulated conversations demand more than a transcription vendor. Iris is designed for the audit that follows the call."
+      title="Designed with enterprise security in mind"
+      lede="Regulated conversations need careful architecture. We describe design intent — not unfinished certifications."
     >
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {security.map((s, i) => (
@@ -112,27 +111,27 @@ export function Security() {
         ))}
       </div>
       <p className="mt-6 text-xs text-muted-foreground">
-        This page is maintained by Iris to answer common security questions. It describes product
-        capabilities and is not an independent certification or audit report.
+        No SOC 2, ISO 27001, or PCI badges are claimed here. This section describes product design
+        direction and is not an independent audit report.
       </p>
     </Section>
   );
 }
 
 const integrations = [
-  ["Salesforce", "CRM"],
-  ["HubSpot", "CRM"],
-  ["Microsoft Dynamics", "CRM"],
-  ["Zoho", "CRM"],
-  ["Pipedrive", "CRM"],
-  ["Slack", "Collaboration"],
-  ["Microsoft Teams", "Collaboration"],
-  ["Zoom", "Meetings"],
-  ["Google Meet", "Meetings"],
-  ["Aircall", "Telephony"],
-  ["Genesys", "Contact centre"],
-  ["RingCentral", "Telephony"],
-  ["Twilio", "Telephony"],
+  ["Salesforce", "CRM · Planned"],
+  ["HubSpot", "CRM · Planned"],
+  ["Microsoft Dynamics", "CRM · Planned"],
+  ["Zoho", "CRM · Planned"],
+  ["Pipedrive", "CRM · Planned"],
+  ["Slack", "Collaboration · Planned"],
+  ["Microsoft Teams", "Collaboration · Planned"],
+  ["Zoom", "Meetings · Planned"],
+  ["Google Meet", "Meetings · Planned"],
+  ["Aircall", "Telephony · Planned"],
+  ["Genesys", "Contact centre · Planned"],
+  ["RingCentral", "Telephony · Planned"],
+  ["Twilio", "Telephony · In progress"],
 ];
 
 export function Integrations() {
@@ -140,8 +139,8 @@ export function Integrations() {
     <Section
       id="integrations"
       eyebrow="Integrations"
-      title="Plugs into the stack your floor already runs on"
-      lede="Calls in, coaching out. No rip-and-replace, no new dialer, no change to how reps work."
+      title="Built for the stack your floor already runs on"
+      lede="Connectors are planned or in progress. Demo screens may show simulated integrations until live connectors ship."
     >
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         {integrations.map(([name, cat], i) => (
@@ -159,7 +158,7 @@ export function Integrations() {
         ))}
         <Reveal delay={0.1}>
           <Panel className="gradient-border flex h-full items-center justify-center p-4 text-center text-xs text-muted-foreground">
-            Custom SIP & REST API
+            Custom SIP & REST API · Planned
           </Panel>
         </Reveal>
       </div>
