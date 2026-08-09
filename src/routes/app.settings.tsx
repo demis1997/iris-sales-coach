@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeading, Panel, PanelHeader, Chip } from "@/components/iris/primitives";
+import { EmployeePhoneSetup } from "@/components/telephony/employee-phone-setup";
 
 export const Route = createFileRoute("/app/settings")({
   head: () => ({
@@ -49,6 +50,10 @@ function SettingsPage() {
   return (
     <>
       <PageHeading title="Settings" subtitle="Personal preferences for your Artemis AI workspace" />
+
+      <div className="mb-4">
+        <EmployeePhoneSetup />
+      </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel>
@@ -101,7 +106,7 @@ function SettingsPage() {
 
         <Panel>
           <PanelHeader title="Recording" />
-          <Row title="Auto-record outbound calls" desc="Connected to Aircall · Forex desk queue.">
+          <Row title="Auto-record outbound calls" desc="Twilio click-to-call recordings feed AI coaching.">
             <Toggle on />
           </Row>
           <Row title="Record internal calls" desc="Team calls are excluded from scoring by default.">

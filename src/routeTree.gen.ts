@@ -34,6 +34,7 @@ import { Route as CeoComparisonRouteImport } from './routes/ceo.comparison'
 import { Route as CeoInsightsRouteImport } from './routes/ceo.insights'
 import { Route as CeoLeaderboardsRouteImport } from './routes/ceo.leaderboards'
 import { Route as CeoRevenueRouteImport } from './routes/ceo.revenue'
+import { Route as CeoTelephonyRouteImport } from './routes/ceo.telephony'
 import { Route as CrmIndexRouteImport } from './routes/crm.index'
 import { Route as CrmAutomationsRouteImport } from './routes/crm.automations'
 import { Route as CrmContactsRouteImport } from './routes/crm.contacts'
@@ -45,6 +46,9 @@ import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerCoachingRouteImport } from './routes/manager.coaching'
 import { Route as ManagerPlaybooksRouteImport } from './routes/manager.playbooks'
 import { Route as ManagerQaRouteImport } from './routes/manager.qa'
+import { Route as ApiTwilioRecordingRouteImport } from './routes/api/twilio/recording'
+import { Route as ApiTwilioStatusRouteImport } from './routes/api/twilio/status'
+import { Route as ApiTwilioVoiceRouteImport } from './routes/api/twilio/voice'
 import { Route as AppCallsIndexRouteImport } from './routes/app.calls.index'
 import { Route as AppCallsCallIdRouteImport } from './routes/app.calls.$callId'
 import { Route as CeoEmployeesIndexRouteImport } from './routes/ceo.employees.index'
@@ -175,6 +179,11 @@ const CeoRevenueRoute = CeoRevenueRouteImport.update({
   path: '/revenue',
   getParentRoute: () => CeoRoute,
 } as any)
+const CeoTelephonyRoute = CeoTelephonyRouteImport.update({
+  id: '/telephony',
+  path: '/telephony',
+  getParentRoute: () => CeoRoute,
+} as any)
 const CrmIndexRoute = CrmIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -230,6 +239,21 @@ const ManagerQaRoute = ManagerQaRouteImport.update({
   path: '/qa',
   getParentRoute: () => ManagerRoute,
 } as any)
+const ApiTwilioRecordingRoute = ApiTwilioRecordingRouteImport.update({
+  id: '/api/twilio/recording',
+  path: '/api/twilio/recording',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTwilioStatusRoute = ApiTwilioStatusRouteImport.update({
+  id: '/api/twilio/status',
+  path: '/api/twilio/status',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTwilioVoiceRoute = ApiTwilioVoiceRouteImport.update({
+  id: '/api/twilio/voice',
+  path: '/api/twilio/voice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppCallsIndexRoute = AppCallsIndexRouteImport.update({
   id: '/calls/',
   path: '/calls/',
@@ -275,6 +299,7 @@ export interface FileRoutesByFullPath {
   '/ceo/insights': typeof CeoInsightsRoute
   '/ceo/leaderboards': typeof CeoLeaderboardsRoute
   '/ceo/revenue': typeof CeoRevenueRoute
+  '/ceo/telephony': typeof CeoTelephonyRoute
   '/crm/automations': typeof CrmAutomationsRoute
   '/crm/contacts': typeof CrmContactsRoute
   '/crm/deal-risk': typeof CrmDealRiskRoute
@@ -288,6 +313,9 @@ export interface FileRoutesByFullPath {
   '/ceo/': typeof CeoIndexRoute
   '/crm/': typeof CrmIndexRoute
   '/manager/': typeof ManagerIndexRoute
+  '/api/twilio/recording': typeof ApiTwilioRecordingRoute
+  '/api/twilio/status': typeof ApiTwilioStatusRoute
+  '/api/twilio/voice': typeof ApiTwilioVoiceRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
   '/app/calls/': typeof AppCallsIndexRoute
@@ -313,6 +341,7 @@ export interface FileRoutesByTo {
   '/ceo/insights': typeof CeoInsightsRoute
   '/ceo/leaderboards': typeof CeoLeaderboardsRoute
   '/ceo/revenue': typeof CeoRevenueRoute
+  '/ceo/telephony': typeof CeoTelephonyRoute
   '/crm/automations': typeof CrmAutomationsRoute
   '/crm/contacts': typeof CrmContactsRoute
   '/crm/deal-risk': typeof CrmDealRiskRoute
@@ -326,6 +355,9 @@ export interface FileRoutesByTo {
   '/ceo': typeof CeoIndexRoute
   '/crm': typeof CrmIndexRoute
   '/manager': typeof ManagerIndexRoute
+  '/api/twilio/recording': typeof ApiTwilioRecordingRoute
+  '/api/twilio/status': typeof ApiTwilioStatusRoute
+  '/api/twilio/voice': typeof ApiTwilioVoiceRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
   '/app/calls': typeof AppCallsIndexRoute
@@ -356,6 +388,7 @@ export interface FileRoutesById {
   '/ceo/insights': typeof CeoInsightsRoute
   '/ceo/leaderboards': typeof CeoLeaderboardsRoute
   '/ceo/revenue': typeof CeoRevenueRoute
+  '/ceo/telephony': typeof CeoTelephonyRoute
   '/crm/automations': typeof CrmAutomationsRoute
   '/crm/contacts': typeof CrmContactsRoute
   '/crm/deal-risk': typeof CrmDealRiskRoute
@@ -369,6 +402,9 @@ export interface FileRoutesById {
   '/ceo/': typeof CeoIndexRoute
   '/crm/': typeof CrmIndexRoute
   '/manager/': typeof ManagerIndexRoute
+  '/api/twilio/recording': typeof ApiTwilioRecordingRoute
+  '/api/twilio/status': typeof ApiTwilioStatusRoute
+  '/api/twilio/voice': typeof ApiTwilioVoiceRoute
   '/app/calls/$callId': typeof AppCallsCallIdRoute
   '/ceo/employees/$employeeId': typeof CeoEmployeesEmployeeIdRoute
   '/app/calls/': typeof AppCallsIndexRoute
@@ -400,6 +436,7 @@ export interface FileRouteTypes {
     | '/ceo/insights'
     | '/ceo/leaderboards'
     | '/ceo/revenue'
+    | '/ceo/telephony'
     | '/crm/automations'
     | '/crm/contacts'
     | '/crm/deal-risk'
@@ -413,6 +450,9 @@ export interface FileRouteTypes {
     | '/ceo/'
     | '/crm/'
     | '/manager/'
+    | '/api/twilio/recording'
+    | '/api/twilio/status'
+    | '/api/twilio/voice'
     | '/app/calls/$callId'
     | '/ceo/employees/$employeeId'
     | '/app/calls/'
@@ -438,6 +478,7 @@ export interface FileRouteTypes {
     | '/ceo/insights'
     | '/ceo/leaderboards'
     | '/ceo/revenue'
+    | '/ceo/telephony'
     | '/crm/automations'
     | '/crm/contacts'
     | '/crm/deal-risk'
@@ -451,6 +492,9 @@ export interface FileRouteTypes {
     | '/ceo'
     | '/crm'
     | '/manager'
+    | '/api/twilio/recording'
+    | '/api/twilio/status'
+    | '/api/twilio/voice'
     | '/app/calls/$callId'
     | '/ceo/employees/$employeeId'
     | '/app/calls'
@@ -480,6 +524,7 @@ export interface FileRouteTypes {
     | '/ceo/insights'
     | '/ceo/leaderboards'
     | '/ceo/revenue'
+    | '/ceo/telephony'
     | '/crm/automations'
     | '/crm/contacts'
     | '/crm/deal-risk'
@@ -493,6 +538,9 @@ export interface FileRouteTypes {
     | '/ceo/'
     | '/crm/'
     | '/manager/'
+    | '/api/twilio/recording'
+    | '/api/twilio/status'
+    | '/api/twilio/voice'
     | '/app/calls/$callId'
     | '/ceo/employees/$employeeId'
     | '/app/calls/'
@@ -509,6 +557,9 @@ export interface RootRouteChildren {
   ManagerRoute: typeof ManagerRouteWithChildren
   OnboardingRoute: typeof OnboardingRoute
   InviteTokenRoute: typeof InviteTokenRoute
+  ApiTwilioRecordingRoute: typeof ApiTwilioRecordingRoute
+  ApiTwilioStatusRoute: typeof ApiTwilioStatusRoute
+  ApiTwilioVoiceRoute: typeof ApiTwilioVoiceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -688,6 +739,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CeoRevenueRouteImport
       parentRoute: typeof CeoRoute
     }
+    '/ceo/telephony': {
+      id: '/ceo/telephony'
+      path: '/telephony'
+      fullPath: '/ceo/telephony'
+      preLoaderRoute: typeof CeoTelephonyRouteImport
+      parentRoute: typeof CeoRoute
+    }
     '/crm/': {
       id: '/crm/'
       path: '/'
@@ -765,6 +823,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ManagerQaRouteImport
       parentRoute: typeof ManagerRoute
     }
+    '/api/twilio/recording': {
+      id: '/api/twilio/recording'
+      path: '/api/twilio/recording'
+      fullPath: '/api/twilio/recording'
+      preLoaderRoute: typeof ApiTwilioRecordingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/twilio/status': {
+      id: '/api/twilio/status'
+      path: '/api/twilio/status'
+      fullPath: '/api/twilio/status'
+      preLoaderRoute: typeof ApiTwilioStatusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/twilio/voice': {
+      id: '/api/twilio/voice'
+      path: '/api/twilio/voice'
+      fullPath: '/api/twilio/voice'
+      preLoaderRoute: typeof ApiTwilioVoiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/calls/': {
       id: '/app/calls/'
       path: '/calls'
@@ -836,6 +915,7 @@ interface CeoRouteChildren {
   CeoInsightsRoute: typeof CeoInsightsRoute
   CeoLeaderboardsRoute: typeof CeoLeaderboardsRoute
   CeoRevenueRoute: typeof CeoRevenueRoute
+  CeoTelephonyRoute: typeof CeoTelephonyRoute
   CeoIndexRoute: typeof CeoIndexRoute
   CeoEmployeesEmployeeIdRoute: typeof CeoEmployeesEmployeeIdRoute
   CeoEmployeesIndexRoute: typeof CeoEmployeesIndexRoute
@@ -847,6 +927,7 @@ const CeoRouteChildren: CeoRouteChildren = {
   CeoInsightsRoute: CeoInsightsRoute,
   CeoLeaderboardsRoute: CeoLeaderboardsRoute,
   CeoRevenueRoute: CeoRevenueRoute,
+  CeoTelephonyRoute: CeoTelephonyRoute,
   CeoIndexRoute: CeoIndexRoute,
   CeoEmployeesEmployeeIdRoute: CeoEmployeesEmployeeIdRoute,
   CeoEmployeesIndexRoute: CeoEmployeesIndexRoute,
@@ -901,6 +982,9 @@ const rootRouteChildren: RootRouteChildren = {
   ManagerRoute: ManagerRouteWithChildren,
   OnboardingRoute: OnboardingRoute,
   InviteTokenRoute: InviteTokenRoute,
+  ApiTwilioRecordingRoute: ApiTwilioRecordingRoute,
+  ApiTwilioStatusRoute: ApiTwilioStatusRoute,
+  ApiTwilioVoiceRoute: ApiTwilioVoiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

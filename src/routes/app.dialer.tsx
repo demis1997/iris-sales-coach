@@ -1,25 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Delete,
+  Loader2,
   Mic,
   MicOff,
   Pause,
   PhoneCall,
-  PhoneForwarded,
   PhoneOff,
-  Users,
-  Voicemail,
 } from "lucide-react";
-import { LiveCoachPanel } from "@/components/iris/live-coach-panel";
-import { PageHeading, Panel, PanelHeader, Chip, Meter } from "@/components/iris/primitives";
-import { liveCoachSession } from "@/lib/revenue-intelligence-data";
+import { toast } from "sonner";
+import { PageHeading, Panel, PanelHeader, Chip } from "@/components/iris/primitives";
+import { EmployeePhoneSetup } from "@/components/telephony/employee-phone-setup";
+import { useAuth } from "@/components/auth/auth-provider";
 import {
-  campaigns,
-  dialPadQueue,
-  dispositions,
-  liveTranscript,
-} from "@/lib/revenue-os-data";
+  getTelephonyStatus,
+  hangupOutboundCall,
+  placeOutboundCall,
+} from "@/lib/telephony/telephony.functions";
 
 export const Route = createFileRoute("/app/dialer")({
   head: () => ({
@@ -27,10 +25,9 @@ export const Route = createFileRoute("/app/dialer")({
       { title: "Softphone & Live AI Coaching — Artemis AI" },
       {
         name: "description",
-        content: "Cloud softphone with dial pad, queues, campaigns and real-time AI coaching cards during every call.",
+        content: "Click-to-call dialer: we ring your phone, then connect the prospect with company caller ID.",
       },
       { property: "og:title", content: "Softphone & Live AI Coaching — Artemis AI" },
-      { property: "og:description", content: "Real-time AI coaching while you are on the call." },
     ],
   }),
   component: DialerPage,
@@ -39,12 +36,48 @@ export const Route = createFileRoute("/app/dialer")({
 const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"];
 
 function DialerPage() {
-  const [number, setNumber] = useState("+357 99 ");
-  const [onCall, setOnCall] = useState(true);
+  const { demoMode } = useAuth();
+  const [number, setNumber] = useState("+");
+  const [contactName, setContactName] = useState("");
+  const [onCall, setOnCall] = useState(false);
+  const [activeCallId, setActiveCallId] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
   const [held, setHeld] = useState(false);
-  const [seconds, setSeconds] = useState(232);
-  const [visible, setVisible] = useState(1);
+  const [seconds, setSeconds] = useState(0);
+  const [busy, setBusy] = useState(false);
+  const [statusLabel, setStatusLabel] = useState("Ready to dial");
+  const [callerId, setCallerId] = useState<string | null>(null);
+  const [ready, setReady] = useState(false);
+  const [needsPhone, setNeedsPhone] = useState(false);
+
+  const refreshReady = useCallback(async () => {
+    if (demoMode) {
+      setReady(false);
+      setNeedsPhone(true);
+      return;
+    }
+    try {
+      const s = await getTelephonyStatus();
+      setCallerId(s.company.effectiveCallerId);
+      const ok =
+        s.twilioConfigured &&
+        Boolean(s.company.effectiveCallerId) &&
+        s.employee.phoneVerified;
+      setReady(ok);
+      setNeedsPhone(!s.employee.phoneVerified);
+      if (!s.twilioConfigured) setStatusLabel("Twilio not configured on server");
+      else if (!s.company.effectiveCallerId) setStatusLabel("Company caller ID missing");
+      else if (!s.employee.phoneVerified) setStatusLabel("Verify your phone to dial");
+      else setStatusLabel("Ready to dial");
+    } catch {
+      setReady(false);
+      setNeedsPhone(true);
+    }
+  }, [demoMode]);
+
+  useEffect(() => {
+    void refreshReady();
+  }, [refreshReady]);
 
   useEffect(() => {
     if (!onCall || held) return;
@@ -52,55 +85,114 @@ function DialerPage() {
     return () => clearInterval(t);
   }, [onCall, held]);
 
-  useEffect(() => {
-    if (!onCall) return;
-    const max = liveCoachSession.suggestions.length;
-    const t = setInterval(() => setVisible((v) => (v >= max ? max : v + 1)), 4200);
-    return () => clearInterval(t);
-  }, [onCall]);
-
   const mmss = `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
+
+  async function startCall() {
+    if (demoMode) {
+      toast.message("Connect Supabase + Twilio to place real calls");
+      return;
+    }
+    if (!ready) {
+      toast.error("Verify your phone and set company caller ID first");
+      return;
+    }
+    setBusy(true);
+    try {
+      const res = await placeOutboundCall({
+        data: {
+          to: number,
+          contactName: contactName || undefined,
+        },
+      });
+      setActiveCallId(res.callId);
+      setOnCall(true);
+      setSeconds(0);
+      setStatusLabel(`Ringing your phone · then ${res.prospect}`);
+      toast.success("Answer your phone — we'll connect the prospect next");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Call failed");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function endCall() {
+    setBusy(true);
+    try {
+      if (activeCallId && !demoMode) {
+        await hangupOutboundCall({ data: { callId: activeCallId } });
+      }
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Could not hang up");
+    } finally {
+      setOnCall(false);
+      setActiveCallId(null);
+      setSeconds(0);
+      setStatusLabel("Ready to dial");
+      setBusy(false);
+    }
+  }
 
   return (
     <>
       <PageHeading
-        title="Softphone"
-        subtitle={`Cloud calling with contextual live AI coaching · linked deal ${liveCoachSession.dealId}`}
+        title="Dialer"
+        subtitle="Click-to-call: Artemis rings your phone, then bridges the prospect. Customers see the company number."
       />
 
+      {needsPhone ? (
+        <div className="mb-4">
+          <EmployeePhoneSetup compact />
+        </div>
+      ) : null}
+
       <div className="mb-4 flex flex-wrap gap-2 text-xs">
-        <Chip tone="iris">Campaign: {liveCoachSession.campaign}</Chip>
-        <Chip tone="good">Contact: {liveCoachSession.contact}</Chip>
-        <Link to="/app/certifications" className="text-primary hover:underline">
-          Campaign certification status →
+        <Chip tone={ready ? "good" : "warn"}>{ready ? "Ready" : "Setup needed"}</Chip>
+        {callerId ? <Chip tone="iris">Caller ID {callerId}</Chip> : null}
+        <Link to="/app/settings" className="text-primary hover:underline">
+          Phone settings →
+        </Link>
+        <Link to="/ceo/telephony" className="text-primary hover:underline">
+          Company calling →
         </Link>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[340px_1fr_380px]">
-        {/* Softphone */}
+      <div className="grid gap-4 xl:grid-cols-[340px_1fr]">
         <Panel className="p-5">
           <div className="rounded-xl border border-border bg-secondary/30 p-4 text-center">
-            <p className="text-xs text-muted-foreground">
-              {onCall ? "Connected · Feldman Capital" : "Ready to dial"}
-            </p>
+            <p className="text-xs text-muted-foreground">{statusLabel}</p>
             <p className="mt-1 font-mono text-2xl">{onCall ? mmss : number}</p>
             {onCall ? (
               <p className="mt-1 text-xs text-muted-foreground">
-                Marcus Feldman · caller ID +357 22 000 118
+                Answer your handset · recording {callerId ? `· from ${callerId}` : ""}
               </p>
             ) : null}
             <div className="mt-3 flex justify-center gap-2">
-              <Chip tone={onCall ? "good" : "neutral"}>{held ? "On hold" : onCall ? "Recording" : "Idle"}</Chip>
-              <Chip tone="iris">AI live</Chip>
+              <Chip tone={onCall ? "good" : "neutral"}>
+                {held ? "On hold" : onCall ? "Live" : "Idle"}
+              </Chip>
             </div>
           </div>
+
+          <label className="mt-4 block text-[11px] tracking-wider text-muted-foreground uppercase">
+            Contact name (optional)
+          </label>
+          <input
+            value={contactName}
+            onChange={(e) => setContactName(e.target.value)}
+            placeholder="Prospect name"
+            className="mt-1 w-full rounded-xl border border-border bg-secondary/30 px-3 py-2 text-sm outline-none focus:border-primary"
+            disabled={onCall}
+          />
 
           <div className="mt-4 grid grid-cols-3 gap-2">
             {keys.map((k) => (
               <button
                 key={k}
+                type="button"
+                disabled={onCall}
                 onClick={() => setNumber((n) => n + k)}
-                className="rounded-xl border border-border bg-secondary/30 py-3 font-mono text-base transition-colors hover:bg-secondary"
+                className="rounded-xl border border-border bg-secondary/30 py-3 font-mono text-base transition-colors hover:bg-secondary disabled:opacity-40"
               >
                 {k}
               </button>
@@ -109,146 +201,83 @@ function DialerPage() {
 
           <div className="mt-3 flex gap-2">
             <button
-              onClick={() => setNumber((n) => n.slice(0, -1))}
-              className="grid flex-1 place-items-center rounded-xl border border-border bg-secondary/30 py-2.5 text-muted-foreground hover:bg-secondary"
+              type="button"
+              disabled={onCall}
+              onClick={() => setNumber((n) => (n.length <= 1 ? "+" : n.slice(0, -1)))}
+              className="grid flex-1 place-items-center rounded-xl border border-border bg-secondary/30 py-2.5 text-muted-foreground hover:bg-secondary disabled:opacity-40"
             >
               <Delete className="size-4" />
             </button>
             <button
-              onClick={() => setOnCall((v) => !v)}
-              className={`flex flex-[2] items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold ${
+              type="button"
+              disabled={busy || (!onCall && number.replace(/\D/g, "").length < 8)}
+              onClick={() => void (onCall ? endCall() : startCall())}
+              className={`flex flex-[2] items-center justify-center gap-2 rounded-xl py-2.5 text-sm font-semibold disabled:opacity-50 ${
                 onCall ? "bg-destructive/20 text-destructive" : "gradient-surface text-background"
               }`}
             >
-              {onCall ? <PhoneOff className="size-4" /> : <PhoneCall className="size-4" />}
+              {busy ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : onCall ? (
+                <PhoneOff className="size-4" />
+              ) : (
+                <PhoneCall className="size-4" />
+              )}
               {onCall ? "End call" : "Call"}
             </button>
           </div>
 
-          <div className="mt-3 grid grid-cols-4 gap-2 text-[11px]">
-            {(
-              [
-                [muted ? MicOff : Mic, muted ? "Unmute" : "Mute", () => setMuted((v) => !v)],
-                [Pause, held ? "Resume" : "Hold", () => setHeld((v) => !v)],
-                [PhoneForwarded, "Transfer", () => {}],
-                [Users, "Conference", () => {}],
-              ] as const
-            ).map(([Icon, label, fn], i) => (
-              <button
-                key={i}
-                onClick={fn}
-                className="flex flex-col items-center gap-1 rounded-xl border border-border bg-secondary/30 py-2.5 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Icon className="size-4" />
-                {label}
-              </button>
-            ))}
+          <div className="mt-3 grid grid-cols-2 gap-2 text-[11px]">
+            <button
+              type="button"
+              disabled={!onCall}
+              onClick={() => setMuted((v) => !v)}
+              className="flex flex-col items-center gap-1 rounded-xl border border-border bg-secondary/30 py-2.5 text-muted-foreground disabled:opacity-40"
+            >
+              {muted ? <MicOff className="size-4" /> : <Mic className="size-4" />}
+              {muted ? "Unmute (handset)" : "Mute (handset)"}
+            </button>
+            <button
+              type="button"
+              disabled={!onCall}
+              onClick={() => setHeld((v) => !v)}
+              className="flex flex-col items-center gap-1 rounded-xl border border-border bg-secondary/30 py-2.5 text-muted-foreground disabled:opacity-40"
+            >
+              <Pause className="size-4" />
+              {held ? "Resume timer" : "Hold timer"}
+            </button>
           </div>
-
-          <div className="mt-4">
-            <p className="mb-2 text-[11px] tracking-wider text-muted-foreground uppercase">
-              Disposition
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              {dispositions.map((d) => (
-                <button
-                  key={d}
-                  className="rounded-lg border border-border px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                >
-                  {d}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <button className="mt-4 flex w-full items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs text-muted-foreground hover:bg-secondary">
-            <Voicemail className="size-3.5" /> Voicemail · 3 new
-          </button>
         </Panel>
 
-        {/* Transcript */}
         <div className="space-y-4">
           <Panel>
-            <PanelHeader
-              title="Live transcript"
-              subtitle="Speaker-separated · analyzed in real time"
-              action={
-                <Chip tone="good">Sentiment {liveCoachSession.metrics.sentiment}%</Chip>
-              }
-            />
-            <div className="space-y-3 p-5">
-              {liveTranscript.map((l, i) => (
-                <div key={i} className={`flex gap-3 ${l.who === "rep" ? "flex-row-reverse" : ""}`}>
-                  <span className="mt-1 font-mono text-[10px] text-muted-foreground">{l.at}</span>
-                  <div className="max-w-[80%]">
-                    <p className="mb-1 text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
-                      {l.who === "rep" ? "Agent" : "Customer"}
-                    </p>
-                    <p
-                      className={`rounded-2xl px-4 py-2.5 text-sm ${
-                        l.who === "rep"
-                          ? "bg-primary/15"
-                          : "border border-border bg-secondary/30 text-muted-foreground"
-                      }`}
-                    >
-                      {l.text}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <PanelHeader title="How calling works" subtitle="Built for teams that hire often" />
+            <ol className="list-decimal space-y-2 p-5 pl-9 text-sm text-muted-foreground">
+              <li>Admin sets the company caller ID once (Twilio number).</li>
+              <li>Each employee verifies their personal phone with an SMS code.</li>
+              <li>Dial a prospect here — we ring the employee first, then connect the lead.</li>
+              <li>Recording lands in Calls and runs through the same AI pipeline as uploads.</li>
+            </ol>
           </Panel>
 
-          <Panel>
-            <PanelHeader title="Campaigns" subtitle="Predictive, power and progressive dialing" />
-            <div className="divide-y divide-border">
-              {campaigns.map((c) => (
-                <div key={c.name} className="grid gap-2 px-5 py-4 sm:grid-cols-[1fr_auto]">
-                  <div>
-                    <p className="text-sm font-medium">{c.name}</p>
-                    <p className="mt-0.5 text-xs text-muted-foreground">
-                      {c.mode} dialer · {c.contacted.toLocaleString()} of {c.leads.toLocaleString()}{" "}
-                      contacted · {c.connect}% connect · {c.booked} booked
-                    </p>
-                    <div className="mt-2 max-w-xs">
-                      <Meter value={(c.contacted / c.leads) * 100} />
-                    </div>
-                  </div>
-                  <div className="sm:text-right">
-                    <Chip tone={c.live ? "good" : "neutral"}>{c.live ? "Running" : "Paused"}</Chip>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Panel>
-        </div>
-
-        {/* Live AI — keeps dialer controls free on the left */}
-        <div className="space-y-4">
-          {onCall ? <LiveCoachPanel visibleCount={visible} /> : (
-            <Panel className="p-6 text-sm text-muted-foreground">
-              Start a call to open the live AI coaching panel. Softphone controls stay available.
+          {activeCallId ? (
+            <Panel className="p-5 text-sm">
+              <p className="font-medium">Active call</p>
+              <p className="mt-1 text-muted-foreground font-mono text-xs">{activeCallId}</p>
+              <Link
+                to="/app/calls/$callId"
+                params={{ callId: activeCallId }}
+                className="mt-3 inline-flex text-primary hover:underline"
+              >
+                Open call record →
+              </Link>
+            </Panel>
+          ) : (
+            <Panel className="p-5 text-sm text-muted-foreground">
+              After you hang up, open <Link to="/app/calls" className="text-primary hover:underline">Calls</Link>{" "}
+              for the recording and AI review.
             </Panel>
           )}
-
-          <Panel>
-            <PanelHeader title="Call queue" subtitle="Skill routed · time-zone aware" />
-            <div className="divide-y divide-border">
-              {dialPadQueue.map((q) => (
-                <div key={q.name} className="flex items-center justify-between px-4 py-3">
-                  <div>
-                    <p className="text-sm">{q.name}</p>
-                    <p className="text-[11px] text-muted-foreground">
-                      {q.company} · {q.tz} · {q.attempts} attempts
-                    </p>
-                  </div>
-                  <Chip tone={q.intent === "High" ? "good" : q.intent === "Medium" ? "warn" : "neutral"}>
-                    {q.intent}
-                  </Chip>
-                </div>
-              ))}
-            </div>
-          </Panel>
         </div>
       </div>
     </>

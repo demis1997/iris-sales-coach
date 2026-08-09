@@ -78,6 +78,10 @@ See **[STEP1_ACCOUNTS.md](./STEP1_ACCOUNTS.md)** for the full “make accounts r
 4. Serve the TanStack Start server entry
 5. Keep Lovable-connected git history intact (no force-push / history rewrite)
 
-## Next: Phase 2
+## Telephony (click-to-call)
 
-Call upload, private storage, processing jobs, transcription, and transcript review.
+See [TELEPHONY.md](./TELEPHONY.md): apply `supabase/apply_phase3_telephony.sql`, set `TWILIO_*` + `APP_URL`, then company caller ID at `/ceo/telephony` and employee phone verify at `/app/settings`.
+
+## Next
+
+Call upload + AI analysis are in place. Softphone (browser mic) can follow after click-to-call is stable.
