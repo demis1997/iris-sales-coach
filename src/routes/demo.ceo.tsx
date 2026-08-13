@@ -26,5 +26,5 @@ const nav: DemoNavItem[] = [
 ];
 
 function CeoDemoLayout() {
-  return <DemoShell role="ceo" workspace="Executive Demo" nav={nav} />;
+  return <DemoShell role="ceo" workspace="Executive OS" nav={nav} />;
 }

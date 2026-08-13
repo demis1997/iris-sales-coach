@@ -51,15 +51,21 @@ export const DEMO_LOSS_REASONS = [
 ];
 
 export const EXECUTIVE_BRIEF = {
-  body: `Conversion increased 12% this week, driven primarily by Alpha Desk and Prime Desk.
+  body: `Revenue is up 8.4% this week despite call volume falling 3.1%.
 
-The strongest improvement came from agents who completed objection-handling coaching last week.
+Alpha Desk is responsible for 42% of the improvement. The strongest contributing factor is a 19% improvement in trust-objection handling after last week's coaching.
 
-The most common reason high-intent prospects failed to deposit today was hesitation around withdrawal procedures and platform trust.
+German Acquisition (Velocity Desk) continues to underperform. Agents are reaching the pitch before establishing investment motivation — discovery quality is the largest contributor to a 14% deposit-rate decline over seven days.
 
-7 high-value opportunities worth approximately €38K require manager attention.
+German reactivation leads convert 27% better between 14:00–17:00. Agents are mentioning withdrawal procedures too late in conversations; this correlates with higher trust objections.
 
-Velocity Desk is generating strong call volume but converting 23% below the company average.`,
+7 high-value opportunities worth approximately €38K require manager attention.`,
+  actions: [
+    "Move 15% of German leads to Alpha Desk for the next 48 hours.",
+    "Assign the Discovery Depth playbook to Velocity Desk (German Acquisition).",
+    "Review calls from agents below a 65 objection-handling score.",
+    "Increase staffing on UK Reactivation between 14:00–17:00.",
+  ],
 };
 
 export const COACHING_ROI = {

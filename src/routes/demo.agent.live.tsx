@@ -113,7 +113,7 @@ function AgentLiveWorkspacePage() {
                   onClick={() => service.startMidCall()}
                   className="rounded-xl border border-border px-4 py-2 text-xs"
                 >
-                  Replay Client 10821 call
+                  Replay James Wilson call
                 </button>
               </div>
             </div>

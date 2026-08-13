@@ -15,7 +15,11 @@ function CoachingPage() {
 
   return (
     <DemoPage>
-      <PageHeading title="Coaching center" subtitle="Assign without listening to 50 calls" action={<Chip tone="iris">Demo</Chip>} />
+      <PageHeading
+        title="AI Coaching Priorities"
+        subtitle="Assign training without listening to every call"
+        action={<Chip tone="iris">Demo</Chip>}
+      />
       <div className="space-y-4">
         {items.map((c) => (
           <Panel key={c.id}>
@@ -34,7 +38,7 @@ function CoachingPage() {
                   className="product-btn-primary !px-3 !py-1.5 text-xs"
                   onClick={() => toast.success(`Assigned “${c.assignment}” to ${c.agentName} (demo)`)}
                 >
-                  Assign coaching
+                  Assign Training
                 </button>
                 <Link
                   to="/demo/agent/practice"

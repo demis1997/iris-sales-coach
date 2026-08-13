@@ -18,6 +18,16 @@ function InsightsPage() {
       <Panel>
         <PanelHeader title="Executive brief" />
         <p className="whitespace-pre-line p-5 text-sm text-muted-foreground">{brief.body}</p>
+        {"actions" in brief && Array.isArray(brief.actions) ? (
+          <ol className="space-y-2 border-t border-border px-5 py-4 text-sm">
+            {brief.actions.map((action: string, i: number) => (
+              <li key={action} className="flex gap-3">
+                <span className="font-semibold text-[#2EE6A6]">{i + 1}.</span>
+                <span>{action}</span>
+              </li>
+            ))}
+          </ol>
+        ) : null}
       </Panel>
       <Panel>
         <PanelHeader title="What top desks do differently" subtitle="Demo analysis" />

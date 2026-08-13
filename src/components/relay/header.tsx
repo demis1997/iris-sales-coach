@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
-  BarChart3,
   BookOpen,
   Bot,
   Brain,
@@ -40,59 +39,59 @@ const NAV: NavItem[] = [
     label: "Product",
     featured: [
       {
-        label: "Artemis Copilot",
+        label: "Artemis Voice",
+        href: "/call-intelligence",
+        description: "Softphone, numbers, routing and dialing.",
+        icon: PhoneCall,
+      },
+      {
+        label: "AI Copilot",
         href: "/artemis-copilot",
         description: "Live guidance during every conversation.",
         icon: Radio,
       },
       {
-        label: "Revenue Intelligence",
-        href: "/revenue-intelligence",
-        description: "Know why revenue is moving.",
-        icon: BarChart3,
-      },
-      {
-        label: "Manager Operations",
+        label: "Manager OS",
         href: "/manager-operations",
         description: "Run the floor without listening to every call.",
         icon: Users,
       },
       {
-        label: "Executive Command Center",
+        label: "Executive OS",
         href: "/executive-command-center",
-        description: "See what drives revenue.",
+        description: "See what drives revenue — and what to change.",
         icon: Gauge,
       },
     ],
     columns: [
       {
-        title: "Intelligence",
+        title: "Platform",
         links: [
+          {
+            label: "Artemis Voice",
+            href: "/call-intelligence",
+            description: "Calling infrastructure without another dialer.",
+            icon: PhoneCall,
+          },
+          {
+            label: "Artemis Sales",
+            href: "/solutions/sales",
+            description: "Leads, ownership and follow-ups for telephone sales.",
+            icon: Target,
+          },
           {
             label: "Conversation Intelligence",
             href: "/conversation-intelligence",
             description: "The layer underneath Artemis.",
             icon: Brain,
           },
-          {
-            label: "Revenue Intelligence",
-            href: "/revenue-intelligence",
-            description: "Know why revenue is moving.",
-            icon: BarChart3,
-          },
-          {
-            label: "Call Intelligence",
-            href: "/call-intelligence",
-            description: "Every call as structured intelligence.",
-            icon: PhoneCall,
-          },
         ],
       },
       {
-        title: "Coaching",
+        title: "Intelligence",
         links: [
           {
-            label: "Artemis Copilot",
+            label: "AI Copilot",
             href: "/artemis-copilot",
             description: "Live guidance during every conversation.",
             icon: Radio,
@@ -118,18 +117,18 @@ const NAV: NavItem[] = [
         ],
       },
       {
-        title: "Management",
+        title: "Operations",
         links: [
           {
-            label: "Manager Operations",
+            label: "Manager OS",
             href: "/manager-operations",
-            description: "Run the floor without listening to every call.",
+            description: "Live floor, coaching and campaign control.",
             icon: Users,
           },
           {
-            label: "Executive Command Center",
+            label: "Executive OS",
             href: "/executive-command-center",
-            description: "See what drives revenue.",
+            description: "Revenue intelligence and recommendations.",
             icon: Gauge,
           },
           {
@@ -154,11 +153,12 @@ const NAV: NavItem[] = [
         ],
       },
       {
-        title: "By function",
+        title: "By motion",
         links: [
-          { label: "Quality Assurance", href: "/solutions/quality-assurance" },
-          { label: "Training", href: "/solutions/training" },
-          { label: "Compliance", href: "/solutions/compliance" },
+          { label: "Forex & Trading", href: "/industries/forex" },
+          { label: "Outbound Sales", href: "/solutions/sales" },
+          { label: "Contact Centers", href: "/industries/bpo" },
+          { label: "Retention Teams", href: "/solutions/sales-management" },
         ],
       },
     ],
@@ -200,7 +200,7 @@ const NAV: NavItem[] = [
         links: [
           { label: "Guides", href: "/resources", description: "Practical writing on high-volume sales." },
           { label: "Documentation", href: "/docs", description: "Product docs preview." },
-          { label: "Integrations", href: "/integrations", description: "CRM, telephony, and APIs." },
+          { label: "Integrations", href: "/integrations", description: "Optional CRM, SIP and APIs." },
         ],
       },
       {
@@ -209,7 +209,7 @@ const NAV: NavItem[] = [
           {
             label: "Product Demo",
             href: "/demo",
-            description: "CEO, manager, and agent views.",
+            description: "Agent, manager, CEO and admin views.",
             icon: Headphones,
           },
           { label: "Pricing", href: "/pricing" },

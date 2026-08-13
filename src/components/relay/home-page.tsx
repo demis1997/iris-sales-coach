@@ -182,28 +182,39 @@ export function ArtemisHomePage() {
         <div className="relative mx-auto grid max-w-6xl gap-12 px-5 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
-              AI Operating System
+              AI-Native Sales Platform
             </p>
-            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-[#0B1B33] sm:text-5xl lg:text-[3.35rem]">
-              The AI Operating System
+            <h1 className="text-4xl font-bold leading-[1.05] tracking-tight text-[#0B1B33] sm:text-5xl lg:text-[3.25rem]">
+              The AI-Native Sales Platform
               <br />
-              for Revenue Teams.
+              for High-Volume Revenue Teams
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#4B5C76]">
-              Artemis is designed to turn every customer conversation into coaching, revenue
-              intelligence, and clearer next actions — so high-volume sales organizations improve
-              continuously, not only after the week is over.
+              Artemis combines calling, sales workflows, live AI coaching, conversation intelligence
+              and revenue analytics in one platform. Your team calls customers directly from Artemis
+              while AI helps agents perform better, managers run stronger teams and executives
+              understand exactly what&apos;s driving revenue.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <ArtemisButton href="/contact" className="px-7 py-3 text-base">
                 Book a Demo
               </ArtemisButton>
               <ArtemisButton href="/demo" variant="secondary" className="px-7 py-3 text-base">
-                Explore the Product Demo
+                Explore the Platform
               </ArtemisButton>
             </div>
+            <div className="mt-8 flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#4B5C76]">
+              {["Calling", "AI Copilot", "Dialer", "CRM", "Coaching", "QA", "Revenue Intelligence"].map(
+                (cap, i) => (
+                  <span key={cap} className="inline-flex items-center gap-3">
+                    {i > 0 ? <span className="text-[#D7E0EF]">·</span> : null}
+                    {cap}
+                  </span>
+                ),
+              )}
+            </div>
             <p className="mt-6 text-xs font-medium tracking-wide text-[#8A9BB5] uppercase">
-              Built for high-volume sales organizations
+              Built for high-volume sales teams. Optimized where every conversation matters.
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
               {MARKETS.slice(0, 6).map((m) => (
@@ -249,6 +260,115 @@ export function ArtemisHomePage() {
                 <span className="mt-4 text-sm font-semibold text-[#12C48A]">Learn more →</span>
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Platform layers */}
+      <section id="platform" className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+            One platform
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            Every layer of your sales operation.
+          </h2>
+          <p className="mt-3 max-w-xl text-[#4B5C76]">
+            Calling, sales workflows, intelligence, management and executive insight — without
+            stitching five vendors together.
+          </p>
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              {
+                label: "CALL",
+                title: "Artemis Voice",
+                body: "Softphone, numbers, routing, queues and campaign dialing.",
+              },
+              {
+                label: "SELL",
+                title: "Artemis Sales",
+                body: "Leads, ownership, follow-ups and call history for telephone sales.",
+              },
+              {
+                label: "IMPROVE",
+                title: "Artemis Intelligence",
+                body: "Live coaching, scoring, objections, Rep DNA and playbooks.",
+              },
+              {
+                label: "MANAGE",
+                title: "Manager OS",
+                body: "Live floor, coaching queues, campaigns and QA in one place.",
+              },
+              {
+                label: "OPTIMIZE",
+                title: "Executive OS",
+                body: "Revenue drivers and AI recommendations for leadership.",
+              },
+            ].map((layer) => (
+              <article
+                key={layer.title}
+                className="rounded-[1.5rem] border border-[#E8EEF7] bg-white p-5 shadow-[0_12px_40px_-28px_rgba(15,40,80,0.35)]"
+              >
+                <p className="text-[10px] font-semibold tracking-[0.16em] text-[#12C48A] uppercase">
+                  {layer.label}
+                </p>
+                <h3 className="mt-2 text-lg font-bold tracking-tight text-[#0B1B33]">
+                  {layer.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#4B5C76]">{layer.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Replace stack */}
+      <section id="replace-stack" className="py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8A9BB5]">
+            Consolidation
+          </p>
+          <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
+            Stop stitching together your sales floor.
+          </h2>
+          <div className="mt-10 grid items-center gap-8 lg:grid-cols-[1fr_auto_1fr]">
+            <div className="rounded-[1.75rem] border border-[#E8EEF7] bg-[#F7FAFF] p-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#8A9BB5]">
+                Old stack
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-[#4B5C76]">
+                {[
+                  "Dialer",
+                  "CRM",
+                  "Call recording",
+                  "QA software",
+                  "Coaching software",
+                  "Analytics",
+                  "AI assistant",
+                  "Training platform",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="size-1.5 rounded-full bg-[#8A9BB5]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex justify-center text-sm font-semibold tracking-wide text-[#12C48A] uppercase">
+              → Artemis →
+            </div>
+            <div className="rounded-[1.75rem] border border-[#2EE6A6]/40 bg-gradient-to-br from-[#E8FFF6] to-white p-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#12C48A]">
+                Artemis
+              </p>
+              <p className="mt-4 text-2xl font-bold tracking-tight text-[#0B1B33]">
+                Calling + Sales + Coaching + Intelligence + Management
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">
+                One operating system for the sales floor. Integrations remain available when you want
+                them — they are optional, not required.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -677,20 +797,22 @@ export function ArtemisHomePage() {
               Integrations
             </p>
             <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33]">
-              Plugs into the stack you already run
+              Use Artemis alone — or connect the tools you already have
             </h3>
             <p className="mt-3 text-[#4B5C76]">
-              CRM and telephony connections are on the roadmap. Demo screens may show simulated
-              integrations while we build the live connectors.
+              Run calling, coaching and analytics natively in Artemis. Already on Salesforce,
+              HubSpot, a PBX or another system? Optional connectors are on the roadmap — integrations
+              are secondary, not required.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {[
-                ["HubSpot", "Planned"],
                 ["Salesforce", "Planned"],
+                ["HubSpot", "Planned"],
                 ["Zoho", "Planned"],
-                ["Pipedrive", "Planned"],
-                ["Twilio", "In progress"],
+                ["Meta Leads", "Planned"],
+                ["Google Ads", "Planned"],
                 ["Webhook / API", "Planned"],
+                ["SIP", "Planned"],
               ].map(([n, status]) => (
                 <span
                   key={n}
@@ -711,14 +833,15 @@ export function ArtemisHomePage() {
               Start as a Design Partner
             </h3>
             <p className="mt-3 text-[#4B5C76]">
-              Pricing is based on seats and conversation volume. Early customers build with us —
-              Growth and Enterprise options for broader rollout.
+              Platform license per user/month, with voice usage billed separately based on destination
+              and volume. Design Partner pricing for early customers building with us.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-[#4B5C76]">
               {[
-                "Call intelligence + AI coaching",
-                "Manager and executive dashboards",
-                "Direct founder support",
+                "Platform seats for calling, coaching and intelligence",
+                "Voice usage billed separately (enterprise rates available)",
+                "Manager and executive workspaces",
+                "Direct founder support for Design Partners",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2">
                   <span className="mt-0.5 text-[#12C48A]">✓</span>

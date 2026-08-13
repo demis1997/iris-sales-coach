@@ -68,7 +68,7 @@ function CeoOverviewPage() {
 
       <AIInsight
         title="Artemis Executive Brief"
-        subtitle="Simulated AI · Chief Revenue style summary"
+        subtitle="Simulated AI · what is happening and what to change"
         action={
           <div className="flex flex-wrap gap-2">
             <Link to="/demo/ceo/opportunities" className="product-btn-primary !px-4 !py-2 text-xs">
@@ -81,6 +81,23 @@ function CeoOverviewPage() {
         }
       >
         <p className="whitespace-pre-line text-[15px] leading-relaxed text-[#C5D0E0]">{brief?.body}</p>
+        {brief?.actions?.length ? (
+          <div className="mt-5 rounded-2xl border border-white/[0.08] bg-[#0B1B33]/40 p-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#2EE6A6]">
+              Recommended actions
+            </p>
+            <ol className="mt-3 space-y-2.5">
+              {brief.actions.map((action, i) => (
+                <li key={action} className="flex gap-3 text-[14px] leading-relaxed text-[#F7FAFF]">
+                  <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-[#2EE6A6]/15 text-[12px] font-semibold text-[#2EE6A6]">
+                    {i + 1}
+                  </span>
+                  {action}
+                </li>
+              ))}
+            </ol>
+          </div>
+        ) : null}
         <Link
           to="/demo/ceo/teams/$teamId"
           params={{ teamId: "team-velocity" }}

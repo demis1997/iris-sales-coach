@@ -22,12 +22,11 @@ const TIERS = [
   {
     name: "Design Partner",
     price: "Custom",
-    blurb: "For early customers building Artemis around real workflows.",
+    blurb: "Platform license per user/month. Voice usage billed separately.",
     features: [
-      "Call intelligence",
-      "AI coaching",
-      "Manager dashboard",
-      "Executive dashboard",
+      "Platform seats (calling + coaching + intelligence)",
+      "Voice usage billed by destination & volume",
+      "Manager & executive workspaces",
       "Direct founder support",
     ],
     cta: "Become a Design Partner",
@@ -51,11 +50,11 @@ const TIERS = [
   {
     name: "Enterprise",
     price: "Custom",
-    blurb: "Custom deployment, retention, integrations, and security requirements.",
+    blurb: "Custom voice pricing, retention, integrations, and security requirements.",
     features: [
+      "Custom enterprise voice pricing available",
       "Advanced access controls",
-      "Custom integrations",
-      "Security review support",
+      "Optional CRM / SIP connectors",
       "Dedicated success path",
     ],
     cta: "Contact Sales",
@@ -69,8 +68,8 @@ function PricingPage() {
     <MarketingShell>
       <MarketingHero
         eyebrow="Pricing"
-        title="Simple commercial conversations for serious sales teams."
-        subtitle="Pricing is based on seats and conversation volume. We do not publish fake discounts or promotional countdown offers."
+        title="Platform license + voice usage."
+        subtitle="Subscriptions are priced per user/month. Voice usage is billed separately based on destination and volume. We do not promise unlimited calling."
       />
       <MarketingSection tone="white">
         <div className="grid gap-5 lg:grid-cols-3">

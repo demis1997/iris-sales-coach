@@ -15,15 +15,16 @@ export const Route = createFileRoute("/demo/agent")({
 });
 
 const nav: DemoNavItem[] = [
-  { label: "Today", to: "/demo/agent", icon: LayoutDashboard, section: "Coach" },
-  { label: "Sales Workspace", to: "/demo/agent/live", icon: Phone, section: "Coach" },
-  { label: "My Calls", to: "/demo/agent/calls", icon: PhoneCall, section: "Coach" },
-  { label: "My Coach", to: "/demo/agent/coach", icon: MessageSquare, section: "Coach" },
-  { label: "Rep DNA", to: "/demo/agent/dna", icon: Dna, section: "Growth" },
-  { label: "Practice", to: "/demo/agent/practice", icon: Headphones, section: "Growth" },
-  { label: "Goals", to: "/demo/agent/goals", icon: Target, section: "Growth" },
+  { label: "Today", to: "/demo/agent", icon: LayoutDashboard, section: "Workspace" },
+  { label: "Leads", to: "/demo/agent/leads", icon: Target, section: "Workspace" },
+  { label: "Dialer", to: "/demo/agent/live", icon: Phone, section: "Workspace" },
+  { label: "Calls", to: "/demo/agent/calls", icon: PhoneCall, section: "Workspace" },
+  { label: "Coaching", to: "/demo/agent/coach", icon: MessageSquare, section: "Improve" },
+  { label: "Roleplay", to: "/demo/agent/practice", icon: Headphones, section: "Improve" },
+  { label: "Performance", to: "/demo/agent/dna", icon: Dna, section: "Improve" },
+  { label: "Goals", to: "/demo/agent/goals", icon: Target, section: "Improve" },
 ];
 
 function AgentDemoLayout() {
-  return <DemoShell role="agent" workspace="Agent Demo" nav={nav} />;
+  return <DemoShell role="agent" workspace="Agent Workspace" nav={nav} />;
 }

@@ -70,9 +70,28 @@ function LiveFloorPage() {
                 </div>
                 {a.signal ? (
                   <p className="mt-1.5 text-[12px] capitalize text-muted-foreground">
-                    {a.signal.replaceAll("_", " ")}
+                    {a.signal === "objection"
+                      ? "⚠ Coaching opportunity · Price objection"
+                      : a.signal.replaceAll("_", " ")}
                   </p>
                 ) : null}
+                {a.status === "live" ? (
+                  <p className="mt-1 text-[11px] text-[#8A9BB5]">
+                    AI score: {a.agentId === "agt-sofia" ? "71" : a.agentId === "agt-maria" ? "88" : "79"}
+                  </p>
+                ) : a.status === "wrap" ? (
+                  <p className="mt-1 text-[11px] text-[#8A9BB5]">Previous score: 92</p>
+                ) : null}
+                <div className="mt-2.5 flex flex-wrap gap-1.5">
+                  {["Listen", "Transcript", "Whisper", "Open"].map((action) => (
+                    <span
+                      key={action}
+                      className="rounded-lg border border-white/[0.08] px-2 py-0.5 text-[10px] font-semibold text-[#8A9BB5]"
+                    >
+                      {action}
+                    </span>
+                  ))}
+                </div>
               </button>
             ))}
           </div>

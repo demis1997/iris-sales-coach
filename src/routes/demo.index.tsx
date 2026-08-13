@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useRouterState } from "@tanstack/react-router";
-import { Building2, Headphones, LayoutDashboard, Users } from "lucide-react";
+import { Building2, Gauge, Headphones, Settings2, Users } from "lucide-react";
 import { ArtemisMark, ArtemisButton } from "@/components/relay/brand";
 import { DEMO_COMPANY } from "@/data/demo/company";
 import { CONTACT_MAILTO } from "@/components/relay/contact";
@@ -7,11 +7,11 @@ import { CONTACT_MAILTO } from "@/components/relay/contact";
 export const Route = createFileRoute("/demo/")({
   head: () => ({
     meta: [
-      { title: "Experience Artemis AI — Product Demo" },
+      { title: "Experience Artemis — Product Demo" },
       {
         name: "description",
         content:
-          "Interactive Apex Markets demo — CEO, manager and agent views with simulated AI coaching for high-volume sales floors.",
+          "Interactive Apex Markets demo — Sales Agent, Manager, CEO and Admin workspaces for the AI-native sales platform.",
       },
     ],
   }),
@@ -20,28 +20,41 @@ export const Route = createFileRoute("/demo/")({
 
 const cards = [
   {
-    to: "/demo/ceo" as const,
-    title: "CEO",
-    headline: "See what drives revenue.",
-    blurb: "Understand conversion, teams, lost opportunities and coaching impact.",
-    cta: "Explore CEO View",
-    icon: LayoutDashboard,
+    to: "/demo/agent/live" as const,
+    title: "Sales Agent",
+    headline: "Call prospects with live AI coaching.",
+    blurb:
+      "Call directly from Artemis, receive live guidance and improve after every conversation.",
+    cta: "Enter Agent Workspace",
+    icon: Headphones,
+    search: { mode: "midcall" as const },
   },
   {
     to: "/demo/manager" as const,
     title: "Manager",
-    headline: "Know where to intervene.",
-    blurb: "See who needs attention, why calls fail and exactly where to coach.",
-    cta: "Explore Manager View",
+    headline: "Run the sales floor and coach with precision.",
+    blurb:
+      "Live floor, coaching queues and campaign control — know exactly why your team wins or loses.",
+    cta: "Enter Manager Workspace",
     icon: Users,
   },
   {
-    to: "/demo/agent/live" as const,
-    title: "Sales Agent",
-    headline: "Your AI copilot for every conversation.",
-    blurb: "Get live guidance during calls and personalized coaching immediately after.",
-    cta: "Open Agent Workspace",
-    icon: Headphones,
+    to: "/demo/ceo" as const,
+    title: "CEO",
+    headline: "Revenue intelligence and AI recommendations.",
+    blurb:
+      "Understand conversion, teams and lost revenue — with concrete actions across the organization.",
+    cta: "Enter Executive Dashboard",
+    icon: Gauge,
+  },
+  {
+    to: "/demo/admin" as const,
+    title: "Admin",
+    headline: "Configure the platform end to end.",
+    blurb:
+      "Users, phone numbers, routing, campaigns and integrations — Artemis as contact-center infrastructure.",
+    cta: "Enter Admin Console",
+    icon: Settings2,
   },
 ];
 
@@ -72,11 +85,11 @@ function DemoLanding() {
           Product Demo
         </p>
         <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl">
-          Experience Artemis AI
+          Experience Artemis From Every Level of the Sales Floor
         </h1>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-[#4B5C76]">
-          See how Artemis turns every sales conversation into live guidance, coaching and revenue
-          intelligence.
+          See how Artemis transforms the experience of agents, managers, executives and
+          administrators — as a complete AI-native sales platform.
         </p>
 
         <div className="mt-5 flex flex-wrap items-center gap-2 text-sm text-[#8A9BB5]">
@@ -85,7 +98,7 @@ function DemoLanding() {
           {DEMO_COMPANY.industry}
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {cards.map((c) => {
             const Icon = c.icon;
             return (
@@ -103,7 +116,7 @@ function DemoLanding() {
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-[#4B5C76]">{c.blurb}</p>
                 <Link
                   to={c.to}
-                  search={c.to === "/demo/agent/live" ? { mode: "midcall" } : undefined}
+                  search={"search" in c ? c.search : undefined}
                   className="mt-6 inline-flex items-center justify-center rounded-full bg-[#2EE6A6] px-5 py-2.5 text-sm font-semibold text-[#0B1B33] shadow-lg shadow-[#2EE6A6]/30 transition hover:bg-[#5cf0bc]"
                 >
                   {c.cta}
@@ -117,8 +130,8 @@ function DemoLanding() {
           <div className="mt-10 rounded-[1.75rem] border border-[#E8EEF7] bg-[#F7FAFF] p-6 text-sm text-[#4B5C76]">
             <p className="font-semibold text-[#0B1B33]">Presenter notes</p>
             <p className="mt-2">
-              Suggested story: CEO overview → revenue at risk → Velocity Desk → Daniel → lost call at
-              08:14 → coaching → Manager live floor → Agent Sales Workspace → back to CEO.
+              Suggested story: Admin numbers → Agent live call → Manager floor → CEO executive
+              brief.
             </p>
             <p className="mt-2 text-xs text-[#8A9BB5]">
               Visible only with <code className="rounded bg-white px-1">?presenter=true</code>

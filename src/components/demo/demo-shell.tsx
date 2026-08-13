@@ -14,24 +14,37 @@ export type DemoNavItem = {
   section?: string;
 };
 
+const ROLE_ORDER: DemoRole[] = ["agent", "manager", "ceo", "admin"];
+
 const ROLE_META: Record<DemoRole, { label: string; path: string; user: string; title: string }> = {
-  ceo: { label: "CEO", path: "/demo/ceo", user: DEMO_COMPANY.ceo.name, title: "CEO" },
-  manager: {
-    label: "Sales Manager",
-    path: "/demo/manager",
-    user: "Sarah Mitchell",
-    title: "Sales Manager · Alpha Desk",
-  },
   agent: {
     label: "Sales Agent",
     path: "/demo/agent",
     user: "Maria Georgiou",
     title: "Sales Agent · Alpha Desk",
   },
+  manager: {
+    label: "Manager",
+    path: "/demo/manager",
+    user: "Sarah Mitchell",
+    title: "Sales Manager · Alpha Desk",
+  },
+  ceo: { label: "CEO", path: "/demo/ceo", user: DEMO_COMPANY.ceo.name, title: "CEO" },
+  admin: {
+    label: "Admin",
+    path: "/demo/admin",
+    user: "Chris Nadir",
+    title: "Platform Admin · Operations",
+  },
 };
 
 function isNavActive(pathname: string, to: string) {
-  if (to === "/demo/ceo" || to === "/demo/manager" || to === "/demo/agent") {
+  if (
+    to === "/demo/ceo" ||
+    to === "/demo/manager" ||
+    to === "/demo/agent" ||
+    to === "/demo/admin"
+  ) {
     return pathname === to || pathname === `${to}/`;
   }
   return pathname === to || pathname.startsWith(`${to}/`);
@@ -143,7 +156,7 @@ export function DemoShell({
                 </button>
                 {open ? (
                   <div className="absolute right-0 z-40 mt-1.5 w-44 overflow-hidden rounded-2xl border border-white/10 bg-[#152A45] shadow-xl">
-                    {(Object.keys(ROLE_META) as DemoRole[]).map((r) => (
+                    {ROLE_ORDER.map((r) => (
                       <button
                         key={r}
                         type="button"

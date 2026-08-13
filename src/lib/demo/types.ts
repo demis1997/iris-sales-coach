@@ -1,6 +1,6 @@
 /** Shared AI / analytics interfaces — MockAIService returns these; OpenAIService can later. */
 
-export type DemoRole = "ceo" | "manager" | "agent";
+export type DemoRole = "ceo" | "manager" | "agent" | "admin";
 
 export type CallScore = {
   overall: number;

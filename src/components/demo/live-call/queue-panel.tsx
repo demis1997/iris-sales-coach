@@ -42,7 +42,7 @@ export function QueuePanel({
                 onClick={() => onCall(next.id)}
                 className="product-btn-primary"
               >
-                CALL
+                Call {next.label.split(" ")[0]}
               </button>
               <button
                 type="button"
@@ -52,6 +52,32 @@ export function QueuePanel({
                 SKIP
               </button>
             </div>
+            {next.label === "James Wilson" ? (
+              <div className="mt-4 rounded-xl border border-[#2EE6A6]/25 bg-[#2EE6A6]/8 p-3 text-sm">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-[#2EE6A6]">
+                  AI Brief
+                </p>
+                <p className="mt-2 leading-relaxed text-[#C5D0E0]">
+                  James showed strong interest during his previous conversation but ended the call
+                  after asking about withdrawal processing times. Avoid immediately discussing
+                  deposit size. Establish trust first. Suggested objective: rebuild trust.
+                </p>
+                <dl className="mt-3 grid grid-cols-2 gap-2 text-xs text-[#8A9BB5]">
+                  <div>
+                    Previous calls: <span className="text-[#F7FAFF]">3</span>
+                  </div>
+                  <div>
+                    Previous deposit: <span className="text-[#F7FAFF]">€2,500</span>
+                  </div>
+                  <div>
+                    Last objection: <span className="text-[#F7FAFF]">Withdrawal</span>
+                  </div>
+                  <div>
+                    Lead score: <span className="text-[#F7FAFF]">82</span>
+                  </div>
+                </dl>
+              </div>
+            ) : null}
           </div>
         </Panel>
       ) : (
