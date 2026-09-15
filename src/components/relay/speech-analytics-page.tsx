@@ -477,7 +477,7 @@ export function ArtemisSpeechAnalyticsPage() {
       <footer className="border-t border-white/10 py-12">
         <div className="mx-auto flex max-w-6xl flex-col gap-8 px-5 sm:flex-row sm:justify-between">
           <div>
-            <ArtemisMark />
+            <ArtemisMark variant="light" />
             <p className="mt-3 max-w-sm text-sm text-white/50">
               AI speech analytics for contact centers — turn every conversation into actionable
               intelligence.

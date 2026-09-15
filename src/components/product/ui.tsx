@@ -6,27 +6,18 @@ import { cn } from "@/lib/utils";
 /** Shared product UI — visual tokens match marketing navy/mint language. */
 
 export function ProductMark({ className, light = false }: { className?: string; light?: boolean }) {
+  /** Demo shells are dark — use light wordmark unless `light` requests the dark mark. */
+  const src = light
+    ? "/brand/artemis-ai-logo-dark.png"
+    : "/brand/artemis-ai-logo-light.png";
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <span className="grid size-8 place-items-center rounded-xl bg-gradient-to-br from-[#2EE6A6] to-[#18C4FF] shadow-sm shadow-[#2EE6A6]/30">
-        <svg viewBox="0 0 24 24" className="size-3.5 text-white" fill="none" aria-hidden>
-          <path
-            d="M4 12c4-6 12-6 16 0-4 6-12 6-16 0Z"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-          />
-          <circle cx="12" cy="12" r="2.5" fill="currentColor" />
-        </svg>
-      </span>
-      <span
-        className={cn(
-          "text-[16px] font-semibold tracking-tight",
-          light ? "text-[#0B1B33]" : "text-[#F7FAFF]",
-        )}
-      >
-        Artemis <span className="text-[#12C48A]">AI</span>
-      </span>
+    <span className={cn("inline-flex items-center", className)}>
+      <img
+        src={src}
+        alt="Artemis AI"
+        height={28}
+        className="h-7 w-auto max-w-[170px] object-contain object-left"
+      />
     </span>
   );
 }

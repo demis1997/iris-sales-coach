@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Artemis AI">
+  <!-- Transparent Artemis A mark  brand turquoise -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 52 L32 12 L42 32" stroke="#22CDBD" stroke-width="8"/>
+    <path d="M38 20 L50 12 L50 28" stroke="#22CDBD" stroke-width="8"/>
+    <path d="M22 38 H44" stroke="#35E4D3" stroke-width="7"/>
+  </g>
+</svg>

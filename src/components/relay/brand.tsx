@@ -1,29 +1,74 @@
 import { cn } from "@/lib/utils";
 
-/** Shared Artemis eye mark used in navbar and exported as favicon source. */
+/** Official Artemis AI brand assets — see public/brand/README.md */
+export const ARTEMIS_BRAND = {
+  navy: "#071B33",
+  turquoise: "#22CDBD",
+  lightTurquoise: "#35E4D3",
+  /** Full wordmark for light/white backgrounds (transparent PNG) */
+  logoDark: "/brand/artemis-ai-logo-dark.png",
+  /** Full wordmark for navy/black/dark backgrounds (transparent PNG) */
+  logoLight: "/brand/artemis-ai-logo-light.png",
+  /** Transparent A icon */
+  icon: "/brand/artemis-ai-icon.png",
+  /** Square app / social icon */
+  iconApp: "/brand/artemis-ai-icon-dark-background.png",
+} as const;
+
+/** Tiny A mark for inline accents. */
 export function ArtemisEyeIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={cn("size-4", className)} fill="none" aria-hidden>
-      <path
-        d="M4 12c4-6 12-6 16 0-4 6-12 6-16 0Z"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-      <circle cx="12" cy="12" r="2.5" fill="currentColor" />
-    </svg>
+    <img
+      src={ARTEMIS_BRAND.icon}
+      alt=""
+      aria-hidden
+      className={cn("size-4 object-contain", className)}
+    />
   );
 }
 
-export function ArtemisMark({ className }: { className?: string }) {
+export function ArtemisIcon({
+  className,
+  size = 32,
+}: {
+  className?: string;
+  size?: number;
+}) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <span className="grid size-8 place-items-center rounded-xl bg-gradient-to-br from-[#2EE6A6] to-[#18C4FF] shadow-sm shadow-[#2EE6A6]/40">
-        <ArtemisEyeIcon className="text-white" />
-      </span>
-      <span className="text-[17px] font-semibold tracking-tight text-[#0B1B33]">
-        Artemis <span className="font-semibold text-[#12C48A]">AI</span>
-      </span>
+    <img
+      src={ARTEMIS_BRAND.iconApp}
+      alt="Artemis AI"
+      width={size}
+      height={size}
+      className={cn("rounded-[22%] object-contain", className)}
+    />
+  );
+}
+
+/**
+ * Official Artemis AI wordmark.
+ * @param variant `dark` = navy wordmark for light UIs; `light` = white wordmark for dark UIs
+ */
+export function ArtemisMark({
+  className,
+  variant = "dark",
+  height = 28,
+}: {
+  className?: string;
+  variant?: "dark" | "light";
+  height?: number;
+}) {
+  const src = variant === "light" ? ARTEMIS_BRAND.logoLight : ARTEMIS_BRAND.logoDark;
+  return (
+    <span className={cn("inline-flex items-center", className)}>
+      <img
+        src={src}
+        alt="Artemis AI"
+        height={height}
+        className="h-7 w-auto max-w-[190px] object-contain object-left sm:h-8"
+        style={{ height }}
+        decoding="async"
+      />
     </span>
   );
 }
@@ -41,10 +86,10 @@ export function ArtemisButton({
 }) {
   const styles =
     variant === "primary"
-      ? "bg-[#2EE6A6] text-[#0B1B33] shadow-lg shadow-[#2EE6A6]/35 hover:bg-[#5cf0bc]"
+      ? "bg-[#22CDBD] text-[#071B33] shadow-lg shadow-[#22CDBD]/30 hover:bg-[#35E4D3]"
       : variant === "secondary"
-        ? "border border-[#D7E0EF] bg-white text-[#0B1B33] hover:border-[#2EE6A6] hover:bg-[#F3FFFB]"
-        : "text-[#4B5C76] hover:text-[#0B1B33]";
+        ? "border border-[#D7E0EF] bg-white text-[#071B33] hover:border-[#22CDBD] hover:bg-[#F3FFFB]"
+        : "text-[#4B5C76] hover:text-[#071B33]";
   return (
     <a
       href={href}

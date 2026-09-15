@@ -16,21 +16,13 @@ export type NavItem = {
 
 export function ArtemisMark({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-2", className)}>
-      <span className="grid size-7 place-items-center rounded-lg bg-gradient-to-br from-[#2EE6A6] to-[#18C4FF]">
-        <svg viewBox="0 0 24 24" className="size-3.5 text-white" fill="none" aria-hidden>
-          <path
-            d="M4 12c4-6 12-6 16 0-4 6-12 6-16 0Z"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-          />
-          <circle cx="12" cy="12" r="2.5" fill="currentColor" />
-        </svg>
-      </span>
-      <span className="text-[15px] font-semibold tracking-tight">
-        Artemis <span className="text-primary">AI</span>
-      </span>
+    <span className={cn("inline-flex items-center", className)}>
+      <img
+        src="/brand/artemis-ai-logo-light.png"
+        alt="Artemis AI"
+        height={28}
+        className="h-7 w-auto max-w-[170px] object-contain object-left"
+      />
     </span>
   );
 }
