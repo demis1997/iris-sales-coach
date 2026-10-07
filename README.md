@@ -1,29 +1,40 @@
-# Welcome to your Lovable project
+# Iris / Artemis AI sales coach
 
-This project was built with [Lovable](https://lovable.dev).
+A React and TanStack Start application for company workspaces, call uploads, structured AI coaching, and telephony workflows. The repository contains Supabase migrations and role checks, a provider abstraction, versioned prompts and Zod output schemas. These are implementation capabilities; production integrations and improved sales outcomes are not established by the local tests.
 
-## Build with Lovable
+## Local development
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Use Node.js 22.20 or newer compatible with the committed npm lockfile.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm ci --ignore-scripts
+cp .env.example .env
 npm run dev
 ```
 
-## Built with
+Follow [setup](docs/SETUP.md) for Supabase configuration and migrations. Keep service-role and provider credentials server-side and out of Git. The mock AI tests below do not require a provider key; the complete application requires its configured services.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Deterministic checks
+
+```sh
+npm run test:unit
+npm run test:ai
+```
+
+The permission tests and ten AI tests use deterministic mock responses. They exercise tenant boundaries, prompt/schema contracts and task routing; they do not measure real model quality, actual inference cost, telephony delivery, or production security. CI runs these checks without provider credentials. No paid model calls are required.
+
+## Implementation and runbooks
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Setup](docs/SETUP.md)
+- [Production checklist](docs/PRODUCTION.md)
+- [Telephony](docs/TELEPHONY.md)
+- [Account verification](docs/STEP1_ACCOUNTS.md)
+- AI providers, prompts and schemas: `src/ai/`
+- Database migrations: `supabase/migrations/`
+
+During the 7 October 2026 maintenance pass, locked installation, the permission test, all ten mock AI tests and `npm run build` passed. `npm run lint` failed with 1,074 errors and 12 warnings, mostly existing formatting issues; this broader cleanup remains outstanding. CI runs the passing tests and build, and does not claim a clean lint gate. Applying database migrations or configuring telephony requires manual integration validation.
+
+## Attribution
+
+The application was built with [Lovable](https://lovable.dev). Preserve its connected history and the guidance in [AGENTS.md](AGENTS.md); do not force-push or rewrite published commits.
