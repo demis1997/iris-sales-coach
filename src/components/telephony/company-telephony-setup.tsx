@@ -2,10 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { Panel, PanelHeader, Chip } from "@/components/iris/primitives";
-import {
-  getTelephonyStatus,
-  saveCompanyTelephony,
-} from "@/lib/telephony/telephony.functions";
+import { getTelephonyStatus, saveCompanyTelephony } from "@/lib/telephony/telephony.functions";
 
 type Status = Awaited<ReturnType<typeof getTelephonyStatus>>;
 

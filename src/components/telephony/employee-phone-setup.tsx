@@ -85,18 +85,14 @@ export function EmployeePhoneSetup({ compact = false }: { compact?: boolean }) {
         />
       ) : null}
       <div className={compact ? "space-y-3" : "space-y-3 p-5"}>
-        {compact ? (
-          <p className="text-sm font-medium">My calling phone</p>
-        ) : null}
+        {compact ? <p className="text-sm font-medium">My calling phone</p> : null}
         <div className="flex flex-wrap items-center gap-2">
           {verified ? (
             <Chip tone="good">Verified {maskPhone(status?.employee.phoneE164)}</Chip>
           ) : (
             <Chip tone="warn">Not verified</Chip>
           )}
-          {!status?.twilioConfigured ? (
-            <Chip tone="neutral">Twilio not configured yet</Chip>
-          ) : null}
+          {!status?.twilioConfigured ? <Chip tone="neutral">Twilio not configured yet</Chip> : null}
         </div>
         <input
           value={phone}

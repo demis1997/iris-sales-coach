@@ -6,7 +6,11 @@ export const Route = createFileRoute("/manager/")({
   head: () => ({
     meta: [
       { title: "Live Floor — Artemis Manager" },
-      { name: "description", content: "See who is on a call, live sentiment and which conversations need help right now." },
+      {
+        name: "description",
+        content:
+          "See who is on a call, live sentiment and which conversations need help right now.",
+      },
       { property: "og:title", content: "Live Floor — Artemis Manager" },
       { property: "og:description", content: "Real-time visibility of every conversation." },
     ],
@@ -26,7 +30,9 @@ export const Route = createFileRoute("/manager/")({
             <thead>
               <tr className="border-b border-border text-left text-[11px] tracking-wider text-muted-foreground uppercase">
                 {["Rep", "State", "Prospect", "Duration", "Sentiment", "", ""].map((h, i) => (
-                  <th key={i} className="px-5 py-3 font-medium">{h}</th>
+                  <th key={i} className="px-5 py-3 font-medium">
+                    {h}
+                  </th>
                 ))}
               </tr>
             </thead>
@@ -40,7 +46,9 @@ export const Route = createFileRoute("/manager/")({
                   <td className="px-5 py-3 text-muted-foreground">{r.prospect}</td>
                   <td className="px-5 py-3 font-mono text-xs">{r.min ? `${r.min}m` : "—"}</td>
                   <td className="px-5 py-3 text-muted-foreground">{r.sentiment}</td>
-                  <td className="px-5 py-3">{r.risk ? <Chip tone="bad">Needs help</Chip> : null}</td>
+                  <td className="px-5 py-3">
+                    {r.risk ? <Chip tone="bad">Needs help</Chip> : null}
+                  </td>
                   <td className="px-5 py-3 text-right">
                     <button className="text-xs text-primary hover:underline">Listen in</button>
                   </td>

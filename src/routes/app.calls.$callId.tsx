@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Loader2, Sparkles } from "lucide-react";
 import { Panel, PanelHeader, ScoreRing, Chip } from "@/components/iris/primitives";
+import type { CallRow } from "@/lib/calls";
 import { getCallBundle } from "@/lib/calls";
 import { useAuth } from "@/components/auth/auth-provider";
 
@@ -54,10 +55,28 @@ function CallReviewPage() {
     );
   }
 
-  const call = data.call as Record<string, any>;
-  const analysis = data.analysis as Record<string, any> | null;
-  const segments = data.segments as Array<Record<string, any>>;
-  const jobs = data.jobs as Array<Record<string, any>>;
+  const call = data.call as CallRow;
+  const analysis = data.analysis as {
+    overall_score: number | null;
+    summary_concise: string;
+    summary_detailed: string;
+    coaching: unknown;
+    objections: unknown;
+  } | null;
+  const segments = data.segments as Array<{
+    id: string;
+    speaker: string;
+    text: string;
+    start_ms: number;
+    end_ms: number;
+    is_objection?: boolean;
+  }>;
+  const jobs = data.jobs as Array<{
+    id: string;
+    stage: string;
+    status: string;
+    error: string | null;
+  }>;
   const signedUrl = data.signedUrl as string | null;
   const coaching = (analysis?.coaching ?? {}) as {
     strengths?: string[];
@@ -96,7 +115,11 @@ function CallReviewPage() {
 
       <div className="grid gap-4 lg:grid-cols-3">
         <Panel className="flex flex-col items-center justify-center gap-3 p-6">
-          <ScoreRing value={Number(call.overall_score ?? analysis?.overall_score ?? 0)} />
+          {call.overall_score != null || analysis?.overall_score != null ? (
+            <ScoreRing value={Number(call.overall_score ?? analysis?.overall_score)} />
+          ) : (
+            <p>Not scored</p>
+          )}
           <p className="text-xs text-muted-foreground">Overall AI score</p>
           <p className="px-3 text-center text-[11px] text-muted-foreground">
             AI insights can be inaccurate and should be reviewed for important decisions.
@@ -141,7 +164,9 @@ function CallReviewPage() {
             ) : null}
           </ul>
           {coaching.nextCallGoal ? (
-            <p className="mt-4 text-xs text-muted-foreground">Next call goal: {coaching.nextCallGoal}</p>
+            <p className="mt-4 text-xs text-muted-foreground">
+              Next call goal: {coaching.nextCallGoal}
+            </p>
           ) : null}
         </Panel>
       </div>
@@ -154,15 +179,16 @@ function CallReviewPage() {
               <div className="mb-1 flex items-center justify-between text-[11px] text-muted-foreground">
                 <span className="font-medium text-foreground">{s.speaker ?? "Speaker"}</span>
                 <span>
-                  {(s.start_ms / 1000).toFixed(1)}s
-                  {s.is_objection ? " · objection" : ""}
+                  {(s.start_ms / 1000).toFixed(1)}s{s.is_objection ? " · objection" : ""}
                 </span>
               </div>
               <p>{s.text}</p>
             </div>
           ))}
           {!segments.length ? (
-            <p className="text-sm text-muted-foreground">Transcript segments appear after processing.</p>
+            <p className="text-sm text-muted-foreground">
+              Transcript segments appear after processing.
+            </p>
           ) : null}
         </div>
       </Panel>
@@ -172,7 +198,10 @@ function CallReviewPage() {
           <PanelHeader title="Objections" />
           <div className="mt-3 space-y-3">
             {objections.map((o, i) => (
-              <div key={`${o.category}-${i}`} className="rounded-xl border border-border p-3 text-sm">
+              <div
+                key={`${o.category}-${i}`}
+                className="rounded-xl border border-border p-3 text-sm"
+              >
                 <p className="font-medium">
                   {o.category}: {o.text}
                 </p>

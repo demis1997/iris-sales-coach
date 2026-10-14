@@ -106,7 +106,8 @@ export function toPostCallReview(
     missedAgent: hurt?.behavior || "Continued without fully isolating the concern",
     missedInsight: coaching?.nextCallGoal || analysis.outcome.nextBestAction,
     tryInsteadOf: hurt?.behavior || "The weaker moment in the call",
-    tryInstead: phrase?.phrase || hurt?.whatShouldHaveHappened || coaching?.coachingPriorities[0] || "",
+    tryInstead:
+      phrase?.phrase || hurt?.whatShouldHaveHappened || coaching?.coachingPriorities[0] || "",
     followUpTitle: analysis.outcome.nextBestAction,
     followUpReason: analysis.outcome.primaryReason,
     suggestedWhatsApp: `Thanks for the chat — next step: ${analysis.outcome.nextBestAction}.`,

@@ -1,6 +1,8 @@
 import type { AIAnalysis, DemoCall, TranscriptLine } from "@/lib/demo/types";
 
-function scores(partial: Partial<AIAnalysis["scores"]> & { overall: number }): AIAnalysis["scores"] {
+function scores(
+  partial: Partial<AIAnalysis["scores"]> & { overall: number },
+): AIAnalysis["scores"] {
   return {
     opening: 88,
     discovery: 86,
@@ -170,14 +172,16 @@ export const DEMO_CALLS: DemoCall[] = [
         {
           id: "c1",
           title: "Close when buying intent appears",
-          detail: "At 08:14 the prospect said “that sounds pretty good.” Daniel continued pitching features instead of asking for commitment.",
+          detail:
+            "At 08:14 the prospect said “that sounds pretty good.” Daniel continued pitching features instead of asking for commitment.",
           timestamp: "08:14",
           priority: "high",
         },
         {
           id: "c2",
           title: "Resolve trust before discussing more product",
-          detail: "Withdrawal fear appeared at 09:02. Daniel deferred instead of explaining the withdrawal process.",
+          detail:
+            "Withdrawal fear appeared at 09:02. Daniel deferred instead of explaining the withdrawal process.",
           timestamp: "09:02",
           priority: "high",
         },
@@ -237,7 +241,8 @@ export const DEMO_CALLS: DemoCall[] = [
         {
           id: "mc1",
           title: "Close when buying intent appears",
-          detail: "Prospect softened after policy explanation — a soft close for KYC start would lift conversion probability.",
+          detail:
+            "Prospect softened after policy explanation — a soft close for KYC start would lift conversion probability.",
           timestamp: "10:55",
           priority: "high",
         },
@@ -258,7 +263,8 @@ export const DEMO_CALLS: DemoCall[] = [
       ],
       nextBestAction: {
         title: "Follow up today before 17:00",
-        reason: "Prospect showed high intent but still has unresolved withdrawal concern in writing.",
+        reason:
+          "Prospect showed high intent but still has unresolved withdrawal concern in writing.",
         suggestedMessage:
           "Hi — good speaking earlier. I wanted to send you the withdrawal information we discussed so you can review it before we continue.",
         due: "Today · before 17:00",
@@ -339,11 +345,61 @@ export const DEMO_CALLS: DemoCall[] = [
 const extraRows: Array<
   [string, string, string, string, string, string, DemoCall["intent"], number, number]
 > = [
-  ["call-e1", "agt-leo", "Leo Andreou", "team-alpha", "Alpha Desk", "Closed · FTD", "very_high", 92, 12000],
-  ["call-e2", "agt-sofia", "Sofia Markou", "team-alpha", "Alpha Desk", "Follow-up", "high", 78, 5000],
-  ["call-e3", "agt-chris", "Chris Nicolaou", "team-alpha", "Alpha Desk", "Compliance review", "medium", 61, 3000],
-  ["call-e4", "agt-anna", "Anna Demetriou", "team-alpha", "Alpha Desk", "Closed · FTD", "very_high", 94, 15000],
-  ["call-e5", "agt-daniel", "Daniel Petrou", "team-velocity", "Velocity Desk", "Lost", "high", 59, 7000],
+  [
+    "call-e1",
+    "agt-leo",
+    "Leo Andreou",
+    "team-alpha",
+    "Alpha Desk",
+    "Closed · FTD",
+    "very_high",
+    92,
+    12000,
+  ],
+  [
+    "call-e2",
+    "agt-sofia",
+    "Sofia Markou",
+    "team-alpha",
+    "Alpha Desk",
+    "Follow-up",
+    "high",
+    78,
+    5000,
+  ],
+  [
+    "call-e3",
+    "agt-chris",
+    "Chris Nicolaou",
+    "team-alpha",
+    "Alpha Desk",
+    "Compliance review",
+    "medium",
+    61,
+    3000,
+  ],
+  [
+    "call-e4",
+    "agt-anna",
+    "Anna Demetriou",
+    "team-alpha",
+    "Alpha Desk",
+    "Closed · FTD",
+    "very_high",
+    94,
+    15000,
+  ],
+  [
+    "call-e5",
+    "agt-daniel",
+    "Daniel Petrou",
+    "team-velocity",
+    "Velocity Desk",
+    "Lost",
+    "high",
+    59,
+    7000,
+  ],
 ];
 
 const extras: DemoCall[] = extraRows.map((row, idx) => {

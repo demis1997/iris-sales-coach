@@ -31,7 +31,8 @@ function KnowledgePage() {
               </span>
             </div>
             <p className="mt-3 text-xs text-muted-foreground">
-              If a live suggestion lacks approved content, Artemis AI shows “No approved information available.”
+              If a live suggestion lacks approved content, Artemis AI shows “No approved information
+              available.”
             </p>
           </Panel>
         ))}
@@ -54,15 +55,19 @@ function KnowledgePage() {
                 <p className="font-medium">{p.title}</p>
                 <Chip
                   tone={
-                    p.status === "Approved" ? "good" : p.status === "Pending approval" ? "warn" : "iris"
+                    p.status === "Approved"
+                      ? "good"
+                      : p.status === "Pending approval"
+                        ? "warn"
+                        : "iris"
                   }
                 >
                   {p.status}
                 </Chip>
               </div>
               <p className="mt-2 text-xs text-muted-foreground">
-                {p.evidenceCalls} calls · +{p.conversionLift}% conversion · {p.confidence}% confidence ·{" "}
-                {p.source}
+                {p.evidenceCalls} calls · +{p.conversionLift}% conversion · {p.confidence}%
+                confidence · {p.source}
               </p>
             </div>
           ))}

@@ -11,10 +11,14 @@ export const Route = createFileRoute("/app/roleplay")({
       { title: "AI Roleplay Practice — Artemis AI" },
       {
         name: "description",
-        content: "Practise against an AI customer — angry buyers, price objections, enterprise procurement — and get scored instantly.",
+        content:
+          "Practise against an AI customer — angry buyers, price objections, enterprise procurement — and get scored instantly.",
       },
       { property: "og:title", content: "AI Roleplay Practice — Artemis AI" },
-      { property: "og:description", content: "Rehearse hard conversations before they cost you a deal." },
+      {
+        property: "og:description",
+        content: "Rehearse hard conversations before they cost you a deal.",
+      },
     ],
   }),
   component: RoleplayPage,
@@ -66,8 +70,14 @@ function RoleplayPage() {
             />
             <div className="space-y-4 p-5">
               {[
-                { who: "ai", text: "Before you start — I've heard this pitch three times this month. Why are you 40% more expensive?" },
-                { who: "rep", text: "That's fair. Can I ask what the gap between your best and worst closer costs you today?" },
+                {
+                  who: "ai",
+                  text: "Before you start — I've heard this pitch three times this month. Why are you 40% more expensive?",
+                },
+                {
+                  who: "rep",
+                  text: "That's fair. Can I ask what the gap between your best and worst closer costs you today?",
+                },
                 { who: "ai", text: "You're deflecting. Give me a number." },
               ].map((m, i) => (
                 <motion.div
@@ -95,7 +105,9 @@ function RoleplayPage() {
 
         <div className="space-y-4">
           <Panel className="gradient-border p-5 text-center">
-            <p className="text-xs tracking-wide text-muted-foreground uppercase">Last session score</p>
+            <p className="text-xs tracking-wide text-muted-foreground uppercase">
+              Last session score
+            </p>
             <p className="mt-2 font-mono text-4xl font-semibold gradient-text">{scenario.best}</p>
             <p className="mt-1 text-xs text-muted-foreground">on {scenario.name}</p>
           </Panel>

@@ -41,10 +41,13 @@ export function estimateCostUsd(opts: {
   outputTokens: number | null;
 }): number | null {
   if (opts.inputTokens == null || opts.outputTokens == null) return null;
-  // Rough placeholder rates — not billing-authoritative.
-  const rates =
-    opts.provider === "openai"
-      ? { in: 0.00015 / 1000, out: 0.0006 / 1000 }
-      : { in: 0, out: 0 };
-  return Number((opts.inputTokens * rates.in + opts.outputTokens * rates.out).toFixed(6));
+  if (opts.provider === "mock") return 0;
+  if (opts.provider !== "openai") return null;
+  const input = process.env.OPENAI_INPUT_USD_PER_MILLION;
+  const output = process.env.OPENAI_OUTPUT_USD_PER_MILLION;
+  if (!input?.trim() || !output?.trim()) return null;
+  const a = Number(input),
+    b = Number(output);
+  if (!Number.isFinite(a) || !Number.isFinite(b) || a < 0 || b < 0) return null;
+  return (opts.inputTokens * a + opts.outputTokens * b) / 1000000;
 }

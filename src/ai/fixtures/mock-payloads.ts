@@ -30,17 +30,19 @@ export function getMockPayload(promptId: PromptId, userPrompt: string): unknown 
         customerSignals: {
           interestLevel: "medium",
           buyingIntent: "medium",
-          objections: lower.includes("price") || lower.includes("expensive")
-            ? ["Price concern"]
-            : lower.includes("withdraw")
-              ? ["Withdrawal / trust concern"]
-              : ["Needs time"],
+          objections:
+            lower.includes("price") || lower.includes("expensive")
+              ? ["Price concern"]
+              : lower.includes("withdraw")
+                ? ["Withdrawal / trust concern"]
+                : ["Needs time"],
           questions: ["Asked for more information"],
           concerns: ["Needs clarity before committing"],
           timingSignals: ["Not ready today"],
-          trustSignals: lower.includes("withdraw") || lower.includes("lost money")
-            ? ["Prior negative experience or withdrawal concern"]
-            : [],
+          trustSignals:
+            lower.includes("withdraw") || lower.includes("lost money")
+              ? ["Prior negative experience or withdrawal concern"]
+              : [],
           competitorMentions: [],
         },
         stagesOccurred: ["Opening", "Discovery", "Objection Handling", "Follow-Up"],
@@ -121,7 +123,8 @@ export function getMockPayload(promptId: PromptId, userPrompt: string): unknown 
             confidence: 0.3,
             evidence: [],
             timestamps: [],
-            explanation: "Insufficient evidence of required disclosures in the provided transcript.",
+            explanation:
+              "Insufficient evidence of required disclosures in the provided transcript.",
           },
         ],
       };
@@ -134,7 +137,8 @@ export function getMockPayload(promptId: PromptId, userPrompt: string): unknown 
             timestamp: "01:35",
             evidence: "Agent did not argue immediately after the objection.",
             whyItHelped: "Keeps trust from collapsing.",
-            howToRepeat: "Pause, reflect the concern in one sentence, then ask one clarifying question.",
+            howToRepeat:
+              "Pause, reflect the concern in one sentence, then ask one clarifying question.",
           },
           {
             behavior: "Offered a written follow-up",
@@ -188,7 +192,11 @@ export function getMockPayload(promptId: PromptId, userPrompt: string): unknown 
       return {
         objections: [
           {
-            category: lower.includes("withdraw") ? "Withdrawals" : lower.includes("price") ? "Price" : "Need to Think",
+            category: lower.includes("withdraw")
+              ? "Withdrawals"
+              : lower.includes("price")
+                ? "Price"
+                : "Need to Think",
             customerObjection: "Prospect expressed hesitation about proceeding now.",
             timestamp: "01:40",
             agentResponse: "Agent acknowledged and offered follow-up materials.",
@@ -219,8 +227,7 @@ export function getMockPayload(promptId: PromptId, userPrompt: string): unknown 
             shortTitle: "Isolate the concern",
             reason: "Prospect signal suggests hesitation that needs clarification.",
             suggestedAction: "Ask one clarifying question before pitching.",
-            optionalPhrase:
-              "What specifically feels unclear so I address the right thing?",
+            optionalPhrase: "What specifically feels unclear so I address the right thing?",
             expiresAfterSeconds: 45,
           },
         ],
@@ -377,7 +384,8 @@ export function getMockPayload(promptId: PromptId, userPrompt: string): unknown 
             confidence: 0.68,
             scope: "High-volume outbound desks",
             estimatedImpact: "High if late-stage intent is common",
-            recommendedExperiment: "Add a 15-minute daily drill for one week; measure resolution rate",
+            recommendedExperiment:
+              "Add a 15-minute daily drill for one week; measure resolution rate",
           },
         ],
       };
@@ -391,11 +399,11 @@ export function getMockPayload(promptId: PromptId, userPrompt: string): unknown 
             comparisonEvidence: ["Lost calls often resume pitch immediately"],
             frequency: "Observed across multiple comparable calls",
             confidence: 0.66,
-            possiblePlaybookUpdate:
-              "Add: after trust/withdrawal concern → clarify → then educate",
+            possiblePlaybookUpdate: "Add: after trust/withdrawal concern → clarify → then educate",
           },
         ],
-        notes: "Correlation does not prove causation; recommend manager review before playbook change.",
+        notes:
+          "Correlation does not prove causation; recommend manager review before playbook change.",
       };
 
     case "weekly_agent":
@@ -450,7 +458,8 @@ export function getMockPayload(promptId: PromptId, userPrompt: string): unknown 
         biggestRisk: "Callback leakage on high-intent leads without calendar ownership.",
         teams: "One desk shows stronger late-stage handling; another lags on objection isolation.",
         management: "Coaching is happening, but process standards for wrap-up are uneven.",
-        customerSignal: "Prospects more frequently raise trust, withdrawals, or 'need to think' language.",
+        customerSignal:
+          "Prospects more frequently raise trust, withdrawals, or 'need to think' language.",
         threeDecisionsOrActions: [
           "Approve a two-week trust-objection playbook pilot on one desk",
           "Require calendar-owned follow-ups on warm opportunities",

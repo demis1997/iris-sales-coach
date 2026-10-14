@@ -65,21 +65,62 @@ export const PRODUCTS: ProductPageContent[] = [
       body: "Most coaching arrives hours or days later. Artemis sits beside the agent during the conversation — when behavior can still change the outcome.",
     },
     how: [
-      { step: "1", title: "Listen", body: "The conversation is transcribed and structured in real time." },
-      { step: "2", title: "Detect", body: "Signals, objections, and stage shifts surface as the call progresses." },
-      { step: "3", title: "Guide", body: "Suggestions and playbooks appear when they are useful — not as noise." },
-      { step: "4", title: "Improve", body: "After the call, coaching captures what worked and what was missed." },
+      {
+        step: "1",
+        title: "Listen",
+        body: "The conversation is transcribed and structured in real time.",
+      },
+      {
+        step: "2",
+        title: "Detect",
+        body: "Signals, objections, and stage shifts surface as the call progresses.",
+      },
+      {
+        step: "3",
+        title: "Guide",
+        body: "Suggestions and playbooks appear when they are useful — not as noise.",
+      },
+      {
+        step: "4",
+        title: "Improve",
+        body: "After the call, coaching captures what worked and what was missed.",
+      },
     ],
-    who: ["Sales agents on live outbound or inbound calls", "Managers monitoring the floor", "Training leads building talk tracks"],
+    who: [
+      "Sales agents on live outbound or inbound calls",
+      "Managers monitoring the floor",
+      "Training leads building talk tracks",
+    ],
     workflows: [
-      { title: "Outbound high-intent lead", body: "Guide discovery, handle trust objections, and catch buying signals before they pass." },
-      { title: "Callback / follow-up", body: "Resume context, reinforce prior commitments, and move toward the next clear step." },
-      { title: "Compliance-sensitive pitch", body: "Keep required language visible without interrupting the sales flow." },
+      {
+        title: "Outbound high-intent lead",
+        body: "Guide discovery, handle trust objections, and catch buying signals before they pass.",
+      },
+      {
+        title: "Callback / follow-up",
+        body: "Resume context, reinforce prior commitments, and move toward the next clear step.",
+      },
+      {
+        title: "Compliance-sensitive pitch",
+        body: "Keep required language visible without interrupting the sales flow.",
+      },
     ],
     related: [
-      { label: "AI Coaching", href: "/ai-coaching", description: "Personal coaching after every call." },
-      { label: "Adaptive Playbooks", href: "/adaptive-playbooks", description: "Turn winning talk tracks into live guidance." },
-      { label: "Call Intelligence", href: "/call-intelligence", description: "Structured intelligence from every conversation." },
+      {
+        label: "AI Coaching",
+        href: "/ai-coaching",
+        description: "Personal coaching after every call.",
+      },
+      {
+        label: "Adaptive Playbooks",
+        href: "/adaptive-playbooks",
+        description: "Turn winning talk tracks into live guidance.",
+      },
+      {
+        label: "Call Intelligence",
+        href: "/call-intelligence",
+        description: "Structured intelligence from every conversation.",
+      },
     ],
     primaryCta: { label: "Explore Agent Demo", href: "/demo/agent/live" },
     secondaryCta: { label: "Book a Demo", href: "/contact" },
@@ -97,31 +138,76 @@ export const PRODUCTS: ProductPageContent[] = [
     seoDescription:
       "Turn sales conversations into structured intelligence — transcripts, summaries, topics, objections, intent, and searchable moments.",
     features: [
-      { title: "Transcription", body: "Capture the conversation as searchable text for coaching and review." },
-      { title: "Call summaries", body: "Concise recaps of what happened, what was promised, and what comes next." },
-      { title: "Topics & objections", body: "Structure the conversation into themes managers and executives can act on." },
-      { title: "Customer intent", body: "Estimate buying readiness from evidence in the call — not guesswork." },
+      {
+        title: "Transcription",
+        body: "Capture the conversation as searchable text for coaching and review.",
+      },
+      {
+        title: "Call summaries",
+        body: "Concise recaps of what happened, what was promised, and what comes next.",
+      },
+      {
+        title: "Topics & objections",
+        body: "Structure the conversation into themes managers and executives can act on.",
+      },
+      {
+        title: "Customer intent",
+        body: "Estimate buying readiness from evidence in the call — not guesswork.",
+      },
       { title: "Key moments", body: "Jump to the seconds that changed the outcome." },
-      { title: "Outcomes & search", body: "Filter by outcome, objection, agent, or phrase across the desk." },
+      {
+        title: "Outcomes & search",
+        body: "Filter by outcome, objection, agent, or phrase across the desk.",
+      },
     ],
     why: {
       title: "Why it matters",
       body: "Conversation intelligence is not the product by itself. It is the layer that makes coaching, live guidance, and executive reporting possible.",
     },
     how: [
-      { step: "1", title: "Capture", body: "Calls enter Artemis from upload or telephony workflows." },
-      { step: "2", title: "Structure", body: "Transcripts, topics, and signals become queryable records." },
-      { step: "3", title: "Activate", body: "Downstream products use that structure for coaching and revenue views." },
+      {
+        step: "1",
+        title: "Capture",
+        body: "Calls enter Artemis from upload or telephony workflows.",
+      },
+      {
+        step: "2",
+        title: "Structure",
+        body: "Transcripts, topics, and signals become queryable records.",
+      },
+      {
+        step: "3",
+        title: "Activate",
+        body: "Downstream products use that structure for coaching and revenue views.",
+      },
     ],
     who: ["QA reviewers", "Managers", "Revenue operations"],
     workflows: [
-      { title: "Find similar lost calls", body: "Search by objection language and compare how top agents handled it." },
-      { title: "Calibrate scoring", body: "Review evidence behind AI scores with transcript context." },
+      {
+        title: "Find similar lost calls",
+        body: "Search by objection language and compare how top agents handled it.",
+      },
+      {
+        title: "Calibrate scoring",
+        body: "Review evidence behind AI scores with transcript context.",
+      },
     ],
     related: [
-      { label: "Call Intelligence", href: "/call-intelligence", description: "Every call as a structured record." },
-      { label: "Revenue Intelligence", href: "/revenue-intelligence", description: "Why revenue is moving." },
-      { label: "Artemis Copilot", href: "/artemis-copilot", description: "Guidance during the call." },
+      {
+        label: "Call Intelligence",
+        href: "/call-intelligence",
+        description: "Every call as a structured record.",
+      },
+      {
+        label: "Revenue Intelligence",
+        href: "/revenue-intelligence",
+        description: "Why revenue is moving.",
+      },
+      {
+        label: "Artemis Copilot",
+        href: "/artemis-copilot",
+        description: "Guidance during the call.",
+      },
     ],
     primaryCta: { label: "Explore the Demo", href: "/demo" },
     secondaryCta: { label: "Book a Demo", href: "/contact" },
@@ -140,31 +226,75 @@ export const PRODUCTS: ProductPageContent[] = [
       "Executive revenue intelligence from sales conversations — conversion trends, revenue at risk, lost reasons, and coaching impact.",
     features: [
       { title: "Conversion trends", body: "See where the funnel improves or stalls across desks." },
-      { title: "Revenue at risk", body: "Surface high-intent opportunities that still need follow-up." },
-      { title: "Lost opportunity reasons", body: "Understand why deals stall — trust, price, timing, and more." },
-      { title: "Team comparison", body: "Compare desks on quality, conversion, and coaching completion." },
-      { title: "High-intent prospects", body: "Prioritize the conversations most likely to convert." },
-      { title: "Coaching impact", body: "Connect coaching activity to conversion movement over time." },
-      { title: "Executive AI brief", body: "A concise weekly narrative of what changed and where to intervene." },
+      {
+        title: "Revenue at risk",
+        body: "Surface high-intent opportunities that still need follow-up.",
+      },
+      {
+        title: "Lost opportunity reasons",
+        body: "Understand why deals stall — trust, price, timing, and more.",
+      },
+      {
+        title: "Team comparison",
+        body: "Compare desks on quality, conversion, and coaching completion.",
+      },
+      {
+        title: "High-intent prospects",
+        body: "Prioritize the conversations most likely to convert.",
+      },
+      {
+        title: "Coaching impact",
+        body: "Connect coaching activity to conversion movement over time.",
+      },
+      {
+        title: "Executive AI brief",
+        body: "A concise weekly narrative of what changed and where to intervene.",
+      },
     ],
     why: {
       title: "Why it matters",
       body: "CRMs store outcomes. Artemis explains the conversation behavior driving those outcomes.",
     },
     how: [
-      { step: "1", title: "Aggregate", body: "Calls, scores, and outcomes roll into desk and company views." },
+      {
+        step: "1",
+        title: "Aggregate",
+        body: "Calls, scores, and outcomes roll into desk and company views.",
+      },
       { step: "2", title: "Explain", body: "AI briefs highlight drivers — not vanity dashboards." },
-      { step: "3", title: "Act", body: "Jump into teams, opportunities, or coaching that need attention." },
+      {
+        step: "3",
+        title: "Act",
+        body: "Jump into teams, opportunities, or coaching that need attention.",
+      },
     ],
     who: ["CEOs", "Heads of Sales", "Revenue operations"],
     workflows: [
-      { title: "Monday executive review", body: "Read the brief, inspect revenue at risk, assign desk focus." },
-      { title: "Desk deep-dive", body: "Open an underperforming team and follow evidence into calls." },
+      {
+        title: "Monday executive review",
+        body: "Read the brief, inspect revenue at risk, assign desk focus.",
+      },
+      {
+        title: "Desk deep-dive",
+        body: "Open an underperforming team and follow evidence into calls.",
+      },
     ],
     related: [
-      { label: "Executive Command Center", href: "/executive-command-center", description: "The CEO operating surface." },
-      { label: "Manager Operations", href: "/manager-operations", description: "Where intervention happens." },
-      { label: "Conversation Intelligence", href: "/conversation-intelligence", description: "The data underneath." },
+      {
+        label: "Executive Command Center",
+        href: "/executive-command-center",
+        description: "The CEO operating surface.",
+      },
+      {
+        label: "Manager Operations",
+        href: "/manager-operations",
+        description: "Where intervention happens.",
+      },
+      {
+        label: "Conversation Intelligence",
+        href: "/conversation-intelligence",
+        description: "The data underneath.",
+      },
     ],
     primaryCta: { label: "Explore CEO Demo", href: "/demo/ceo" },
     secondaryCta: { label: "Book a Demo", href: "/contact" },
@@ -195,19 +325,43 @@ export const PRODUCTS: ProductPageContent[] = [
       body: "Managers should not coach from memory of a handful of calls. Rep DNA updates from evidence after every conversation.",
     },
     how: [
-      { step: "1", title: "Score", body: "Each call contributes skill signals with transcript references." },
-      { step: "2", title: "Model", body: "Profiles update over time — strengths, gaps, and trajectory." },
-      { step: "3", title: "Coach", body: "Recommendations point to concrete behaviors, not personality labels." },
+      {
+        step: "1",
+        title: "Score",
+        body: "Each call contributes skill signals with transcript references.",
+      },
+      {
+        step: "2",
+        title: "Model",
+        body: "Profiles update over time — strengths, gaps, and trajectory.",
+      },
+      {
+        step: "3",
+        title: "Coach",
+        body: "Recommendations point to concrete behaviors, not personality labels.",
+      },
     ],
-    who: ["Agents improving week to week", "Managers assigning coaching", "Trainers designing practice"],
+    who: [
+      "Agents improving week to week",
+      "Managers assigning coaching",
+      "Trainers designing practice",
+    ],
     workflows: [
       { title: "Weekly 1:1", body: "Open Rep DNA, review evidence clips, set one focus skill." },
       { title: "Ramp new hires", body: "Track skill progress against your best performers." },
     ],
     related: [
       { label: "AI Coaching", href: "/ai-coaching", description: "After-call improvement loops." },
-      { label: "AI Roleplay", href: "/ai-roleplay", description: "Practice the weak skill before live calls." },
-      { label: "Manager Operations", href: "/manager-operations", description: "Who needs attention." },
+      {
+        label: "AI Roleplay",
+        href: "/ai-roleplay",
+        description: "Practice the weak skill before live calls.",
+      },
+      {
+        label: "Manager Operations",
+        href: "/manager-operations",
+        description: "Who needs attention.",
+      },
     ],
     primaryCta: { label: "Explore Agent Demo", href: "/demo/agent" },
     secondaryCta: { label: "Book a Demo", href: "/contact" },
@@ -226,9 +380,15 @@ export const PRODUCTS: ProductPageContent[] = [
       "Personalized post-call coaching with transcript evidence, better phrasing, and next-call goals for high-volume sales teams.",
     features: [
       { title: "What went well", body: "Reinforce behaviors worth repeating." },
-      { title: "What cost the opportunity", body: "Name the moment that mattered — with a timestamp." },
+      {
+        title: "What cost the opportunity",
+        body: "Name the moment that mattered — with a timestamp.",
+      },
       { title: "Transcript evidence", body: "Coaching is tied to what was actually said." },
-      { title: "Better phrasing", body: "Show a concrete alternative for the next similar moment." },
+      {
+        title: "Better phrasing",
+        body: "Show a concrete alternative for the next similar moment.",
+      },
       { title: "Next-call goal", body: "One focused behavior to practice immediately." },
       { title: "Manager assignments", body: "Escalate patterns that need human coaching." },
       { title: "Skill improvement", body: "Feed progress back into Rep DNA over time." },
@@ -239,16 +399,31 @@ export const PRODUCTS: ProductPageContent[] = [
     },
     how: [
       { step: "1", title: "Analyze", body: "The call is scored and key moments are identified." },
-      { step: "2", title: "Explain", body: "Coaching cites evidence and proposes better language." },
-      { step: "3", title: "Practice", body: "Agents can jump into roleplay for the same scenario." },
+      {
+        step: "2",
+        title: "Explain",
+        body: "Coaching cites evidence and proposes better language.",
+      },
+      {
+        step: "3",
+        title: "Practice",
+        body: "Agents can jump into roleplay for the same scenario.",
+      },
     ],
     who: ["Sales agents", "Team managers", "Enablement"],
     workflows: [
-      { title: "Missed close review", body: "Jump to the buying signal, learn the alternative close, practice it." },
+      {
+        title: "Missed close review",
+        body: "Jump to the buying signal, learn the alternative close, practice it.",
+      },
       { title: "Manager coaching queue", body: "Assign follow-up when the same weakness repeats." },
     ],
     related: [
-      { label: "Artemis Copilot", href: "/artemis-copilot", description: "Guidance during the call." },
+      {
+        label: "Artemis Copilot",
+        href: "/artemis-copilot",
+        description: "Guidance during the call.",
+      },
       { label: "AI Roleplay", href: "/ai-roleplay", description: "Practice the fix." },
       { label: "Rep DNA", href: "/rep-dna", description: "Track skill progress." },
     ],
@@ -269,7 +444,10 @@ export const PRODUCTS: ProductPageContent[] = [
       "AI customer simulations for sales practice — objections, difficulty levels, scoring, and campaign readiness certifications.",
     features: [
       { title: "AI customer simulation", body: "Practice against realistic buyer behavior." },
-      { title: "Manager-created scenarios", body: "Build scenarios from real objections on your floor." },
+      {
+        title: "Manager-created scenarios",
+        body: "Build scenarios from real objections on your floor.",
+      },
       { title: "Difficulty levels", body: "Ramp difficulty as reps improve." },
       { title: "Call scoring", body: "Score practice the same way you score live calls." },
       { title: "Certifications", body: "Gate campaigns until practice standards are met." },
@@ -280,18 +458,44 @@ export const PRODUCTS: ProductPageContent[] = [
       body: "The most expensive practice is a live lead. Roleplay moves learning earlier — before revenue is on the line.",
     },
     how: [
-      { step: "1", title: "Define", body: "Managers set the scenario, objection, and success criteria." },
-      { step: "2", title: "Practice", body: "Agents run the simulation and receive scored feedback." },
-      { step: "3", title: "Certify", body: "Ready agents unlock campaigns; others keep practicing." },
+      {
+        step: "1",
+        title: "Define",
+        body: "Managers set the scenario, objection, and success criteria.",
+      },
+      {
+        step: "2",
+        title: "Practice",
+        body: "Agents run the simulation and receive scored feedback.",
+      },
+      {
+        step: "3",
+        title: "Certify",
+        body: "Ready agents unlock campaigns; others keep practicing.",
+      },
     ],
     who: ["New hires", "Agents working a skill gap", "Managers launching a campaign"],
     workflows: [
-      { title: "Trust objection drill", body: "Practice withdrawal concerns before EU registration campaigns." },
-      { title: "Certification gate", body: "Require a passing score before assigning a new product pitch." },
+      {
+        title: "Trust objection drill",
+        body: "Practice withdrawal concerns before EU registration campaigns.",
+      },
+      {
+        title: "Certification gate",
+        body: "Require a passing score before assigning a new product pitch.",
+      },
     ],
     related: [
-      { label: "AI Coaching", href: "/ai-coaching", description: "Turn live misses into practice scenarios." },
-      { label: "Adaptive Playbooks", href: "/adaptive-playbooks", description: "Practice the talk tracks that win." },
+      {
+        label: "AI Coaching",
+        href: "/ai-coaching",
+        description: "Turn live misses into practice scenarios.",
+      },
+      {
+        label: "Adaptive Playbooks",
+        href: "/adaptive-playbooks",
+        description: "Practice the talk tracks that win.",
+      },
       { label: "Rep DNA", href: "/rep-dna", description: "See which skills need practice." },
     ],
     primaryCta: { label: "Explore Practice Demo", href: "/demo/agent/practice" },
@@ -311,10 +515,16 @@ export const PRODUCTS: ProductPageContent[] = [
       "Sales manager operations — attention queues, live floor, coaching assignments, team performance, and call evidence.",
     features: [
       { title: "Attention queue", body: "See who needs help and why — ranked by impact." },
-      { title: "Live floor", body: "Monitor active calls and AI signals without joining every line." },
+      {
+        title: "Live floor",
+        body: "Monitor active calls and AI signals without joining every line.",
+      },
       { title: "Call review", body: "Open the moments that matter with transcript evidence." },
       { title: "Top objections", body: "Know what is blocking conversion across the desk today." },
-      { title: "Team performance", body: "Compare agents on quality, conversion, and coaching progress." },
+      {
+        title: "Team performance",
+        body: "Compare agents on quality, conversion, and coaching progress.",
+      },
       { title: "Coaching assignments", body: "Assign focused work with due dates and evidence." },
       { title: "Compliance flags", body: "Route risky conversations to human review." },
     ],
@@ -323,19 +533,34 @@ export const PRODUCTS: ProductPageContent[] = [
       body: "Managers cannot listen to every call. Artemis shows where attention creates the most improvement.",
     },
     how: [
-      { step: "1", title: "Prioritize", body: "Start from the attention queue, not a recording pile." },
+      {
+        step: "1",
+        title: "Prioritize",
+        body: "Start from the attention queue, not a recording pile.",
+      },
       { step: "2", title: "Inspect", body: "Open evidence, live assists, or agent skill gaps." },
-      { step: "3", title: "Assign", body: "Create coaching or roleplay that targets the real weakness." },
+      {
+        step: "3",
+        title: "Assign",
+        body: "Create coaching or roleplay that targets the real weakness.",
+      },
     ],
     who: ["Team managers", "Floor supervisors", "QA leads"],
     workflows: [
-      { title: "Morning floor start", body: "Review attention cards, check live calls, unblock agents." },
+      {
+        title: "Morning floor start",
+        body: "Review attention cards, check live calls, unblock agents.",
+      },
       { title: "Coaching Friday", body: "Clear the queue, assign practice, track completion." },
     ],
     related: [
       { label: "Rep DNA", href: "/rep-dna", description: "Evidence behind each agent." },
       { label: "AI Coaching", href: "/ai-coaching", description: "What agents see after calls." },
-      { label: "Executive Command Center", href: "/executive-command-center", description: "Company-wide view." },
+      {
+        label: "Executive Command Center",
+        href: "/executive-command-center",
+        description: "Company-wide view.",
+      },
     ],
     primaryCta: { label: "Explore Manager Demo", href: "/demo/manager" },
     secondaryCta: { label: "Book a Demo", href: "/contact" },
@@ -372,12 +597,27 @@ export const PRODUCTS: ProductPageContent[] = [
     who: ["CEOs", "CROs", "Sales directors"],
     workflows: [
       { title: "Weekly leadership meeting", body: "Brief → risk → desks → decisions." },
-      { title: "Campaign postmortem", body: "Compare conversion and objection patterns before/after." },
+      {
+        title: "Campaign postmortem",
+        body: "Compare conversion and objection patterns before/after.",
+      },
     ],
     related: [
-      { label: "Revenue Intelligence", href: "/revenue-intelligence", description: "Why revenue moves." },
-      { label: "Manager Operations", href: "/manager-operations", description: "Where the work gets done." },
-      { label: "Adaptive Playbooks", href: "/adaptive-playbooks", description: "Systematize what wins." },
+      {
+        label: "Revenue Intelligence",
+        href: "/revenue-intelligence",
+        description: "Why revenue moves.",
+      },
+      {
+        label: "Manager Operations",
+        href: "/manager-operations",
+        description: "Where the work gets done.",
+      },
+      {
+        label: "Adaptive Playbooks",
+        href: "/adaptive-playbooks",
+        description: "Systematize what wins.",
+      },
     ],
     primaryCta: { label: "Explore CEO Demo", href: "/demo/ceo" },
     secondaryCta: { label: "Book a Demo", href: "/contact" },
@@ -396,8 +636,14 @@ export const PRODUCTS: ProductPageContent[] = [
       "Build adaptive sales playbooks from winning conversations — used in live copilot, coaching, and roleplay.",
     features: [
       { title: "Winning talk tracks", body: "Capture what top agents actually say when they win." },
-      { title: "Objection responses", body: "Standardize strong answers without scripting robots." },
-      { title: "Company knowledge", body: "Pricing, policies, and product facts agents can retrieve." },
+      {
+        title: "Objection responses",
+        body: "Standardize strong answers without scripting robots.",
+      },
+      {
+        title: "Company knowledge",
+        body: "Pricing, policies, and product facts agents can retrieve.",
+      },
       { title: "Automatic recommendations", body: "Surface the right playbook for the moment." },
       { title: "Versioning", body: "Update guidance as products and regulations change." },
       { title: "Live + practice usage", body: "Same playbooks power copilot and roleplay." },
@@ -407,19 +653,38 @@ export const PRODUCTS: ProductPageContent[] = [
       body: "Static PDFs do not coach anyone. Adaptive playbooks keep institutional knowledge alive in the tools agents already use.",
     },
     how: [
-      { step: "1", title: "Collect", body: "Promote winning calls and approved responses into playbooks." },
-      { step: "2", title: "Distribute", body: "Copilot and roleplay retrieve the current version." },
+      {
+        step: "1",
+        title: "Collect",
+        body: "Promote winning calls and approved responses into playbooks.",
+      },
+      {
+        step: "2",
+        title: "Distribute",
+        body: "Copilot and roleplay retrieve the current version.",
+      },
       { step: "3", title: "Refine", body: "Managers update playbooks as patterns change." },
     ],
     who: ["Enablement", "Managers", "Compliance reviewers"],
     workflows: [
-      { title: "New product launch", body: "Publish talk tracks, certify via roleplay, assist live calls." },
+      {
+        title: "New product launch",
+        body: "Publish talk tracks, certify via roleplay, assist live calls.",
+      },
       { title: "Objection spike", body: "Update the response, push to copilot the same day." },
     ],
     related: [
-      { label: "Artemis Copilot", href: "/artemis-copilot", description: "Playbooks during the call." },
+      {
+        label: "Artemis Copilot",
+        href: "/artemis-copilot",
+        description: "Playbooks during the call.",
+      },
       { label: "AI Roleplay", href: "/ai-roleplay", description: "Practice playbook scenarios." },
-      { label: "Call Intelligence", href: "/call-intelligence", description: "Find winning moments." },
+      {
+        label: "Call Intelligence",
+        href: "/call-intelligence",
+        description: "Find winning moments.",
+      },
     ],
     primaryCta: { label: "Explore the Demo", href: "/demo" },
     secondaryCta: { label: "Book a Demo", href: "/contact" },
@@ -456,12 +721,23 @@ export const PRODUCTS: ProductPageContent[] = [
     who: ["Agents", "Managers", "QA"],
     workflows: [
       { title: "Post-call wrap-up", body: "Confirm outcome, send follow-up, schedule next touch." },
-      { title: "Manager review", body: "Open the call from an attention card and assign coaching." },
+      {
+        title: "Manager review",
+        body: "Open the call from an attention card and assign coaching.",
+      },
     ],
     related: [
-      { label: "Conversation Intelligence", href: "/conversation-intelligence", description: "The layer underneath." },
+      {
+        label: "Conversation Intelligence",
+        href: "/conversation-intelligence",
+        description: "The layer underneath.",
+      },
       { label: "AI Coaching", href: "/ai-coaching", description: "What to improve next." },
-      { label: "Artemis Copilot", href: "/artemis-copilot", description: "Guidance while speaking." },
+      {
+        label: "Artemis Copilot",
+        href: "/artemis-copilot",
+        description: "Guidance while speaking.",
+      },
     ],
     primaryCta: { label: "Explore Agent Demo", href: "/demo/agent" },
     secondaryCta: { label: "Book a Demo", href: "/contact" },

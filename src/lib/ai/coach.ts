@@ -14,11 +14,7 @@ export function resolveCoachProvider(): {
   kind: CoachProviderKind;
   model: string;
 } {
-  const preferred = (
-    process.env.ARTEMIS_AI_PROVIDER ||
-    process.env.LLM_PROVIDER ||
-    ""
-  )
+  const preferred = (process.env.ARTEMIS_AI_PROVIDER || process.env.LLM_PROVIDER || "")
     .trim()
     .toLowerCase();
 
@@ -293,15 +289,13 @@ export function analysisToPostCallReview(analysis: CallAnalysisResult): PostCall
   const weakness = analysis.coaching.weaknesses[0] ?? analysis.missedOpportunities[0] ?? "";
   const next = analysis.nextActions[0];
   const convPct = Math.round(
-    (analysis.customerAnalysis.conversionProbability ?? analysis.outcome.conversionConfidence) * 100,
+    (analysis.customerAnalysis.conversionProbability ?? analysis.outcome.conversionConfidence) *
+      100,
   );
 
   return {
     outcome: analysis.outcome.category,
-    intent:
-      analysis.summary.customerIntent ||
-      analysis.customerAnalysis.buyingIntent ||
-      "Unknown",
+    intent: analysis.summary.customerIntent || analysis.customerAnalysis.buyingIntent || "Unknown",
     aiScore: analysis.overallScore,
     conversionProbability: convPct,
     primaryObjection: objection?.text || "None detected",

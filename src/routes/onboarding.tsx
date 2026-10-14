@@ -34,15 +34,7 @@ export const Route = createFileRoute("/onboarding")({
   ),
 });
 
-const STEPS = [
-  "Company",
-  "Sales process",
-  "Team",
-  "Calls",
-  "AI",
-  "CRM",
-  "Test",
-] as const;
+const STEPS = ["Company", "Sales process", "Team", "Calls", "AI", "CRM", "Test"] as const;
 
 function OnboardingPage() {
   const navigate = useNavigate();
@@ -106,7 +98,10 @@ function OnboardingPage() {
 
   const progress = useMemo(() => (step / STEPS.length) * 100, [step]);
 
-  async function persist(next: OnboardingWizardState, checklist?: Parameters<typeof saveOnboardingProgress>[0]["checklist"]) {
+  async function persist(
+    next: OnboardingWizardState,
+    checklist?: Parameters<typeof saveOnboardingProgress>[0]["checklist"],
+  ) {
     setBusy(true);
     setError(null);
     try {
@@ -212,12 +207,15 @@ function OnboardingPage() {
         <ArtemisMark />
         <h1 className="mt-6 text-2xl font-semibold tracking-tight">Set up your workspace</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Seven steps to configure company, team, AI coaching, and integrations. Progress is saved to your
-          company account.
+          Seven steps to configure company, team, AI coaching, and integrations. Progress is saved
+          to your company account.
         </p>
 
         <div className="mt-6 h-1.5 overflow-hidden rounded-full bg-secondary">
-          <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${progress}%` }} />
+          <div
+            className="h-full rounded-full bg-primary transition-all"
+            style={{ width: `${progress}%` }}
+          />
         </div>
         <p className="mt-2 text-xs text-muted-foreground">
           Step {step} of {STEPS.length}: {STEPS[step - 1]}
@@ -335,7 +333,8 @@ function OnboardingPage() {
           {step === 3 && (
             <div className="grid gap-4">
               <p className="text-sm text-muted-foreground">
-                Invite managers and agents. Invitation links are shown once — copy and send them securely.
+                Invite managers and agents. Invitation links are shown once — copy and send them
+                securely.
               </p>
               <div className="flex flex-col gap-2 sm:flex-row">
                 <input
@@ -378,20 +377,31 @@ function OnboardingPage() {
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-muted-foreground">You can skip and invite later from Settings.</p>
+              <p className="text-xs text-muted-foreground">
+                You can skip and invite later from Settings.
+              </p>
             </div>
           )}
 
           {step === 4 && (
             <div className="grid gap-3">
               <p className="text-sm text-muted-foreground">
-                Call ingestion requires a telephony connection or upload. Choose how you want to start.
+                Call ingestion requires a telephony connection or upload. Choose how you want to
+                start.
               </p>
               {(
                 [
-                  ["demo", "Use demo data", "Explore the product with labelled demo calls. Not production metrics."],
+                  [
+                    "demo",
+                    "Use demo data",
+                    "Explore the product with labelled demo calls. Not production metrics.",
+                  ],
                   ["upload", "Upload sample call", "Available in Phase 2 — call upload pipeline."],
-                  ["telephony", "Connect telephony", "Twilio / Vonage / Aircall — unavailable until configured."],
+                  [
+                    "telephony",
+                    "Connect telephony",
+                    "Twilio / Vonage / Aircall — unavailable until configured.",
+                  ],
                   ["voip", "Connect VoIP", "Unavailable until a provider is configured."],
                 ] as const
               ).map(([method, title, desc]) => (
@@ -471,7 +481,8 @@ function OnboardingPage() {
           {step === 6 && (
             <div className="grid gap-3">
               <p className="text-sm text-muted-foreground">
-                CRM sync is unavailable until credentials are configured. You can skip and connect later.
+                CRM sync is unavailable until credentials are configured. You can skip and connect
+                later.
               </p>
               {(
                 [
@@ -507,8 +518,8 @@ function OnboardingPage() {
           {step === 7 && (
             <div className="space-y-3 text-sm">
               <p className="text-muted-foreground">
-                Sample call transcription and AI analysis run in Phase 2. For now, completing onboarding unlocks
-                your workspace with demo data clearly labelled.
+                Sample call transcription and AI analysis run in Phase 2. For now, completing
+                onboarding unlocks your workspace with demo data clearly labelled.
               </p>
               <div className="rounded-xl border border-border bg-secondary/30 p-4">
                 <p className="font-medium">What happens next</p>

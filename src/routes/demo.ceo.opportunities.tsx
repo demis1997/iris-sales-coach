@@ -36,17 +36,25 @@ function OpportunitiesPage() {
             {opps.map((o) => (
               <tr key={o.id} className="hover:bg-secondary/30">
                 <td className="px-4 py-3">
-                  <Link to="/demo/calls/$callId" params={{ callId: o.callId }} className="text-primary hover:underline">
+                  <Link
+                    to="/demo/calls/$callId"
+                    params={{ callId: o.callId }}
+                    className="text-primary hover:underline"
+                  >
                     {o.contactLabel}
                   </Link>
                 </td>
                 <td className="px-2 py-3 text-xs">{o.agentName}</td>
                 <td className="px-2 py-3">
-                  <Chip tone={o.intent.includes("high") ? "good" : "neutral"}>{o.intent.replace("_", " ")}</Chip>
+                  <Chip tone={o.intent.includes("high") ? "good" : "neutral"}>
+                    {o.intent.replace("_", " ")}
+                  </Chip>
                 </td>
                 <td className="px-2 py-3 text-xs text-muted-foreground">{o.lastCallAgo}</td>
                 <td className="px-2 py-3 text-xs">{o.primaryObjection}</td>
-                <td className="px-2 py-3 font-mono text-xs">€{o.estimatedValue.toLocaleString()}</td>
+                <td className="px-2 py-3 font-mono text-xs">
+                  €{o.estimatedValue.toLocaleString()}
+                </td>
                 <td className="px-4 py-3 text-xs">{o.nextAction}</td>
               </tr>
             ))}

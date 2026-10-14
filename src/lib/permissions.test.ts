@@ -27,18 +27,11 @@ assert.ok(can({ role: "admin" }, "settings.manage"));
 assert.equal(can({ role: null }, "settings.manage"), false);
 
 assert.throws(
-  () =>
-    authorize(
-      { userId: "u1", companyId: "c1", role: "rep", isMember: true },
-      "billing.manage",
-    ),
+  () => authorize({ userId: "u1", companyId: "c1", role: "rep", isMember: true }, "billing.manage"),
   AuthorizationError,
 );
 
-authorize(
-  { userId: "u1", companyId: "c1", role: "owner", isMember: true },
-  "billing.manage",
-);
+authorize({ userId: "u1", companyId: "c1", role: "owner", isMember: true }, "billing.manage");
 
 assert.deepEqual(workspacesForRole("rep"), ["app", "crm"]);
 assert.ok(workspacesForRole("owner").includes("ceo"));

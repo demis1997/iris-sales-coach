@@ -9,7 +9,10 @@ export const Route = createFileRoute("/app/leaderboard")({
       { title: "Leaderboard — Artemis Rep Workspace" },
       { name: "description", content: "Top closers, most improved and best objection handling." },
       { property: "og:title", content: "Leaderboard — Artemis Rep Workspace" },
-      { property: "og:description", content: "Top closers, most improved and best objection handling." },
+      {
+        property: "og:description",
+        content: "Top closers, most improved and best objection handling.",
+      },
     ],
   }),
   component: LeaderboardPage,
@@ -44,7 +47,9 @@ function LeaderboardPage() {
               <div key={r.rank} className="flex items-center gap-4 px-5 py-3.5">
                 <span
                   className={`grid size-7 shrink-0 place-items-center rounded-lg font-mono text-xs ${
-                    r.rank === 1 ? "gradient-surface text-background" : "bg-secondary text-muted-foreground"
+                    r.rank === 1
+                      ? "gradient-surface text-background"
+                      : "bg-secondary text-muted-foreground"
                   }`}
                 >
                   {r.rank}

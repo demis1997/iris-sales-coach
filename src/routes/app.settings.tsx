@@ -8,7 +8,10 @@ export const Route = createFileRoute("/app/settings")({
       { title: "Settings — Artemis Rep Workspace" },
       { name: "description", content: "Coaching preferences, methodology and recording settings." },
       { property: "og:title", content: "Settings — Artemis Rep Workspace" },
-      { property: "og:description", content: "Coaching preferences, methodology and recording settings." },
+      {
+        property: "og:description",
+        content: "Coaching preferences, methodology and recording settings.",
+      },
     ],
   }),
   component: SettingsPage,
@@ -58,7 +61,10 @@ function SettingsPage() {
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel>
           <PanelHeader title="Coaching" />
-          <Row title="Coach after every call" desc="Receive an AI debrief within 60 seconds of hanging up.">
+          <Row
+            title="Coach after every call"
+            desc="Receive an AI debrief within 60 seconds of hanging up."
+          >
             <Toggle on />
           </Row>
           <Row title="Weekly AI summary" desc="A Friday recap of skill progression and goals.">
@@ -106,10 +112,16 @@ function SettingsPage() {
 
         <Panel>
           <PanelHeader title="Recording" />
-          <Row title="Auto-record outbound calls" desc="Twilio click-to-call recordings feed AI coaching.">
+          <Row
+            title="Auto-record outbound calls"
+            desc="Twilio click-to-call recordings feed AI coaching."
+          >
             <Toggle on />
           </Row>
-          <Row title="Record internal calls" desc="Team calls are excluded from scoring by default.">
+          <Row
+            title="Record internal calls"
+            desc="Team calls are excluded from scoring by default."
+          >
             <Toggle />
           </Row>
           <Row title="Retention" desc="How long recordings are stored.">

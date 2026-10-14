@@ -7,10 +7,7 @@ export const CONTACT_PHONE_TEL = "+35796090943";
 export const CONTACT_MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Artemis AI inquiry")}`;
 export const CONTACT_TEL = `tel:${CONTACT_PHONE_TEL}`;
 
-export function buildContactMailto(opts: {
-  subject?: string;
-  body?: string;
-}): string {
+export function buildContactMailto(opts: { subject?: string; body?: string }): string {
   const params = new URLSearchParams();
   params.set("subject", opts.subject ?? "Artemis AI inquiry");
   if (opts.body) params.set("body", opts.body);

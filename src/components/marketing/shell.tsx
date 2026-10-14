@@ -35,7 +35,9 @@ export function MarketingHero({
     <section className="relative overflow-hidden border-b border-[#E8EEF7]">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#E8FFF6_0%,_transparent_55%),radial-gradient(ellipse_at_90%_10%,_#EEF2FF_0%,_transparent_40%)]" />
       <div className="relative mx-auto max-w-6xl px-5 py-16 md:py-24">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#12C48A]">{eyebrow}</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#12C48A]">
+          {eyebrow}
+        </p>
         <h1 className="mt-3 max-w-3xl text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl">
           {title}
         </h1>
@@ -112,11 +114,7 @@ export function MarketingSection({
   );
 }
 
-export function FeatureGrid({
-  items,
-}: {
-  items: { title: string; body: string }[];
-}) {
+export function FeatureGrid({ items }: { items: { title: string; body: string }[] }) {
   return (
     <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
@@ -202,9 +200,7 @@ export function RelatedLinks({
             className="rounded-[1.5rem] border border-[#E8EEF7] bg-white p-5 transition hover:border-[#2EE6A6]/50"
           >
             <p className="font-semibold text-[#0B1B33]">{l.label}</p>
-            {l.description ? (
-              <p className="mt-2 text-sm text-[#4B5C76]">{l.description}</p>
-            ) : null}
+            {l.description ? <p className="mt-2 text-sm text-[#4B5C76]">{l.description}</p> : null}
           </Link>
         ))}
       </div>
@@ -212,11 +208,7 @@ export function RelatedLinks({
   );
 }
 
-export function seoMeta(opts: {
-  title: string;
-  description: string;
-  path: string;
-}) {
+export function seoMeta(opts: { title: string; description: string; path: string }) {
   return {
     meta: [
       { title: opts.title },

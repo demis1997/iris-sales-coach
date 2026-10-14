@@ -3,21 +3,10 @@
  */
 
 export type AgentStatus =
-  | "AVAILABLE"
-  | "DIALING"
-  | "RINGING"
-  | "CONNECTED"
-  | "ON_HOLD"
-  | "WRAP_UP"
-  | "OFFLINE";
+  "AVAILABLE" | "DIALING" | "RINGING" | "CONNECTED" | "ON_HOLD" | "WRAP_UP" | "OFFLINE";
 
 export type CallStageId =
-  | "opening"
-  | "discovery"
-  | "qualification"
-  | "objection"
-  | "closing"
-  | "followup";
+  "opening" | "discovery" | "qualification" | "objection" | "closing" | "followup";
 
 export type CallStageState = "complete" | "active" | "upcoming";
 
@@ -67,12 +56,7 @@ export type LiveSignal = {
 };
 
 export type AISuggestionKind =
-  | "objection"
-  | "trust"
-  | "buying"
-  | "coaching"
-  | "playbook"
-  | "listening";
+  "objection" | "trust" | "buying" | "coaching" | "playbook" | "listening";
 
 export type AISuggestion = {
   id: string;
@@ -184,7 +168,7 @@ export type CallSession = {
   processingSteps: ProcessingStep[];
   review: PostCallReview | null;
   /** Where the post-call review came from */
-  reviewProvider: "cursor" | "openai" | "stub" | "fixture" | null;
+  reviewProvider: string | null;
   disposition: CallDisposition | null;
   followUpDate: string;
   followUpTime: string;

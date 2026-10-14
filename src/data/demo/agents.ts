@@ -10,7 +10,10 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-function skills(partial: Partial<RepSkillProfile> & Pick<RepSkillProfile, "strongest" | "fastestImproving" | "focusThisWeek">): RepSkillProfile {
+function skills(
+  partial: Partial<RepSkillProfile> &
+    Pick<RepSkillProfile, "strongest" | "fastestImproving" | "focusThisWeek">,
+): RepSkillProfile {
   return {
     confidence: 78,
     discovery: 80,
@@ -76,7 +79,13 @@ const ROSTER: Array<{
     aiScore: 90,
     trend: 8,
     coachingStatus: "on_track",
-    skills: skills({ discovery: 88, closing: 86, strongest: "Closing", fastestImproving: "Listening", focusThisWeek: "VIP handling" }),
+    skills: skills({
+      discovery: 88,
+      closing: 86,
+      strongest: "Closing",
+      fastestImproving: "Listening",
+      focusThisWeek: "VIP handling",
+    }),
   },
   {
     id: "agt-sofia",
@@ -90,7 +99,12 @@ const ROSTER: Array<{
     aiScore: 84,
     trend: 3,
     coachingStatus: "assigned",
-    skills: skills({ closing: 71, strongest: "Compliance", fastestImproving: "Discovery", focusThisWeek: "Closing" }),
+    skills: skills({
+      closing: 71,
+      strongest: "Compliance",
+      fastestImproving: "Discovery",
+      focusThisWeek: "Closing",
+    }),
   },
   {
     id: "agt-chris",
@@ -104,7 +118,13 @@ const ROSTER: Array<{
     aiScore: 71,
     trend: -4,
     coachingStatus: "overdue",
-    skills: skills({ compliance: 68, closing: 64, strongest: "Product knowledge", fastestImproving: "Listening", focusThisWeek: "Compliance" }),
+    skills: skills({
+      compliance: 68,
+      closing: 64,
+      strongest: "Product knowledge",
+      fastestImproving: "Listening",
+      focusThisWeek: "Compliance",
+    }),
   },
   {
     id: "agt-elena-a",
@@ -118,7 +138,12 @@ const ROSTER: Array<{
     aiScore: 85,
     trend: 5,
     coachingStatus: "on_track",
-    skills: skills({ listening: 90, strongest: "Listening", fastestImproving: "Closing", focusThisWeek: "Objections" }),
+    skills: skills({
+      listening: 90,
+      strongest: "Listening",
+      fastestImproving: "Closing",
+      focusThisWeek: "Objections",
+    }),
   },
   {
     id: "agt-andreas",
@@ -132,7 +157,12 @@ const ROSTER: Array<{
     aiScore: 87,
     trend: 4,
     coachingStatus: "on_track",
-    skills: skills({ productKnowledge: 93, strongest: "Product knowledge", fastestImproving: "Closing", focusThisWeek: "Discovery" }),
+    skills: skills({
+      productKnowledge: 93,
+      strongest: "Product knowledge",
+      fastestImproving: "Closing",
+      focusThisWeek: "Discovery",
+    }),
   },
   {
     id: "agt-natalie",
@@ -146,7 +176,12 @@ const ROSTER: Array<{
     aiScore: 79,
     trend: 1,
     coachingStatus: "assigned",
-    skills: skills({ closing: 68, strongest: "Compliance", fastestImproving: "Objection handling", focusThisWeek: "Closing" }),
+    skills: skills({
+      closing: 68,
+      strongest: "Compliance",
+      fastestImproving: "Objection handling",
+      focusThisWeek: "Closing",
+    }),
   },
   {
     id: "agt-mark-e",
@@ -160,7 +195,12 @@ const ROSTER: Array<{
     aiScore: 82,
     trend: 2,
     coachingStatus: "on_track",
-    skills: skills({ confidence: 88, strongest: "Confidence", fastestImproving: "Discovery", focusThisWeek: "Listening" }),
+    skills: skills({
+      confidence: 88,
+      strongest: "Confidence",
+      fastestImproving: "Discovery",
+      focusThisWeek: "Listening",
+    }),
   },
   {
     id: "agt-george",
@@ -174,7 +214,11 @@ const ROSTER: Array<{
     aiScore: 80,
     trend: 0,
     coachingStatus: "none",
-    skills: skills({ strongest: "Compliance", fastestImproving: "Closing", focusThisWeek: "Discovery" }),
+    skills: skills({
+      strongest: "Compliance",
+      fastestImproving: "Closing",
+      focusThisWeek: "Discovery",
+    }),
   },
   {
     id: "agt-anna",
@@ -188,7 +232,13 @@ const ROSTER: Array<{
     aiScore: 89,
     trend: 7,
     coachingStatus: "on_track",
-    skills: skills({ discovery: 92, closing: 84, strongest: "Discovery", fastestImproving: "Closing", focusThisWeek: "VIP" }),
+    skills: skills({
+      discovery: 92,
+      closing: 84,
+      strongest: "Discovery",
+      fastestImproving: "Closing",
+      focusThisWeek: "VIP",
+    }),
   },
   {
     id: "agt-paul",
@@ -202,7 +252,12 @@ const ROSTER: Array<{
     aiScore: 73,
     trend: -2,
     coachingStatus: "assigned",
-    skills: skills({ closing: 61, strongest: "Compliance", fastestImproving: "Discovery", focusThisWeek: "Closing" }),
+    skills: skills({
+      closing: 61,
+      strongest: "Compliance",
+      fastestImproving: "Discovery",
+      focusThisWeek: "Closing",
+    }),
   },
   {
     id: "agt-iris",
@@ -216,7 +271,11 @@ const ROSTER: Array<{
     aiScore: 84,
     trend: 3,
     coachingStatus: "on_track",
-    skills: skills({ strongest: "Listening", fastestImproving: "Objection handling", focusThisWeek: "Closing" }),
+    skills: skills({
+      strongest: "Listening",
+      fastestImproving: "Objection handling",
+      focusThisWeek: "Closing",
+    }),
   },
 
   // Velocity — Daniel is story agent (volume, weak conversion)
@@ -317,7 +376,13 @@ function fillTeam(teamId: string, names: string[], startIdx: number): typeof ROS
       deposits: Math.round(ftds * (3500 + h * 4000)),
       aiScore: Math.round(70 + h * 20),
       trend: Math.round((h - 0.45) * 16),
-      coachingStatus: (h > 0.75 ? "assigned" : h > 0.55 ? "on_track" : h > 0.35 ? "none" : "assigned") as DemoAgent["coachingStatus"],
+      coachingStatus: (h > 0.75
+        ? "assigned"
+        : h > 0.55
+          ? "on_track"
+          : h > 0.35
+            ? "none"
+            : "assigned") as DemoAgent["coachingStatus"],
       skills: skills({
         closing: Math.round(60 + h * 30),
         discovery: Math.round(70 + h * 25),

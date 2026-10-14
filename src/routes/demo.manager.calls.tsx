@@ -9,7 +9,10 @@ export const Route = createFileRoute("/demo/manager/calls")({
 });
 
 function ManagerCallsPage() {
-  const { data: calls, loading } = useDemoQuery(() => demoService.getCalls({ teamId: "team-alpha" }), []);
+  const { data: calls, loading } = useDemoQuery(
+    () => demoService.getCalls({ teamId: "team-alpha" }),
+    [],
+  );
   if (loading || !calls) return <DemoLoading />;
   return (
     <DemoPage>

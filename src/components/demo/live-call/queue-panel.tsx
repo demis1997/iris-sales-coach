@@ -37,11 +37,7 @@ export function QueuePanel({
             </div>
             <p className="text-xs text-muted-foreground">Registered: {next.registeredAgo}</p>
             <div className="flex flex-wrap gap-2 pt-2">
-              <button
-                type="button"
-                onClick={() => onCall(next.id)}
-                className="product-btn-primary"
-              >
+              <button type="button" onClick={() => onCall(next.id)} className="product-btn-primary">
                 Call {next.label.split(" ")[0]}
               </button>
               <button

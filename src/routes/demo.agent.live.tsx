@@ -129,7 +129,7 @@ function AgentLiveWorkspacePage() {
               />
               <CopilotPanel
                 session={session}
-                onUse={(id) => service.useSuggestion(id)}
+                onUse={(id) => service.applySuggestion(id)}
                 onDismiss={(id) => service.dismissSuggestion(id)}
                 onOpenPlaybook={() => service.openPlaybookDrawer(true)}
                 onClosePlaybook={() => service.openPlaybookDrawer(false)}

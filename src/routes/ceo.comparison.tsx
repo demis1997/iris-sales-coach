@@ -17,7 +17,10 @@ export const Route = createFileRoute("/ceo/comparison")({
   head: () => ({
     meta: [
       { title: "Team Comparison — Artemis Executive" },
-      { name: "description", content: "Compare reps on confidence, closing, pitch timing and compliance." },
+      {
+        name: "description",
+        content: "Compare reps on confidence, closing, pitch timing and compliance.",
+      },
       { property: "og:title", content: "Team Comparison — Artemis Executive" },
       { property: "og:description", content: "Compare reps across every behavioural metric." },
     ],
@@ -47,7 +50,10 @@ function ComparisonPage() {
 
   return (
     <>
-      <PageHeading title="Team comparison" subtitle="Normalized behavioural scores across the floor" />
+      <PageHeading
+        title="Team comparison"
+        subtitle="Normalized behavioural scores across the floor"
+      />
 
       <Panel>
         <PanelHeader title="Confidence · closing · compliance" />
@@ -55,8 +61,20 @@ function ComparisonPage() {
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={chartData}>
               <CartesianGrid stroke="var(--border)" vertical={false} />
-              <XAxis dataKey="name" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-              <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+              <XAxis
+                dataKey="name"
+                tickLine={false}
+                axisLine={false}
+                fontSize={11}
+                stroke="var(--muted-foreground)"
+              />
+              <YAxis
+                tickLine={false}
+                axisLine={false}
+                fontSize={11}
+                stroke="var(--muted-foreground)"
+                width={28}
+              />
               <Tooltip {...chartTooltip} />
               <Legend wrapperStyle={{ fontSize: 11, color: "var(--muted-foreground)" }} />
               <Bar dataKey="confidence" fill="var(--violet)" radius={[5, 5, 0, 0]} />

@@ -60,7 +60,11 @@ function AgentsPage() {
             {filtered.map((a) => (
               <tr key={a.id} className="hover:bg-secondary/30">
                 <td className="px-4 py-2.5">
-                  <Link to="/demo/ceo/agents/$agentId" params={{ agentId: a.id }} className="font-medium text-primary hover:underline">
+                  <Link
+                    to="/demo/ceo/agents/$agentId"
+                    params={{ agentId: a.id }}
+                    className="font-medium text-primary hover:underline"
+                  >
                     {a.name}
                   </Link>
                 </td>
@@ -68,7 +72,9 @@ function AgentsPage() {
                 <td className="px-2 py-2.5 font-mono text-xs">{a.calls}</td>
                 <td className="px-2 py-2.5 font-mono text-xs">{a.ftds}</td>
                 <td className="px-2 py-2.5 font-mono text-xs">{a.conversion}%</td>
-                <td className="px-2 py-2.5 font-mono text-xs">€{(a.deposits / 1000).toFixed(1)}K</td>
+                <td className="px-2 py-2.5 font-mono text-xs">
+                  €{(a.deposits / 1000).toFixed(1)}K
+                </td>
                 <td className="px-2 py-2.5 font-mono text-xs">{a.aiScore}</td>
                 <td className="px-4 py-2.5">
                   <Chip tone={a.trend < 0 ? "bad" : "good"}>

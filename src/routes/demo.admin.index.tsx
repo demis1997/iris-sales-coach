@@ -42,13 +42,21 @@ function AdminOverviewPage() {
       </div>
 
       <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <KPICard label="Storage" value={`${APEX_ORG.storageGb} GB`} hint="Recordings + transcripts" />
+        <KPICard
+          label="Storage"
+          value={`${APEX_ORG.storageGb} GB`}
+          hint="Recordings + transcripts"
+        />
         <KPICard
           label="AI analyzed calls"
           value={APEX_ORG.aiAnalyzedCalls.toLocaleString()}
           hint="Scored & coached"
         />
-        <KPICard label="Calls today" value={APEX_ORG.callsToday.toLocaleString()} hint="Live floor" />
+        <KPICard
+          label="Calls today"
+          value={APEX_ORG.callsToday.toLocaleString()}
+          hint="Live floor"
+        />
         <KPICard
           label="Agents online"
           value={`${APEX_ORG.activeAgentsToday}/${APEX_ORG.activeUsers}`}
@@ -89,7 +97,11 @@ function AdminOverviewPage() {
                 { to: "/demo/admin/numbers" as const, label: "Add phone number", icon: Phone },
                 { to: "/demo/admin/routing" as const, label: "Edit call routing", icon: Radio },
                 { to: "/demo/admin/users" as const, label: "Invite users", icon: Users },
-                { to: "/demo/admin/campaigns" as const, label: "Create campaign", icon: ListOrdered },
+                {
+                  to: "/demo/admin/campaigns" as const,
+                  label: "Create campaign",
+                  icon: ListOrdered,
+                },
               ] as const
             ).map((item) => (
               <Link

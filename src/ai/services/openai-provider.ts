@@ -47,7 +47,7 @@ async function callOpenAI(opts: {
     });
 
     const rawText = await res.text();
-    if (!res.ok) throw new Error(`OpenAI failed (${res.status}): ${rawText.slice(0, 300)}`);
+    if (!res.ok) throw new Error(`OpenAI provider rejected request (${res.status})`);
 
     const outer = JSON.parse(rawText) as {
       choices?: { message?: { content?: string } }[];
@@ -83,8 +83,7 @@ export class OpenAIProvider implements AIProvider {
   ): Promise<AIResult<z.infer<TSchema>>> {
     assertServerOnly();
     const started = Date.now();
-    const model =
-      process.env.OPENAI_MODEL?.trim() || MODEL_TIER_MAP[args.modelTier].openai;
+    const model = process.env.OPENAI_MODEL?.trim() || MODEL_TIER_MAP[args.modelTier].openai;
 
     const attempt = async () => {
       const r = await callOpenAI({
@@ -139,7 +138,7 @@ export class OpenAIProvider implements AIProvider {
         promptId: args.promptId,
         promptVersion: args.promptVersion,
         success: false,
-        error: err instanceof Error ? err.message : String(err),
+        error: "openai_generation_failed",
         generatedAt: new Date().toISOString(),
       };
     }

@@ -24,7 +24,10 @@ function PlaybooksPage() {
         subtitle="Approve, edit, reject, or test recommendations before they reach Live Coach, roleplay, certs, and QA"
       />
       <Panel>
-        <PanelHeader title="Suggested updates" subtitle="Never auto-replaces approved company playbooks" />
+        <PanelHeader
+          title="Suggested updates"
+          subtitle="Never auto-replaces approved company playbooks"
+        />
         <div className="divide-y divide-border">
           {items.map((p) => (
             <div key={p.id} className="px-5 py-5">
@@ -32,7 +35,11 @@ function PlaybooksPage() {
                 <p className="font-medium">{p.title}</p>
                 <Chip
                   tone={
-                    p.status === "Approved" ? "good" : p.status === "Pending approval" ? "warn" : "iris"
+                    p.status === "Approved"
+                      ? "good"
+                      : p.status === "Pending approval"
+                        ? "warn"
+                        : "iris"
                   }
                 >
                   {p.status}

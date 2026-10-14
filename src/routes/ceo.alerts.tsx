@@ -7,9 +7,15 @@ export const Route = createFileRoute("/ceo/alerts")({
   head: () => ({
     meta: [
       { title: "Alerts — Artemis Executive" },
-      { name: "description", content: "Struggling reps, compliance risks and recognition-worthy performance." },
+      {
+        name: "description",
+        content: "Struggling reps, compliance risks and recognition-worthy performance.",
+      },
       { property: "og:title", content: "Alerts — Artemis Executive" },
-      { property: "og:description", content: "Struggling reps, compliance risks and standout performance." },
+      {
+        property: "og:description",
+        content: "Struggling reps, compliance risks and standout performance.",
+      },
     ],
   }),
   component: AlertsPage,

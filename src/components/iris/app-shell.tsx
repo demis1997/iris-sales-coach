@@ -1,3 +1,4 @@
+import { LiveFeatureBoundary } from "@/components/iris/live-feature-boundary";
 import { Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { Search, Bell } from "lucide-react";
@@ -50,7 +51,8 @@ export function AppShell({
   const auth = useOptionalAuth();
   const allowed = workspacesForRole(auth?.session?.authz.role ?? null);
   const visibleWorkspaces = WORKSPACES.filter((w) => {
-    const id = w.to === "/app" ? "app" : w.to === "/manager" ? "manager" : w.to === "/crm" ? "crm" : "ceo";
+    const id =
+      w.to === "/app" ? "app" : w.to === "/manager" ? "manager" : w.to === "/crm" ? "crm" : "ceo";
     // While demo / unauthenticated shell is shown without auth, keep switcher visible.
     if (!auth?.session) return true;
     return allowed.includes(id);
@@ -76,7 +78,8 @@ export function AppShell({
           </p>
           <nav className="mt-2 flex flex-1 flex-col gap-0.5 overflow-y-auto pb-4">
             {nav.map((item, index) => {
-              const showSection = item.section && (index === 0 || nav[index - 1]?.section !== item.section);
+              const showSection =
+                item.section && (index === 0 || nav[index - 1]?.section !== item.section);
               const active =
                 pathname === item.to ||
                 (item.to !== "/app" &&
@@ -147,7 +150,9 @@ export function AppShell({
                       to={w.to}
                       className={cn(
                         "rounded-md px-2.5 py-1 text-[11px] transition-colors",
-                        on ? "bg-secondary text-foreground" : "text-muted-foreground hover:text-foreground",
+                        on
+                          ? "bg-secondary text-foreground"
+                          : "text-muted-foreground hover:text-foreground",
                       )}
                     >
                       {w.label}
@@ -190,7 +195,9 @@ export function AppShell({
           </nav>
 
           <main className="px-4 py-6 lg:px-8">
-            <Outlet />
+            <LiveFeatureBoundary>
+              <Outlet />
+            </LiveFeatureBoundary>
           </main>
         </div>
       </div>

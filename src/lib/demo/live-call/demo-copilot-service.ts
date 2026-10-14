@@ -32,7 +32,7 @@ export const DemoCopilotService = {
     return session;
   },
 
-  useSuggestion(session: CallSession, id: string): CallSession {
+  applySuggestion(session: CallSession, id: string): CallSession {
     return {
       ...session,
       suggestions: session.suggestions.map((s) =>

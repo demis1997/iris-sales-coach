@@ -57,7 +57,8 @@ function DnaPage() {
   const [agentId, setAgentId] = useState("e-01");
   const profile = agentDnaProfiles.find((p) => p.agentId === agentId) ?? agentDnaProfiles[0];
   const radar = useMemo(
-    () => profile.skills.slice(0, 8).map((s) => ({ trait: s.key, value: s.score, team: s.teamAvg })),
+    () =>
+      profile.skills.slice(0, 8).map((s) => ({ trait: s.key, value: s.score, team: s.teamAvg })),
     [profile],
   );
   const plan = coachingPlans.find((p) => p.agentId === profile.agentId && p.status === "Active");
@@ -97,7 +98,9 @@ function DnaPage() {
             onClick={() => setTab(t)}
             className={cn(
               "rounded-lg px-3 py-1.5 text-xs whitespace-nowrap transition-colors",
-              tab === t ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+              tab === t
+                ? "bg-background text-foreground shadow-sm"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             {t}
@@ -116,7 +119,9 @@ function DnaPage() {
             <p className="text-xs text-muted-foreground">{profile.team}</p>
             <p className="mt-4 text-sm text-muted-foreground">Closing style</p>
             <p className="mt-1 text-3xl font-semibold gradient-text">{profile.closingStyle}</p>
-            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{profile.styleNote}</p>
+            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+              {profile.styleNote}
+            </p>
             <div className="mt-5 rounded-xl border border-border bg-secondary/30 p-4">
               <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Trophy className="size-3.5 text-warning" /> Predicted revenue potential
@@ -137,10 +142,23 @@ function DnaPage() {
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart data={radar} outerRadius="74%">
                   <PolarGrid stroke="var(--border)" />
-                  <PolarAngleAxis dataKey="trait" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} />
+                  <PolarAngleAxis
+                    dataKey="trait"
+                    tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
+                  />
                   <Tooltip {...chartTooltip} />
-                  <Radar dataKey="team" stroke="var(--muted-foreground)" fill="var(--muted)" fillOpacity={0.12} />
-                  <Radar dataKey="value" stroke="var(--violet)" fill="var(--violet)" fillOpacity={0.28} />
+                  <Radar
+                    dataKey="team"
+                    stroke="var(--muted-foreground)"
+                    fill="var(--muted)"
+                    fillOpacity={0.12}
+                  />
+                  <Radar
+                    dataKey="value"
+                    stroke="var(--violet)"
+                    fill="var(--violet)"
+                    fillOpacity={0.28}
+                  />
                 </RadarChart>
               </ResponsiveContainer>
             </div>
@@ -178,7 +196,9 @@ function DnaPage() {
               </div>
               {(tab === "Skill breakdown" || tab === "Call evidence") && (
                 <>
-                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{s.explanation}</p>
+                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                    {s.explanation}
+                  </p>
                   <p className="mt-2 text-xs">
                     <span className="font-medium">Recommended: </span>
                     {s.exercise}
@@ -193,7 +213,9 @@ function DnaPage() {
                     </Link>
                     <span className="text-muted-foreground">{s.evidenceNote}</span>
                     {s.revenueImpactEur > 0 ? (
-                      <Chip tone="warn">€{(s.revenueImpactEur / 1000).toFixed(0)}k impact if improved</Chip>
+                      <Chip tone="warn">
+                        €{(s.revenueImpactEur / 1000).toFixed(0)}k impact if improved
+                      </Chip>
                     ) : null}
                   </div>
                   <div className="mt-3 h-16">
@@ -202,7 +224,13 @@ function DnaPage() {
                         <XAxis dataKey="w" hide />
                         <YAxis domain={[0, 100]} hide />
                         <Tooltip {...chartTooltip} />
-                        <Line type="monotone" dataKey="v" stroke="var(--violet)" dot={false} strokeWidth={2} />
+                        <Line
+                          type="monotone"
+                          dataKey="v"
+                          stroke="var(--violet)"
+                          dot={false}
+                          strokeWidth={2}
+                        />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -232,29 +260,36 @@ function DnaPage() {
                 Before {plan.beforeScore} → After {plan.afterScore} · {plan.businessOutcome}
               </p>
               <p className="mt-2 text-xs text-muted-foreground">Manager: {plan.managerAction}</p>
-              <Link to="/app/coach" className="mt-4 inline-flex text-sm text-primary hover:underline">
+              <Link
+                to="/app/coach"
+                className="mt-4 inline-flex text-sm text-primary hover:underline"
+              >
                 Open full coaching workspace →
               </Link>
             </>
           ) : (
-            <p className="text-sm text-muted-foreground">No active plan — assign from Manager → Coaching.</p>
+            <p className="text-sm text-muted-foreground">
+              No active plan — assign from Manager → Coaching.
+            </p>
           )}
         </Panel>
       ) : null}
 
       {tab === "Roleplay history" ? (
         <Panel className="divide-y divide-border overflow-hidden">
-          {["Price objection · 88", "Competitor comparison · 74", "Cold prospect · 71"].map((row) => (
-            <div key={row} className="flex items-center justify-between px-5 py-4 text-sm">
-              <span>{row.split(" · ")[0]}</span>
-              <div className="flex items-center gap-3">
-                <span className="font-mono">{row.split(" · ")[1]}</span>
-                <Link to="/app/roleplay" className="text-xs text-primary hover:underline">
-                  Retry
-                </Link>
+          {["Price objection · 88", "Competitor comparison · 74", "Cold prospect · 71"].map(
+            (row) => (
+              <div key={row} className="flex items-center justify-between px-5 py-4 text-sm">
+                <span>{row.split(" · ")[0]}</span>
+                <div className="flex items-center gap-3">
+                  <span className="font-mono">{row.split(" · ")[1]}</span>
+                  <Link to="/app/roleplay" className="text-xs text-primary hover:underline">
+                    Retry
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            ),
+          )}
         </Panel>
       ) : null}
 
@@ -272,7 +307,10 @@ function DnaPage() {
               <Chip tone="bad">None — dialer campaigns may be locked</Chip>
             )}
           </div>
-          <Link to="/app/certifications" className="mt-4 inline-flex text-sm text-primary hover:underline">
+          <Link
+            to="/app/certifications"
+            className="mt-4 inline-flex text-sm text-primary hover:underline"
+          >
             Manage certifications & campaign access →
           </Link>
         </Panel>
@@ -288,7 +326,9 @@ function DnaPage() {
             Evidence-based correlation unless causality is statistically supported.
           </p>
           <div className="mt-6 rounded-xl border border-border bg-secondary/30 p-4">
-            <p className="text-xs font-semibold">Top-Rep DNA patterns (behavioral — not identity)</p>
+            <p className="text-xs font-semibold">
+              Top-Rep DNA patterns (behavioral — not identity)
+            </p>
             <p className="mt-1 text-xs text-muted-foreground">Source: {topRepDna.sourceRep}</p>
             <ul className="mt-3 space-y-1 text-sm text-muted-foreground">
               {topRepDna.behaviors.map((b) => (
@@ -314,7 +354,10 @@ function DnaPage() {
                 })}
               >
                 <XAxis dataKey="w" tick={{ fill: "var(--muted-foreground)", fontSize: 11 }} />
-                <YAxis domain={[40, 100]} tick={{ fill: "var(--muted-foreground)", fontSize: 11 }} />
+                <YAxis
+                  domain={[40, 100]}
+                  tick={{ fill: "var(--muted-foreground)", fontSize: 11 }}
+                />
                 <Tooltip {...chartTooltip} />
                 {profile.skills.slice(0, 4).map((s, i) => (
                   <Line
@@ -333,7 +376,10 @@ function DnaPage() {
       ) : null}
 
       <Panel className="mt-4">
-        <PanelHeader title="Team DNA comparison" subtitle="Managers compare profiles across the floor" />
+        <PanelHeader
+          title="Team DNA comparison"
+          subtitle="Managers compare profiles across the floor"
+        />
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead className="border-b border-border text-xs text-muted-foreground">
@@ -355,7 +401,15 @@ function DnaPage() {
                   <td className="px-3 py-3 font-mono">{r.price}</td>
                   <td className="px-3 py-3 font-mono">{r.close}</td>
                   <td className="px-5 py-3">
-                    <Chip tone={r.potential.includes("Top 5") ? "good" : r.potential.includes("Bottom") ? "bad" : "iris"}>
+                    <Chip
+                      tone={
+                        r.potential.includes("Top 5")
+                          ? "good"
+                          : r.potential.includes("Bottom")
+                            ? "bad"
+                            : "iris"
+                      }
+                    >
                       {r.potential}
                     </Chip>
                   </td>
@@ -372,7 +426,9 @@ function DnaPage() {
 function PlanCell({ title, body }: { title: string; body: string }) {
   return (
     <div className="rounded-xl border border-border bg-secondary/30 p-4">
-      <p className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">{title}</p>
+      <p className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
+        {title}
+      </p>
       <p className="mt-2 text-sm leading-relaxed">{body}</p>
     </div>
   );

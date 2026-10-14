@@ -4,15 +4,16 @@ import { createHmac, timingSafeEqual, createHash, randomInt } from "node:crypto"
 export function isTwilioConfigured(): boolean {
   return Boolean(
     process.env.TWILIO_ACCOUNT_SID &&
-      process.env.TWILIO_AUTH_TOKEN &&
-      (process.env.TWILIO_PHONE_NUMBER || process.env.TWILIO_CALLER_ID),
+    process.env.TWILIO_AUTH_TOKEN &&
+    (process.env.TWILIO_PHONE_NUMBER || process.env.TWILIO_CALLER_ID),
   );
 }
 
 export function getTwilioClient() {
   const sid = process.env.TWILIO_ACCOUNT_SID;
   const token = process.env.TWILIO_AUTH_TOKEN;
-  if (!sid || !token) throw new Error("Twilio is not configured (TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN)");
+  if (!sid || !token)
+    throw new Error("Twilio is not configured (TWILIO_ACCOUNT_SID / TWILIO_AUTH_TOKEN)");
   return twilio(sid, token);
 }
 
@@ -26,22 +27,22 @@ export function appPublicUrl(): string {
 }
 
 function signingSecret(): string {
-  return (
-    process.env.TWILIO_AUTH_TOKEN ||
-    process.env.ENCRYPTION_KEY ||
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    "dev-insecure-telephony-secret"
-  );
+  const secret = process.env.TELEPHONY_SIGNING_SECRET || process.env.TWILIO_AUTH_TOKEN;
+  if (!secret || secret.length < 24) throw new Error("Telephony signing secret is not configured");
+  return secret;
 }
 
 export function signTelephonyPayload(parts: string[]): string {
   return createHmac("sha256", signingSecret()).update(parts.join("|")).digest("hex").slice(0, 40);
 }
 
-export function verifyTelephonyPayload(parts: string[], signature: string | null | undefined): boolean {
+export function verifyTelephonyPayload(
+  parts: string[],
+  signature: string | null | undefined,
+): boolean {
   if (!signature) return false;
-  const expected = signTelephonyPayload(parts);
   try {
+    const expected = signTelephonyPayload(parts);
     const a = Buffer.from(expected);
     const b = Buffer.from(signature);
     return a.length === b.length && timingSafeEqual(a, b);
@@ -77,4 +78,34 @@ export function twiml(xmlBody: string): Response {
     status: 200,
     headers: { "Content-Type": "text/xml; charset=utf-8" },
   });
+}
+
+/** Validate account-owned Twilio media only; never send Basic credentials to arbitrary URLs. */
+export function recordingMediaUrl(
+  recordingUrl: string,
+  recordingSid: string,
+  accountSid: string,
+): string {
+  if (!/^AC[a-fA-F0-9]{32}$/.test(accountSid) || !/^RE[a-fA-F0-9]{32}$/.test(recordingSid))
+    throw new Error("invalid_recording_identity");
+  const url = new URL(recordingUrl);
+  const expected = `/2010-04-01/Accounts/${accountSid}/Recordings/${recordingSid}`;
+  if (
+    url.origin !== "https://api.twilio.com" ||
+    url.pathname !== expected ||
+    url.search ||
+    url.hash ||
+    url.username ||
+    url.password
+  )
+    throw new Error("invalid_recording_origin");
+  return url.href + ".mp3";
+}
+
+export async function readTwilioForm(request: Request): Promise<URLSearchParams> {
+  if (!request.headers.get("content-type")?.startsWith("application/x-www-form-urlencoded"))
+    throw new Error("invalid_webhook_content_type");
+  const { readBounded } = await import("@/lib/providers/http.server");
+  const bytes = await readBounded(new Response(request.body), 16384);
+  return new URLSearchParams(new TextDecoder().decode(bytes));
 }

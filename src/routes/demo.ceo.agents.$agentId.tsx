@@ -1,11 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  PolarAngleAxis,
-  PolarGrid,
-  Radar,
-  RadarChart,
-  ResponsiveContainer,
-} from "recharts";
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from "recharts";
 import { DemoLoading, DemoPage } from "@/components/demo/demo-shell";
 import { useDemoQuery } from "@/components/demo/use-demo-query";
 import { Chip, PageHeading, Panel, PanelHeader, StatCard } from "@/components/iris/primitives";
@@ -55,7 +49,12 @@ function AgentProfilePage() {
               <RadarChart data={radar}>
                 <PolarGrid />
                 <PolarAngleAxis dataKey="skill" tick={{ fontSize: 10 }} />
-                <Radar dataKey="value" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" fillOpacity={0.3} />
+                <Radar
+                  dataKey="value"
+                  stroke="hsl(var(--primary))"
+                  fill="hsl(var(--primary))"
+                  fillOpacity={0.3}
+                />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -85,7 +84,9 @@ function AgentProfilePage() {
                 </p>
               </Link>
             ))}
-            {!calls?.length ? <p className="p-5 text-sm text-muted-foreground">No calls in demo set.</p> : null}
+            {!calls?.length ? (
+              <p className="p-5 text-sm text-muted-foreground">No calls in demo set.</p>
+            ) : null}
           </div>
           {agent.id === "agt-daniel" ? (
             <div className="border-t border-border px-5 py-4 text-sm">

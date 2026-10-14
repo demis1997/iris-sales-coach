@@ -1,5 +1,6 @@
 import { getPromptById } from "@/ai/registry/prompt-registry";
 import { createMockAIProvider } from "@/ai/services/mock-ai-provider";
+import { createVeniceProvider } from "@/ai/services/venice-provider";
 import { createOpenAIProvider } from "@/ai/services/openai-provider";
 import type { AIProvider, AIRequestMetadata, AIResult, PromptId } from "@/ai/types/ai.types";
 import { logAIResult } from "@/ai/utils/ai-logging";
@@ -18,21 +19,25 @@ import type { WeeklyAgentOutput } from "@/ai/schemas/weekly-agent.schema";
 import type { WeeklyManagerOutput } from "@/ai/schemas/weekly-manager.schema";
 import type { WeeklyExecutiveOutput } from "@/ai/schemas/weekly-executive.schema";
 
-export type AIServiceMode = "mock" | "openai" | "auto";
-
-function resolveMode(explicit?: AIServiceMode): "mock" | "openai" {
-  if (explicit === "mock" || explicit === "openai") return explicit;
-  const env = (process.env.ARTEMIS_AI_PROVIDER || process.env.LLM_PROVIDER || "")
-    .trim()
-    .toLowerCase();
-  if (env === "mock" || env === "demo" || env === "stub") return "mock";
-  if (process.env.OPENAI_API_KEY) return "openai";
-  return "mock";
-}
+export type AIServiceMode = "mock" | "openai" | "venice" | "auto";
 
 export function createAIProvider(mode?: AIServiceMode): AIProvider {
-  const resolved = resolveMode(mode);
-  return resolved === "openai" ? createOpenAIProvider() : createMockAIProvider();
+  const configured = process.env.ARTEMIS_AI_PROVIDER?.trim().toLowerCase();
+  const resolved =
+    mode && mode !== "auto"
+      ? mode
+      : configured ||
+        (process.env.VENICE_API_KEY
+          ? "venice"
+          : process.env.OPENAI_API_KEY
+            ? "openai"
+            : "unconfigured");
+  if (resolved === "mock" || resolved === "demo") return createMockAIProvider();
+  if (resolved === "venice") return createVeniceProvider();
+  if (resolved === "openai") return createOpenAIProvider();
+  throw new Error(
+    "AI provider is not configured; choose venice/openai or explicitly labelled demo mode",
+  );
 }
 
 export class AIService {
@@ -215,3 +220,14 @@ export function createAIService(mode?: AIServiceMode): AIService {
 
 /** Convenience singleton for demo/mock paths. */
 export const demoAIService = createAIService("mock");
+
+/** Production entry: never fall back to mock output after provider failure. */
+export function createLiveAIService(): AIService {
+  const provider = createAIProvider();
+  if (provider.name !== "venice" && provider.name !== "openai") {
+    throw new Error(
+      "Configure VENICE_API_KEY/VENICE_MODEL and ARTEMIS_AI_PROVIDER=venice for live analysis",
+    );
+  }
+  return new AIService(provider);
+}

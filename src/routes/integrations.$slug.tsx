@@ -62,8 +62,8 @@ function IntegrationDetail() {
         </ol>
         {item.status !== "available" ? (
           <p className="mt-6 text-sm text-[#8A9BB5]">
-            This integration is {statusLabel(item.status).toLowerCase()}. It is not presented as live
-            availability.
+            This integration is {statusLabel(item.status).toLowerCase()}. It is not presented as
+            live availability.
           </p>
         ) : null}
       </MarketingSection>

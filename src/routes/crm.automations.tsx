@@ -9,7 +9,11 @@ export const Route = createFileRoute("/crm/automations")({
   head: () => ({
     meta: [
       { title: "Workflow Automation — Artemis CRM" },
-      { name: "description", content: "Visual automation builder: trigger on what customers say, then create tickets, notify Slack, update the CRM and send email." },
+      {
+        name: "description",
+        content:
+          "Visual automation builder: trigger on what customers say, then create tickets, notify Slack, update the CRM and send email.",
+      },
       { property: "og:title", content: "Workflow Automation — Artemis CRM" },
       { property: "og:description", content: "Turn what customers say into automatic action." },
     ],

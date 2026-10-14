@@ -9,7 +9,11 @@ export const Route = createFileRoute("/demo/agent/goals")({
 function AgentGoalsPage() {
   return (
     <DemoPage>
-      <PageHeading title="Goals" subtitle="Personal targets · not surveillance" action={<Chip tone="iris">Demo</Chip>} />
+      <PageHeading
+        title="Goals"
+        subtitle="Personal targets · not surveillance"
+        action={<Chip tone="iris">Demo</Chip>}
+      />
       <Panel>
         <PanelHeader title="This week" />
         <div className="space-y-3 p-5 text-sm">

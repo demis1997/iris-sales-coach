@@ -31,7 +31,9 @@ function CeoCallsPage() {
               </p>
             </div>
             <div className="flex items-center gap-2">
-              <Chip tone={c.intent.includes("high") ? "good" : "neutral"}>{c.intent.replace("_", " ")}</Chip>
+              <Chip tone={c.intent.includes("high") ? "good" : "neutral"}>
+                {c.intent.replace("_", " ")}
+              </Chip>
               <span className="font-mono text-xs">{c.aiScore || "live"}</span>
             </div>
           </Link>

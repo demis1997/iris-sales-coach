@@ -8,7 +8,10 @@ export const Route = createFileRoute("/app/coach")({
   head: () => ({
     meta: [
       { title: "AI Coach — Artemis Rep Workspace" },
-      { name: "description", content: "Personal AI coaching plans tied to Revenue DNA and deal outcomes." },
+      {
+        name: "description",
+        content: "Personal AI coaching plans tied to Revenue DNA and deal outcomes.",
+      },
       { property: "og:title", content: "AI Coach — Artemis Rep Workspace" },
       { property: "og:description", content: "Personal AI coaching after every sales call." },
     ],
@@ -31,7 +34,11 @@ function CoachPage() {
         {myPlans.map((p) => (
           <Panel key={p.id} className="p-4">
             <div className="flex items-center gap-2">
-              <Chip tone={p.status === "Active" ? "good" : p.status === "Completed" ? "iris" : "neutral"}>
+              <Chip
+                tone={
+                  p.status === "Active" ? "good" : p.status === "Completed" ? "iris" : "neutral"
+                }
+              >
                 {p.status}
               </Chip>
               <span className="text-xs text-muted-foreground">{p.completion}%</span>
@@ -50,10 +57,7 @@ function CoachPage() {
           <PanelHeader title="Coaching session" subtitle="Artemis AI · updated 2 minutes ago" />
           <div className="flex-1 space-y-4 p-5">
             {coachMessages.map((m, i) => (
-              <div
-                key={i}
-                className={`flex gap-3 ${m.from === "user" ? "flex-row-reverse" : ""}`}
-              >
+              <div key={i} className={`flex gap-3 ${m.from === "user" ? "flex-row-reverse" : ""}`}>
                 <span
                   className={`grid size-7 shrink-0 place-items-center rounded-full text-[11px] font-semibold ${
                     m.from === "iris"
@@ -88,7 +92,9 @@ function CoachPage() {
 
         <div className="space-y-4">
           <Panel className="gradient-border p-5">
-            <p className="text-xs tracking-wide text-muted-foreground uppercase">Coaching → revenue</p>
+            <p className="text-xs tracking-wide text-muted-foreground uppercase">
+              Coaching → revenue
+            </p>
             <p className="mt-2 text-sm font-medium">{coachingRevenueStory.title}</p>
             <p className="mt-2 font-mono text-3xl font-semibold gradient-text">
               +{coachingRevenueStory.conversionLift}%

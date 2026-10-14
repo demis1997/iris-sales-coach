@@ -6,9 +6,15 @@ export const Route = createFileRoute("/crm/pipeline")({
   head: () => ({
     meta: [
       { title: "Pipeline — Artemis CRM" },
-      { name: "description", content: "Deal pipeline with AI win probability derived from conversation signals." },
+      {
+        name: "description",
+        content: "Deal pipeline with AI win probability derived from conversation signals.",
+      },
       { property: "og:title", content: "Pipeline — Artemis CRM" },
-      { property: "og:description", content: "Win probability from what was actually said on the call." },
+      {
+        property: "og:description",
+        content: "Win probability from what was actually said on the call.",
+      },
     ],
   }),
   component: PipelinePage,

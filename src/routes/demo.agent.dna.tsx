@@ -11,7 +11,10 @@ export const Route = createFileRoute("/demo/agent/dna")({
 });
 
 function AgentDnaPage() {
-  const { data: agent, loading } = useDemoQuery(() => demoService.getAgent(DEMO_COMPANY.defaultAgentId), []);
+  const { data: agent, loading } = useDemoQuery(
+    () => demoService.getAgent(DEMO_COMPANY.defaultAgentId),
+    [],
+  );
   if (loading || !agent) return <DemoLoading />;
   const radar = [
     { skill: "Confidence", value: agent.skills.confidence },
@@ -24,14 +27,23 @@ function AgentDnaPage() {
   ];
   return (
     <DemoPage>
-      <PageHeading title="Rep DNA™" subtitle="Your evolving skill model" action={<Chip tone="iris">Demo</Chip>} />
+      <PageHeading
+        title="Rep DNA™"
+        subtitle="Your evolving skill model"
+        action={<Chip tone="iris">Demo</Chip>}
+      />
       <Panel>
         <div className="h-72 p-2">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radar}>
               <PolarGrid />
               <PolarAngleAxis dataKey="skill" tick={{ fontSize: 11 }} />
-              <Radar dataKey="value" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" fillOpacity={0.35} />
+              <Radar
+                dataKey="value"
+                stroke="hsl(var(--primary))"
+                fill="hsl(var(--primary))"
+                fillOpacity={0.35}
+              />
             </RadarChart>
           </ResponsiveContainer>
         </div>
@@ -47,7 +59,11 @@ function AgentDnaPage() {
           <p>Day 1–7: Closing 68 — missed asks after buying signals.</p>
           <p>Day 8–14: Coaching assigned · roleplay completed → 72.</p>
           <p>Day 15–30: Closing 76 — trust handling improved; soft closes still inconsistent.</p>
-          <Link to="/demo/calls/$callId" params={{ callId: "call-maria-followup" }} className="text-primary hover:underline">
+          <Link
+            to="/demo/calls/$callId"
+            params={{ callId: "call-maria-followup" }}
+            className="text-primary hover:underline"
+          >
             Call influencing score →
           </Link>
         </div>

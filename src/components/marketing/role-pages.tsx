@@ -85,7 +85,10 @@ export function IndustryMarketingPage({ industry }: { industry: IndustryPage }) 
       <MarketingSection eyebrow="Challenges" title="What these teams struggle with" tone="white">
         <ul className="grid gap-3 md:grid-cols-2">
           {industry.pains.map((p) => (
-            <li key={p} className="rounded-2xl border border-[#E8EEF7] bg-[#F7FAFF] px-5 py-4 text-sm text-[#4B5C76]">
+            <li
+              key={p}
+              className="rounded-2xl border border-[#E8EEF7] bg-[#F7FAFF] px-5 py-4 text-sm text-[#4B5C76]"
+            >
               {p}
             </li>
           ))}
@@ -95,7 +98,9 @@ export function IndustryMarketingPage({ industry }: { industry: IndustryPage }) 
         <div className="grid gap-4 md:grid-cols-3">
           {industry.helps.map((h) => (
             <article key={h.role} className="rounded-[1.5rem] border border-[#E8EEF7] bg-white p-6">
-              <p className="text-xs font-semibold uppercase tracking-wide text-[#12C48A]">{h.role}</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#12C48A]">
+                {h.role}
+              </p>
               <p className="mt-2 text-sm text-[#4B5C76]">{h.body}</p>
             </article>
           ))}

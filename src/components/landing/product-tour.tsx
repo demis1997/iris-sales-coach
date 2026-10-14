@@ -48,7 +48,8 @@ const tabs: Tab[] = [
       "A better answer, written for your product and your market",
       "A weekly plan with 3–4 concrete habits to change",
     ],
-    outcome: "Coaching designed to cover every conversation — not only the ones a manager can sample.",
+    outcome:
+      "Coaching designed to cover every conversation — not only the ones a manager can sample.",
     img: aiCoach.url,
     alt: "Iris AI coach chat with a coaching plan and stage scores for the last call",
   },

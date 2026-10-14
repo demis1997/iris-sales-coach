@@ -46,7 +46,11 @@ for (const key of required) {
 
 for (const key of optional) {
   const value = (env[key] || "").trim();
-  console.log(value ? `✓ ${key} set (${value.length} chars)` : `○ ${key} empty (needed for admin/server jobs)`);
+  console.log(
+    value
+      ? `✓ ${key} set (${value.length} chars)`
+      : `○ ${key} empty (needed for admin/server jobs)`,
+  );
 }
 
 const secret = (env.SUPABASE_SERVICE_ROLE_KEY || env.SUPABASE_SECRET_KEY || "").trim();

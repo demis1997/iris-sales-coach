@@ -57,10 +57,28 @@ function PerformancePage() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="week" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+                <XAxis
+                  dataKey="week"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                  width={28}
+                />
                 <Tooltip {...chartTooltip} />
-                <Area type="monotone" dataKey="confidence" stroke="var(--cyan)" strokeWidth={2} fill="url(#p-conf)" />
+                <Area
+                  type="monotone"
+                  dataKey="confidence"
+                  stroke="var(--cyan)"
+                  strokeWidth={2}
+                  fill="url(#p-conf)"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -72,8 +90,20 @@ function PerformancePage() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={improvement}>
                 <CartesianGrid stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="week" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+                <XAxis
+                  dataKey="week"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                  width={28}
+                />
                 <Tooltip {...chartTooltip} />
                 <Bar dataKey="closeRate" fill="var(--violet)" radius={[6, 6, 0, 0]} />
               </BarChart>
@@ -87,11 +117,35 @@ function PerformancePage() {
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={improvement}>
                 <CartesianGrid stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="week" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+                <XAxis
+                  dataKey="week"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                  width={28}
+                />
                 <Tooltip {...chartTooltip} />
-                <Line type="monotone" dataKey="score" stroke="var(--blue)" strokeWidth={2} dot={false} />
-                <Line type="monotone" dataKey="talkRatio" stroke="var(--warning)" strokeWidth={2} dot={false} />
+                <Line
+                  type="monotone"
+                  dataKey="score"
+                  stroke="var(--blue)"
+                  strokeWidth={2}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="talkRatio"
+                  stroke="var(--warning)"
+                  strokeWidth={2}
+                  dot={false}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -103,9 +157,17 @@ function PerformancePage() {
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={personality} outerRadius="72%">
                 <PolarGrid stroke="var(--border)" />
-                <PolarAngleAxis dataKey="trait" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} />
+                <PolarAngleAxis
+                  dataKey="trait"
+                  tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
+                />
                 <Tooltip {...chartTooltip} />
-                <Radar dataKey="value" stroke="var(--violet)" fill="var(--violet)" fillOpacity={0.28} />
+                <Radar
+                  dataKey="value"
+                  stroke="var(--violet)"
+                  fill="var(--violet)"
+                  fillOpacity={0.28}
+                />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -124,7 +186,10 @@ function PerformancePage() {
                 </span>
               </div>
               <div className="relative h-1.5 w-full rounded-full bg-secondary">
-                <div className="absolute h-1.5 rounded-full gradient-surface" style={{ width: `${t.alex}%` }} />
+                <div
+                  className="absolute h-1.5 rounded-full gradient-surface"
+                  style={{ width: `${t.alex}%` }}
+                />
                 <div
                   className="absolute -top-0.5 h-2.5 w-0.5 rounded bg-muted-foreground"
                   style={{ left: `${t.team}%` }}

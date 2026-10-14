@@ -13,7 +13,10 @@ const steps = [
     quote:
       "\"Honestly, your spreads look higher than what I'm paying now, and I've been with them four years.\"",
     body: "Iris tags this as a competitive price objection with a loyalty component — the two rarely resolve with a discount.",
-    meta: [["Objection type", "Price + incumbent loyalty"], ["Pattern on many floors", "Common loss driver"]],
+    meta: [
+      ["Objection type", "Price + incumbent loyalty"],
+      ["Pattern on many floors", "Common loss driver"],
+    ],
   },
   {
     key: "analysis",
@@ -21,18 +24,24 @@ const steps = [
     icon: Waves,
     heading: "What actually happened in the conversation",
     quote:
-      "\"Rep quoted the spread 41 seconds after the objection, without asking about monthly volume or execution quality.\"",
+      '"Rep quoted the spread 41 seconds after the objection, without asking about monthly volume or execution quality."',
     body: "Discovery covered 2 of 6 qualifying areas. The rep spoke 82% of the call and interrupted the prospect 4 times.",
-    meta: [["Talk ratio", "82% rep / 18% client"], ["Discovery coverage", "2 of 6"]],
+    meta: [
+      ["Talk ratio", "82% rep / 18% client"],
+      ["Discovery coverage", "2 of 6"],
+    ],
   },
   {
     key: "confidence",
     tab: "Confidence score",
     icon: Target,
     heading: "Confidence dropped exactly when it mattered",
-    quote: "\"Vocal certainty fell from 88% to 51% within 12 seconds of the objection.\"",
+    quote: '"Vocal certainty fell from 88% to 51% within 12 seconds of the objection."',
     body: "Hesitation markers, a rising-tone apology and two filler clusters were detected in the response window.",
-    meta: [["Peak confidence", "88%"], ["Confidence at objection", "51%"]],
+    meta: [
+      ["Peak confidence", "88%"],
+      ["Confidence at objection", "51%"],
+    ],
   },
   {
     key: "response",
@@ -40,18 +49,24 @@ const steps = [
     icon: Sparkles,
     heading: "The response that converts on this objection",
     quote:
-      "\"Before I talk numbers — how many lots do you trade monthly, and how often do you see requotes at news? Most clients switch to us on execution, not spread.\"",
+      '"Before I talk numbers — how many lots do you trade monthly, and how often do you see requotes at news? Most clients switch to us on execution, not spread."',
     body: "Reps who reframe to execution before price close this objection 2.4× more often on your own historical data.",
-    meta: [["Historical win rate", "2.4× higher"], ["Source", "418 of your own calls"]],
+    meta: [
+      ["Historical win rate", "2.4× higher"],
+      ["Source", "418 of your own calls"],
+    ],
   },
   {
     key: "loss",
     tab: "Why the deal failed",
     icon: XCircle,
     heading: "Root cause, not CRM guesswork",
-    quote: "\"Deal lost at 06:53 — price anchored before value was established.\"",
+    quote: '"Deal lost at 06:53 — price anchored before value was established."',
     body: "The CRM recorded this as 'price'. Iris shows the deal was lost 41 seconds earlier, in the discovery gap.",
-    meta: [["CRM reason", "Price"], ["Actual reason", "Premature pricing"]],
+    meta: [
+      ["CRM reason", "Price"],
+      ["Actual reason", "Premature pricing"],
+    ],
   },
   {
     key: "coaching",
@@ -59,9 +74,12 @@ const steps = [
     icon: CircleAlert,
     heading: "Marcus's plan for the next 10 calls",
     quote:
-      "\"Ask both volume questions before any number leaves your mouth. Target talk ratio under 60%.\"",
+      '"Ask both volume questions before any number leaves your mouth. Target talk ratio under 60%."',
     body: "Iris tracks the two behaviours on every subsequent call and reports the movement to Marcus and his manager weekly.",
-    meta: [["Projected impact (illustrative)", "Close-rate focus"], ["Review", "After 10 calls"]],
+    meta: [
+      ["Projected impact (illustrative)", "Close-rate focus"],
+      ["Review", "After 10 calls"],
+    ],
   },
 ];
 
@@ -111,7 +129,9 @@ export function InteractiveDemo() {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.28 }}
               >
-                <p className="text-xs tracking-[0.16em] text-primary uppercase">Step {active + 1} of 6</p>
+                <p className="text-xs tracking-[0.16em] text-primary uppercase">
+                  Step {active + 1} of 6
+                </p>
                 <h3 className="mt-3 text-xl font-semibold tracking-tight md:text-2xl">
                   {step.heading}
                 </h3>

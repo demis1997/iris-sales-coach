@@ -13,7 +13,9 @@ function required(name: string) {
 
 function clamp(s: string, maxChars: number) {
   const t = String(s || "");
-  return t.length <= maxChars ? t : `${t.slice(0, maxChars)}\n[truncated:${t.length - maxChars} chars]`;
+  return t.length <= maxChars
+    ? t
+    : `${t.slice(0, maxChars)}\n[truncated:${t.length - maxChars} chars]`;
 }
 
 function parseJsonFromText(text: string) {

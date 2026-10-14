@@ -2,10 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHeading, Panel, PanelHeader, Chip, Meter } from "@/components/iris/primitives";
 import { calls } from "@/lib/iris-data";
-import {
-  coachingPlans,
-  managerQaWorkspace,
-} from "@/lib/revenue-intelligence-data";
+import { coachingPlans, managerQaWorkspace } from "@/lib/revenue-intelligence-data";
 import { qaQueue } from "@/lib/revenue-os-data";
 
 const highlights = [
@@ -14,14 +11,20 @@ const highlights = [
   { label: "Compliance high-risk", value: "2" },
   { label: "Reps needing attention", value: "2" },
   { label: "Pending certifications", value: "3" },
-  { label: "Active coaching plans", value: String(coachingPlans.filter((p) => p.status === "Active").length) },
+  {
+    label: "Active coaching plans",
+    value: String(coachingPlans.filter((p) => p.status === "Active").length),
+  },
 ];
 
 export const Route = createFileRoute("/manager/qa")({
   head: () => ({
     meta: [
       { title: "QA & Coaching Workspace — Artemis Manager" },
-      { name: "description", content: "Unified QA review, coaching assignments, and manager copilot." },
+      {
+        name: "description",
+        content: "Unified QA review, coaching assignments, and manager copilot.",
+      },
     ],
   }),
   component: ManagerQaWorkspace,
@@ -62,7 +65,11 @@ function ManagerQaWorkspace() {
               >
                 <p className="text-sm font-medium">{q.call}</p>
                 <p className="text-xs text-muted-foreground">{q.rep}</p>
-                <Chip tone={q.severity === "Critical" ? "bad" : q.severity === "High" ? "warn" : "neutral"}>
+                <Chip
+                  tone={
+                    q.severity === "Critical" ? "bad" : q.severity === "High" ? "warn" : "neutral"
+                  }
+                >
                   {q.flag}
                 </Chip>
               </button>

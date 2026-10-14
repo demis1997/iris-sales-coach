@@ -16,10 +16,7 @@ export type VoiceProvider = {
   readonly name: string;
   placeCall(input: { to: string; from: string }): Promise<{ callId: string }>;
   endCall(callId: string): Promise<void>;
-  purchaseNumber(input: {
-    country: string;
-    type: string;
-  }): Promise<{ number: string }>;
+  purchaseNumber(input: { country: string; type: string }): Promise<{ number: string }>;
 };
 
 export class DemoVoiceProvider implements VoiceProvider {

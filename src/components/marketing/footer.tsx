@@ -1,7 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { ArtemisMark } from "@/components/relay/brand";
 import { ContactLinks } from "@/components/relay/contact-links";
-import { CONTACT_EMAIL, CONTACT_MAILTO, CONTACT_PHONE_DISPLAY, CONTACT_TEL } from "@/components/relay/contact";
+import {
+  CONTACT_EMAIL,
+  CONTACT_MAILTO,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_TEL,
+} from "@/components/relay/contact";
 
 const COLUMNS: { title: string; links: { label: string; href: string }[] }[] = [
   {

@@ -1,12 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  Headphones,
-  LayoutDashboard,
-  PhoneCall,
-  Sparkles,
-  Target,
-  Users,
-} from "lucide-react";
+import { Headphones, LayoutDashboard, PhoneCall, Sparkles, Target, Users } from "lucide-react";
 import { DemoShell, type DemoNavItem } from "@/components/demo/demo-shell";
 
 export const Route = createFileRoute("/demo/manager")({

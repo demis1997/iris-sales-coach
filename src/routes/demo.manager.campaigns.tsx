@@ -49,10 +49,16 @@ function ManagerCampaignsPage() {
               ))}
             </div>
             <div className="mt-4 flex flex-wrap gap-3 text-xs">
-              <Link to="/demo/manager/team" className="font-semibold text-[#2EE6A6] hover:underline">
+              <Link
+                to="/demo/manager/team"
+                className="font-semibold text-[#2EE6A6] hover:underline"
+              >
                 Agents →
               </Link>
-              <Link to="/demo/manager/calls" className="font-semibold text-[#2EE6A6] hover:underline">
+              <Link
+                to="/demo/manager/calls"
+                className="font-semibold text-[#2EE6A6] hover:underline"
+              >
                 Calls →
               </Link>
               <Link

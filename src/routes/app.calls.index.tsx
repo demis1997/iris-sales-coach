@@ -24,7 +24,12 @@ function CallsPage() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [contactName, setContactName] = useState("");
 
-  const { data: rows = [], isLoading, error, refetch } = useQuery({
+  const {
+    data: rows = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
     queryKey: ["calls", session?.activeCompanyId, session?.userId],
     queryFn: () => listCalls({ agentOnly: session?.authz.role === "rep" }),
     enabled: Boolean(session?.activeCompanyId) && !demoMode,
@@ -56,7 +61,10 @@ function CallsPage() {
   if (demoMode) {
     return (
       <>
-        <PageHeading title="Calls" subtitle="Sign in with Supabase configured to upload and store real recordings." />
+        <PageHeading
+          title="Calls"
+          subtitle="Sign in with Supabase configured to upload and store real recordings."
+        />
         <Panel className="p-6 text-sm text-muted-foreground">
           Demo mode: call upload requires a live company session. Complete Step 1 auth first.
         </Panel>
@@ -68,13 +76,18 @@ function CallsPage() {
     <>
       <PageHeading
         title="Calls"
-        subtitle={isLoading ? "Loading…" : `${rows.length} call${rows.length === 1 ? "" : "s"} in your company`}
+        subtitle={
+          isLoading
+            ? "Loading…"
+            : `${rows.length} call${rows.length === 1 ? "" : "s"} in your company`
+        }
       />
 
       <Panel className="mb-4 p-4">
         <p className="text-sm font-medium">Upload a recording</p>
         <p className="mt-1 text-xs text-muted-foreground">
-          MP3, WAV, M4A, MP4, WebM · max 100MB · private company storage · analysis runs after upload
+          MP3, WAV, M4A, MP4, WebM · max 100MB · private company storage · analysis runs after
+          upload
         </p>
         <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
           <input
@@ -84,7 +97,11 @@ function CallsPage() {
             className="flex-1 rounded-lg border border-border bg-secondary/40 px-3 py-2 text-sm outline-none"
           />
           <label className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
-            {uploading ? <Loader2 className="size-4 animate-spin" /> : <Upload className="size-4" />}
+            {uploading ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <Upload className="size-4" />
+            )}
             {uploading ? "Uploading…" : "Choose file"}
             <input
               type="file"
@@ -129,11 +146,13 @@ function CallsPage() {
             <table className="w-full min-w-[800px] text-sm">
               <thead>
                 <tr className="border-b border-border text-left text-[11px] tracking-wider text-muted-foreground uppercase">
-                  {["Date", "Prospect", "Outcome", "Score", "Recording", "Analysis", ""].map((h) => (
-                    <th key={h} className="px-5 py-3 font-medium">
-                      {h}
-                    </th>
-                  ))}
+                  {["Date", "Prospect", "Outcome", "Score", "Recording", "Analysis", ""].map(
+                    (h) => (
+                      <th key={h} className="px-5 py-3 font-medium">
+                        {h}
+                      </th>
+                    ),
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -155,7 +174,11 @@ function CallsPage() {
                     <td className="px-5 py-3 text-xs">{c.recording_status}</td>
                     <td className="px-5 py-3 text-xs">{c.analysis_status}</td>
                     <td className="px-5 py-3 text-right">
-                      <Link to="/app/calls/$callId" params={{ callId: c.id }} className="text-xs text-primary hover:underline">
+                      <Link
+                        to="/app/calls/$callId"
+                        params={{ callId: c.id }}
+                        className="text-xs text-primary hover:underline"
+                      >
                         Open
                       </Link>
                     </td>

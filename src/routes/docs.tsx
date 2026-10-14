@@ -21,7 +21,12 @@ const SECTIONS = [
   {
     title: "Getting Started",
     status: "Preview",
-    items: ["Create a workspace", "Invite teammates", "Upload or connect calls", "Explore role views"],
+    items: [
+      "Create a workspace",
+      "Invite teammates",
+      "Upload or connect calls",
+      "Explore role views",
+    ],
   },
   {
     title: "Calls",

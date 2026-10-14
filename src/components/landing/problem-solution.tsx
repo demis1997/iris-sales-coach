@@ -48,7 +48,8 @@ export function Plateau() {
           ))}
         </div>
         <p className="mt-6 text-center text-xs text-muted-foreground">
-          Product capabilities for high-volume outbound floors — explore the interactive demo for the full story.
+          Product capabilities for high-volume outbound floors — explore the interactive demo for
+          the full story.
         </p>
       </div>
     </section>
@@ -119,11 +120,31 @@ export function Problem() {
 }
 
 const flow = [
-  { icon: PhoneCall, t: "Salesperson makes a call", d: "Iris connects to your dialer, VoIP or meeting platform." },
-  { icon: BrainCircuit, t: "Iris analyzes it", d: "Transcription, sentiment, objections, compliance, stage scoring." },
-  { icon: Sparkles, t: "Employee gets instant coaching", d: "Specific, personal feedback seconds after hang-up." },
-  { icon: LineChart, t: "Manager sees team insights", d: "Patterns, risk flags and revenue impact across every desk." },
-  { icon: Gauge, t: "Closing rates improve", d: "Measured weekly, per rep, per objection, per script." },
+  {
+    icon: PhoneCall,
+    t: "Salesperson makes a call",
+    d: "Iris connects to your dialer, VoIP or meeting platform.",
+  },
+  {
+    icon: BrainCircuit,
+    t: "Iris analyzes it",
+    d: "Transcription, sentiment, objections, compliance, stage scoring.",
+  },
+  {
+    icon: Sparkles,
+    t: "Employee gets instant coaching",
+    d: "Specific, personal feedback seconds after hang-up.",
+  },
+  {
+    icon: LineChart,
+    t: "Manager sees team insights",
+    d: "Patterns, risk flags and revenue impact across every desk.",
+  },
+  {
+    icon: Gauge,
+    t: "Closing rates improve",
+    d: "Measured weekly, per rep, per objection, per script.",
+  },
 ];
 
 export function Solution() {

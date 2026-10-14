@@ -89,11 +89,35 @@ function RepDashboard() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="week" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+                <XAxis
+                  dataKey="week"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                  width={28}
+                />
                 <Tooltip {...chartTooltip} />
-                <Area type="monotone" dataKey="score" stroke="var(--violet)" strokeWidth={2} fill="url(#g-score)" />
-                <Area type="monotone" dataKey="confidence" stroke="var(--cyan)" strokeWidth={2} fill="url(#g-conf)" />
+                <Area
+                  type="monotone"
+                  dataKey="score"
+                  stroke="var(--violet)"
+                  strokeWidth={2}
+                  fill="url(#g-score)"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="confidence"
+                  stroke="var(--cyan)"
+                  strokeWidth={2}
+                  fill="url(#g-conf)"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -136,18 +160,28 @@ function RepDashboard() {
           <table className="w-full min-w-[820px] text-sm">
             <thead>
               <tr className="border-b border-border text-left text-[11px] tracking-wider text-muted-foreground uppercase">
-                {["Date", "Prospect", "Duration", "Outcome", "AI score", "Confidence", "Status", ""].map(
-                  (h) => (
-                    <th key={h} className="px-5 py-3 font-medium">
-                      {h}
-                    </th>
-                  ),
-                )}
+                {[
+                  "Date",
+                  "Prospect",
+                  "Duration",
+                  "Outcome",
+                  "AI score",
+                  "Confidence",
+                  "Status",
+                  "",
+                ].map((h) => (
+                  <th key={h} className="px-5 py-3 font-medium">
+                    {h}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
               {calls.map((c) => (
-                <tr key={c.id} className="border-b border-border/60 transition-colors hover:bg-secondary/30">
+                <tr
+                  key={c.id}
+                  className="border-b border-border/60 transition-colors hover:bg-secondary/30"
+                >
                   <td className="px-5 py-3 text-muted-foreground">
                     {c.date} · {c.time}
                   </td>
@@ -184,11 +218,35 @@ function RepDashboard() {
           <ResponsiveContainer width="100%" height="100%">
             <RLineChart data={improvement}>
               <CartesianGrid stroke="var(--border)" vertical={false} />
-              <XAxis dataKey="week" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-              <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+              <XAxis
+                dataKey="week"
+                tickLine={false}
+                axisLine={false}
+                fontSize={11}
+                stroke="var(--muted-foreground)"
+              />
+              <YAxis
+                tickLine={false}
+                axisLine={false}
+                fontSize={11}
+                stroke="var(--muted-foreground)"
+                width={28}
+              />
               <Tooltip {...chartTooltip} />
-              <Line type="monotone" dataKey="talkRatio" stroke="var(--warning)" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="closeRate" stroke="var(--success)" strokeWidth={2} dot={false} />
+              <Line
+                type="monotone"
+                dataKey="talkRatio"
+                stroke="var(--warning)"
+                strokeWidth={2}
+                dot={false}
+              />
+              <Line
+                type="monotone"
+                dataKey="closeRate"
+                stroke="var(--success)"
+                strokeWidth={2}
+                dot={false}
+              />
             </RLineChart>
           </ResponsiveContainer>
         </div>

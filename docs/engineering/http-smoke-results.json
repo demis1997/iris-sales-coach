@@ -1,0 +1,36 @@
+{
+  "executedAt": "2026-10-14T12:31:14.295Z",
+  "scope": "Local Vite HTTP; no provider credentials; no paid calls",
+  "results": [
+    {
+      "path": "/api/health",
+      "status": 503,
+      "expected": 503,
+      "outcome": "PASS"
+    },
+    {
+      "path": "/api/twilio/voice",
+      "status": 403,
+      "expected": 403,
+      "outcome": "PASS"
+    },
+    {
+      "path": "/api/twilio/status",
+      "status": 403,
+      "expected": 403,
+      "outcome": "PASS"
+    },
+    {
+      "path": "/api/twilio/recording",
+      "status": 403,
+      "expected": 403,
+      "outcome": "PASS"
+    },
+    {
+      "path": "/api/twilio/inbound",
+      "status": 403,
+      "expected": 403,
+      "outcome": "PASS"
+    }
+  ]
+}

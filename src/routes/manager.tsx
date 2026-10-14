@@ -32,11 +32,7 @@ function ManagerWorkspace() {
   const { displayName, role } = useWorkspaceAccess();
   return (
     <RequireAuth workspace="manager">
-      <AppShell
-        nav={nav}
-        workspace="Manager"
-        user={{ name: displayName, role: roleLabel(role) }}
-      />
+      <AppShell nav={nav} workspace="Manager" user={{ name: displayName, role: roleLabel(role) }} />
     </RequireAuth>
   );
 }

@@ -12,7 +12,17 @@
     "format": "prettier --write .",
     "test:unit": "node --experimental-strip-types --experimental-transform-types src/lib/permissions.test.ts",
     "test:ai": "node --experimental-strip-types --experimental-transform-types --import ./scripts/register-ai-alias.mjs --test src/ai/ai-system.test.ts",
-    "verify:step1": "node scripts/verify-step1.mjs"
+    "verify:step1": "node scripts/verify-step1.mjs",
+    "typecheck": "tsc --noEmit",
+    "test:providers": "node --experimental-strip-types --experimental-transform-types --import ./scripts/register-ai-alias.mjs --test src/ai/venice-provider.test.ts src/lib/telephony/lifecycle.test.ts src/lib/voice/conversation.test.ts src/lib/crm/adapter.test.ts src/lib/privacy/erasure.test.ts",
+    "test:database": "node --test scripts/database.test.mjs",
+    "test": "npm run test:unit && npm run test:ai && npm run test:providers && npm run test:database && npm run test:runtime",
+    "worker:analysis": "node --env-file-if-exists=.env --experimental-strip-types --experimental-transform-types --import ./scripts/register-ai-alias.mjs scripts/analysis-worker.ts",
+    "worker:voice": "node --env-file-if-exists=.env --experimental-strip-types --experimental-transform-types --import ./scripts/register-ai-alias.mjs scripts/voice-worker.ts",
+    "check": "npm run typecheck && npm run lint && npm test && npm run build",
+    "worker:reconcile": "node --env-file-if-exists=.env --experimental-strip-types --experimental-transform-types --import ./scripts/register-ai-alias.mjs scripts/reconcile-calls.ts",
+    "privacy:erasure": "node --env-file-if-exists=.env --experimental-strip-types --experimental-transform-types --import ./scripts/register-ai-alias.mjs scripts/call-erasure.ts",
+    "test:runtime": "node --test scripts/runtime-guards.test.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -70,14 +80,17 @@
     "twilio": "^6.0.2",
     "vaul": "^1.1.2",
     "vite-tsconfig-paths": "^6.0.2",
+    "ws": "8.22.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.9",
     "@eslint/js": "^9.32.0",
     "@lovable.dev/vite-tanstack-config": "2.8.5",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "@types/ws": "8.18.2",
     "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.1",
@@ -90,5 +103,8 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^8.1.5"
+  },
+  "engines": {
+    "node": ">=22.20.0 <23"
   }
 }

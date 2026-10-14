@@ -47,10 +47,22 @@ export const INDUSTRIES: IndustryPage[] = [
       },
     ],
     capabilities: [
-      { title: "FTD & deposit focus", body: "Track conversion behavior tied to first-time funding conversations." },
-      { title: "Desk operations", body: "Compare Alpha, Velocity, and other desks with consistent metrics." },
-      { title: "Withdrawal objections", body: "Detect and coach the trust concerns that block deposits." },
-      { title: "Callbacks & retention touches", body: "Keep follow-ups sharp when intent is still high." },
+      {
+        title: "FTD & deposit focus",
+        body: "Track conversion behavior tied to first-time funding conversations.",
+      },
+      {
+        title: "Desk operations",
+        body: "Compare Alpha, Velocity, and other desks with consistent metrics.",
+      },
+      {
+        title: "Withdrawal objections",
+        body: "Detect and coach the trust concerns that block deposits.",
+      },
+      {
+        title: "Callbacks & retention touches",
+        body: "Keep follow-ups sharp when intent is still high.",
+      },
       { title: "Compliance assist", body: "Flag conversations that may need human review." },
       { title: "Agent coaching", body: "Improve closing when buying signals appear." },
     ],
@@ -177,8 +189,7 @@ export const INDUSTRIES: IndustryPage[] = [
     subtitle:
       "Outbound and inbound SaaS sales teams get live guidance, coaching, and clearer conversion diagnosis.",
     seoTitle: "SaaS Sales Intelligence | Artemis AI",
-    seoDescription:
-      "AI coaching and conversation intelligence for SaaS sales teams.",
+    seoDescription: "AI coaching and conversation intelligence for SaaS sales teams.",
     pains: [
       "SDR/AE inconsistency",
       "Missed qualification signals",
@@ -233,8 +244,7 @@ export const INDUSTRIES: IndustryPage[] = [
     subtitle:
       "Guide agents live, coach after every call, and show managers where conversion is leaking.",
     seoTitle: "Telemarketing Intelligence | Artemis AI",
-    seoDescription:
-      "AI coaching and operations for high-volume telemarketing teams.",
+    seoDescription: "AI coaching and operations for high-volume telemarketing teams.",
     pains: [
       "Massive call volume, thin coaching",
       "Script drift across agents",

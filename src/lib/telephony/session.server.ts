@@ -16,7 +16,7 @@ function asRole(value: string | null | undefined): AppRole {
     "trainer",
   ];
   if (value && (allowed as string[]).includes(value)) return value as AppRole;
-  return "rep";
+  throw new Error("Unknown membership role");
 }
 
 function publishableKey() {
@@ -58,7 +58,9 @@ export async function loadMembershipForUser(userId: string) {
   const admin = await getAdminClient();
   const { data: profile } = await admin
     .from("profiles")
-    .select("full_name, active_company_id, company_id, phone, phone_e164, phone_verified_at, dialer_device")
+    .select(
+      "full_name, active_company_id, company_id, phone, phone_e164, phone_verified_at, dialer_device",
+    )
     .eq("id", userId)
     .maybeSingle();
 

@@ -204,14 +204,20 @@ export function ArtemisHomePage() {
               </ArtemisButton>
             </div>
             <div className="mt-8 flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#4B5C76]">
-              {["Calling", "AI Copilot", "Dialer", "CRM", "Coaching", "QA", "Revenue Intelligence"].map(
-                (cap, i) => (
-                  <span key={cap} className="inline-flex items-center gap-3">
-                    {i > 0 ? <span className="text-[#D7E0EF]">·</span> : null}
-                    {cap}
-                  </span>
-                ),
-              )}
+              {[
+                "Calling",
+                "AI Copilot",
+                "Dialer",
+                "CRM",
+                "Coaching",
+                "QA",
+                "Revenue Intelligence",
+              ].map((cap, i) => (
+                <span key={cap} className="inline-flex items-center gap-3">
+                  {i > 0 ? <span className="text-[#D7E0EF]">·</span> : null}
+                  {cap}
+                </span>
+              ))}
             </div>
             <p className="mt-6 text-xs font-medium tracking-wide text-[#8A9BB5] uppercase">
               Built for high-volume sales teams. Optimized where every conversation matters.
@@ -365,8 +371,8 @@ export function ArtemisHomePage() {
                 Calling + Sales + Coaching + Intelligence + Management
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">
-                One operating system for the sales floor. Integrations remain available when you want
-                them — they are optional, not required.
+                One operating system for the sales floor. Integrations remain available when you
+                want them — they are optional, not required.
               </p>
             </div>
           </div>
@@ -417,7 +423,10 @@ export function ArtemisHomePage() {
                 ["Revenue Forecasting", "Where pipeline will land"],
                 ["AI Decision Engine", "What to do next, not just what happened"],
               ].map(([t, d]) => (
-                <div key={t} className="rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-sm">
+                <div
+                  key={t}
+                  className="rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-sm"
+                >
                   <p className="text-sm font-semibold text-[#0B1B33]">{t}</p>
                   <p className="mt-0.5 text-xs text-[#8A9BB5]">{d}</p>
                 </div>
@@ -454,7 +463,10 @@ export function ArtemisHomePage() {
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
             {[
-              ["Who is improving", "Track 7- and 30-day skill trends with evidence from real calls."],
+              [
+                "Who is improving",
+                "Track 7- and 30-day skill trends with evidence from real calls.",
+              ],
               ["Who needs coaching", "Surface the highest-impact gaps before they hit revenue."],
               ["Who is ready for promotion", "Promote on behaviour patterns — not gut feel."],
             ].map(([t, b]) => (
@@ -465,9 +477,7 @@ export function ArtemisHomePage() {
               </article>
             ))}
           </div>
-          <p className="mt-8 text-sm font-medium text-[#4B5C76]">
-            Every call updates the model.
-          </p>
+          <p className="mt-8 text-sm font-medium text-[#4B5C76]">Every call updates the model.</p>
         </div>
       </section>
 
@@ -480,9 +490,7 @@ export function ArtemisHomePage() {
           <h2 className="mt-3 max-w-2xl text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
             The AI doesn’t wait until the call ends.
           </h2>
-          <p className="mt-3 max-w-xl text-[#4B5C76]">
-            It assists during the conversation.
-          </p>
+          <p className="mt-3 max-w-xl text-[#4B5C76]">It assists during the conversation.</p>
           <div className="mt-12 grid gap-4 sm:grid-cols-2">
             {COPILOT_CARDS.map((card, i) => (
               <motion.article
@@ -543,8 +551,7 @@ export function ArtemisHomePage() {
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[#4B5C76]">
               Not another analytics page.
-              <br />
-              A command surface for forecast, risk, and weekly action.
+              <br />A command surface for forecast, risk, and weekly action.
             </p>
             <ArtemisButton href="/ceo" className="mt-8">
               Open Command Center
@@ -700,7 +707,10 @@ export function ArtemisHomePage() {
               </p>
               <ul className="mt-6 space-y-3">
                 {COMPARISON.artemis.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm font-medium text-[#0B1B33]">
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-sm font-medium text-[#0B1B33]"
+                  >
                     <span className="size-1.5 rounded-full bg-[#12C48A]" />
                     {item}
                   </li>
@@ -748,7 +758,10 @@ export function ArtemisHomePage() {
               ["Every Manager", "Informed"],
               ["Every Team", "Improving"],
             ].map(([a, b]) => (
-              <div key={a} className="rounded-2xl border border-[#E8EEF7] bg-white px-4 py-4 text-center">
+              <div
+                key={a}
+                className="rounded-2xl border border-[#E8EEF7] bg-white px-4 py-4 text-center"
+              >
                 <p className="text-sm font-semibold text-[#0B1B33]">{a}</p>
                 <p className="mt-1 text-xs text-[#8A9BB5]">↓</p>
                 <p className="mt-1 text-sm font-medium text-[#12C48A]">{b}</p>
@@ -782,8 +795,8 @@ export function ArtemisHomePage() {
             The system gets smarter every week you use it.
           </h2>
           <p className="mt-3 max-w-xl text-[#4B5C76]">
-            Good calls create better playbooks. Better playbooks create smarter AI. Smarter AI creates
-            better coaching — and higher conversion.
+            Good calls create better playbooks. Better playbooks create smarter AI. Smarter AI
+            creates better coaching — and higher conversion.
           </p>
           <Flywheel />
         </div>
@@ -801,8 +814,8 @@ export function ArtemisHomePage() {
             </h3>
             <p className="mt-3 text-[#4B5C76]">
               Run calling, coaching and analytics natively in Artemis. Already on Salesforce,
-              HubSpot, a PBX or another system? Optional connectors are on the roadmap — integrations
-              are secondary, not required.
+              HubSpot, a PBX or another system? Optional connectors are on the roadmap —
+              integrations are secondary, not required.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {[
@@ -827,14 +840,19 @@ export function ArtemisHomePage() {
             </ArtemisButton>
           </article>
 
-          <article id="pricing" className="rounded-[2rem] border border-[#E8EEF7] bg-white p-8 sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">Pricing</p>
+          <article
+            id="pricing"
+            className="rounded-[2rem] border border-[#E8EEF7] bg-white p-8 sm:p-10"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
+              Pricing
+            </p>
             <h3 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33]">
               Start as a Design Partner
             </h3>
             <p className="mt-3 text-[#4B5C76]">
-              Platform license per user/month, with voice usage billed separately based on destination
-              and volume. Design Partner pricing for early customers building with us.
+              Platform license per user/month, with voice usage billed separately based on
+              destination and volume. Design Partner pricing for early customers building with us.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-[#4B5C76]">
               {[
@@ -862,9 +880,7 @@ export function ArtemisHomePage() {
       {/* Security */}
       <section id="security" className="py-20">
         <div className="mx-auto max-w-6xl px-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
-            Trust
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">Trust</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33] sm:text-4xl">
             Built for regulated revenue teams
           </h2>
@@ -873,7 +889,9 @@ export function ArtemisHomePage() {
               <div className="mb-4 grid size-12 place-items-center rounded-2xl bg-[#EEF2FF] text-[#4F6EF7]">
                 <ShieldCheck className="size-5" />
               </div>
-              <h3 className="text-xl font-bold text-[#0B1B33]">Designed with enterprise security in mind</h3>
+              <h3 className="text-xl font-bold text-[#0B1B33]">
+                Designed with enterprise security in mind
+              </h3>
               <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">
                 Role-based access, tenant isolation, and secure data boundaries are part of the
                 product design. We do not claim SOC 2 / ISO certifications we have not completed.
@@ -891,8 +909,8 @@ export function ArtemisHomePage() {
             </article>
           </div>
           <p className="mt-6 text-xs text-[#8A9BB5]">
-            Built to support GDPR-conscious workflows (access control, retention, erasure paths). Not a
-            claim of completed certification audits.{" "}
+            Built to support GDPR-conscious workflows (access control, retention, erasure paths).
+            Not a claim of completed certification audits.{" "}
             <a href="/security" className="font-semibold text-[#12C48A] hover:underline">
               Read security →
             </a>
@@ -938,7 +956,8 @@ export function ArtemisHomePage() {
               of your sales organization.
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-white/70">
-              Book a demo — or explore the interactive product demo and see the CEO → call → coaching story.
+              Book a demo — or explore the interactive product demo and see the CEO → call →
+              coaching story.
             </p>
             <div className="mt-6 flex justify-center">
               <ContactLinks tone="dark" className="items-center text-center" />
@@ -954,9 +973,7 @@ export function ArtemisHomePage() {
                 Request Early Access
               </ArtemisButton>
             </div>
-            <p className="mt-4 text-xs text-white/45">
-              Or call {CONTACT_PHONE_DISPLAY}
-            </p>
+            <p className="mt-4 text-xs text-white/45">Or call {CONTACT_PHONE_DISPLAY}</p>
           </div>
         </div>
       </section>
@@ -1031,13 +1048,7 @@ function Flywheel() {
   );
 }
 
-function SignalGrid({
-  items,
-  tint = "ops",
-}: {
-  items: string[];
-  tint?: "ops" | "executive";
-}) {
+function SignalGrid({ items, tint = "ops" }: { items: string[]; tint?: "ops" | "executive" }) {
   return (
     <div
       className={cn(
@@ -1109,10 +1120,13 @@ function HeroVisual() {
         <div className="mt-4 rounded-2xl bg-gradient-to-r from-[#2EE6A6] to-[#18C4FF] p-4 text-[#0B1B33]">
           <div className="flex items-center gap-2">
             <Target className="size-3.5 opacity-80" />
-            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">Product proof</p>
+            <p className="text-xs font-semibold uppercase tracking-wide opacity-80">
+              Product proof
+            </p>
           </div>
           <p className="mt-1 text-sm font-semibold">
-            Explore the interactive Apex Markets demo — CEO, manager, agent, call review, and coaching in one flow.
+            Explore the interactive Apex Markets demo — CEO, manager, agent, call review, and
+            coaching in one flow.
           </p>
         </div>
       </div>

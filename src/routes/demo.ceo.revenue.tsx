@@ -25,14 +25,23 @@ function RevenuePage() {
               <XAxis dataKey="name" tick={{ fontSize: 11 }} />
               <YAxis tick={{ fontSize: 11 }} />
               <Tooltip {...chartTooltip} />
-              <Bar dataKey="deposits" name="Deposits €" fill="hsl(var(--primary))" radius={[6, 6, 0, 0]} />
+              <Bar
+                dataKey="deposits"
+                name="Deposits €"
+                fill="hsl(var(--primary))"
+                radius={[6, 6, 0, 0]}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </Panel>
       <p className="text-xs text-muted-foreground">
         Jump to{" "}
-        <Link to="/demo/ceo/teams/$teamId" params={{ teamId: "team-velocity" }} className="text-primary hover:underline">
+        <Link
+          to="/demo/ceo/teams/$teamId"
+          params={{ teamId: "team-velocity" }}
+          className="text-primary hover:underline"
+        >
           Velocity Desk
         </Link>{" "}
         for the conversion story.

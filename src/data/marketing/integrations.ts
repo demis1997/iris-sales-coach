@@ -72,7 +72,11 @@ export const INTEGRATIONS: IntegrationItem[] = [
     category: "Telephony",
     status: "planned",
     blurb: "Planned telephony integration for teams already running Aircall.",
-    workflow: ["Call completes in Aircall", "Recording/metadata ingested (planned)", "Artemis analyzes"],
+    workflow: [
+      "Call completes in Aircall",
+      "Recording/metadata ingested (planned)",
+      "Artemis analyzes",
+    ],
   },
   {
     slug: "ringcentral",
@@ -96,7 +100,11 @@ export const INTEGRATIONS: IntegrationItem[] = [
     category: "Data",
     status: "planned",
     blurb: "Event webhooks for call completed, analysis ready, and coaching assigned.",
-    workflow: ["Subscribe to events", "Receive signed payloads (planned)", "Update downstream systems"],
+    workflow: [
+      "Subscribe to events",
+      "Receive signed payloads (planned)",
+      "Update downstream systems",
+    ],
   },
 ];
 

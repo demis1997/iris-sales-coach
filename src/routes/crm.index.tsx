@@ -7,7 +7,10 @@ export const Route = createFileRoute("/crm/")({
   head: () => ({
     meta: [
       { title: "Accounts — Artemis CRM" },
-      { name: "description", content: "Every account with revenue, owner and AI-scored health from conversations." },
+      {
+        name: "description",
+        content: "Every account with revenue, owner and AI-scored health from conversations.",
+      },
       { property: "og:title", content: "Accounts — Artemis CRM" },
       { property: "og:description", content: "Account health scored from real conversations." },
     ],
@@ -29,8 +32,17 @@ function AccountsPage() {
       <PageHeading title="Accounts" subtitle="Health is scored from what customers actually said" />
 
       <div className="mb-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Open account value" value={`€${(total / 1000).toFixed(0)}k`} delta={12} icon={Building2} />
-        <StatCard label="Accounts" value={String(crmCompanies.length)} hint="2 expansion candidates" />
+        <StatCard
+          label="Open account value"
+          value={`€${(total / 1000).toFixed(0)}k`}
+          delta={12}
+          icon={Building2}
+        />
+        <StatCard
+          label="Accounts"
+          value={String(crmCompanies.length)}
+          hint="2 expansion candidates"
+        />
         <StatCard label="At risk" value="1" delta={-8} hint="Aegean FX — refund language" />
         <StatCard label="Avg. seats" value="116" hint="per account" />
       </div>

@@ -63,9 +63,7 @@ export function ActiveCallCenter({
               >
                 {statusLabel}
               </p>
-              <h2 className="mt-1 text-xl font-semibold tracking-tight">
-                {session.prospect.name}
-              </h2>
+              <h2 className="mt-1 text-xl font-semibold tracking-tight">{session.prospect.name}</h2>
               <p className="mt-1 text-xs text-muted-foreground">
                 {session.lead.country} · {session.lead.phoneMasked}
               </p>
@@ -113,7 +111,12 @@ export function ActiveCallCenter({
             onClick={onMute}
             icon={session.muted ? MicOff : Mic}
           />
-          <ControlButton label="Keypad" active={session.keypadOpen} onClick={onKeypad} icon={Grid3X3} />
+          <ControlButton
+            label="Keypad"
+            active={session.keypadOpen}
+            onClick={onKeypad}
+            icon={Grid3X3}
+          />
           <ControlButton
             label={session.onHold ? "Resume" : "Hold"}
             active={session.onHold}

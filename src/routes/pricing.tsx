@@ -82,7 +82,9 @@ function PricingPage() {
                   : "rounded-[1.75rem] border border-[#E8EEF7] bg-white p-7"
               }
             >
-              <p className="text-xs font-semibold uppercase tracking-wide text-[#8A9BB5]">{tier.name}</p>
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#8A9BB5]">
+                {tier.name}
+              </p>
               <p className="mt-3 text-3xl font-bold tracking-tight text-[#0B1B33]">{tier.price}</p>
               <p className="mt-3 text-sm text-[#4B5C76]">{tier.blurb}</p>
               <ul className="mt-6 space-y-2 text-sm text-[#4B5C76]">

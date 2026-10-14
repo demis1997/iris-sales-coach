@@ -6,7 +6,10 @@ export const Route = createFileRoute("/manager/coaching")({
   head: () => ({
     meta: [
       { title: "Coaching — Artemis Manager" },
-      { name: "description", content: "Assign coaching plans generated from each rep's real conversations." },
+      {
+        name: "description",
+        content: "Assign coaching plans generated from each rep's real conversations.",
+      },
       { property: "og:title", content: "Coaching — Artemis Manager" },
       { property: "og:description", content: "Coaching plans written from real calls." },
     ],

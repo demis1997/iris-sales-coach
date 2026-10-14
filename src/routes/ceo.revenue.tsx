@@ -10,7 +10,10 @@ export const Route = createFileRoute("/ceo/revenue")({
   head: () => ({
     meta: [
       { title: "Revenue Intelligence — Artemis Executive" },
-      { name: "description", content: "Executive outcomes: forecast, coaching ROI, skill gaps, and drill-down." },
+      {
+        name: "description",
+        content: "Executive outcomes: forecast, coaching ROI, skill gaps, and drill-down.",
+      },
     ],
   }),
   component: CeoRevenuePage,
@@ -78,10 +81,7 @@ function CeoRevenuePage() {
       </div>
 
       <Panel className="mt-4">
-        <PanelHeader
-          title="Drill-down"
-          subtitle="Company → Team → Rep → Campaign → Call → Deal"
-        />
+        <PanelHeader title="Drill-down" subtitle="Company → Team → Rep → Campaign → Call → Deal" />
         <div className="grid gap-2 p-5 sm:grid-cols-2 lg:grid-cols-3">
           {dealIntelligence.map((d) => (
             <Link

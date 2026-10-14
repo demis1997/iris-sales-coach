@@ -94,8 +94,8 @@ function InvitePage() {
         <Panel className="mt-6 p-6">
           <h1 className="text-xl font-semibold">Join your company</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Sign in or create an account with the invited email. You will join the existing company — a new
-            tenant is not created.
+            Sign in or create an account with the invited email. You will join the existing company
+            — a new tenant is not created.
           </p>
           {err ? <p className="mt-3 text-sm text-red-500">{err}</p> : null}
           {msg ? <p className="mt-3 text-sm text-emerald-600">{msg}</p> : null}
@@ -135,7 +135,10 @@ function InvitePage() {
               </button>
             </form>
           ) : null}
-          <Link to="/auth" className="mt-4 inline-block text-xs text-muted-foreground hover:underline">
+          <Link
+            to="/auth"
+            className="mt-4 inline-block text-xs text-muted-foreground hover:underline"
+          >
             Back to sign in
           </Link>
         </Panel>

@@ -80,8 +80,7 @@ export function CopilotPanel({
 }
 
 function SignalChip({ signal }: { signal: LiveSignal }) {
-  const trend =
-    signal.trend === "up" ? "↑" : signal.trend === "down" ? "↓" : "";
+  const trend = signal.trend === "up" ? "↑" : signal.trend === "down" ? "↓" : "";
   return (
     <div className="rounded-xl border border-border bg-secondary/20 px-2.5 py-2">
       <p className="text-[10px] tracking-wide text-muted-foreground uppercase">{signal.label}</p>
@@ -114,13 +113,13 @@ function SuggestionCard({
       )}
     >
       <div className="flex flex-wrap items-center gap-2">
-        <Chip tone={suggestion.kind === "coaching" ? "warn" : "iris"}>
-          {suggestion.title}
-        </Chip>
+        <Chip tone={suggestion.kind === "coaching" ? "warn" : "iris"}>{suggestion.title}</Chip>
         {suggestion.importance === "high" ? (
           <span className="text-[10px] font-medium text-warning">High importance</span>
         ) : null}
-        {used ? <span className="text-[10px] font-semibold text-success">Suggestion used ✓</span> : null}
+        {used ? (
+          <span className="text-[10px] font-semibold text-success">Suggestion used ✓</span>
+        ) : null}
       </div>
       <p className="mt-2 whitespace-pre-line text-xs leading-relaxed">{suggestion.body}</p>
       {suggestion.script ? (

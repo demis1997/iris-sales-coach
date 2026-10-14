@@ -9,11 +9,7 @@ import {
 } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { isSupabaseConfigured } from "@/integrations/supabase/config";
-import {
-  loadAuthSession,
-  type AuthSession,
-  sessionCan,
-} from "@/lib/auth-session";
+import { loadAuthSession, type AuthSession, sessionCan } from "@/lib/auth-session";
 import type { Permission } from "@/lib/permissions";
 import { workspacesForRole, roleLabel } from "@/lib/permissions";
 

@@ -181,12 +181,11 @@ export function Hero() {
             The AI Revenue Operating System for high-performance sales teams
           </span>
           <h1 className="mt-6 text-4xl leading-[1.04] font-semibold tracking-tight text-balance md:text-[4rem]">
-            Every Sales Call. Every Insight.{" "}
-            <span className="gradient-text">Every Deal.</span>
+            Every Sales Call. Every Insight. <span className="gradient-text">Every Deal.</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-            Iris is designed to turn every customer conversation into coaching, revenue intelligence,
-            and clearer next actions for high-volume sales teams.
+            Iris is designed to turn every customer conversation into coaching, revenue
+            intelligence, and clearer next actions for high-volume sales teams.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
             <Link
@@ -217,16 +216,21 @@ export function Hero() {
             Built for high-volume revenue teams
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-            {["Forex & CFD", "Insurance", "Financial Services", "Real Estate", "BPO", "SaaS Sales"].map(
-              (b) => (
-                <span
-                  key={b}
-                  className="rounded-full border border-border bg-secondary/30 px-3 py-1 text-xs font-medium text-muted-foreground"
-                >
-                  {b}
-                </span>
-              ),
-            )}
+            {[
+              "Forex & CFD",
+              "Insurance",
+              "Financial Services",
+              "Real Estate",
+              "BPO",
+              "SaaS Sales",
+            ].map((b) => (
+              <span
+                key={b}
+                className="rounded-full border border-border bg-secondary/30 px-3 py-1 text-xs font-medium text-muted-foreground"
+              >
+                {b}
+              </span>
+            ))}
           </div>
         </Reveal>
 

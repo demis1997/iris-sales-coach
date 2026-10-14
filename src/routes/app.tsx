@@ -39,7 +39,10 @@ export const Route = createFileRoute("/app")({
   head: () => ({
     meta: [
       { title: "Rep Workspace — Artemis AI" },
-      { name: "description", content: "Your calls, AI coaching, performance and goals in Artemis AI." },
+      {
+        name: "description",
+        content: "Your calls, AI coaching, performance and goals in Artemis AI.",
+      },
       { property: "og:title", content: "Rep Workspace — Artemis AI" },
       { property: "og:description", content: "Your calls, AI coaching, performance and goals." },
     ],

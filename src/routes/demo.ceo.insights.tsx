@@ -14,7 +14,11 @@ function InsightsPage() {
   if (loading || !brief) return <DemoLoading />;
   return (
     <DemoPage>
-      <PageHeading title="Insights" subtitle="Simulated executive intelligence" action={<Chip tone="iris">Demo Analysis</Chip>} />
+      <PageHeading
+        title="Insights"
+        subtitle="Simulated executive intelligence"
+        action={<Chip tone="iris">Demo Analysis</Chip>}
+      />
       <Panel>
         <PanelHeader title="Executive brief" />
         <p className="whitespace-pre-line p-5 text-sm text-muted-foreground">{brief.body}</p>

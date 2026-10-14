@@ -23,10 +23,7 @@ function formatValue(value: unknown, key: string): string {
  * Interpolate {{variables}} in a prompt template.
  * Throws if any referenced variable is missing or undefined/null.
  */
-export function renderPrompt(
-  template: string,
-  variables: Record<string, unknown>,
-): string {
+export function renderPrompt(template: string, variables: Record<string, unknown>): string {
   const missing: string[] = [];
   const used = new Set<string>();
 

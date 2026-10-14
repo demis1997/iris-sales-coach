@@ -1,3 +1,4 @@
+import { isSupabaseConfigured } from "@/integrations/supabase/config";
 import {
   createInitialSession,
   LEAD_10821,
@@ -7,18 +8,8 @@ import {
 } from "./fixtures";
 import { DemoCopilotService } from "./demo-copilot-service";
 import { DemoTranscriptionService } from "./demo-transcription-service";
-import {
-  FRESH_CALL_TIMELINE,
-  LIVE_CALL_TIMELINE,
-  type TimelineEvent,
-} from "./timeline";
-import type {
-  AgentStatus,
-  CallDisposition,
-  CallSession,
-  DemoSpeed,
-  QueueLead,
-} from "./types";
+import { FRESH_CALL_TIMELINE, LIVE_CALL_TIMELINE, type TimelineEvent } from "./timeline";
+import type { AgentStatus, CallDisposition, CallSession, DemoSpeed, QueueLead } from "./types";
 
 const TICK_MS = 250;
 
@@ -170,8 +161,8 @@ export class DemoCallService {
     this.setSession({ ...this.session, playbookDrawerOpen: open });
   }
 
-  useSuggestion(id: string) {
-    this.setSession(DemoCopilotService.useSuggestion(this.session, id));
+  applySuggestion(id: string) {
+    this.setSession(DemoCopilotService.applySuggestion(this.session, id));
   }
 
   dismissSuggestion(id: string) {
@@ -321,7 +312,7 @@ export class DemoCallService {
       });
     };
 
-    if (!transcriptText || transcriptText.trim().length < 20) {
+    if (!isSupabaseConfigured() || !transcriptText || transcriptText.trim().length < 20) {
       fallback();
       return;
     }
@@ -331,6 +322,7 @@ export class DemoCallService {
       const result = await coachTranscript({
         data: {
           transcript: transcriptText,
+          demo: true,
           repName: this.session.agent.name,
           product: "Apex Markets trading account",
           callType: "forex outbound",

@@ -7,7 +7,10 @@ export const Route = createFileRoute("/crm/tasks")({
   head: () => ({
     meta: [
       { title: "Tasks — Artemis CRM" },
-      { name: "description", content: "Follow-up tasks generated automatically from calls and workflow automations." },
+      {
+        name: "description",
+        content: "Follow-up tasks generated automatically from calls and workflow automations.",
+      },
       { property: "og:title", content: "Tasks — Artemis CRM" },
       { property: "og:description", content: "Follow-ups written for you after every call." },
     ],
@@ -18,7 +21,10 @@ export const Route = createFileRoute("/crm/tasks")({
 function TasksPage() {
   return (
     <>
-      <PageHeading title="Tasks" subtitle="Created automatically from conversations and workflows" />
+      <PageHeading
+        title="Tasks"
+        subtitle="Created automatically from conversations and workflows"
+      />
       <Panel>
         <div className="divide-y divide-border">
           {crmTasks.map((t) => (

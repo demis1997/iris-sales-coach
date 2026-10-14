@@ -27,13 +27,7 @@ export function ArtemisEyeIcon({ className }: { className?: string }) {
   );
 }
 
-export function ArtemisIcon({
-  className,
-  size = 32,
-}: {
-  className?: string;
-  size?: number;
-}) {
+export function ArtemisIcon({ className, size = 32 }: { className?: string; size?: number }) {
   return (
     <img
       src={ARTEMIS_BRAND.iconApp}

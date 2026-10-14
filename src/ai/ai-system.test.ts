@@ -10,11 +10,7 @@ import {
   PROMPT_REGISTRY,
 } from "@/ai/registry/prompt-registry";
 import { createAIService } from "@/ai/services/ai-service";
-import {
-  PromptRenderError,
-  listTemplateVariables,
-  renderPrompt,
-} from "@/ai/utils/prompt-renderer";
+import { PromptRenderError, listTemplateVariables, renderPrompt } from "@/ai/utils/prompt-renderer";
 import { SchemaValidationError, validateSchema } from "@/ai/utils/schema-validator";
 import { LiveCopilotSchema } from "@/ai/schemas/live-copilot.schema";
 import { CallAnalysisSchema } from "@/ai/schemas/call-analysis.schema";

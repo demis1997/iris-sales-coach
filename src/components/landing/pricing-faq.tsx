@@ -18,21 +18,41 @@ const plans = [
   {
     name: "Starter",
     d: "For a single desk proving the model.",
-    f: ["Up to 15 reps", "Call scoring & transcripts", "Personal AI coach", "Objection intelligence", "Email support"],
+    f: [
+      "Up to 15 reps",
+      "Call scoring & transcripts",
+      "Personal AI coach",
+      "Objection intelligence",
+      "Email support",
+    ],
     cta: "Book demo",
     featured: false,
   },
   {
     name: "Growth",
     d: "For scaling floors that live on conversion rate.",
-    f: ["Up to 150 reps", "Everything in Starter", "Compliance monitoring", "Executive dashboard & alerts", "Methodology scoring (SPIN, MEDDIC)", "Dedicated onboarding"],
+    f: [
+      "Up to 150 reps",
+      "Everything in Starter",
+      "Compliance monitoring",
+      "Executive dashboard & alerts",
+      "Methodology scoring (SPIN, MEDDIC)",
+      "Dedicated onboarding",
+    ],
     cta: "Book demo",
     featured: true,
   },
   {
     name: "Enterprise",
     d: "For multi-desk, multi-region, regulated organizations.",
-    f: ["Unlimited reps & desks", "Everything in Growth", "SSO, SCIM & audit logs", "EU data residency & retention policy", "Custom coaching models", "Dedicated success manager"],
+    f: [
+      "Unlimited reps & desks",
+      "Everything in Growth",
+      "SSO, SCIM & audit logs",
+      "EU data residency & retention policy",
+      "Custom coaching models",
+      "Dedicated success manager",
+    ],
     cta: "Contact sales",
     featured: false,
   },
@@ -250,10 +270,16 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
-          <p className="text-xs text-muted-foreground">© 2026 Iris Intelligence. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">
+            © 2026 Iris Intelligence. All rights reserved.
+          </p>
           <div className="flex gap-6 text-xs text-muted-foreground">
-            <Link to="/app" className="hover:text-foreground">Rep dashboard</Link>
-            <Link to="/ceo" className="hover:text-foreground">Executive dashboard</Link>
+            <Link to="/app" className="hover:text-foreground">
+              Rep dashboard
+            </Link>
+            <Link to="/ceo" className="hover:text-foreground">
+              Executive dashboard
+            </Link>
           </div>
         </div>
       </div>

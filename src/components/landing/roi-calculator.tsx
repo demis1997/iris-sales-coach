@@ -76,8 +76,7 @@ export function RoiCalculator() {
             <Calculator className="size-3" /> ROI calculator
           </span>
           <h2 className="mt-5 text-3xl leading-[1.1] font-semibold tracking-tight text-balance md:text-[2.75rem]">
-            Model what a{" "}
-            <span className="gradient-text">close-rate improvement</span> could mean
+            Model what a <span className="gradient-text">close-rate improvement</span> could mean
           </h2>
           <p className="mt-4 text-base text-muted-foreground">
             Illustrative scenario only — not a customer result. Adjust the inputs to your own floor
@@ -88,11 +87,49 @@ export function RoiCalculator() {
         <Reveal delay={0.08} className="mt-12">
           <Panel className="grid gap-8 p-6 md:grid-cols-[1fr_1fr] md:p-9">
             <div className="space-y-7">
-              <Field label="Number of salespeople" value={reps} min={5} max={400} step={5} onChange={setReps} />
-              <Field label="Average deals closed per rep, per month" value={deals} min={1} max={60} step={1} onChange={setDeals} />
-              <Field label="Average revenue per deal" value={revenue} min={200} max={25000} step={100} suffix=" €" onChange={setRevenue} />
-              <Field label="Current close rate" value={closeRate} min={5} max={60} step={1} suffix="%" onChange={setCloseRate} />
-              <Field label="Assumed close-rate improvement (scenario)" value={lift} min={1} max={10} step={1} suffix=" pts" onChange={setLift} />
+              <Field
+                label="Number of salespeople"
+                value={reps}
+                min={5}
+                max={400}
+                step={5}
+                onChange={setReps}
+              />
+              <Field
+                label="Average deals closed per rep, per month"
+                value={deals}
+                min={1}
+                max={60}
+                step={1}
+                onChange={setDeals}
+              />
+              <Field
+                label="Average revenue per deal"
+                value={revenue}
+                min={200}
+                max={25000}
+                step={100}
+                suffix=" €"
+                onChange={setRevenue}
+              />
+              <Field
+                label="Current close rate"
+                value={closeRate}
+                min={5}
+                max={60}
+                step={1}
+                suffix="%"
+                onChange={setCloseRate}
+              />
+              <Field
+                label="Assumed close-rate improvement (scenario)"
+                value={lift}
+                min={1}
+                max={10}
+                step={1}
+                suffix=" pts"
+                onChange={setLift}
+              />
             </div>
 
             <div className="flex flex-col justify-between gap-5 rounded-2xl border border-border bg-secondary/25 p-6">
@@ -104,7 +141,8 @@ export function RoiCalculator() {
                   {fmt(delta)}
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Scenario: {closeRate}% → {closeRate + lift}% close rate across {reps} reps. Not a guaranteed outcome.
+                  Scenario: {closeRate}% → {closeRate + lift}% close rate across {reps} reps. Not a
+                  guaranteed outcome.
                 </p>
               </div>
 

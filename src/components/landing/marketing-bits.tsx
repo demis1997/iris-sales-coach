@@ -19,11 +19,7 @@ export function Reveal({
   children: ReactNode;
 }) {
   return (
-    <motion.div
-      {...fadeUp}
-      transition={{ ...fadeUp.transition, delay }}
-      className={className}
-    >
+    <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay }} className={className}>
       {children}
     </motion.div>
   );
@@ -58,12 +54,7 @@ export function Section({
   return (
     <section id={id} className={cn("mx-auto w-full max-w-6xl px-5 py-20 md:py-28", className)}>
       {title ? (
-        <Reveal
-          className={cn(
-            "max-w-2xl",
-            align === "center" && "mx-auto max-w-3xl text-center",
-          )}
-        >
+        <Reveal className={cn("max-w-2xl", align === "center" && "mx-auto max-w-3xl text-center")}>
           {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
           <h2 className="mt-4 text-3xl leading-[1.1] font-semibold tracking-tight text-balance md:text-[2.6rem]">
             {title}

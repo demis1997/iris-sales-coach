@@ -1,4 +1,11 @@
-import { DEMO_COMPANY, DEMO_FUNNEL, DEMO_KPIS, DEMO_LOSS_REASONS, EXECUTIVE_BRIEF, COACHING_ROI } from "@/data/demo/company";
+import {
+  DEMO_COMPANY,
+  DEMO_FUNNEL,
+  DEMO_KPIS,
+  DEMO_LOSS_REASONS,
+  EXECUTIVE_BRIEF,
+  COACHING_ROI,
+} from "@/data/demo/company";
 import { DEMO_AGENTS, agentsForTeam, getAgent } from "@/data/demo/agents";
 import { ALL_DEMO_CALLS, getCall } from "@/data/demo/calls";
 import { DEMO_CONTACTS, DEMO_OPPORTUNITIES } from "@/data/demo/contacts";

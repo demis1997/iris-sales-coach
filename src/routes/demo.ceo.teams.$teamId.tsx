@@ -21,7 +21,11 @@ function TeamDetailPage() {
         title={team.name}
         subtitle={`Manager ${team.managerName} · ${team.agents} agents`}
         action={
-          team.id === "team-velocity" ? <Chip tone="warn">Converts 23% below company avg</Chip> : <Chip tone="good">Healthy</Chip>
+          team.id === "team-velocity" ? (
+            <Chip tone="warn">Converts 23% below company avg</Chip>
+          ) : (
+            <Chip tone="good">Healthy</Chip>
+          )
         }
       />
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -36,8 +40,8 @@ function TeamDetailPage() {
         <Panel className="border-warning/30 bg-warning/5 p-5 text-sm">
           <p className="font-medium">Demo insight</p>
           <p className="mt-1 text-muted-foreground">
-            High volume, weak conversion — start with Daniel Petrou. He generates dials but misses close windows
-            after buying signals.
+            High volume, weak conversion — start with Daniel Petrou. He generates dials but misses
+            close windows after buying signals.
           </p>
           <Link
             to="/demo/ceo/agents/$agentId"

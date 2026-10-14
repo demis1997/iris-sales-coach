@@ -13,7 +13,8 @@ export const Route = createFileRoute("/contact")({
   head: () =>
     seoMeta({
       title: "Contact | Artemis AI",
-      description: "Talk to Artemis about a demo, design partnership, or rollout for your sales team.",
+      description:
+        "Talk to Artemis about a demo, design partnership, or rollout for your sales team.",
       path: "/contact",
     }),
   component: ContactPage,
@@ -46,7 +47,9 @@ function ContactPage() {
           <div className="rounded-[1.75rem] border border-[#E8EEF7] bg-[#F7FAFF] p-6 sm:p-8">
             {sent ? (
               <div className="py-10 text-center">
-                <p className="text-xl font-semibold text-[#0B1B33]">Thanks — your mail draft is ready.</p>
+                <p className="text-xl font-semibold text-[#0B1B33]">
+                  Thanks — your mail draft is ready.
+                </p>
                 <p className="mt-2 text-sm text-[#4B5C76]">
                   If your mail client didn't open, email us directly and we'll follow up.
                 </p>

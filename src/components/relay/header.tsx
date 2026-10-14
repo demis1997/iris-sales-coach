@@ -147,9 +147,21 @@ const NAV: NavItem[] = [
       {
         title: "By role",
         links: [
-          { label: "Sales Agents", href: "/solutions/sales", description: "Live copilot and personal improvement." },
-          { label: "Managers", href: "/solutions/sales-management", description: "Attention queues and coaching." },
-          { label: "Revenue Leaders", href: "/solutions/revenue-leaders", description: "Conversation-driven revenue views." },
+          {
+            label: "Sales Agents",
+            href: "/solutions/sales",
+            description: "Live copilot and personal improvement.",
+          },
+          {
+            label: "Managers",
+            href: "/solutions/sales-management",
+            description: "Attention queues and coaching.",
+          },
+          {
+            label: "Revenue Leaders",
+            href: "/solutions/revenue-leaders",
+            description: "Conversation-driven revenue views.",
+          },
         ],
       },
       {
@@ -198,9 +210,17 @@ const NAV: NavItem[] = [
       {
         title: "Learn",
         links: [
-          { label: "Guides", href: "/resources", description: "Practical writing on high-volume sales." },
+          {
+            label: "Guides",
+            href: "/resources",
+            description: "Practical writing on high-volume sales.",
+          },
           { label: "Documentation", href: "/docs", description: "Product docs preview." },
-          { label: "Integrations", href: "/integrations", description: "Optional CRM, SIP and APIs." },
+          {
+            label: "Integrations",
+            href: "/integrations",
+            description: "Optional CRM, SIP and APIs.",
+          },
         ],
       },
       {
@@ -223,8 +243,18 @@ const NAV: NavItem[] = [
       {
         title: "Artemis",
         links: [
-          { label: "About", href: "/company", description: "What we're building and why.", icon: Building2 },
-          { label: "Security", href: "/security", description: "Architecture and roadmap.", icon: Shield },
+          {
+            label: "About",
+            href: "/company",
+            description: "What we're building and why.",
+            icon: Building2,
+          },
+          {
+            label: "Security",
+            href: "/security",
+            description: "Architecture and roadmap.",
+            icon: Shield,
+          },
           { label: "Contact", href: "/contact", description: "Talk to us." },
         ],
       },
@@ -243,7 +273,12 @@ function NavHref({
   onClick?: () => void;
   children: React.ReactNode;
 }) {
-  if (href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("#")) {
+  if (
+    href.startsWith("http") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.startsWith("#")
+  ) {
     return (
       <a href={href} className={className} onClick={onClick}>
         {children}
@@ -288,7 +323,10 @@ export function ArtemisHeader() {
           <ArtemisMark />
         </Link>
 
-        <nav ref={navRef} className="relative hidden flex-1 items-center justify-center gap-1 lg:flex">
+        <nav
+          ref={navRef}
+          className="relative hidden flex-1 items-center justify-center gap-1 lg:flex"
+        >
           {NAV.map((item) => {
             const hasMenu = Boolean(item.columns || item.featured);
             const isOpen = desktopOpen === item.label;
@@ -315,18 +353,24 @@ export function ArtemisHeader() {
                   type="button"
                   className={cn(
                     "inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-                    isOpen ? "bg-[#F7FAFF] text-[#0B1B33]" : "text-[#4B5C76] hover:bg-[#F7FAFF] hover:text-[#0B1B33]",
+                    isOpen
+                      ? "bg-[#F7FAFF] text-[#0B1B33]"
+                      : "text-[#4B5C76] hover:bg-[#F7FAFF] hover:text-[#0B1B33]",
                   )}
                   aria-expanded={isOpen}
                   onClick={() => setDesktopOpen(isOpen ? null : item.label)}
                 >
                   {item.label}
-                  <ChevronDown className={cn("size-3.5 transition-transform", isOpen && "rotate-180")} />
+                  <ChevronDown
+                    className={cn("size-3.5 transition-transform", isOpen && "rotate-180")}
+                  />
                 </button>
                 <div
                   className={cn(
                     "absolute top-full left-1/2 z-50 pt-2 transition-all",
-                    isOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0",
+                    isOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible -translate-y-1 opacity-0",
                   )}
                   style={{ transform: "translateX(-50%)" }}
                 >
@@ -357,7 +401,12 @@ export function ArtemisHeader() {
         </button>
       </div>
 
-      <div className={cn("border-t border-[#E8EEF7] bg-white lg:hidden", mobileOpen ? "block" : "hidden")}>
+      <div
+        className={cn(
+          "border-t border-[#E8EEF7] bg-white lg:hidden",
+          mobileOpen ? "block" : "hidden",
+        )}
+      >
         <div className="mx-auto max-w-6xl space-y-1 px-5 py-4">
           {NAV.map((item) => {
             const hasMenu = Boolean(item.columns || item.featured);
@@ -382,7 +431,9 @@ export function ArtemisHeader() {
                   onClick={() => setMobileSection(open ? null : item.label)}
                 >
                   {item.label}
-                  <ChevronDown className={cn("size-4 transition-transform", open && "rotate-180")} />
+                  <ChevronDown
+                    className={cn("size-4 transition-transform", open && "rotate-180")}
+                  />
                 </button>
                 {open ? (
                   <div className="space-y-3 border-t border-[#E8EEF7] px-3 py-3">
@@ -489,7 +540,9 @@ function MegaMenu({
         >
           {item.columns.map((col) => (
             <div key={col.title}>
-              <p className="text-[11px] font-semibold tracking-wide text-[#8A9BB5] uppercase">{col.title}</p>
+              <p className="text-[11px] font-semibold tracking-wide text-[#8A9BB5] uppercase">
+                {col.title}
+              </p>
               <ul className="mt-3 space-y-2">
                 {col.links.map((link) => (
                   <li key={link.label}>
@@ -500,7 +553,9 @@ function MegaMenu({
                     >
                       <span className="block text-sm font-medium text-[#0B1B33]">{link.label}</span>
                       {link.description ? (
-                        <span className="mt-0.5 block text-xs text-[#8A9BB5]">{link.description}</span>
+                        <span className="mt-0.5 block text-xs text-[#8A9BB5]">
+                          {link.description}
+                        </span>
                       ) : null}
                     </NavHref>
                   </li>
@@ -512,7 +567,11 @@ function MegaMenu({
       ) : null}
       <div className="flex items-center justify-between gap-3 border-t border-[#E8EEF7] bg-[#F7FAFF] px-5 py-3">
         <p className="text-xs text-[#8A9BB5]">The AI Operating System for revenue teams.</p>
-        <NavHref href="/contact" onClick={onNavigate} className="shrink-0 text-xs font-semibold text-[#12C48A] hover:underline">
+        <NavHref
+          href="/contact"
+          onClick={onNavigate}
+          className="shrink-0 text-xs font-semibold text-[#12C48A] hover:underline"
+        >
           Book a Demo →
         </NavHref>
       </div>

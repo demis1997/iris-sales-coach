@@ -90,7 +90,6 @@ const OTHER = [
   },
 ];
 
-
 const FAQS: { q: string; a: React.ReactNode }[] = [
   {
     q: "What is Speech Analytics in AI?",
@@ -191,8 +190,8 @@ export function ArtemisSpeechAnalyticsPage() {
                 Get Started
               </ArtemisButton>
               <p className="max-w-xs text-xs text-white/45">
-                By clicking &quot;Get Started&quot; you agree to Artemis AI&apos;s Privacy Policy and
-                Terms of Service.
+                By clicking &quot;Get Started&quot; you agree to Artemis AI&apos;s Privacy Policy
+                and Terms of Service.
               </p>
             </div>
           </div>
@@ -300,19 +299,26 @@ export function ArtemisSpeechAnalyticsPage() {
             Demo screens may show simulated integrations.
           </p>
           <div className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
-            {["Salesforce", "HubSpot", "Zendesk", "Freshdesk", "Slack", "Zapier", "Twilio", "Aircall"].map(
-              (name) => (
-                <div
-                  key={name}
-                  className="rounded-xl border border-white/10 bg-[#0B1220] px-3 py-4 text-sm font-medium text-white/80"
-                >
-                  {name}
-                  <span className="mt-1 block text-[10px] font-normal uppercase tracking-wide text-white/40">
-                    {name === "Twilio" ? "In progress" : "Planned"}
-                  </span>
-                </div>
-              ),
-            )}
+            {[
+              "Salesforce",
+              "HubSpot",
+              "Zendesk",
+              "Freshdesk",
+              "Slack",
+              "Zapier",
+              "Twilio",
+              "Aircall",
+            ].map((name) => (
+              <div
+                key={name}
+                className="rounded-xl border border-white/10 bg-[#0B1220] px-3 py-4 text-sm font-medium text-white/80"
+              >
+                {name}
+                <span className="mt-1 block text-[10px] font-normal uppercase tracking-wide text-white/40">
+                  {name === "Twilio" ? "In progress" : "Planned"}
+                </span>
+              </div>
+            ))}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <ArtemisButton href="/demo" variant="secondary">
@@ -331,7 +337,8 @@ export function ArtemisSpeechAnalyticsPage() {
               Book a demo or request early access
             </h2>
             <p className="mt-4 text-white/65">
-              Talk through conversation intelligence for your sales or support floor. Or reach us directly:
+              Talk through conversation intelligence for your sales or support floor. Or reach us
+              directly:
             </p>
             <ContactLinks tone="dark" className="mt-4" />
             <ul className="mt-6 space-y-3 text-sm text-white/70">
@@ -421,8 +428,8 @@ export function ArtemisSpeechAnalyticsPage() {
                   </select>
                 </label>
                 <label className="flex items-start gap-2 text-xs text-white/55">
-                  <input type="checkbox" className="mt-0.5 accent-[#2EE6A6]" />
-                  I agree to receive marketing communications from Artemis AI
+                  <input type="checkbox" className="mt-0.5 accent-[#2EE6A6]" />I agree to receive
+                  marketing communications from Artemis AI
                 </label>
                 <button
                   type="submit"
@@ -432,7 +439,8 @@ export function ArtemisSpeechAnalyticsPage() {
                 </button>
                 <p className="text-[11px] leading-relaxed text-white/40">
                   By clicking &quot;Get Started&quot;, you agree that we may process your personal
-                  data in accordance with our Privacy Policy and you accept our Terms and Conditions.
+                  data in accordance with our Privacy Policy and you accept our Terms and
+                  Conditions.
                 </p>
               </form>
             )}
@@ -641,7 +649,9 @@ function FeatureMock({ kind }: { kind: "scoring" | "transcript" | "summary" }) {
           </div>
         ))}
       </div>
-      <p className="mt-3 text-center text-[10px] text-white/35">Illustrative demo scores · not a review rating</p>
+      <p className="mt-3 text-center text-[10px] text-white/35">
+        Illustrative demo scores · not a review rating
+      </p>
     </div>
   );
 }

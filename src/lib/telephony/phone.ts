@@ -1,26 +1,12 @@
-/** Normalize to E.164-ish (+digits). Throws if unusable. */
-export function normalizeE164(raw: string, defaultCountry = "357"): string {
-  const trimmed = raw.trim();
-  if (!trimmed) throw new Error("Enter a phone number");
-
-  let digits = trimmed.replace(/[^\d+]/g, "");
-  if (digits.startsWith("00")) digits = `+${digits.slice(2)}`;
-  if (!digits.startsWith("+")) {
-    const local = digits.replace(/\D/g, "");
-    if (local.startsWith("0")) {
-      digits = `+${defaultCountry}${local.slice(1)}`;
-    } else if (local.length <= 8) {
-      digits = `+${defaultCountry}${local}`;
-    } else {
-      digits = `+${local}`;
-    }
-  }
-
-  const cleaned = `+${digits.slice(1).replace(/\D/g, "")}`;
-  if (!/^\+[1-9]\d{7,14}$/.test(cleaned)) {
+/** Require explicit international numbers; never guess a deployment country. */
+export function normalizeE164(raw: string): string {
+  if (!/^[+0-9 ()\-.]+$/.test(raw.trim()))
     throw new Error("Use an international number like +35799123456");
-  }
-  return cleaned;
+  let digits = raw.trim().replace(/[ ()\-.]/g, "");
+  if (digits.startsWith("00")) digits = "+" + digits.slice(2);
+  if (!/^\+[1-9]\d{7,14}$/.test(digits))
+    throw new Error("Use an international number like +35799123456");
+  return digits;
 }
 
 export function maskPhone(e164: string | null | undefined): string {

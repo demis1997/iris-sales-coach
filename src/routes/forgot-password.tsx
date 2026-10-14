@@ -21,7 +21,9 @@ function ForgotPasswordPage() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!isSupabaseConfigured()) {
-      setErr("Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY to .env.");
+      setErr(
+        "Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY to .env.",
+      );
       return;
     }
     setBusy(true);
@@ -68,7 +70,10 @@ function ForgotPasswordPage() {
               Send reset link
             </button>
           </form>
-          <Link to="/auth" className="mt-4 inline-block text-xs text-muted-foreground hover:underline">
+          <Link
+            to="/auth"
+            className="mt-4 inline-block text-xs text-muted-foreground hover:underline"
+          >
             Back to sign in
           </Link>
         </Panel>

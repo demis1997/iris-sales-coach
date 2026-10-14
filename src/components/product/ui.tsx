@@ -7,9 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function ProductMark({ className, light = false }: { className?: string; light?: boolean }) {
   /** Demo shells are dark — use light wordmark unless `light` requests the dark mark. */
-  const src = light
-    ? "/brand/artemis-ai-logo-dark.png"
-    : "/brand/artemis-ai-logo-light.png";
+  const src = light ? "/brand/artemis-ai-logo-dark.png" : "/brand/artemis-ai-logo-light.png";
   return (
     <span className={cn("inline-flex items-center", className)}>
       <img
@@ -73,8 +71,11 @@ export function SectionHeader({
 export function ProductCard({
   className,
   children,
+  title,
+  subtitle,
+  action,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: React.HTMLAttributes<HTMLDivElement> & { subtitle?: string; action?: ReactNode }) {
   return (
     <div
       className={cn(
@@ -83,6 +84,7 @@ export function ProductCard({
       )}
       {...props}
     >
+      {title && <SectionHeader title={title} subtitle={subtitle} action={action} />}
       {children}
     </div>
   );
@@ -117,8 +119,7 @@ export function KPICard({
         >
           {up ? <TrendingUp className="size-3.5" /> : <TrendingDown className="size-3.5" />}
           {up ? "+" : ""}
-          {delta}%
-          <span className="font-normal text-[#8A9BB5]">vs previous period</span>
+          {delta}%<span className="font-normal text-[#8A9BB5]">vs previous period</span>
         </p>
       ) : hint ? (
         <p className="mt-2 text-[13px] text-[#8A9BB5]">{hint}</p>
@@ -167,10 +168,14 @@ export function PageHeader({
   title,
   subtitle,
   action,
+  actions,
+  eyebrow,
 }: {
   title: string;
   subtitle?: string;
   action?: ReactNode;
+  actions?: ReactNode;
+  eyebrow?: string;
 }) {
   return (
     <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -178,9 +183,11 @@ export function PageHeader({
         <h1 className="text-[28px] leading-tight font-semibold tracking-tight text-[#F7FAFF] md:text-[34px]">
           {title}
         </h1>
-        {subtitle ? <p className="mt-2 text-[15px] leading-relaxed text-[#8A9BB5]">{subtitle}</p> : null}
+        {subtitle ? (
+          <p className="mt-2 text-[15px] leading-relaxed text-[#8A9BB5]">{subtitle}</p>
+        ) : null}
       </div>
-      {action}
+      {action ?? actions}
     </div>
   );
 }
@@ -197,7 +204,8 @@ export function ProductButton({
     primary: "product-btn-primary",
     secondary: "product-btn-secondary",
     ghost: "product-btn-ghost",
-    danger: "inline-flex items-center justify-center rounded-full bg-[#F07167]/15 px-5 py-2.5 text-sm font-semibold text-[#F07167] ring-1 ring-[#F07167]/25 hover:bg-[#F07167]/25",
+    danger:
+      "inline-flex items-center justify-center rounded-full bg-[#F07167]/15 px-5 py-2.5 text-sm font-semibold text-[#F07167] ring-1 ring-[#F07167]/25 hover:bg-[#F07167]/25",
   } as const;
   return (
     <button type="button" className={cn(styles[variant], className)} {...props}>

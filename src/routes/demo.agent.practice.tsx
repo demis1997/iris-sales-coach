@@ -80,7 +80,10 @@ function RoleplayPage() {
       />
       {!done ? (
         <Panel>
-          <PanelHeader title="Live practice" subtitle={`Turn ${step + 1} / ${script.turns.length}`} />
+          <PanelHeader
+            title="Live practice"
+            subtitle={`Turn ${step + 1} / ${script.turns.length}`}
+          />
           <div className="space-y-3 p-5">
             {script.turns.slice(0, step + 1).map((l, i) => (
               <div
@@ -93,12 +96,12 @@ function RoleplayPage() {
                 <p className="mt-1">{l.text}</p>
               </div>
             ))}
-            <button
-              type="button"
-              onClick={next}
-              className="product-btn-primary"
-            >
-              {step === 0 ? "Start practice" : step >= script.turns.length - 1 ? "Finish" : "Continue"}
+            <button type="button" onClick={next} className="product-btn-primary">
+              {step === 0
+                ? "Start practice"
+                : step >= script.turns.length - 1
+                  ? "Finish"
+                  : "Continue"}
             </button>
           </div>
         </Panel>
@@ -106,10 +109,12 @@ function RoleplayPage() {
         <Panel className="p-5">
           <p className="text-sm font-semibold">Score 84</p>
           <p className="mt-2 text-sm text-muted-foreground">Strength: Closing into commitment</p>
-          <p className="text-sm text-muted-foreground">Needs work: Keep trust proof ready in writing</p>
+          <p className="text-sm text-muted-foreground">
+            Needs work: Keep trust proof ready in writing
+          </p>
           <p className="mt-3 text-xs text-muted-foreground">
-            Demo coaching: When buying intent peaks after a trust objection, invite the next concrete step —
-            don't add more product features.
+            Demo coaching: When buying intent peaks after a trust objection, invite the next
+            concrete step — don't add more product features.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <button

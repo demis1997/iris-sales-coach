@@ -22,13 +22,26 @@ export const SOLUTIONS: SolutionPage[] = [
     seoDescription:
       "AI sales solutions for agents — live copilot, call coaching, roleplay, and personal improvement loops.",
     points: [
-      { title: "Live copilot", body: "Guidance during the conversation when it can still change the outcome." },
+      {
+        title: "Live copilot",
+        body: "Guidance during the conversation when it can still change the outcome.",
+      },
       { title: "Call coaching", body: "Immediate, evidence-based feedback after every call." },
       { title: "Roleplay", body: "Practice hard scenarios before talking to real customers." },
-      { title: "Next actions", body: "Leave every call with a clear follow-up — not a blank CRM note." },
-      { title: "Personal improvement", body: "Rep DNA shows which skills are rising and which need focus." },
+      {
+        title: "Next actions",
+        body: "Leave every call with a clear follow-up — not a blank CRM note.",
+      },
+      {
+        title: "Personal improvement",
+        body: "Rep DNA shows which skills are rising and which need focus.",
+      },
     ],
-    outcomes: ["More consistent discovery", "Fewer missed buying signals", "Faster ramp for new agents"],
+    outcomes: [
+      "More consistent discovery",
+      "Fewer missed buying signals",
+      "Faster ramp for new agents",
+    ],
     demoHref: "/demo/agent",
     demoLabel: "Explore Agent Demo",
   },
@@ -48,7 +61,11 @@ export const SOLUTIONS: SolutionPage[] = [
       { title: "Coaching", body: "Assign focused practice with due dates." },
       { title: "Live floor", body: "Monitor active calls and AI signals in real time." },
     ],
-    outcomes: ["Less time scrubbing recordings", "More targeted coaching", "Faster intervention on risk"],
+    outcomes: [
+      "Less time scrubbing recordings",
+      "More targeted coaching",
+      "Faster intervention on risk",
+    ],
     demoHref: "/demo/manager",
     demoLabel: "Explore Manager Demo",
   },
@@ -68,7 +85,11 @@ export const SOLUTIONS: SolutionPage[] = [
       { title: "Executive reporting", body: "Weekly briefs grounded in conversation evidence." },
       { title: "Coaching impact", body: "Connect enablement work to conversion movement." },
     ],
-    outcomes: ["Faster diagnosis of conversion dips", "Clearer desk accountability", "Better weekly decisions"],
+    outcomes: [
+      "Faster diagnosis of conversion dips",
+      "Clearer desk accountability",
+      "Better weekly decisions",
+    ],
     demoHref: "/demo/ceo",
     demoLabel: "Explore CEO Demo",
   },
@@ -102,7 +123,10 @@ export const SOLUTIONS: SolutionPage[] = [
     seoDescription:
       "Help compliance teams identify sales conversations that may require review with AI-assisted flags and evidence.",
     points: [
-      { title: "Risk language flags", body: "Highlight phrases and moments that may need human review." },
+      {
+        title: "Risk language flags",
+        body: "Highlight phrases and moments that may need human review.",
+      },
       { title: "Evidence links", body: "Jump straight to the transcript moment." },
       { title: "Review workflows", body: "Route flagged calls to the right reviewer." },
       { title: "Audit-friendly history", body: "Keep a trail of what was reviewed and why." },

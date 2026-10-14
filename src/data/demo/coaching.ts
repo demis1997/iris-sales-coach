@@ -19,7 +19,8 @@ export const DEMO_COACHING: CoachingAssignment[] = [
     agentName: "Michael Reed",
     weakness: "Talking too much during discovery",
     evidence: "Talk/listen 71/29 vs team average 54/46",
-    recommendation: "Discovery questioning coaching session — force a 2:1 question-to-statement ratio.",
+    recommendation:
+      "Discovery questioning coaching session — force a 2:1 question-to-statement ratio.",
     assignment: "Discovery depth coaching",
     due: "Tomorrow",
     status: "open",
@@ -42,7 +43,8 @@ export const DEMO_COACHING: CoachingAssignment[] = [
     agentName: "Maria Georgiou",
     weakness: "Closing polish",
     evidence: "Objection handling improved +11%",
-    recommendation: "Recommended for advanced closing training after strong trust recovery patterns.",
+    recommendation:
+      "Recommended for advanced closing training after strong trust recovery patterns.",
     assignment: "Advanced closing for high-intent",
     due: "Friday",
     status: "open",

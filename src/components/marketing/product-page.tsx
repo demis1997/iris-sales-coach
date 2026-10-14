@@ -41,10 +41,18 @@ export function ProductMarketingPage({ product }: { product: ProductPageContent 
         <FeatureGrid items={product.features} />
       </MarketingSection>
 
-      <MarketingSection eyebrow="Impact" title={product.why.title} subtitle={product.why.body} tone="soft">
+      <MarketingSection
+        eyebrow="Impact"
+        title={product.why.title}
+        subtitle={product.why.body}
+        tone="soft"
+      >
         <div className="grid gap-4 md:grid-cols-3">
           {product.who.map((w) => (
-            <div key={w} className="rounded-2xl border border-[#E8EEF7] bg-white px-5 py-4 text-sm text-[#4B5C76]">
+            <div
+              key={w}
+              className="rounded-2xl border border-[#E8EEF7] bg-white px-5 py-4 text-sm text-[#4B5C76]"
+            >
               {w}
             </div>
           ))}
@@ -70,7 +78,10 @@ export function ProductMarketingPage({ product }: { product: ProductPageContent 
       <MarketingSection eyebrow="Workflows" title="Key workflows" tone="white">
         <div className="grid gap-4 md:grid-cols-2">
           {product.workflows.map((wf) => (
-            <article key={wf.title} className="rounded-[1.5rem] border border-[#E8EEF7] bg-[#F7FAFF] p-6">
+            <article
+              key={wf.title}
+              className="rounded-[1.5rem] border border-[#E8EEF7] bg-[#F7FAFF] p-6"
+            >
               <h3 className="font-semibold text-[#0B1B33]">{wf.title}</h3>
               <p className="mt-2 text-sm text-[#4B5C76]">{wf.body}</p>
             </article>
@@ -96,7 +107,9 @@ function ProductMock({ kind }: { kind: NonNullable<ProductPageContent["mock"]> }
       <MockPanel title="Live call · Artemis Copilot">
         <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-[#8A9BB5]">Active call</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-[#8A9BB5]">
+              Active call
+            </p>
             <p className="mt-1 text-2xl font-semibold tabular-nums text-[#0B1B33]">08:42</p>
             <div className="mt-4 space-y-2 text-sm">
               <div className="rounded-xl border border-[#E8EEF7] px-3 py-2">
@@ -105,16 +118,16 @@ function ProductMock({ kind }: { kind: NonNullable<ProductPageContent["mock"]> }
               </div>
               <div className="rounded-xl border border-[#E8EEF7] bg-[#F7FAFF] px-3 py-2">
                 <p className="text-[11px] text-[#8A9BB5]">Client · 08:12</p>
-                <p className="mt-1 text-[#0B1B33]">“My biggest concern is getting my money back out.”</p>
+                <p className="mt-1 text-[#0B1B33]">
+                  “My biggest concern is getting my money back out.”
+                </p>
               </div>
             </div>
           </div>
           <div className="rounded-xl border border-[#18C4FF]/25 bg-[#F3FBFF] p-4">
             <p className="text-xs font-semibold text-[#18C4FF]">Objection detected</p>
             <p className="mt-2 text-sm font-semibold text-[#0B1B33]">Withdrawal concern</p>
-            <p className="mt-2 text-sm text-[#4B5C76]">
-              Resolve trust before discussing funding.
-            </p>
+            <p className="mt-2 text-sm text-[#4B5C76]">Resolve trust before discussing funding.</p>
             <p className="mt-3 rounded-lg bg-white px-3 py-2 text-xs text-[#4B5C76]">
               Suggested: “Let me explain exactly how withdrawals work before anything else.”
             </p>

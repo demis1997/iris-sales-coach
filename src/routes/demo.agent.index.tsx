@@ -11,7 +11,10 @@ export const Route = createFileRoute("/demo/agent/")({
 });
 
 function AgentTodayPage() {
-  const { data: agent, loading } = useDemoQuery(() => demoService.getAgent(DEMO_COMPANY.defaultAgentId), []);
+  const { data: agent, loading } = useDemoQuery(
+    () => demoService.getAgent(DEMO_COMPANY.defaultAgentId),
+    [],
+  );
   const { data: call } = useDemoQuery(() => demoService.getCall(DEMO_COMPANY.mariaCallId), []);
 
   if (loading || !agent || !call) return <DemoLoading />;
@@ -28,8 +31,8 @@ function AgentTodayPage() {
           <StatusBadge tone="ai">Continue selling</StatusBadge>
           <h2 className="mt-3 text-[22px] font-semibold tracking-tight">Sales Workspace</h2>
           <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
-            Open the live softphone + Artemis Copilot — what your salesperson sees while talking to a
-            lead.
+            Open the live softphone + Artemis Copilot — what your salesperson sees while talking to
+            a lead.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             <Link

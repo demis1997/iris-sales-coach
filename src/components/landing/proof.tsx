@@ -33,7 +33,10 @@ export function Testimonials() {
             <Panel className="flex h-full flex-col p-6">
               <h3 className="text-lg font-semibold">{card.t}</h3>
               <p className="mt-2 flex-1 text-sm text-muted-foreground">{card.d}</p>
-              <Link to={card.to} className="mt-5 text-sm font-semibold text-primary hover:underline">
+              <Link
+                to={card.to}
+                className="mt-5 text-sm font-semibold text-primary hover:underline"
+              >
                 Explore the Demo →
               </Link>
             </Panel>

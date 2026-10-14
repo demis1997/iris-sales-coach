@@ -2,11 +2,7 @@ import { type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { TrendingDown, TrendingUp } from "lucide-react";
 
-export function Panel({
-  className,
-  children,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+export function Panel({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div className={cn("glass rounded-2xl", className)} {...props}>
       {children}
@@ -27,9 +23,7 @@ export function PanelHeader({
     <div className="flex items-start justify-between gap-4 border-b border-border px-5 py-4">
       <div>
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
-        {subtitle ? (
-          <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p>
-        ) : null}
+        {subtitle ? <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p> : null}
       </div>
       {action}
     </div>
@@ -124,7 +118,10 @@ export function Meter({ value, tone = "iris" }: { value: number; tone?: "iris" |
   return (
     <div className="h-1.5 w-full overflow-hidden rounded-full bg-secondary">
       <div
-        className={cn("h-full rounded-full", tone === "iris" ? "gradient-surface" : "bg-muted-foreground")}
+        className={cn(
+          "h-full rounded-full",
+          tone === "iris" ? "gradient-surface" : "bg-muted-foreground",
+        )}
         style={{ width: `${Math.min(100, value)}%` }}
       />
     </div>

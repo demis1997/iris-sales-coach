@@ -112,7 +112,9 @@ function DemoLanding() {
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
                   {c.title}
                 </p>
-                <h2 className="mt-2 text-xl font-bold tracking-tight text-[#0B1B33]">{c.headline}</h2>
+                <h2 className="mt-2 text-xl font-bold tracking-tight text-[#0B1B33]">
+                  {c.headline}
+                </h2>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-[#4B5C76]">{c.blurb}</p>
                 <Link
                   to={c.to}

@@ -32,7 +32,11 @@ function AskRelayPage() {
 
   return (
     <DemoPage>
-      <PageHeading title="Ask Artemis" subtitle="Personal coach · deterministic demo answers" action={<Chip tone="iris">Simulated AI</Chip>} />
+      <PageHeading
+        title="Ask Artemis"
+        subtitle="Personal coach · deterministic demo answers"
+        action={<Chip tone="iris">Simulated AI</Chip>}
+      />
       <Panel>
         <PanelHeader title="Suggested questions" />
         <div className="flex flex-wrap gap-2 p-5">

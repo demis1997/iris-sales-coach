@@ -28,6 +28,7 @@ export type CallRow = {
   direction: string;
   status: string;
   outcome: string | null;
+  is_converted: boolean;
   overall_score: number | null;
   duration_seconds: number | null;
   analysis_status: string;
@@ -45,7 +46,7 @@ export async function listCalls(opts?: { agentOnly?: boolean }): Promise<CallRow
   let query = db
     .from("calls")
     .select(
-      "id, company_id, contact_name, contact_company, direction, status, outcome, overall_score, duration_seconds, analysis_status, transcription_status, recording_status, agent_user_id, created_at, started_at",
+      "id, company_id, contact_name, contact_company, direction, status, outcome, is_converted, overall_score, duration_seconds, analysis_status, transcription_status, recording_status, agent_user_id, created_at, started_at",
     )
     .eq("company_id", session.activeCompanyId)
     .is("deleted_at", null)
@@ -73,14 +74,23 @@ export async function getCallBundle(callId: string) {
     .maybeSingle();
   if (error || !call) throw new Error("Call not found");
 
-  const [{ data: recordings }, { data: transcript }, { data: segments }, { data: analysis }, { data: jobs }] =
-    await Promise.all([
-      db.from("call_recordings").select("*").eq("call_id", callId),
-      db.from("call_transcripts").select("*").eq("call_id", callId).maybeSingle(),
-      db.from("transcript_segments").select("*").eq("call_id", callId).order("start_ms"),
-      db.from("call_ai_analyses").select("*").eq("call_id", callId).maybeSingle(),
-      db.from("call_processing_jobs").select("*").eq("call_id", callId).order("created_at", { ascending: false }),
-    ]);
+  const [
+    { data: recordings },
+    { data: transcript },
+    { data: segments },
+    { data: analysis },
+    { data: jobs },
+  ] = await Promise.all([
+    db.from("call_recordings").select("*").eq("call_id", callId),
+    db.from("call_transcripts").select("*").eq("call_id", callId).maybeSingle(),
+    db.from("transcript_segments").select("*").eq("call_id", callId).order("start_ms"),
+    db.from("call_ai_analyses").select("*").eq("call_id", callId).maybeSingle(),
+    db
+      .from("call_processing_jobs")
+      .select("*")
+      .eq("call_id", callId)
+      .order("created_at", { ascending: false }),
+  ]);
 
   let signedUrl: string | null = null;
   const recording = recordings?.[0];
@@ -144,14 +154,10 @@ export async function uploadCallRecording(input: {
     });
 
   if (uploadError) {
-    await db
-      .from("calls")
-      .update({ recording_status: "failed", status: "failed", updated_at: new Date().toISOString() })
-      .eq("id", callId);
     throw uploadError;
   }
 
-  await db.from("call_recordings").insert({
+  const { error: recordingError } = await db.from("call_recordings").insert({
     company_id: companyId,
     call_id: callId,
     storage_path: storagePath,
@@ -160,33 +166,15 @@ export async function uploadCallRecording(input: {
     byte_size: input.file.size,
   });
 
-  await db.from("call_processing_jobs").insert({
-    company_id: companyId,
-    call_id: callId,
-    stage: "uploaded",
-    status: "queued",
-  });
+  if (recordingError) throw recordingError;
 
-  await db
-    .from("calls")
-    .update({
-      recording_status: "uploaded",
-      status: "processing",
-      updated_at: new Date().toISOString(),
-    })
-    .eq("id", callId);
-
-  // Kick analysis (stub transcript if no Deepgram key on server)
+  // Authenticated analysis requires actual stored speech or an operator-supplied transcript.
   try {
     await processCallAnalysis({
       data: { callId, companyId },
     });
   } catch (err) {
     console.error("Analysis kickoff failed", err);
-    await db
-      .from("calls")
-      .update({ analysis_status: "failed", updated_at: new Date().toISOString() })
-      .eq("id", callId);
   }
 
   return { callId };
@@ -206,9 +194,7 @@ export async function getCompanyDashboardMetrics() {
           (scored.reduce((sum, c) => sum + Number(c.overall_score ?? 0), 0) / scored.length) * 10,
         ) / 10
       : null;
-  const conversions = recent.filter(
-    (c) => c.outcome === "Closed" || /convert|won|deposit/i.test(c.outcome ?? ""),
-  ).length;
+  const conversions = recent.filter((c) => c.is_converted === true).length;
 
   return {
     callsCount: recent.length,

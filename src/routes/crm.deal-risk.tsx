@@ -8,7 +8,10 @@ export const Route = createFileRoute("/crm/deal-risk")({
   head: () => ({
     meta: [
       { title: "Deal Risk — Artemis CRM" },
-      { name: "description", content: "Win probability, risk factors, and next-best actions linked to conversations." },
+      {
+        name: "description",
+        content: "Win probability, risk factors, and next-best actions linked to conversations.",
+      },
     ],
   }),
   component: DealRiskPage,
@@ -60,7 +63,9 @@ function DealRiskPage() {
               </div>
               <div className="text-right">
                 <p className="text-xs text-muted-foreground">Win probability</p>
-                <p className="font-mono text-4xl font-semibold gradient-text">{deal.winProbability}%</p>
+                <p className="font-mono text-4xl font-semibold gradient-text">
+                  {deal.winProbability}%
+                </p>
                 <p className="text-xs text-muted-foreground">
                   was {deal.previousWin}% · forecast {deal.forecast} · confidence {deal.confidence}%
                 </p>
@@ -119,7 +124,9 @@ function DealRiskPage() {
                   <div key={a.id} className="rounded-xl border border-border bg-secondary/30 p-3">
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-sm font-medium">{a.action}</p>
-                      <Chip tone={done[a.id] ? "good" : "warn"}>{done[a.id] ? "Done" : a.status}</Chip>
+                      <Chip tone={done[a.id] ? "good" : "warn"}>
+                        {done[a.id] ? "Done" : a.status}
+                      </Chip>
                     </div>
                     <p className="mt-1 text-xs text-muted-foreground">{a.rationale}</p>
                     <p className="mt-1 text-[11px] text-muted-foreground">Due {a.due}</p>
@@ -133,14 +140,20 @@ function DealRiskPage() {
                   </div>
                 ))}
               </div>
-              <Link to="/crm/pipeline" className="mt-4 inline-flex text-xs text-primary hover:underline">
+              <Link
+                to="/crm/pipeline"
+                className="mt-4 inline-flex text-xs text-primary hover:underline"
+              >
                 Back to pipeline →
               </Link>
             </Panel>
           </div>
 
           <Panel className="p-5">
-            <PanelHeader title="Outcome CRM" subtitle="Auto-generated from conversations — review & approve" />
+            <PanelHeader
+              title="Outcome CRM"
+              subtitle="Auto-generated from conversations — review & approve"
+            />
             <div className="grid gap-3 p-1 sm:grid-cols-2 text-sm">
               <Field label="AI summary" value={deal.outcomeCrm.summary} />
               <Field label="Buying intent" value={`${deal.outcomeCrm.buyingIntent}%`} />
@@ -154,7 +167,13 @@ function DealRiskPage() {
               <Field label="Suggested email" value={deal.outcomeCrm.suggestedEmail} />
             </div>
             <div className="mt-4 flex flex-wrap gap-2 px-1 pb-2">
-              {["Approve CRM update", "Update deal stage", "Create task", "Send email", "Escalate"].map((b) => (
+              {[
+                "Approve CRM update",
+                "Update deal stage",
+                "Create task",
+                "Send email",
+                "Escalate",
+              ].map((b) => (
                 <button
                   key={b}
                   type="button"
@@ -174,7 +193,9 @@ function DealRiskPage() {
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-xl border border-border bg-secondary/20 p-3">
-      <p className="text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">{label}</p>
+      <p className="text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">
+        {label}
+      </p>
       <p className="mt-1 text-xs leading-relaxed">{value}</p>
     </div>
   );

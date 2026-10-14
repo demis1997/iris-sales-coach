@@ -13,7 +13,11 @@ function TeamsPage() {
   if (loading || !teams) return <DemoLoading />;
   return (
     <DemoPage>
-      <PageHeading title="Teams" subtitle="Apex Markets sales desks" action={<Chip tone="iris">Demo</Chip>} />
+      <PageHeading
+        title="Teams"
+        subtitle="Apex Markets sales desks"
+        action={<Chip tone="iris">Demo</Chip>}
+      />
       <div className="grid gap-3 md:grid-cols-2">
         {teams.map((t) => (
           <Link key={t.id} to="/demo/ceo/teams/$teamId" params={{ teamId: t.id }}>

@@ -71,10 +71,7 @@ export interface AIProvider {
   ): Promise<AIResult<z.infer<TSchema>>>;
 }
 
-export const MODEL_TIER_MAP: Record<
-  ModelTier,
-  { openai: string; cursor: string; mock: string }
-> = {
+export const MODEL_TIER_MAP: Record<ModelTier, { openai: string; cursor: string; mock: string }> = {
   fast: { openai: "gpt-4.1-mini", cursor: "composer-2", mock: "mock-fast" },
   balanced: { openai: "gpt-4.1-mini", cursor: "composer-2", mock: "mock-balanced" },
   reasoning: { openai: "gpt-4.1", cursor: "composer-2", mock: "mock-reasoning" },

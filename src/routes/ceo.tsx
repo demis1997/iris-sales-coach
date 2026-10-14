@@ -1,5 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LayoutDashboard, Users, BarChart3, Sparkles, Trophy, Bell, TrendingUp, Phone } from "lucide-react";
+import {
+  LayoutDashboard,
+  Users,
+  BarChart3,
+  Sparkles,
+  Trophy,
+  Bell,
+  TrendingUp,
+  Phone,
+} from "lucide-react";
 import { AppShell, type NavItem } from "@/components/iris/app-shell";
 import { RequireAuth } from "@/components/auth/require-auth";
 import { useWorkspaceAccess } from "@/components/auth/auth-provider";
@@ -20,9 +29,15 @@ export const Route = createFileRoute("/ceo")({
   head: () => ({
     meta: [
       { title: "Executive Dashboard — Artemis AI" },
-      { name: "description", content: "Company-wide call intelligence, revenue and team performance." },
+      {
+        name: "description",
+        content: "Company-wide call intelligence, revenue and team performance.",
+      },
       { property: "og:title", content: "Executive Dashboard — Artemis AI" },
-      { property: "og:description", content: "Company-wide call intelligence and team performance." },
+      {
+        property: "og:description",
+        content: "Company-wide call intelligence and team performance.",
+      },
     ],
   }),
   component: CeoWorkspace,

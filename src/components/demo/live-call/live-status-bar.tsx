@@ -37,8 +37,7 @@ export function LiveStatusBar({
             FTDs: <span className="font-mono font-semibold">{session.ftdsToday}</span>
           </span>
           <span>
-            Conversion:{" "}
-            <span className="font-mono font-semibold">{session.conversionToday}%</span>
+            Conversion: <span className="font-mono font-semibold">{session.conversionToday}%</span>
           </span>
         </div>
       </div>

@@ -41,7 +41,10 @@ export const Route = createFileRoute("/ceo/")({
   head: () => ({
     meta: [
       { title: "Company Overview — Artemis Executive" },
-      { name: "description", content: "Total calls, revenue, close rate and AI score across the company." },
+      {
+        name: "description",
+        content: "Total calls, revenue, close rate and AI score across the company.",
+      },
       { property: "og:title", content: "Company Overview — Artemis Executive" },
       { property: "og:description", content: "Total calls, revenue, close rate and AI score." },
     ],
@@ -61,6 +64,53 @@ function CeoOverview() {
     queryFn: () => listCompanyMembers(),
     enabled: Boolean(session?.activeCompanyId) && !demoMode,
   });
+
+  if (!demoMode)
+    return (
+      <>
+        <PageHeading
+          title="Company calls"
+          subtitle={`${session?.membership?.companyName ?? "Company"} · real database records · recent calls only`}
+        />
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <StatCard label="Active members" value={String(members.length)} icon={Users} />
+          <StatCard
+            label="Recent calls (up to 100)"
+            value={String(live?.callsCount ?? 0)}
+            icon={PhoneCall}
+          />
+          <StatCard
+            label="Mean AI score · scored recent calls"
+            value={live?.avgScore == null ? "—" : String(live.avgScore)}
+            icon={Gauge}
+          />
+          <StatCard
+            label="Confirmed conversions · recent calls"
+            value={String(live?.conversions ?? 0)}
+            icon={TrendingUp}
+          />
+        </div>
+        <Panel className="mt-4 p-5">
+          <h2>Metrics scope</h2>
+          <p className="mt-2 text-sm text-muted-foreground">
+            These values cover the latest 100 accessible call records, not today or the current
+            month. Revenue, funnel, campaign attribution and provider billing are unavailable until
+            verified data sources are connected. Demo charts are hidden in the live workspace.
+          </p>
+        </Panel>
+        <Panel className="mt-4">
+          <PanelHeader title="Recent calls" />
+          {live?.recent.map((call) => (
+            <div className="border-b border-border p-4" key={call.id}>
+              <Link to="/app/calls/$callId" params={{ callId: call.id }}>
+                {call.contact_name || "Call"}
+              </Link>
+              <span className="ml-4 text-xs">{call.status}</span>
+            </div>
+          ))}
+        </Panel>
+      </>
+    );
 
   return (
     <>
@@ -83,14 +133,33 @@ function CeoOverview() {
             value={live?.avgScore != null ? `${live.avgScore}` : "—"}
             icon={Gauge}
           />
-          <StatCard label="Conversions (recent)" value={`${live?.conversions ?? 0}`} icon={TrendingUp} />
+          <StatCard
+            label="Conversions (recent)"
+            value={`${live?.conversions ?? 0}`}
+            icon={TrendingUp}
+          />
         </div>
       ) : null}
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Total employees" value={demoMode ? "48" : `${members.length || "—"}`} hint="from memberships" icon={Users} />
-        <StatCard label="Calls today" value={demoMode ? "487" : `${live?.callsCount ?? 0}`} delta={demoMode ? 6 : undefined} icon={PhoneCall} />
-        <StatCard label="Calls this month" value={demoMode ? "9,412" : `${live?.callsCount ?? 0}`} delta={demoMode ? 11 : undefined} icon={PhoneCall} />
+        <StatCard
+          label="Total employees"
+          value={demoMode ? "48" : `${members.length || "—"}`}
+          hint="from memberships"
+          icon={Users}
+        />
+        <StatCard
+          label="Calls today"
+          value={demoMode ? "487" : `${live?.callsCount ?? 0}`}
+          delta={demoMode ? 6 : undefined}
+          icon={PhoneCall}
+        />
+        <StatCard
+          label="Calls this month"
+          value={demoMode ? "9,412" : `${live?.callsCount ?? 0}`}
+          delta={demoMode ? 11 : undefined}
+          icon={PhoneCall}
+        />
         <StatCard label="Revenue generated" value="$1.67M" delta={18} icon={BadgeDollarSign} />
         <StatCard label="Close rate" value="27%" delta={4} icon={Percent} />
         <StatCard label="Average AI score" value="83" delta={5} icon={Gauge} />
@@ -111,11 +180,35 @@ function CeoOverview() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="month" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={38} />
+                <XAxis
+                  dataKey="month"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                  width={38}
+                />
                 <Tooltip {...chartTooltip} />
-                <Area type="monotone" dataKey="revenue" stroke="var(--violet)" strokeWidth={2} fill="url(#rev)" />
-                <Line type="monotone" dataKey="score" stroke="var(--cyan)" strokeWidth={2} dot={false} />
+                <Area
+                  type="monotone"
+                  dataKey="revenue"
+                  stroke="var(--violet)"
+                  strokeWidth={2}
+                  fill="url(#rev)"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="score"
+                  stroke="var(--cyan)"
+                  strokeWidth={2}
+                  dot={false}
+                />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
@@ -147,8 +240,20 @@ function CeoOverview() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={callsPerDay}>
                 <CartesianGrid stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="day" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={32} />
+                <XAxis
+                  dataKey="day"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                  width={32}
+                />
                 <Tooltip {...chartTooltip} />
                 <Bar dataKey="calls" fill="var(--blue)" radius={[6, 6, 0, 0]} />
                 <Bar dataKey="closed" fill="var(--cyan)" radius={[6, 6, 0, 0]} />
@@ -169,10 +274,28 @@ function CeoOverview() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="hour" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+                <XAxis
+                  dataKey="hour"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                  width={28}
+                />
                 <Tooltip {...chartTooltip} />
-                <Area type="monotone" dataKey="rate" stroke="var(--success)" strokeWidth={2} fill="url(#hr)" />
+                <Area
+                  type="monotone"
+                  dataKey="rate"
+                  stroke="var(--success)"
+                  strokeWidth={2}
+                  fill="url(#hr)"
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -193,13 +316,21 @@ function CeoOverview() {
           <table className="w-full min-w-[900px] text-sm">
             <thead>
               <tr className="border-b border-border text-left text-[11px] tracking-wider text-muted-foreground uppercase">
-                {["Name", "Department", "Calls", "Close %", "Confidence", "AI score", "Revenue", "Trend", "Risk"].map(
-                  (h) => (
-                    <th key={h} className="px-5 py-3 font-medium">
-                      {h}
-                    </th>
-                  ),
-                )}
+                {[
+                  "Name",
+                  "Department",
+                  "Calls",
+                  "Close %",
+                  "Confidence",
+                  "AI score",
+                  "Revenue",
+                  "Trend",
+                  "Risk",
+                ].map((h) => (
+                  <th key={h} className="px-5 py-3 font-medium">
+                    {h}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -220,7 +351,9 @@ function CeoOverview() {
                   <td className="px-5 py-3 font-mono">{e.confidence}%</td>
                   <td className="px-5 py-3 font-mono">{e.score}</td>
                   <td className="px-5 py-3 font-mono">${(e.revenue / 1000).toFixed(0)}K</td>
-                  <td className={`px-5 py-3 font-mono ${e.trend >= 0 ? "text-success" : "text-destructive"}`}>
+                  <td
+                    className={`px-5 py-3 font-mono ${e.trend >= 0 ? "text-success" : "text-destructive"}`}
+                  >
                     {e.trend > 0 ? "+" : ""}
                     {e.trend}%
                   </td>

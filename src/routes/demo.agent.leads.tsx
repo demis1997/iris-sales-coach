@@ -101,7 +101,8 @@ function AgentLeadsPage() {
           </table>
         </div>
         <p className="mt-4 text-xs text-[#8A9BB5]">
-          Power Dialer advances through the queue automatically after each wrap-up (demo simulation).
+          Power Dialer advances through the queue automatically after each wrap-up (demo
+          simulation).
         </p>
       </ProductCard>
     </DemoPage>

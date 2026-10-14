@@ -1,5 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import { createHash } from "node:crypto";
+import { assertCanDial } from "@/lib/security/call-access";
+import { consumeProviderLimit } from "@/lib/security/provider-limit.server";
 import { roleHasPermission } from "@/lib/permissions";
 import { normalizeE164 } from "@/lib/telephony/phone";
 
@@ -13,14 +16,20 @@ const callerIdInput = z.object({
   enabled: z.boolean().optional(),
 });
 const placeCallInput = z.object({
+  leadId: z.string().uuid(),
+  idempotencyKey: z.string().uuid(),
+  marketingConsent: z.literal(true),
+  consentReference: z.string().trim().min(8).max(500),
   to: z.string().min(6).max(32),
   contactName: z.string().max(120).optional(),
   contactCompany: z.string().max(120).optional(),
 });
 
 export const getTelephonyStatus = createServerFn({ method: "GET" }).handler(async () => {
-  const { getRequestUserId, loadMembershipForUser } = await import("@/lib/telephony/session.server");
-  const { isTwilioConfigured, defaultPlatformCallerId } = await import("@/lib/telephony/twilio.server");
+  const { getRequestUserId, loadMembershipForUser } =
+    await import("@/lib/telephony/session.server");
+  const { isTwilioConfigured, defaultPlatformCallerId } =
+    await import("@/lib/telephony/twilio.server");
 
   const userId = await getRequestUserId();
   const ctx = await loadMembershipForUser(userId);
@@ -41,7 +50,7 @@ export const getTelephonyStatus = createServerFn({ method: "GET" }).handler(asyn
       enabled: Boolean(telephony?.enabled && callerId),
       callerIdE164: telephony?.caller_id_e164 ?? null,
       effectiveCallerId: callerId,
-      recordCalls: telephony?.record_calls ?? true,
+      recordCalls: telephony?.record_calls ?? false,
       provider: telephony?.provider ?? "twilio",
     },
     employee: {
@@ -56,14 +65,10 @@ export const getTelephonyStatus = createServerFn({ method: "GET" }).handler(asyn
 export const startPhoneVerification = createServerFn({ method: "POST" })
   .validator((data: unknown) => phoneInput.parse(data))
   .handler(async ({ data }) => {
-    const { getRequestUserId, loadMembershipForUser } = await import("@/lib/telephony/session.server");
-    const {
-      isTwilioConfigured,
-      getTwilioClient,
-      generateOtp,
-      hashOtp,
-      defaultPlatformCallerId,
-    } = await import("@/lib/telephony/twilio.server");
+    const { getRequestUserId, loadMembershipForUser } =
+      await import("@/lib/telephony/session.server");
+    const { isTwilioConfigured, getTwilioClient, generateOtp, hashOtp, defaultPlatformCallerId } =
+      await import("@/lib/telephony/twilio.server");
 
     if (!isTwilioConfigured()) {
       throw new Error("Calling is not configured yet. Ask your admin to connect Twilio.");
@@ -71,6 +76,9 @@ export const startPhoneVerification = createServerFn({ method: "POST" })
 
     const userId = await getRequestUserId();
     const ctx = await loadMembershipForUser(userId);
+    if (process.env.ARTEMIS_ENABLE_REAL_CALLS !== "true")
+      throw new Error("Paid telephony disabled by operator");
+    await consumeProviderLimit(ctx, "phone_verification_send", 3, 3600);
     const phone = normalizeE164(data.phone);
     const client = getTwilioClient();
 
@@ -82,7 +90,12 @@ export const startPhoneVerification = createServerFn({ method: "POST" })
       });
       await ctx.admin
         .from("profiles")
-        .update({ phone_e164: phone, phone: phone, updated_at: new Date().toISOString() })
+        .update({
+          phone_e164: phone,
+          phone: phone,
+          phone_verified_at: null,
+          updated_at: new Date().toISOString(),
+        })
         .eq("id", userId);
       return { ok: true as const, mode: "twilio_verify" as const, phone };
     }
@@ -107,7 +120,12 @@ export const startPhoneVerification = createServerFn({ method: "POST" })
 
     await ctx.admin
       .from("profiles")
-      .update({ phone_e164: phone, phone: phone, phone_verified_at: null, updated_at: new Date().toISOString() })
+      .update({
+        phone_e164: phone,
+        phone: phone,
+        phone_verified_at: null,
+        updated_at: new Date().toISOString(),
+      })
       .eq("id", userId);
 
     return { ok: true as const, mode: "sms_otp" as const, phone };
@@ -116,11 +134,13 @@ export const startPhoneVerification = createServerFn({ method: "POST" })
 export const confirmPhoneVerification = createServerFn({ method: "POST" })
   .validator((data: unknown) => codeInput.parse(data))
   .handler(async ({ data }) => {
-    const { getRequestUserId, loadMembershipForUser } = await import("@/lib/telephony/session.server");
+    const { getRequestUserId, loadMembershipForUser } =
+      await import("@/lib/telephony/session.server");
     const { getTwilioClient, hashOtp } = await import("@/lib/telephony/twilio.server");
 
     const userId = await getRequestUserId();
     const ctx = await loadMembershipForUser(userId);
+    await consumeProviderLimit(ctx, "phone_verification_confirm", 10, 600);
     const phone = normalizeE164(data.phone);
     const code = data.code.trim();
 
@@ -180,7 +200,8 @@ export const confirmPhoneVerification = createServerFn({ method: "POST" })
 export const saveCompanyTelephony = createServerFn({ method: "POST" })
   .validator((data: unknown) => callerIdInput.parse(data))
   .handler(async ({ data }) => {
-    const { getRequestUserId, loadMembershipForUser } = await import("@/lib/telephony/session.server");
+    const { getRequestUserId, loadMembershipForUser } =
+      await import("@/lib/telephony/session.server");
 
     const userId = await getRequestUserId();
     const ctx = await loadMembershipForUser(userId);
@@ -210,7 +231,8 @@ export const saveCompanyTelephony = createServerFn({ method: "POST" })
 export const placeOutboundCall = createServerFn({ method: "POST" })
   .validator((data: unknown) => placeCallInput.parse(data))
   .handler(async ({ data }) => {
-    const { getRequestUserId, loadMembershipForUser } = await import("@/lib/telephony/session.server");
+    const { getRequestUserId, loadMembershipForUser } =
+      await import("@/lib/telephony/session.server");
     const {
       isTwilioConfigured,
       getTwilioClient,
@@ -225,6 +247,9 @@ export const placeOutboundCall = createServerFn({ method: "POST" })
 
     const userId = await getRequestUserId();
     const ctx = await loadMembershipForUser(userId);
+    assertCanDial(ctx.role);
+    if (process.env.ARTEMIS_ENABLE_REAL_CALLS !== "true")
+      throw new Error("Real calling is disabled by the operator");
 
     if (!ctx.profile.phone || !ctx.profile.phoneVerifiedAt) {
       throw new Error("Verify your phone number before dialing.");
@@ -238,12 +263,80 @@ export const placeOutboundCall = createServerFn({ method: "POST" })
 
     const callerId = telephony?.caller_id_e164 || defaultPlatformCallerId();
     if (!callerId) throw new Error("Company caller ID is not set. Ask an admin to enable calling.");
-    if (telephony && telephony.enabled === false) {
+    if (!telephony?.enabled) {
       throw new Error("Calling is disabled for this company.");
     }
 
+    const lead = await ctx.admin
+      .from("sales_leads")
+      .select("id, owner_user_id, phone_e164, marketing_consent, consent_reference")
+      .eq("company_id", ctx.companyId)
+      .eq("id", data.leadId)
+      .maybeSingle();
+    if (
+      lead.error ||
+      !lead.data ||
+      (lead.data.owner_user_id !== userId && !roleHasPermission(ctx.role, "calls.view_all"))
+    )
+      throw new Error("Lead not found");
+    if (
+      lead.data.marketing_consent !== "granted" ||
+      lead.data.consent_reference !== data.consentReference ||
+      lead.data.phone_e164 !== normalizeE164(data.to)
+    )
+      throw new Error("Lead consent or destination does not match the approved record");
     const prospect = normalizeE164(data.to);
     const agentPhone = normalizeE164(ctx.profile.phone);
+    const { data: suppressed, error: suppressionError } = await ctx.admin
+      .from("contact_suppressions")
+      .select("phone_e164")
+      .eq("company_id", ctx.companyId)
+      .eq("phone_e164", prospect)
+      .maybeSingle();
+    if (suppressionError) throw new Error("Suppression check unavailable; calling blocked");
+    if (suppressed) throw new Error("This number is on the company do-not-call list");
+    if (telephony?.record_calls)
+      throw new Error(
+        "Recording requires a reviewed consent workflow; disable recording before calling",
+      );
+    const fingerprint = createHash("sha256")
+      .update(
+        JSON.stringify({
+          companyId: ctx.companyId,
+          userId,
+          prospect,
+          agentPhone,
+          callerId,
+          consentReference: data.consentReference,
+        }),
+      )
+      .digest("hex");
+    async function existingRequest() {
+      const { data: previous, error } = await ctx.admin
+        .from("calls")
+        .select("id, request_fingerprint, external_call_id, status")
+        .eq("company_id", ctx.companyId)
+        .eq("agent_user_id", userId)
+        .eq("idempotency_key", data.idempotencyKey)
+        .maybeSingle();
+      if (error) throw new Error("Idempotency lookup failed");
+      if (!previous) return null;
+      if (previous.request_fingerprint !== fingerprint)
+        throw new Error("Idempotency key was already used for another request");
+      return {
+        ok: true as const,
+        callId: previous.id as string,
+        twilioSid: previous.external_call_id as string | null,
+        agentPhone,
+        prospect,
+        callerId,
+        status: previous.status as string,
+        reused: true,
+      };
+    }
+    const previous = await existingRequest();
+    if (previous) return previous;
+    await consumeProviderLimit(ctx, "outbound_call", 10, 3600);
     const callId = crypto.randomUUID();
     const sig = signTelephonyPayload([callId, ctx.companyId, prospect]);
     const base = appPublicUrl();
@@ -254,16 +347,21 @@ export const placeOutboundCall = createServerFn({ method: "POST" })
 
     const { error: insertError } = await ctx.admin.from("calls").insert({
       id: callId,
+      lead_id: data.leadId,
       company_id: ctx.companyId,
       provider: "twilio",
       direction: "outbound",
-      status: "ringing",
+      status: "created",
+      idempotency_key: data.idempotencyKey,
+      request_fingerprint: fingerprint,
+      consent_status: "operator_attested",
+      consent_reference: data.consentReference,
       agent_user_id: userId,
       contact_name: data.contactName || prospect,
       contact_company: data.contactCompany || null,
       phone_number: prospect,
       started_at: new Date().toISOString(),
-      recording_status: telephony?.record_calls === false ? "skipped" : "pending",
+      recording_status: "skipped",
       transcription_status: "pending",
       analysis_status: "pending",
       metadata: {
@@ -272,7 +370,13 @@ export const placeOutboundCall = createServerFn({ method: "POST" })
         mode: "click_to_call",
       },
     });
-    if (insertError) throw insertError;
+    if (insertError) {
+      if (insertError.code === "23505") {
+        const previous = await existingRequest();
+        if (previous) return previous;
+      }
+      throw new Error("Call reservation failed");
+    }
 
     const client = getTwilioClient();
     try {
@@ -284,8 +388,10 @@ export const placeOutboundCall = createServerFn({ method: "POST" })
         statusCallback: statusUrl,
         statusCallbackMethod: "POST",
         statusCallbackEvent: ["initiated", "ringing", "answered", "completed"],
-        record: telephony?.record_calls !== false,
-        recordingStatusCallback: telephony?.record_calls === false ? undefined : recordingUrl,
+        record: false,
+        timeout: 30,
+        timeLimit: 1800,
+        recordingStatusCallback: undefined,
         recordingStatusCallbackMethod: "POST",
       });
 
@@ -293,7 +399,6 @@ export const placeOutboundCall = createServerFn({ method: "POST" })
         .from("calls")
         .update({
           external_call_id: twilioCall.sid,
-          status: "ringing",
           updated_at: new Date().toISOString(),
         })
         .eq("id", callId);
@@ -305,20 +410,25 @@ export const placeOutboundCall = createServerFn({ method: "POST" })
         agentPhone,
         prospect,
         callerId,
+        status: "created",
+        reused: false,
       };
     } catch (err) {
       await ctx.admin
         .from("calls")
-        .update({ status: "failed", updated_at: new Date().toISOString() })
+        .update({ status: "provider_unknown", updated_at: new Date().toISOString() })
         .eq("id", callId);
-      throw err instanceof Error ? err : new Error("Failed to place call");
+      throw new Error(
+        "Provider outcome is unknown. Do not start another call; reconcile this request first.",
+      );
     }
   });
 
 export const hangupOutboundCall = createServerFn({ method: "POST" })
   .validator((data: unknown) => z.object({ callId: z.string().uuid() }).parse(data))
   .handler(async ({ data }) => {
-    const { getRequestUserId, loadMembershipForUser } = await import("@/lib/telephony/session.server");
+    const { getRequestUserId, loadMembershipForUser } =
+      await import("@/lib/telephony/session.server");
     const { getTwilioClient, isTwilioConfigured } = await import("@/lib/telephony/twilio.server");
 
     if (!isTwilioConfigured()) throw new Error("Twilio is not configured");
@@ -328,7 +438,7 @@ export const hangupOutboundCall = createServerFn({ method: "POST" })
 
     const { data: call } = await ctx.admin
       .from("calls")
-      .select("id, external_call_id, agent_user_id")
+      .select("id, external_call_id, agent_user_id, status")
       .eq("id", data.callId)
       .eq("company_id", ctx.companyId)
       .maybeSingle();
@@ -339,15 +449,38 @@ export const hangupOutboundCall = createServerFn({ method: "POST" })
     }
 
     const client = getTwilioClient();
-    await client.calls(call.external_call_id).update({ status: "completed" });
+    const finalStatus = ["created", "ringing", "provider_unknown"].includes(call.status)
+      ? "canceled"
+      : "completed";
+    await client.calls(call.external_call_id).update({ status: finalStatus });
     await ctx.admin
       .from("calls")
       .update({
-        status: "completed",
+        status: finalStatus === "canceled" ? "cancelled" : "completed",
         ended_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       })
-      .eq("id", data.callId);
+      .eq("id", data.callId)
+      .eq("company_id", ctx.companyId);
 
     return { ok: true as const };
+  });
+
+export const getOutboundCall = createServerFn({ method: "GET" })
+  .validator((data: unknown) => z.object({ callId: z.string().uuid() }).strict().parse(data))
+  .handler(async ({ data }) => {
+    const { getRequestUserId, loadMembershipForUser } =
+      await import("@/lib/telephony/session.server");
+    const { assertCallAccess } = await import("@/lib/security/call-access");
+    const ctx = await loadMembershipForUser(await getRequestUserId());
+    const result = await ctx.admin
+      .from("calls")
+      .select("id, company_id, agent_user_id, status, duration_seconds, started_at, ended_at")
+      .eq("id", data.callId)
+      .eq("company_id", ctx.companyId)
+      .is("deleted_at", null)
+      .maybeSingle();
+    if (result.error) throw new Error("Call lookup failed");
+    assertCallAccess(ctx, result.data);
+    return result.data!;
   });

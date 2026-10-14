@@ -80,7 +80,9 @@ function CeoOverviewPage() {
           </div>
         }
       >
-        <p className="whitespace-pre-line text-[15px] leading-relaxed text-[#C5D0E0]">{brief?.body}</p>
+        <p className="whitespace-pre-line text-[15px] leading-relaxed text-[#C5D0E0]">
+          {brief?.body}
+        </p>
         {brief?.actions?.length ? (
           <div className="mt-5 rounded-2xl border border-white/[0.08] bg-[#0B1B33]/40 p-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#2EE6A6]">
@@ -119,10 +121,7 @@ function CeoOverviewPage() {
                 <Tooltip {...chartTooltip} />
                 <Bar dataKey="deposits" name="Deposits €" radius={[6, 6, 0, 0]}>
                   {(teams ?? []).map((t) => (
-                    <Cell
-                      key={t.id}
-                      fill={t.id === "team-velocity" ? "#F5B942" : "#18C4FF"}
-                    />
+                    <Cell key={t.id} fill={t.id === "team-velocity" ? "#F5B942" : "#18C4FF"} />
                   ))}
                 </Bar>
               </BarChart>
@@ -138,7 +137,8 @@ function CeoOverviewPage() {
               >
                 <span className="font-medium">{t.name}</span>
                 <span className="text-xs text-muted-foreground">
-                  €{(t.deposits / 1000).toFixed(0)}K · {t.ftds} FTDs · {t.conversion}% · AI {t.avgQuality}
+                  €{(t.deposits / 1000).toFixed(0)}K · {t.ftds} FTDs · {t.conversion}% · AI{" "}
+                  {t.avgQuality}
                 </span>
               </Link>
             ))}
@@ -163,7 +163,9 @@ function CeoOverviewPage() {
                     <span className="font-mono">{s.value.toLocaleString()}</span>
                   </div>
                   {next ? (
-                    <p className={`py-1 text-center text-[10px] ${worst ? "text-warning" : "text-muted-foreground"}`}>
+                    <p
+                      className={`py-1 text-center text-[10px] ${worst ? "text-warning" : "text-muted-foreground"}`}
+                    >
                       ↓ {drop.toLocaleString()}
                       {worst ? " · Biggest opportunity: qualified → high intent" : ""}
                     </p>
@@ -190,7 +192,10 @@ function CeoOverviewPage() {
               >
                 <span className="w-40 shrink-0 text-xs">{l.label}</span>
                 <div className="h-2 flex-1 overflow-hidden rounded-full bg-secondary">
-                  <div className="h-full rounded-full gradient-surface" style={{ width: `${l.pct}%` }} />
+                  <div
+                    className="h-full rounded-full gradient-surface"
+                    style={{ width: `${l.pct}%` }}
+                  />
                 </div>
                 <span className="w-10 text-right font-mono text-xs">{l.pct}%</span>
               </button>
@@ -244,16 +249,24 @@ function CeoOverviewPage() {
                 {(opps ?? []).slice(0, 5).map((o) => (
                   <tr key={o.id} className="hover:bg-secondary/30">
                     <td className="px-4 py-2.5">
-                      <Link to="/demo/calls/$callId" params={{ callId: o.callId }} className="text-primary hover:underline">
+                      <Link
+                        to="/demo/calls/$callId"
+                        params={{ callId: o.callId }}
+                        className="text-primary hover:underline"
+                      >
                         {o.contactLabel}
                       </Link>
                       <p className="text-[10px] text-muted-foreground">{o.lastCallAgo}</p>
                     </td>
                     <td className="px-2 py-2.5 text-xs">{o.agentName}</td>
                     <td className="px-2 py-2.5">
-                      <Chip tone={o.intent === "very_high" ? "good" : "iris"}>{o.intent.replace("_", " ")}</Chip>
+                      <Chip tone={o.intent === "very_high" ? "good" : "iris"}>
+                        {o.intent.replace("_", " ")}
+                      </Chip>
                     </td>
-                    <td className="px-2 py-2.5 font-mono text-xs">€{o.estimatedValue.toLocaleString()}</td>
+                    <td className="px-2 py-2.5 font-mono text-xs">
+                      €{o.estimatedValue.toLocaleString()}
+                    </td>
                     <td className="px-4 py-2.5 text-xs text-muted-foreground">{o.nextAction}</td>
                   </tr>
                 ))}
@@ -265,7 +278,10 @@ function CeoOverviewPage() {
 
       <div className="grid gap-4 lg:grid-cols-3">
         <Panel>
-          <PanelHeader title="Manager effectiveness" subtitle="Coaching completion vs conversion move" />
+          <PanelHeader
+            title="Manager effectiveness"
+            subtitle="Coaching completion vs conversion move"
+          />
           <div className="divide-y divide-border">
             {(managers ?? []).map((m) => (
               <div key={m.id} className="px-5 py-3">
@@ -282,8 +298,8 @@ function CeoOverviewPage() {
             ))}
           </div>
           <p className="border-t border-border px-5 py-3 text-[11px] text-muted-foreground">
-            Teams completing more assigned coaching have shown stronger conversion improvement during this demo
-            period. Not a causal claim.
+            Teams completing more assigned coaching have shown stronger conversion improvement
+            during this demo period. Not a causal claim.
           </p>
         </Panel>
 
@@ -307,13 +323,28 @@ function CeoOverviewPage() {
         </Panel>
 
         <Panel>
-          <PanelHeader title="Rep performance matrix" subtitle="Quality × conversion · bubble = deposits" />
+          <PanelHeader
+            title="Rep performance matrix"
+            subtitle="Quality × conversion · bubble = deposits"
+          />
           <div className="h-56 p-2">
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart>
                 <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
-                <XAxis type="number" dataKey="quality" name="Quality" domain={[55, 100]} tick={{ fontSize: 10 }} />
-                <YAxis type="number" dataKey="conversion" name="Conversion" domain={[0, 30]} tick={{ fontSize: 10 }} />
+                <XAxis
+                  type="number"
+                  dataKey="quality"
+                  name="Quality"
+                  domain={[55, 100]}
+                  tick={{ fontSize: 10 }}
+                />
+                <YAxis
+                  type="number"
+                  dataKey="conversion"
+                  name="Conversion"
+                  domain={[0, 30]}
+                  tick={{ fontSize: 10 }}
+                />
                 <ZAxis type="number" dataKey="deposits" range={[40, 200]} />
                 <Tooltip {...chartTooltip} cursor={{ strokeDasharray: "3 3" }} />
                 <Scatter
@@ -329,7 +360,9 @@ function CeoOverviewPage() {
               </ScatterChart>
             </ResponsiveContainer>
           </div>
-          <p className="px-4 pb-3 text-[11px] text-muted-foreground">Click a bubble to open an agent profile.</p>
+          <p className="px-4 pb-3 text-[11px] text-muted-foreground">
+            Click a bubble to open an agent profile.
+          </p>
         </Panel>
       </div>
     </DemoPage>

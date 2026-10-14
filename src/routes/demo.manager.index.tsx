@@ -77,7 +77,10 @@ function ManagerOverviewPage() {
             title="Team performance"
             subtitle="Alpha Desk"
             action={
-              <Link to="/demo/manager/team" className="text-[13px] font-semibold text-[#2EE6A6] hover:underline">
+              <Link
+                to="/demo/manager/team"
+                className="text-[13px] font-semibold text-[#2EE6A6] hover:underline"
+              >
                 Full table
               </Link>
             }

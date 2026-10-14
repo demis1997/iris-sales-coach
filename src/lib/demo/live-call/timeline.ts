@@ -1,4 +1,10 @@
-import type { CallStage, LiveSignal, PlaybookChecklistItem, TranscriptSegment, AISuggestion } from "./types";
+import type {
+  CallStage,
+  LiveSignal,
+  PlaybookChecklistItem,
+  TranscriptSegment,
+  AISuggestion,
+} from "./types";
 
 export type TimelineEventType =
   | "transcript"

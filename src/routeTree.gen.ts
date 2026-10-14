@@ -34,6 +34,7 @@ import { Route as RepDnaRouteImport } from './routes/rep-dna'
 import { Route as RevenueIntelligenceRouteImport } from './routes/revenue-intelligence'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppCertificationsRouteImport } from './routes/app.certifications'
 import { Route as AppCoachRouteImport } from './routes/app.coach'
@@ -76,6 +77,7 @@ import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ResourcesSlugRouteImport } from './routes/resources.$slug'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
+import { Route as ApiTwilioInboundRouteImport } from './routes/api/twilio/inbound'
 import { Route as ApiTwilioRecordingRouteImport } from './routes/api/twilio/recording'
 import { Route as ApiTwilioStatusRouteImport } from './routes/api/twilio/status'
 import { Route as ApiTwilioVoiceRouteImport } from './routes/api/twilio/voice'
@@ -244,6 +246,11 @@ const SecurityRoute = SecurityRouteImport.update({
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiHealthRoute = ApiHealthRouteImport.update({
+  id: '/api/health',
+  path: '/api/health',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -454,6 +461,11 @@ const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
 const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
   id: '/solutions/$slug',
   path: '/solutions/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiTwilioInboundRoute = ApiTwilioInboundRouteImport.update({
+  id: '/api/twilio/inbound',
+  path: '/api/twilio/inbound',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiTwilioRecordingRoute = ApiTwilioRecordingRouteImport.update({
@@ -698,6 +710,7 @@ export interface FileRoutesByFullPath {
   '/revenue-intelligence': typeof RevenueIntelligenceRoute
   '/security': typeof SecurityRoute
   '/terms': typeof TermsRoute
+  '/api/health': typeof ApiHealthRoute
   '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
   '/app/dialer': typeof AppDialerRoute
@@ -740,6 +753,7 @@ export interface FileRoutesByFullPath {
   '/manager/': typeof ManagerIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
+  '/api/twilio/inbound': typeof ApiTwilioInboundRoute
   '/api/twilio/recording': typeof ApiTwilioRecordingRoute
   '/api/twilio/status': typeof ApiTwilioStatusRoute
   '/api/twilio/voice': typeof ApiTwilioVoiceRoute
@@ -806,6 +820,7 @@ export interface FileRoutesByTo {
   '/revenue-intelligence': typeof RevenueIntelligenceRoute
   '/security': typeof SecurityRoute
   '/terms': typeof TermsRoute
+  '/api/health': typeof ApiHealthRoute
   '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
   '/app/dialer': typeof AppDialerRoute
@@ -844,6 +859,7 @@ export interface FileRoutesByTo {
   '/manager': typeof ManagerIndexRoute
   '/resources': typeof ResourcesIndexRoute
   '/solutions': typeof SolutionsIndexRoute
+  '/api/twilio/inbound': typeof ApiTwilioInboundRoute
   '/api/twilio/recording': typeof ApiTwilioRecordingRoute
   '/api/twilio/status': typeof ApiTwilioStatusRoute
   '/api/twilio/voice': typeof ApiTwilioVoiceRoute
@@ -915,6 +931,7 @@ export interface FileRoutesById {
   '/revenue-intelligence': typeof RevenueIntelligenceRoute
   '/security': typeof SecurityRoute
   '/terms': typeof TermsRoute
+  '/api/health': typeof ApiHealthRoute
   '/app/certifications': typeof AppCertificationsRoute
   '/app/coach': typeof AppCoachRoute
   '/app/dialer': typeof AppDialerRoute
@@ -957,6 +974,7 @@ export interface FileRoutesById {
   '/manager/': typeof ManagerIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
+  '/api/twilio/inbound': typeof ApiTwilioInboundRoute
   '/api/twilio/recording': typeof ApiTwilioRecordingRoute
   '/api/twilio/status': typeof ApiTwilioStatusRoute
   '/api/twilio/voice': typeof ApiTwilioVoiceRoute
@@ -1029,6 +1047,7 @@ export interface FileRouteTypes {
     | '/revenue-intelligence'
     | '/security'
     | '/terms'
+    | '/api/health'
     | '/app/certifications'
     | '/app/coach'
     | '/app/dialer'
@@ -1071,6 +1090,7 @@ export interface FileRouteTypes {
     | '/manager/'
     | '/resources/'
     | '/solutions/'
+    | '/api/twilio/inbound'
     | '/api/twilio/recording'
     | '/api/twilio/status'
     | '/api/twilio/voice'
@@ -1137,6 +1157,7 @@ export interface FileRouteTypes {
     | '/revenue-intelligence'
     | '/security'
     | '/terms'
+    | '/api/health'
     | '/app/certifications'
     | '/app/coach'
     | '/app/dialer'
@@ -1175,6 +1196,7 @@ export interface FileRouteTypes {
     | '/manager'
     | '/resources'
     | '/solutions'
+    | '/api/twilio/inbound'
     | '/api/twilio/recording'
     | '/api/twilio/status'
     | '/api/twilio/voice'
@@ -1245,6 +1267,7 @@ export interface FileRouteTypes {
     | '/revenue-intelligence'
     | '/security'
     | '/terms'
+    | '/api/health'
     | '/app/certifications'
     | '/app/coach'
     | '/app/dialer'
@@ -1287,6 +1310,7 @@ export interface FileRouteTypes {
     | '/manager/'
     | '/resources/'
     | '/solutions/'
+    | '/api/twilio/inbound'
     | '/api/twilio/recording'
     | '/api/twilio/status'
     | '/api/twilio/voice'
@@ -1358,6 +1382,7 @@ export interface RootRouteChildren {
   RevenueIntelligenceRoute: typeof RevenueIntelligenceRoute
   SecurityRoute: typeof SecurityRoute
   TermsRoute: typeof TermsRoute
+  ApiHealthRoute: typeof ApiHealthRoute
   DemoAdminRoute: typeof DemoAdminRouteWithChildren
   DemoAgentRoute: typeof DemoAgentRouteWithChildren
   DemoCeoRoute: typeof DemoCeoRouteWithChildren
@@ -1372,6 +1397,7 @@ export interface RootRouteChildren {
   IntegrationsIndexRoute: typeof IntegrationsIndexRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
   SolutionsIndexRoute: typeof SolutionsIndexRoute
+  ApiTwilioInboundRoute: typeof ApiTwilioInboundRoute
   ApiTwilioRecordingRoute: typeof ApiTwilioRecordingRoute
   ApiTwilioStatusRoute: typeof ApiTwilioStatusRoute
   ApiTwilioVoiceRoute: typeof ApiTwilioVoiceRoute
@@ -1554,6 +1580,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/health': {
+      id: '/api/health'
+      path: '/api/health'
+      fullPath: '/api/health'
+      preLoaderRoute: typeof ApiHealthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/': {
@@ -1848,6 +1881,13 @@ declare module '@tanstack/react-router' {
       path: '/solutions/$slug'
       fullPath: '/solutions/$slug'
       preLoaderRoute: typeof SolutionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/twilio/inbound': {
+      id: '/api/twilio/inbound'
+      path: '/api/twilio/inbound'
+      fullPath: '/api/twilio/inbound'
+      preLoaderRoute: typeof ApiTwilioInboundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/twilio/recording': {
@@ -2384,6 +2424,7 @@ const rootRouteChildren: RootRouteChildren = {
   RevenueIntelligenceRoute: RevenueIntelligenceRoute,
   SecurityRoute: SecurityRoute,
   TermsRoute: TermsRoute,
+  ApiHealthRoute: ApiHealthRoute,
   DemoAdminRoute: DemoAdminRouteWithChildren,
   DemoAgentRoute: DemoAgentRouteWithChildren,
   DemoCeoRoute: DemoCeoRouteWithChildren,
@@ -2398,6 +2439,7 @@ const rootRouteChildren: RootRouteChildren = {
   IntegrationsIndexRoute: IntegrationsIndexRoute,
   ResourcesIndexRoute: ResourcesIndexRoute,
   SolutionsIndexRoute: SolutionsIndexRoute,
+  ApiTwilioInboundRoute: ApiTwilioInboundRoute,
   ApiTwilioRecordingRoute: ApiTwilioRecordingRoute,
   ApiTwilioStatusRoute: ApiTwilioStatusRoute,
   ApiTwilioVoiceRoute: ApiTwilioVoiceRoute,

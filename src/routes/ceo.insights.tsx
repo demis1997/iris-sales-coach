@@ -7,9 +7,15 @@ export const Route = createFileRoute("/ceo/insights")({
   head: () => ({
     meta: [
       { title: "AI Insights — Artemis Executive" },
-      { name: "description", content: "Daily AI briefing on team performance, risks and revenue drivers." },
+      {
+        name: "description",
+        content: "Daily AI briefing on team performance, risks and revenue drivers.",
+      },
       { property: "og:title", content: "AI Insights — Artemis Executive" },
-      { property: "og:description", content: "Daily AI briefing on performance, risks and revenue." },
+      {
+        property: "og:description",
+        content: "Daily AI briefing on performance, risks and revenue.",
+      },
     ],
   }),
   component: InsightsPage,
@@ -41,7 +47,10 @@ function InsightsPage() {
 
       <div className="mt-4 grid gap-4 md:grid-cols-2">
         <Panel>
-          <PanelHeader title="Why deals are lost" subtitle="Last 30 days · 412 lost opportunities" />
+          <PanelHeader
+            title="Why deals are lost"
+            subtitle="Last 30 days · 412 lost opportunities"
+          />
           <div className="space-y-3 p-5">
             {[
               ["Pricing discussion", 61],
@@ -64,10 +73,22 @@ function InsightsPage() {
           <PanelHeader title="Recommended next actions" subtitle="Ranked by revenue impact" />
           <div className="divide-y divide-border">
             {[
-              { icon: AlertTriangle, t: "Run a pricing objection workshop", d: "Est. impact +$180K/quarter" },
+              {
+                icon: AlertTriangle,
+                t: "Run a pricing objection workshop",
+                d: "Est. impact +$180K/quarter",
+              },
               { icon: Clock, t: "Shift 20% of dials to 10–11 AM", d: "Est. impact +$96K/quarter" },
-              { icon: Brain, t: "Enforce MEDDIC qualification on the Real Estate desk", d: "Est. impact +$74K/quarter" },
-              { icon: TrendingUp, t: "Pair Omar with Nadia for two weeks", d: "Est. impact +$41K/quarter" },
+              {
+                icon: Brain,
+                t: "Enforce MEDDIC qualification on the Real Estate desk",
+                d: "Est. impact +$74K/quarter",
+              },
+              {
+                icon: TrendingUp,
+                t: "Pair Omar with Nadia for two weeks",
+                d: "Est. impact +$41K/quarter",
+              },
             ].map((a) => (
               <div key={a.t} className="flex items-start gap-3 px-5 py-3.5">
                 <a.icon className="mt-0.5 size-4 shrink-0 text-cyan" />

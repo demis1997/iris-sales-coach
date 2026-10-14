@@ -1,3 +1,5 @@
+import { LeadDirectory } from "@/components/crm/lead-directory";
+import { useAuth } from "@/components/auth/auth-provider";
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeading, Panel, Chip, Meter } from "@/components/iris/primitives";
 import { crmContacts } from "@/lib/revenue-os-data";
@@ -6,7 +8,10 @@ export const Route = createFileRoute("/crm/contacts")({
   head: () => ({
     meta: [
       { title: "Contacts — Artemis CRM" },
-      { name: "description", content: "Contacts with AI-detected buying intent, authority and decision-maker role." },
+      {
+        name: "description",
+        content: "Contacts with AI-detected buying intent, authority and decision-maker role.",
+      },
       { property: "og:title", content: "Contacts — Artemis CRM" },
       { property: "og:description", content: "Know who actually decides, from what they said." },
     ],
@@ -15,9 +20,14 @@ export const Route = createFileRoute("/crm/contacts")({
 });
 
 function ContactsPage() {
+  const { demoMode } = useAuth();
+  if (!demoMode) return <LeadDirectory />;
   return (
     <>
-      <PageHeading title="Contacts" subtitle="Buying intent and authority detected from conversations" />
+      <PageHeading
+        title="Contacts"
+        subtitle="Buying intent and authority detected from conversations"
+      />
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {crmContacts.map((c) => (
           <Panel key={c.name} className="p-5">

@@ -4,16 +4,16 @@ export const Route = createFileRoute("/api/twilio/recording")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const { verifyTelephonyPayload, validateTwilioRequest } = await import(
-          "@/lib/telephony/twilio.server"
-        );
+        const { verifyTelephonyPayload, validateTwilioRequest } =
+          await import("@/lib/telephony/twilio.server");
         const url = new URL(request.url);
         const callId = url.searchParams.get("callId");
         const companyId = url.searchParams.get("companyId");
         const sig = url.searchParams.get("sig");
 
-        const body = new URLSearchParams(await request.text());
-        if (process.env.TWILIO_AUTH_TOKEN && !validateTwilioRequest(request, body)) {
+        const { readTwilioForm } = await import("@/lib/telephony/twilio.server");
+        const body = await readTwilioForm(request);
+        if (!validateTwilioRequest(request, body)) {
           return new Response("Forbidden", { status: 403 });
         }
 
@@ -25,9 +25,10 @@ export const Route = createFileRoute("/api/twilio/recording")({
         const admin = await getAdminClient();
         const { data: call } = await admin
           .from("calls")
-          .select("id, phone_number")
+          .select("id, phone_number, external_call_id, recording_status")
           .eq("id", callId)
           .eq("company_id", companyId)
+          .is("deleted_at", null)
           .maybeSingle();
 
         if (!call?.phone_number) return new Response("Not found", { status: 404 });
@@ -35,6 +36,15 @@ export const Route = createFileRoute("/api/twilio/recording")({
           return new Response("Forbidden", { status: 403 });
         }
 
+        if (
+          body.get("AccountSid") !== process.env.TWILIO_ACCOUNT_SID ||
+          body.get("CallSid") !== call.external_call_id
+        )
+          return new Response("Forbidden", { status: 403 });
+        if (body.get("RecordingStatus") !== "completed") return new Response("ok", { status: 200 });
+        if (!["pending", "uploaded"].includes(call.recording_status))
+          return new Response("Recording consent not established", { status: 403 });
+        if (call.recording_status === "uploaded") return new Response("ok", { status: 200 });
         const recordingUrl = body.get("RecordingUrl");
         const recordingSid = body.get("RecordingSid");
         const duration = Number(body.get("RecordingDuration") || "0");
@@ -42,10 +52,13 @@ export const Route = createFileRoute("/api/twilio/recording")({
 
         const accountSid = process.env.TWILIO_ACCOUNT_SID!;
         const authToken = process.env.TWILIO_AUTH_TOKEN!;
-        const mediaUrl = `${recordingUrl}.mp3`;
+        const { recordingMediaUrl } = await import("@/lib/telephony/twilio.server");
+        const mediaUrl = recordingMediaUrl(recordingUrl, recordingSid || "", accountSid);
         const auth = Buffer.from(`${accountSid}:${authToken}`).toString("base64");
         const mediaRes = await fetch(mediaUrl, {
           headers: { Authorization: `Basic ${auth}` },
+          redirect: "error",
+          signal: AbortSignal.timeout(30000),
         });
         if (!mediaRes.ok) {
           await admin
@@ -55,7 +68,8 @@ export const Route = createFileRoute("/api/twilio/recording")({
           return new Response("download failed", { status: 502 });
         }
 
-        const bytes = Buffer.from(await mediaRes.arrayBuffer());
+        const { readBounded } = await import("@/lib/providers/http.server");
+        const bytes = await readBounded(mediaRes, 100 * 1024 * 1024);
         const storagePath = `${companyId}/${callId}/${recordingSid || Date.now()}.mp3`;
 
         const { error: uploadError } = await admin.storage
@@ -103,10 +117,10 @@ export const Route = createFileRoute("/api/twilio/recording")({
           .eq("id", callId);
 
         try {
-          const { processCallAnalysis } = await import("@/lib/ai/process-call.functions");
-          await processCallAnalysis({ data: { callId, companyId } });
+          const { enqueueCallAnalysis } = await import("@/lib/ai/analysis.server");
+          await enqueueCallAnalysis({ callId, companyId });
         } catch (err) {
-          console.error("[twilio/recording] analysis kickoff failed", err);
+          console.error(JSON.stringify({ event: "recording_analysis_failed", callId }));
         }
 
         return new Response("ok", { status: 200 });

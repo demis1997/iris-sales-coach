@@ -120,7 +120,10 @@ export type AuthzContext = {
 export class AuthorizationError extends Error {
   readonly code = "FORBIDDEN" as const;
   readonly permission?: Permission;
-  constructor(message = "You do not have permission to perform this action.", permission?: Permission) {
+  constructor(
+    message = "You do not have permission to perform this action.",
+    permission?: Permission,
+  ) {
     super(message);
     this.name = "AuthorizationError";
     this.permission = permission;

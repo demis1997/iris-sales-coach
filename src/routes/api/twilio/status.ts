@@ -4,17 +4,17 @@ export const Route = createFileRoute("/api/twilio/status")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const { verifyTelephonyPayload, validateTwilioRequest } = await import(
-          "@/lib/telephony/twilio.server"
-        );
+        const { verifyTelephonyPayload, validateTwilioRequest } =
+          await import("@/lib/telephony/twilio.server");
         const url = new URL(request.url);
         const callId = url.searchParams.get("callId");
         const companyId = url.searchParams.get("companyId");
         const to = url.searchParams.get("to");
         const sig = url.searchParams.get("sig");
 
-        const body = new URLSearchParams(await request.text());
-        if (process.env.TWILIO_AUTH_TOKEN && !validateTwilioRequest(request, body)) {
+        const { readTwilioForm } = await import("@/lib/telephony/twilio.server");
+        const body = await readTwilioForm(request);
+        if (!validateTwilioRequest(request, body)) {
           return new Response("Forbidden", { status: 403 });
         }
 
@@ -33,38 +33,31 @@ export const Route = createFileRoute("/api/twilio/status")({
 
         if (!call) return new Response("Not found", { status: 404 });
 
-        const callStatus = (body.get("CallStatus") || "").toLowerCase();
-        const duration = Number(body.get("CallDuration") || "0");
-        const now = new Date().toISOString();
-
-        let status = "in_progress";
+        const { providerCallState } = await import("@/lib/telephony/lifecycle");
         if (
-          callStatus === "completed" ||
-          callStatus === "busy" ||
-          callStatus === "failed" ||
-          callStatus === "no-answer" ||
-          callStatus === "canceled"
-        ) {
-          status = callStatus === "completed" ? "completed" : "failed";
-        } else if (callStatus === "ringing" || callStatus === "queued") {
-          status = "ringing";
-        } else if (callStatus === "in-progress") {
-          status = "in_progress";
+          body.get("AccountSid") !== process.env.TWILIO_ACCOUNT_SID ||
+          !/^CA[a-fA-F0-9]{32}$/.test(body.get("CallSid") || "")
+        )
+          return new Response("Forbidden", { status: 403 });
+        const sequenceText = body.get("SequenceNumber");
+        const durationText = body.get("CallDuration") ?? "0";
+        if (!/^\d{1,12}$/.test(sequenceText ?? "") || !/^\d{1,5}$/.test(durationText))
+          return new Response("Invalid status event", { status: 400 });
+        let state;
+        try {
+          state = providerCallState(body.get("CallStatus") ?? "");
+        } catch {
+          return new Response("Invalid status event", { status: 400 });
         }
-
-        const patch: Record<string, unknown> = {
-          status,
-          updated_at: now,
-          metadata: {
-            ...(typeof call.metadata === "object" && call.metadata ? call.metadata : {}),
-            last_twilio_status: callStatus,
-          },
-        };
-        if (body.get("CallSid")) patch.external_call_id = body.get("CallSid");
-        if (duration > 0) patch.duration_seconds = duration;
-        if (status === "completed" || status === "failed") patch.ended_at = now;
-
-        await admin.from("calls").update(patch).eq("id", callId);
+        const result = await admin.rpc("apply_call_status", {
+          _company: companyId,
+          _call: callId,
+          _sid: body.get("CallSid"),
+          _sequence: Number(sequenceText),
+          _state: state,
+          _duration: Number(durationText),
+        });
+        if (result.error) return new Response("Status persistence failed", { status: 503 });
 
         return new Response("ok", { status: 200 });
       },

@@ -19,7 +19,12 @@ export const Route = createFileRoute("/ceo/employees/")({
 
 function EmployeesPage() {
   const { session, loading, demoMode, can } = useAuth();
-  const { data: members = [], isLoading, error, refetch } = useQuery({
+  const {
+    data: members = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
     queryKey: ["company-members", session?.activeCompanyId],
     queryFn: () => listCompanyMembers(),
     enabled: Boolean(session?.activeCompanyId) && !demoMode,
@@ -34,8 +39,8 @@ function EmployeesPage() {
           subtitle="Connect Supabase and invite teammates to populate this list from live memberships."
         />
         <Panel className="p-6 text-sm text-muted-foreground">
-          Demo mode is active (no Supabase session). After Step 1 signup + invites, members appear here from
-          `company_memberships`.
+          Demo mode is active (no Supabase session). After Step 1 signup + invites, members appear
+          here from `company_memberships`.
         </Panel>
       </>
     );

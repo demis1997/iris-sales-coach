@@ -7,9 +7,15 @@ export const Route = createFileRoute("/ceo/leaderboards")({
   head: () => ({
     meta: [
       { title: "Leaderboards — Artemis Executive" },
-      { name: "description", content: "Top closers, fastest learners and highest confidence across the company." },
+      {
+        name: "description",
+        content: "Top closers, fastest learners and highest confidence across the company.",
+      },
       { property: "og:title", content: "Leaderboards — Artemis Executive" },
-      { property: "og:description", content: "Top closers, fastest learners and highest confidence." },
+      {
+        property: "og:description",
+        content: "Top closers, fastest learners and highest confidence.",
+      },
     ],
   }),
   component: LeaderboardsPage,
@@ -39,7 +45,9 @@ function LeaderboardsPage() {
                   <div key={e.id} className="flex items-center gap-3 px-5 py-3">
                     <span
                       className={`grid size-6 shrink-0 place-items-center rounded-lg font-mono text-[11px] ${
-                        i === 0 ? "gradient-surface text-background" : "bg-secondary text-muted-foreground"
+                        i === 0
+                          ? "gradient-surface text-background"
+                          : "bg-secondary text-muted-foreground"
                       }`}
                     >
                       {i + 1}

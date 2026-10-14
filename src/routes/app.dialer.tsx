@@ -1,20 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { supabase } from "@/integrations/supabase/client";
+import type { SalesLead } from "@/components/crm/lead-directory";
 import { useCallback, useEffect, useState } from "react";
-import {
-  Delete,
-  Loader2,
-  Mic,
-  MicOff,
-  Pause,
-  PhoneCall,
-  PhoneOff,
-} from "lucide-react";
+import { Delete, Loader2, Mic, MicOff, Pause, PhoneCall, PhoneOff } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeading, Panel, PanelHeader, Chip } from "@/components/iris/primitives";
+import { LiveCoachingPanel } from "@/components/telephony/live-coaching-panel";
 import { EmployeePhoneSetup } from "@/components/telephony/employee-phone-setup";
 import { useAuth } from "@/components/auth/auth-provider";
 import {
   getTelephonyStatus,
+  getOutboundCall,
   hangupOutboundCall,
   placeOutboundCall,
 } from "@/lib/telephony/telephony.functions";
@@ -25,7 +22,8 @@ export const Route = createFileRoute("/app/dialer")({
       { title: "Softphone & Live AI Coaching — Artemis AI" },
       {
         name: "description",
-        content: "Click-to-call dialer: we ring your phone, then connect the prospect with company caller ID.",
+        content:
+          "Click-to-call dialer: we ring your phone, then connect the prospect with company caller ID.",
       },
       { property: "og:title", content: "Softphone & Live AI Coaching — Artemis AI" },
     ],
@@ -36,9 +34,31 @@ export const Route = createFileRoute("/app/dialer")({
 const keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "*", "0", "#"];
 
 function DialerPage() {
-  const { demoMode } = useAuth();
+  const { demoMode, session } = useAuth();
+  const [leads, setLeads] = useState<SalesLead[]>([]),
+    [leadId, setLeadId] = useState("");
+  useEffect(() => {
+    if (demoMode || !session?.activeCompanyId) return;
+    let active = true;
+    void (supabase as SupabaseClient)
+      .from("sales_leads")
+      .select("id,name,phone_e164,status,marketing_consent,consent_reference")
+      .eq("company_id", session.activeCompanyId)
+      .eq("marketing_consent", "granted")
+      .limit(100)
+      .then(({ data, error }) => {
+        if (active && !error) setLeads(data as SalesLead[]);
+      });
+    return () => {
+      active = false;
+    };
+  }, [demoMode, session?.activeCompanyId]);
   const [number, setNumber] = useState("+");
   const [contactName, setContactName] = useState("");
+  const [consentReference, setConsentReference] = useState("");
+  const [marketingConsent, setMarketingConsent] = useState(false);
+  const [idempotencyKey, setIdempotencyKey] = useState(() => crypto.randomUUID());
+  const [providerState, setProviderState] = useState("created");
   const [onCall, setOnCall] = useState(false);
   const [activeCallId, setActiveCallId] = useState<string | null>(null);
   const [muted, setMuted] = useState(false);
@@ -61,6 +81,7 @@ function DialerPage() {
       setCallerId(s.company.effectiveCallerId);
       const ok =
         s.twilioConfigured &&
+        s.company.enabled &&
         Boolean(s.company.effectiveCallerId) &&
         s.employee.phoneVerified;
       setReady(ok);
@@ -80,16 +101,54 @@ function DialerPage() {
   }, [refreshReady]);
 
   useEffect(() => {
-    if (!onCall || held) return;
+    if (!onCall || providerState !== "in_progress") return;
     const t = setInterval(() => setSeconds((s) => s + 1), 1000);
     return () => clearInterval(t);
-  }, [onCall, held]);
+  }, [onCall, providerState]);
+
+  useEffect(() => {
+    if (!activeCallId || demoMode) return;
+    let active = true;
+    const refresh = async () => {
+      try {
+        const call = await getOutboundCall({ data: { callId: activeCallId } });
+        if (!active) return;
+        setProviderState(call.status);
+        setStatusLabel(
+          call.status === "in_progress"
+            ? "Agent leg connected · prospect answer not yet measured"
+            : call.status.replaceAll("_", " "),
+        );
+        if (["completed", "failed", "cancelled", "missed"].includes(call.status)) {
+          setOnCall(false);
+          setActiveCallId(null);
+          setIdempotencyKey(crypto.randomUUID());
+        }
+      } catch {
+        if (active) setStatusLabel("Call status unavailable · check provider before redialling");
+      }
+    };
+    void refresh();
+    const timer = setInterval(() => void refresh(), 2000);
+    return () => {
+      active = false;
+      clearInterval(timer);
+    };
+  }, [activeCallId, demoMode]);
 
   const mmss = `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
 
   async function startCall() {
     if (demoMode) {
       toast.message("Connect Supabase + Twilio to place real calls");
+      return;
+    }
+    if (!leadId) {
+      toast.error("Select a consented lead from CRM contacts first");
+      return;
+    }
+    if (!marketingConsent || consentReference.trim().length < 8) {
+      toast.error("Record the marketing-consent reference before calling");
       return;
     }
     if (!ready) {
@@ -101,11 +160,16 @@ function DialerPage() {
       const res = await placeOutboundCall({
         data: {
           to: number,
+          leadId,
+          idempotencyKey,
+          marketingConsent: true,
+          consentReference,
           contactName: contactName || undefined,
         },
       });
       setActiveCallId(res.callId);
       setOnCall(true);
+      setProviderState(res.status);
       setSeconds(0);
       setStatusLabel(`Ringing your phone · then ${res.prospect}`);
       toast.success("Answer your phone — we'll connect the prospect next");
@@ -119,16 +183,17 @@ function DialerPage() {
   async function endCall() {
     setBusy(true);
     try {
-      if (activeCallId && !demoMode) {
-        await hangupOutboundCall({ data: { callId: activeCallId } });
-      }
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Could not hang up");
-    } finally {
+      if (activeCallId && !demoMode) await hangupOutboundCall({ data: { callId: activeCallId } });
       setOnCall(false);
       setActiveCallId(null);
       setSeconds(0);
-      setStatusLabel("Ready to dial");
+      setIdempotencyKey(crypto.randomUUID());
+      setStatusLabel("Call ended");
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : "Hangup unconfirmed; reconcile before redialling",
+      );
+    } finally {
       setBusy(false);
     }
   }
@@ -157,6 +222,7 @@ function DialerPage() {
         </Link>
       </div>
 
+      {activeCallId && !demoMode && <LiveCoachingPanel callId={activeCallId} />}
       <div className="grid gap-4 xl:grid-cols-[340px_1fr]">
         <Panel className="p-5">
           <div className="rounded-xl border border-border bg-secondary/30 p-4 text-center">
@@ -164,16 +230,43 @@ function DialerPage() {
             <p className="mt-1 font-mono text-2xl">{onCall ? mmss : number}</p>
             {onCall ? (
               <p className="mt-1 text-xs text-muted-foreground">
-                Answer your handset · recording {callerId ? `· from ${callerId}` : ""}
+                Answer your handset · recording disabled {callerId ? `· from ${callerId}` : ""}
               </p>
             ) : null}
             <div className="mt-3 flex justify-center gap-2">
               <Chip tone={onCall ? "good" : "neutral"}>
-                {held ? "On hold" : onCall ? "Live" : "Idle"}
+                {onCall ? providerState.replaceAll("_", " ") : "Idle"}
               </Chip>
             </div>
           </div>
 
+          <label className="mt-4 block text-xs">
+            Consented lead
+            <select
+              value={leadId}
+              disabled={onCall}
+              onChange={(event) => {
+                const lead = leads.find((item) => item.id === event.target.value);
+                setLeadId(event.target.value);
+                if (lead) {
+                  setNumber(lead.phone_e164);
+                  setContactName(lead.name);
+                  setConsentReference(lead.consent_reference ?? "");
+                }
+              }}
+              className="mt-1 block w-full rounded border border-border bg-secondary p-2"
+            >
+              <option value="">Choose an actual consented lead</option>
+              {leads.map((lead) => (
+                <option key={lead.id} value={lead.id}>
+                  {lead.name} · {lead.phone_e164}
+                </option>
+              ))}
+            </select>
+          </label>
+          <Link to="/crm/contacts" className="text-xs text-primary">
+            Create or update a lead
+          </Link>
           <label className="mt-4 block text-[11px] tracking-wider text-muted-foreground uppercase">
             Contact name (optional)
           </label>
@@ -185,6 +278,25 @@ function DialerPage() {
             disabled={onCall}
           />
 
+          <label className="mt-4 block text-xs">
+            <input
+              type="checkbox"
+              checked={marketingConsent}
+              onChange={(event) => setMarketingConsent(event.target.checked)}
+              disabled={onCall}
+            />{" "}
+            I verified marketing consent and permission to contact this lead.
+          </label>
+          <label className="mt-2 block text-xs">
+            Consent record reference
+            <input
+              value={consentReference}
+              onChange={(event) => setConsentReference(event.target.value)}
+              disabled={onCall}
+              className="mt-1 w-full rounded border border-border bg-secondary p-2"
+              placeholder="CRM consent record or approved campaign reference"
+            />
+          </label>
           <div className="mt-4 grid grid-cols-3 gap-2">
             {keys.map((k) => (
               <button
@@ -227,26 +339,10 @@ function DialerPage() {
             </button>
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-2 text-[11px]">
-            <button
-              type="button"
-              disabled={!onCall}
-              onClick={() => setMuted((v) => !v)}
-              className="flex flex-col items-center gap-1 rounded-xl border border-border bg-secondary/30 py-2.5 text-muted-foreground disabled:opacity-40"
-            >
-              {muted ? <MicOff className="size-4" /> : <Mic className="size-4" />}
-              {muted ? "Unmute (handset)" : "Mute (handset)"}
-            </button>
-            <button
-              type="button"
-              disabled={!onCall}
-              onClick={() => setHeld((v) => !v)}
-              className="flex flex-col items-center gap-1 rounded-xl border border-border bg-secondary/30 py-2.5 text-muted-foreground disabled:opacity-40"
-            >
-              <Pause className="size-4" />
-              {held ? "Resume timer" : "Hold timer"}
-            </button>
-          </div>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Use your handset to mute. Provider hold is not implemented. Connection status refers to
+            the agent leg; prospect-answer analytics require child-leg tracking.
+          </p>
         </Panel>
 
         <div className="space-y-4">
@@ -274,7 +370,10 @@ function DialerPage() {
             </Panel>
           ) : (
             <Panel className="p-5 text-sm text-muted-foreground">
-              After you hang up, open <Link to="/app/calls" className="text-primary hover:underline">Calls</Link>{" "}
+              After you hang up, open{" "}
+              <Link to="/app/calls" className="text-primary hover:underline">
+                Calls
+              </Link>{" "}
               for the recording and AI review.
             </Panel>
           )}

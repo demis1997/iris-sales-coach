@@ -61,7 +61,9 @@ function AdminCampaignsPage() {
             <div className="mt-4 flex flex-wrap gap-2">
               <ProductButton
                 variant="secondary"
-                onClick={() => demoAction(c.status === "Running" ? `Pause ${c.name}` : `Start ${c.name}`)}
+                onClick={() =>
+                  demoAction(c.status === "Running" ? `Pause ${c.name}` : `Start ${c.name}`)
+                }
               >
                 {c.status === "Running" ? (
                   <>

@@ -77,7 +77,8 @@ function LiveFloorPage() {
                 ) : null}
                 {a.status === "live" ? (
                   <p className="mt-1 text-[11px] text-[#8A9BB5]">
-                    AI score: {a.agentId === "agt-sofia" ? "71" : a.agentId === "agt-maria" ? "88" : "79"}
+                    AI score:{" "}
+                    {a.agentId === "agt-sofia" ? "71" : a.agentId === "agt-maria" ? "88" : "79"}
                   </p>
                 ) : a.status === "wrap" ? (
                   <p className="mt-1 text-[11px] text-[#8A9BB5]">Previous score: 92</p>

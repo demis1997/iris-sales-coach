@@ -74,7 +74,9 @@ export function DemoShell({
 
           <div className="mt-5 rounded-2xl border border-white/[0.07] bg-[#132742]/70 px-3 py-3">
             <div className="flex items-center justify-between gap-2">
-              <p className="truncate text-[13px] font-semibold text-[#F7FAFF]">{DEMO_COMPANY.name}</p>
+              <p className="truncate text-[13px] font-semibold text-[#F7FAFF]">
+                {DEMO_COMPANY.name}
+              </p>
               <StatusBadge tone="demo">Demo</StatusBadge>
             </div>
             <p className="mt-1 text-[11px] text-[#8A9BB5]">Workspace · Limassol</p>
@@ -107,7 +109,10 @@ export function DemoShell({
                     )}
                   >
                     <Icon
-                      className={cn("size-4 shrink-0", active ? "text-[#2EE6A6]" : "text-[#8A9BB5]")}
+                      className={cn(
+                        "size-4 shrink-0",
+                        active ? "text-[#2EE6A6]" : "text-[#8A9BB5]",
+                      )}
                     />
                     {item.label}
                   </Link>

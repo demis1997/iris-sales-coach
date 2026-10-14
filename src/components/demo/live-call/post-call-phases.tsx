@@ -28,7 +28,9 @@ export function ProcessingPhase({ session }: { session: CallSession }) {
       <ul className="mx-auto mt-4 max-w-xs space-y-2 text-left text-sm">
         {session.processingSteps.map((s) => (
           <li key={s.id} className="flex items-center gap-2">
-            <span className={s.done ? "text-success" : "text-muted-foreground"}>{s.done ? "✓" : "○"}</span>
+            <span className={s.done ? "text-success" : "text-muted-foreground"}>
+              {s.done ? "✓" : "○"}
+            </span>
             {s.label}
           </li>
         ))}
@@ -62,7 +64,7 @@ export function ReviewPhase({
         <div>
           <h2 className="text-2xl font-semibold tracking-tight">Call Review</h2>
           <p className="text-sm text-muted-foreground">
-            {session.prospect.name} · Coached from this call’s transcript
+            {session.prospect.name} · Simulated review · no live call or CRM update
           </p>
         </div>
         <Chip tone="iris">{providerLabel}</Chip>
@@ -113,13 +115,13 @@ export function ReviewPhase({
         </p>
         <p className="mt-2 text-sm text-destructive">Instead of: “{review.tryInsteadOf}”</p>
         <p className="mt-2 text-sm text-success">Try: “{review.tryInstead}”</p>
-          <Link
-            to="/demo/agent/practice"
-            search={{ scenario: "high-intent-trust" }}
-            className="mt-4 inline-flex product-btn-primary !px-4 !py-2 text-xs"
-          >
-            Practice this →
-          </Link>
+        <Link
+          to="/demo/agent/practice"
+          search={{ scenario: "high-intent-trust" }}
+          className="mt-4 inline-flex product-btn-primary !px-4 !py-2 text-xs"
+        >
+          Practice this →
+        </Link>
       </Panel>
 
       <Panel>
@@ -152,11 +154,7 @@ export function ReviewPhase({
         </div>
       </Panel>
 
-      <button
-        type="button"
-        onClick={onContinue}
-        className="product-btn-primary"
-      >
+      <button type="button" onClick={onContinue} className="product-btn-primary">
         Select call outcome →
       </button>
     </div>
@@ -246,14 +244,14 @@ export function DonePhase({ onAgain, onQueue }: { onAgain: () => void; onQueue: 
         Ready for the next lead — or reopen the live workspace story.
       </p>
       <div className="mt-6 flex flex-wrap justify-center gap-2">
-        <button
-          type="button"
-          onClick={onQueue}
-          className="product-btn-primary"
-        >
+        <button type="button" onClick={onQueue} className="product-btn-primary">
           Open queue
         </button>
-        <button type="button" onClick={onAgain} className="rounded-xl border border-border px-4 py-2 text-sm">
+        <button
+          type="button"
+          onClick={onAgain}
+          className="rounded-xl border border-border px-4 py-2 text-sm"
+        >
           Replay live call
         </button>
         <Link to="/demo/agent" className="rounded-xl border border-border px-4 py-2 text-sm">

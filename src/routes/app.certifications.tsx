@@ -2,10 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Lock, ShieldCheck } from "lucide-react";
 import { PageHeading, Panel, PanelHeader, Chip, Meter } from "@/components/iris/primitives";
-import {
-  campaignAccessRules,
-  certifications,
-} from "@/lib/revenue-intelligence-data";
+import { campaignAccessRules, certifications } from "@/lib/revenue-intelligence-data";
 
 export const Route = createFileRoute("/app/certifications")({
   head: () => ({
@@ -13,7 +10,8 @@ export const Route = createFileRoute("/app/certifications")({
       { title: "Certifications — Artemis AI" },
       {
         name: "description",
-        content: "Campaign certifications that gate dialer access until reps pass required training.",
+        content:
+          "Campaign certifications that gate dialer access until reps pass required training.",
       },
     ],
   }),
@@ -38,11 +36,17 @@ function CertificationsPage() {
               <h3 className="font-semibold">{c.name}</h3>
             </div>
             <p className="mt-2 text-xs text-muted-foreground">
-              {c.lessons} lessons · {c.roleplays} roleplays · min score {c.minScore} · expires {c.expiryDays}d
+              {c.lessons} lessons · {c.roleplays} roleplays · min score {c.minScore} · expires{" "}
+              {c.expiryDays}d
             </p>
             <p className="mt-3 text-xs">Required for: {c.requiredFor.join(", ")}</p>
-            <p className="mt-2 text-[11px] text-muted-foreground">{c.holders.length} agents certified</p>
-            <Link to="/app/roleplay" className="mt-4 inline-flex text-xs text-primary hover:underline">
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              {c.holders.length} agents certified
+            </p>
+            <Link
+              to="/app/roleplay"
+              className="mt-4 inline-flex text-xs text-primary hover:underline"
+            >
               Start required roleplays →
             </Link>
           </Panel>
@@ -50,7 +54,10 @@ function CertificationsPage() {
       </div>
 
       <Panel className="mt-4">
-        <PanelHeader title="Campaign dialer locks" subtitle="Uncertified reps see a clear locked state" />
+        <PanelHeader
+          title="Campaign dialer locks"
+          subtitle="Uncertified reps see a clear locked state"
+        />
         <div className="divide-y divide-border">
           {campaignAccessRules.map((rule) => (
             <div key={rule.campaign} className="px-5 py-4">
@@ -79,7 +86,9 @@ function CertificationsPage() {
                       </div>
                       <Meter value={a.progress} />
                     </div>
-                    <p className="mt-2 text-xs">Next action: complete missing certification modules</p>
+                    <p className="mt-2 text-xs">
+                      Next action: complete missing certification modules
+                    </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       <Link
                         to="/app/roleplay"

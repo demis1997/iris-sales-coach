@@ -25,13 +25,21 @@ export const Route = createFileRoute("/ceo/employees/$employeeId")({
   },
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Employee unavailable — Artemis AI" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [
+          { title: "Employee unavailable — Artemis AI" },
+          { name: "robots", content: "noindex" },
+        ],
+      };
     }
     const t = `${loaderData.employee.name} — Artemis Executive`;
     return {
       meta: [
         { title: t },
-        { name: "description", content: `Performance, coaching and personality insights for ${loaderData.employee.name}.` },
+        {
+          name: "description",
+          content: `Performance, coaching and personality insights for ${loaderData.employee.name}.`,
+        },
         { property: "og:title", content: t },
         { property: "og:description", content: "Performance, coaching and personality insights." },
       ],
@@ -75,7 +83,9 @@ function EmployeeProfile() {
           </p>
         </div>
         <span className="ml-auto flex gap-2">
-          <Chip tone={employee.risk === "Low" ? "good" : employee.risk === "Medium" ? "warn" : "bad"}>
+          <Chip
+            tone={employee.risk === "Low" ? "good" : employee.risk === "Medium" ? "warn" : "bad"}
+          >
             {employee.risk} risk
           </Chip>
           <Chip tone="iris">MEDDIC</Chip>
@@ -86,7 +96,11 @@ function EmployeeProfile() {
         <StatCard label="AI score" value={`${employee.score}`} delta={employee.trend} />
         <StatCard label="Close rate" value={`${employee.closeRate}%`} delta={employee.trend} />
         <StatCard label="Confidence" value={`${employee.confidence}%`} delta={employee.trend} />
-        <StatCard label="Revenue" value={`$${(employee.revenue / 1000).toFixed(0)}K`} delta={employee.trend} />
+        <StatCard
+          label="Revenue"
+          value={`$${(employee.revenue / 1000).toFixed(0)}K`}
+          delta={employee.trend}
+        />
         <StatCard label="Calls" value={`${employee.calls}`} hint="This month" />
       </div>
 
@@ -103,11 +117,35 @@ function EmployeeProfile() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="var(--border)" vertical={false} />
-                <XAxis dataKey="week" tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" />
-                <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="var(--muted-foreground)" width={28} />
+                <XAxis
+                  dataKey="week"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                />
+                <YAxis
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={11}
+                  stroke="var(--muted-foreground)"
+                  width={28}
+                />
                 <Tooltip {...chartTooltip} />
-                <Area type="monotone" dataKey="score" stroke="var(--violet)" strokeWidth={2} fill="url(#emp-a)" />
-                <Area type="monotone" dataKey="confidence" stroke="var(--cyan)" strokeWidth={2} fillOpacity={0} />
+                <Area
+                  type="monotone"
+                  dataKey="score"
+                  stroke="var(--violet)"
+                  strokeWidth={2}
+                  fill="url(#emp-a)"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="confidence"
+                  stroke="var(--cyan)"
+                  strokeWidth={2}
+                  fillOpacity={0}
+                />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -134,7 +172,10 @@ function EmployeeProfile() {
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={personality} outerRadius="72%">
                 <PolarGrid stroke="var(--border)" />
-                <PolarAngleAxis dataKey="trait" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} />
+                <PolarAngleAxis
+                  dataKey="trait"
+                  tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
+                />
                 <Tooltip {...chartTooltip} />
                 <Radar dataKey="value" stroke="var(--cyan)" fill="var(--cyan)" fillOpacity={0.25} />
               </RadarChart>
@@ -143,7 +184,10 @@ function EmployeeProfile() {
         </Panel>
 
         <Panel>
-          <PanelHeader title="Call quality heatmap" subtitle="Average score by hour · 09:00–16:00" />
+          <PanelHeader
+            title="Call quality heatmap"
+            subtitle="Average score by hour · 09:00–16:00"
+          />
           <div className="space-y-1.5 p-5">
             {heat.map(([day, vals]) => (
               <div key={day} className="flex items-center gap-2">
@@ -234,7 +278,10 @@ function EmployeeProfile() {
             "Cap talk ratio at 60% — currently averaging 71%.",
             "Require 5 discovery questions before any pricing mention.",
           ].map((t) => (
-            <p key={t} className="rounded-xl border border-border bg-secondary/30 p-3 text-xs text-muted-foreground">
+            <p
+              key={t}
+              className="rounded-xl border border-border bg-secondary/30 p-3 text-xs text-muted-foreground"
+            >
               {t}
             </p>
           ))}

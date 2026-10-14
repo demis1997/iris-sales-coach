@@ -1,10 +1,6 @@
 import { z } from "zod";
 
-export const ScoreCategoryStatusSchema = z.enum([
-  "SCORED",
-  "NOT_ENOUGH_EVIDENCE",
-  "NOT_RELEVANT",
-]);
+export const ScoreCategoryStatusSchema = z.enum(["SCORED", "NOT_ENOUGH_EVIDENCE", "NOT_RELEVANT"]);
 
 export const CallScoringSchema = z.object({
   overallScore: z.number().min(0).max(100).nullable(),

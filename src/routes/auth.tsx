@@ -14,7 +14,8 @@ export const Route = createFileRoute("/auth")({
       { title: "Sign in — Artemis AI" },
       {
         name: "description",
-        content: "Sign in to Artemis AI with a magic link, Google, Microsoft, or email and password.",
+        content:
+          "Sign in to Artemis AI with a magic link, Google, Microsoft, or email and password.",
       },
       { property: "og:title", content: "Sign in — Artemis AI" },
       { property: "og:description", content: "Access your revenue operating system." },
@@ -139,7 +140,9 @@ function AuthPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <ArtemisMark className="justify-center" />
-          <h1 className="mt-5 text-2xl font-semibold tracking-tight">Your revenue operating system</h1>
+          <h1 className="mt-5 text-2xl font-semibold tracking-tight">
+            Your revenue operating system
+          </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             Every call analyzed, every rep coached, every deal predicted.
           </p>
@@ -148,8 +151,8 @@ function AuthPage() {
         <Panel className="p-6">
           {!isSupabaseConfigured() ? (
             <p className="mb-4 rounded-xl border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
-              Demo mode: Supabase keys are missing from <code className="text-[11px]">.env</code>. You can
-              still browse product pages. Auth and onboarding need{" "}
+              Demo mode: Supabase keys are missing from <code className="text-[11px]">.env</code>.
+              You can still browse product pages. Auth and onboarding need{" "}
               <code className="text-[11px]">VITE_SUPABASE_URL</code> and{" "}
               <code className="text-[11px]">VITE_SUPABASE_PUBLISHABLE_KEY</code>.
             </p>
@@ -224,7 +227,11 @@ function AuthPage() {
               className="flex w-full items-center justify-center gap-2 rounded-xl gradient-surface px-4 py-2.5 text-sm font-semibold text-background disabled:opacity-60"
             >
               {busy ? <Loader2 className="size-4 animate-spin" /> : <Mail className="size-4" />}
-              {mode === "magic" ? "Send magic link" : mode === "password" ? "Sign in" : "Start free"}
+              {mode === "magic"
+                ? "Send magic link"
+                : mode === "password"
+                  ? "Sign in"
+                  : "Start free"}
             </button>
           </form>
 
@@ -259,7 +266,9 @@ function AuthPage() {
           </div>
 
           {msg ? (
-            <p className={`mt-4 text-xs ${msg.tone === "ok" ? "text-success" : "text-destructive"}`}>
+            <p
+              className={`mt-4 text-xs ${msg.tone === "ok" ? "text-success" : "text-destructive"}`}
+            >
               {msg.text}
             </p>
           ) : null}

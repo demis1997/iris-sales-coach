@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Headphones,
-  Import,
-  MousePointerClick,
-  PhoneCall,
-  Sparkles,
-  Database,
-} from "lucide-react";
+import { Headphones, Import, MousePointerClick, PhoneCall, Sparkles, Database } from "lucide-react";
 import { ArtemisButton, ArtemisMark } from "@/components/relay/brand";
 import { ArtemisHeader } from "@/components/relay/header";
 import { ContactLinks } from "@/components/relay/contact-links";
@@ -69,78 +62,67 @@ const INTEGRATIONS = [
     name: "HubSpot",
     color: "#FF7A59",
     status: "Planned",
-    blurb:
-      "Planned CRM connector for call logging, SMS, and dialer workflows inside HubSpot.",
+    blurb: "Planned CRM connector for call logging, SMS, and dialer workflows inside HubSpot.",
   },
   {
     name: "Salesforce",
     color: "#00A1E0",
     status: "Planned",
-    blurb:
-      "Planned Salesforce connector for call context and coaching insights in the CRM.",
+    blurb: "Planned Salesforce connector for call context and coaching insights in the CRM.",
   },
   {
     name: "Zoho",
     color: "#E42527",
     status: "Planned",
-    blurb:
-      "Planned Zoho integration for call logging, campaigns, and ticket creation.",
+    blurb: "Planned Zoho integration for call logging, campaigns, and ticket creation.",
   },
   {
     name: "Bitrix24",
     color: "#2FC6F6",
     status: "Planned",
-    blurb:
-      "Planned Bitrix24 connector for outbound calling and AI insights.",
+    blurb: "Planned Bitrix24 connector for outbound calling and AI insights.",
   },
   {
     name: "Freshdesk",
     color: "#25C16F",
     status: "Planned",
-    blurb:
-      "Planned Freshdesk connector for call pop-up, history, and ticket creation.",
+    blurb: "Planned Freshdesk connector for call pop-up, history, and ticket creation.",
   },
   {
     name: "Zendesk",
     color: "#03363D",
     status: "Planned",
-    blurb:
-      "Planned Zendesk connector for AI calling features in support workflows.",
+    blurb: "Planned Zendesk connector for AI calling features in support workflows.",
   },
   {
     name: "Zapier",
     color: "#FF4A00",
     status: "Planned",
-    blurb:
-      "Planned Zapier workflows to connect calls to CRM, helpdesk, and marketing tools.",
+    blurb: "Planned Zapier workflows to connect calls to CRM, helpdesk, and marketing tools.",
   },
   {
     name: "Make.com",
     color: "#6D00CC",
     status: "Planned",
-    blurb:
-      "Planned Make.com automation for calling workflows and app connections.",
+    blurb: "Planned Make.com automation for calling workflows and app connections.",
   },
   {
     name: "Pipedrive",
     color: "#017737",
     status: "Planned",
-    blurb:
-      "Planned Pipedrive connector for pipeline context and dialer workflows.",
+    blurb: "Planned Pipedrive connector for pipeline context and dialer workflows.",
   },
   {
     name: "Twilio",
     color: "#F22F46",
     status: "In progress",
-    blurb:
-      "Telephony foundation in progress — click-to-call and caller ID for Artemis workspaces.",
+    blurb: "Telephony foundation in progress — click-to-call and caller ID for Artemis workspaces.",
   },
   {
     name: "Something else?",
     color: "#12C48A",
     status: "Talk to us",
-    blurb:
-      "Tell us which systems your floor runs. We prioritize connectors with design partners.",
+    blurb: "Tell us which systems your floor runs. We prioritize connectors with design partners.",
   },
 ];
 
@@ -201,11 +183,17 @@ export function ArtemisIntegrationsPage() {
       <div className="border-b border-[#E8EEF7] bg-gradient-to-r from-[#E8FFF6] via-[#EEF2FF] to-[#FFF4E8]">
         <p className="mx-auto max-w-6xl px-5 py-2.5 text-center text-sm text-[#4B5C76]">
           Building with high-volume sales teams.{" "}
-          <a href="/demo" className="font-semibold text-[#4F6EF7] underline-offset-2 hover:underline">
+          <a
+            href="/demo"
+            className="font-semibold text-[#4F6EF7] underline-offset-2 hover:underline"
+          >
             Explore the product demo
           </a>{" "}
           or{" "}
-          <a href="#get-started" className="font-semibold text-[#12C48A] underline-offset-2 hover:underline">
+          <a
+            href="#get-started"
+            className="font-semibold text-[#12C48A] underline-offset-2 hover:underline"
+          >
             become a design partner
           </a>
           .
@@ -227,7 +215,8 @@ export function ArtemisIntegrationsPage() {
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-[#4B5C76]">
               Planned and in-progress connectors for the CRMs and telephony stacks high-volume sales
-              teams already run. Demo screens may show simulated integrations until live connectors ship.
+              teams already run. Demo screens may show simulated integrations until live connectors
+              ship.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <ArtemisButton href="#get-started" className="px-7 py-3 text-base">
@@ -313,15 +302,23 @@ export function ArtemisIntegrationsPage() {
       <section id="use-cases" className="border-y border-[#E8EEF7] bg-[#F7FAFF] py-20">
         <div className="mx-auto grid max-w-6xl gap-5 px-5 lg:grid-cols-3">
           {USE_CASES.map((item) => (
-            <article key={item.title} className="overflow-hidden rounded-3xl bg-white shadow-[0_12px_40px_-20px_rgba(15,40,80,0.25)]">
+            <article
+              key={item.title}
+              className="overflow-hidden rounded-3xl bg-white shadow-[0_12px_40px_-20px_rgba(15,40,80,0.25)]"
+            >
               <div className={cn("h-2 bg-gradient-to-r", item.accent)} />
               <div className="p-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8A9BB5]">
                   {item.label}
                 </p>
-                <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#0B1B33]">{item.title}</h3>
+                <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#0B1B33]">
+                  {item.title}
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-[#4B5C76]">{item.body}</p>
-                <a href="#get-started" className="mt-5 inline-flex text-sm font-semibold text-[#12C48A]">
+                <a
+                  href="#get-started"
+                  className="mt-5 inline-flex text-sm font-semibold text-[#12C48A]"
+                >
                   Explore →
                 </a>
               </div>
@@ -358,8 +355,7 @@ export function ArtemisIntegrationsPage() {
                   e.preventDefault();
                   const form = e.currentTarget;
                   const inputs = Array.from(form.querySelectorAll("input, select")) as (
-                    | HTMLInputElement
-                    | HTMLSelectElement
+                    HTMLInputElement | HTMLSelectElement
                   )[];
                   const values = Object.fromEntries(
                     inputs.map((el, i) => [el.name || `field_${i}`, el.value]),
@@ -414,8 +410,8 @@ export function ArtemisIntegrationsPage() {
                   </select>
                 </label>
                 <label className="flex items-start gap-2 text-sm text-[#4B5C76] sm:col-span-2">
-                  <input type="checkbox" className="mt-1 accent-[#12C48A]" />
-                  I agree to receive marketing communications from Artemis AI
+                  <input type="checkbox" className="mt-1 accent-[#12C48A]" />I agree to receive
+                  marketing communications from Artemis AI
                 </label>
                 <button
                   type="submit"
@@ -437,7 +433,10 @@ export function ArtemisIntegrationsPage() {
             {FAQS.map((item, i) => {
               const open = openFaq === i;
               return (
-                <div key={item.q} className="overflow-hidden rounded-2xl border border-[#E8EEF7] bg-white">
+                <div
+                  key={item.q}
+                  className="overflow-hidden rounded-2xl border border-[#E8EEF7] bg-white"
+                >
                   <button
                     type="button"
                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold text-[#0B1B33]"
@@ -463,13 +462,17 @@ export function ArtemisIntegrationsPage() {
           <div>
             <ArtemisMark />
             <p className="mt-3 max-w-xs text-sm text-[#8A9BB5]">
-              AI contact center software with speech analytics, predictive dialing, and CRM integrations.
+              AI contact center software with speech analytics, predictive dialing, and CRM
+              integrations.
             </p>
             <ContactLinks className="mt-4" />
           </div>
           <div className="grid grid-cols-2 gap-8 text-sm sm:grid-cols-3">
             {[
-              ["Products", ["Omnichannel", "Flow Builder", "Speech Analytics", "Predictive Dialer"]],
+              [
+                "Products",
+                ["Omnichannel", "Flow Builder", "Speech Analytics", "Predictive Dialer"],
+              ],
               ["Resources", ["Integrations", "Documentation", "Developers", "Blog"]],
               ["Company", ["About", "Careers", "Contact Sales", "Privacy"]],
             ].map(([title, links]) => (

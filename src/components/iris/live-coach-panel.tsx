@@ -211,9 +211,7 @@ function CoachCard({ card }: { card: LiveCoachSuggestion }) {
         >
           <Copy className="size-3" /> Copy
         </ActionBtn>
-        <ActionBtn
-          onClick={() => setAlt((a) => (a + 1) % (card.alternatives.length + 1))}
-        >
+        <ActionBtn onClick={() => setAlt((a) => (a + 1) % (card.alternatives.length + 1))}>
           Show alternative
         </ActionBtn>
         {card.battleCard ? (
